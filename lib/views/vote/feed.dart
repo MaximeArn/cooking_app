@@ -20,7 +20,7 @@ class _State extends State<Feed> {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.all(10),
       itemCount: postsList.length,
       itemBuilder: (context, index) => PostCard(post: postsList[index]),
       separatorBuilder: (context, index) => Divider(
