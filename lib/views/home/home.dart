@@ -7,10 +7,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("CooKing")),
-      body: Container(
-          alignment: Alignment.center,
-          child: Text("home")
-      ),
+      body: Container(alignment: Alignment.center, child: Text("home")),
       bottomNavigationBar: BottomNavigation(),
       drawer: SidePanel(),
     );
