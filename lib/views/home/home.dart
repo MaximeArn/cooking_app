@@ -9,11 +9,8 @@ class Home extends StatelessWidget {
       appBar: AppBar(title: Text("CooKing")),
       body: Container(
           alignment: Alignment.center,
-          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            TextButton(onPressed: () {}, child: Text("I am a button ")),
-            ElevatedButton(
-                onPressed: () {}, child: Text("I am an elevated button "))
-          ])),
+          child: Text("home")
+      ),
       bottomNavigationBar: BottomNavigation(),
       drawer: SidePanel(),
     );
