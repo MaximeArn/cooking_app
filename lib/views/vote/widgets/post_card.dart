@@ -50,26 +50,45 @@ class PostCard extends StatelessWidget {
               ),
               Flexible(
                 flex: 4,
-                // child: Container(color: Colors.green,),
                 child: Row(
                   children: [
                     Expanded(
-                        child: Ink.image(
-                      image: AssetImage(post.photo),
-                      fit: BoxFit.cover,
-                      child: InkWell(
-                        onTap: () {
-                          print("image tapped");
-                        },
+                      child: Ink.image(
+                        image: AssetImage(post.photo),
+                        fit: BoxFit.cover,
+                        child: InkWell(
+                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                          onTap: () {
+                            print("image tapped");
+                          },
+                        ),
                       ),
-                    ))
+                    )
                   ],
                 ),
               ),
               Flexible(
                 flex: 1,
                 child: Row(
-                  children: [],
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text("Vote : ", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
+                    IconButton(
+                        onPressed: () {
+                          print("1 star");
+                        },
+                        icon: Icon(Icons.star_border)),
+                        IconButton(
+                        onPressed: () {
+                          print("2 star");
+                        },
+                        icon: Icon(Icons.star_border)),
+                        IconButton(
+                        onPressed: () {
+                          print("3 star");
+                        },
+                        icon: Icon(Icons.star_border)),
+                  ],
                 ),
               ),
             ],
