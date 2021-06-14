@@ -57,7 +57,7 @@ class _HomeState extends State<Home> {
                       : index == 4
                           ? Profile()
                           : Text("sorry we have a problem"),
-      bottomNavigationBar: BottomNavigation(setIndex: setIndex),
+      bottomNavigationBar: BottomNavigation(setIndex: setIndex, index: index,),
       drawer: SidePanel(),
     );
   }

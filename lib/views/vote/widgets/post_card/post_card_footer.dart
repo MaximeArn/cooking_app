@@ -16,23 +16,34 @@ class PostCardFooter extends StatelessWidget {
             "Vote : ",
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
           ),
-          Container(
-            child: IconButton(
-                onPressed: () {
-                  print("1 star");
-                },
-                icon: Icon(Icons.star_border)),
-          ),
-          IconButton(
-              onPressed: () {
-                print("2 star");
-              },
-              icon: Icon(Icons.star_border)),
-          IconButton(
-              onPressed: () {
-                print("3 star");
-              },
-              icon: Icon(Icons.star_border)),
+          Expanded(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  constraints: BoxConstraints(maxHeight: 16),
+                    onPressed: () {
+                      print("1 star");
+                    },
+                    icon: Icon(Icons.star_border)),
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  constraints: BoxConstraints(maxHeight: 16),
+                    onPressed: () {
+                      print("2 star");
+                    },
+                    icon: Icon(Icons.star_border)),
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  constraints: BoxConstraints(maxHeight: 16),
+                    onPressed: () {
+                      print("3 star");
+                    },
+                    icon: Icon(Icons.star_border)),
+              ],
+            ),
+          )
         ],
       ),
     );
