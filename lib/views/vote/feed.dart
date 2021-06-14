@@ -13,13 +13,12 @@ class _State extends State<Feed> {
 
   void notePost(String id, int newNote) {
     setState(() {
-      postsList = postsList.map((Post post) {
+      posts = postsList.map((Post post) {
         if (post.id == id) {
           post.note = newNote;
         }
         return post;
       }).toList();
-      print(postsList);
     });
   }
 
