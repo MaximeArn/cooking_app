@@ -1,3 +1,4 @@
+import 'package:cooking/views/add_post/add_post.dart';
 import 'package:cooking/views/nav/widgets/bottom_navigation.dart';
 import 'package:cooking/views/nav/widgets/side_panel.dart';
 import 'package:cooking/views/rewards/rewards.dart';
@@ -43,7 +44,7 @@ class _HomeState extends State<Home> {
               ]),
         ),
       ),
-      body: index == 0 ? Feed() : Rewards(),
+      body: index == 0 ? Feed() : index == 1 ? Rewards() : AddPost() ,
       bottomNavigationBar: BottomNavigation(setIndex: setIndex),
       drawer: SidePanel(),
     );
