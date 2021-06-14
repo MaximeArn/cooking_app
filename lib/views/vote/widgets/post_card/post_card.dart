@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 
 class PostCard extends StatelessWidget {
   final Post post;
+  final void Function(String, int) notePost;
 
-  PostCard({required this.post});
+  PostCard({required this.post, required this.notePost});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,9 @@ class PostCard extends StatelessWidget {
             ),
             PostCardImage(photo: post.photo),
             PostCardFooter(
-              vote: post.note,
+              note: post.note,
+              notePost: notePost,
+              id: post.id,
             ),
           ],
         ),

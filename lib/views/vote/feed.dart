@@ -11,6 +11,18 @@ class Feed extends StatefulWidget {
 class _State extends State<Feed> {
   late List<Post> postsList;
 
+  void notePost(String id, int newNote) {
+    setState(() {
+      postsList = postsList.map((Post post) {
+        if (post.id == id) {
+          post.note = newNote;
+        }
+        return post;
+      }).toList();
+      print(postsList);
+    });
+  }
+
   @override
   void initState() {
     postsList = posts;
@@ -22,7 +34,8 @@ class _State extends State<Feed> {
     return ListView.separated(
       padding: EdgeInsets.all(10),
       itemCount: postsList.length,
-      itemBuilder: (context, index) => PostCard(post: postsList[index]),
+      itemBuilder: (context, index) =>
+          PostCard(post: postsList[index], notePost: notePost),
       separatorBuilder: (context, index) => Divider(
         height: 25,
       ),

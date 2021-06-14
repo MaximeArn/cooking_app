@@ -1,50 +1,35 @@
 import 'package:flutter/material.dart';
 
 class PostCardFooter extends StatelessWidget {
-  final int vote;
+  final int note;
+  final void Function(String, int) notePost;
+  final String id;
 
-  PostCardFooter({required this.vote});
+  PostCardFooter(
+      {required this.note, required this.notePost, required this.id});
 
   @override
   Widget build(BuildContext context) {
     return Flexible(
       flex: 1,
+      fit: FlexFit.tight,
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Text(
-            "Vote : ",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-          ),
-          Expanded(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                IconButton(
-                  padding: EdgeInsets.zero,
-                  constraints: BoxConstraints(maxHeight: 16),
-                    onPressed: () {
-                      print("1 star");
-                    },
-                    icon: Icon(Icons.star_border)),
-                IconButton(
-                  padding: EdgeInsets.zero,
-                  constraints: BoxConstraints(maxHeight: 16),
-                    onPressed: () {
-                      print("2 star");
-                    },
-                    icon: Icon(Icons.star_border)),
-                IconButton(
-                  padding: EdgeInsets.zero,
-                  constraints: BoxConstraints(maxHeight: 16),
-                    onPressed: () {
-                      print("3 star");
-                    },
-                    icon: Icon(Icons.star_border)),
-              ],
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(5, (index) {
+          return IconButton(
+            icon: Icon(
+              index < note ? Icons.star : Icons.star_border,
+              color: Color.fromRGBO(232, 196, 81, 1),
+              size: 30,
             ),
-          )
-        ],
+            onPressed: () {
+              print(id);
+              print(index);
+              notePost(id, index + 1);
+            },
+          );
+        }),
       ),
     );
   }
