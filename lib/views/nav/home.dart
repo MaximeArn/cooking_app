@@ -8,7 +8,9 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(size: 20,),
+        iconTheme: IconThemeData(
+          size: 20,
+        ),
         title: RichText(
           text: TextSpan(
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),

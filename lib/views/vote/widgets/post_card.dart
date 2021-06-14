@@ -9,7 +9,40 @@ class PostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Text(post.description),
+      child: Container(
+        height: 300,
+        child: Padding(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            children: [
+              Flexible(
+                flex:1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage(post.authorAvatar),
+                    ),
+                    Text(post.author)
+                  ],
+                ),
+              ),
+              Flexible(
+                flex: 3,
+                child: Row(
+                  children: [],
+                ),
+              ),
+              Flexible(
+                flex: 1,
+                child: Row(
+                  children: [],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

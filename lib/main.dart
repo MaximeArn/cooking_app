@@ -13,9 +13,13 @@ class MyApp extends StatelessWidget {
       title: "homepage",
       home: Home(),
       theme: ThemeData(
-          primaryColor: Colors.white,
-          brightness: Brightness.light,
-          textTheme: TextTheme(headline1: TextStyle(color: Colors.black, fontSize: 28, fontWeight: FontWeight.bold),),),
+        primaryColor: Colors.white,
+        brightness: Brightness.light,
+        textTheme: TextTheme(
+          headline1: TextStyle(
+              color: Colors.black, fontSize: 28, fontWeight: FontWeight.bold),
+        ),
+      ),
     );
   }
 }
