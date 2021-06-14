@@ -7,7 +7,20 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("CooKing")),
+      appBar: AppBar(
+        iconTheme: IconThemeData(size: 20,),
+        title: RichText(
+          text: TextSpan(
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+              children: [
+                TextSpan(text: "Coo", style: TextStyle(color: Colors.black)),
+                TextSpan(
+                    text: "K",
+                    style: TextStyle(color: Color.fromRGBO(232, 196, 81, 1))),
+                TextSpan(text: "ing", style: TextStyle(color: Colors.black)),
+              ]),
+        ),
+      ),
       body: Feed(),
       bottomNavigationBar: BottomNavigation(),
       drawer: SidePanel(),
