@@ -1,4 +1,4 @@
-import 'package:cooking/models/Post.dart';
+import 'package:cooking/models/Post.type.dart';
 
 List<Post> posts = [
   Post(

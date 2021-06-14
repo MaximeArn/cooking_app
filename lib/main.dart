@@ -1,4 +1,4 @@
-import 'package:cooking/views/home/home.dart';
+import 'package:cooking/views/nav/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {

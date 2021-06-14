@@ -1,5 +1,6 @@
-import 'package:cooking/views/home/widgets/bottom_navigation.dart';
-import 'package:cooking/views/home/widgets/side_panel.dart';
+import 'package:cooking/views/nav/widgets/bottom_navigation.dart';
+import 'package:cooking/views/nav/widgets/side_panel.dart';
+import 'package:cooking/views/vote/feed.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -7,7 +8,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("CooKing")),
-      body: Container(alignment: Alignment.center, child: Text("home")),
+      body: Feed(),
       bottomNavigationBar: BottomNavigation(),
       drawer: SidePanel(),
     );
