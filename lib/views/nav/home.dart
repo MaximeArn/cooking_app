@@ -1,9 +1,29 @@
 import 'package:cooking/views/nav/widgets/bottom_navigation.dart';
 import 'package:cooking/views/nav/widgets/side_panel.dart';
+import 'package:cooking/views/rewards/rewards.dart';
 import 'package:cooking/views/vote/feed.dart';
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  late int index;
+
+  @override
+  void initState() {
+    index = 0;
+    super.initState();
+  }
+
+  void setIndex(newIndex) {
+    setState(() {
+      index = newIndex;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +43,8 @@ class Home extends StatelessWidget {
               ]),
         ),
       ),
-      body: Feed(),
-      bottomNavigationBar: BottomNavigation(),
+      body: index == 0 ? Feed() : Rewards(),
+      bottomNavigationBar: BottomNavigation(setIndex: setIndex),
       drawer: SidePanel(),
     );
   }
