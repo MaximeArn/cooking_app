@@ -1,6 +1,8 @@
 import 'package:cooking/views/add_post/add_post.dart';
 import 'package:cooking/views/nav/widgets/bottom_navigation.dart';
 import 'package:cooking/views/nav/widgets/side_panel.dart';
+import 'package:cooking/views/profile/profile.dart';
+import 'package:cooking/views/ranking/ranking.dart';
 import 'package:cooking/views/rewards/rewards.dart';
 import 'package:cooking/views/vote/feed.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +46,17 @@ class _HomeState extends State<Home> {
               ]),
         ),
       ),
-      body: index == 0 ? Feed() : index == 1 ? Rewards() : AddPost() ,
+      body: index == 0
+          ? Feed()
+          : index == 1
+              ? Rewards()
+              : index == 2
+                  ? AddPost()
+                  : index == 3
+                      ? Ranking()
+                      : index == 4
+                          ? Profile()
+                          : Text("sorry we have a problem"),
       bottomNavigationBar: BottomNavigation(setIndex: setIndex),
       drawer: SidePanel(),
     );
