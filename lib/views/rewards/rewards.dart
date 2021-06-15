@@ -1,6 +1,6 @@
 import 'package:cooking/data/rewards.dart';
 import 'package:cooking/models/Reward.type.dart';
-import 'package:cooking/views/rewards/widgets/rewardCard.dart';
+import 'package:cooking/views/rewards/widgets/rewardCard/reward_card.dart';
 import 'package:flutter/material.dart';
 
 class Rewards extends StatefulWidget {
