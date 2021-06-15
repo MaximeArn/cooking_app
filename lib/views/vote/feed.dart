@@ -1,4 +1,4 @@
-import 'package:cooking/data/data.dart';
+import 'package:cooking/data/posts.dart';
 import 'package:cooking/models/Post.type.dart';
 import 'package:cooking/views/vote/widgets/post_card/post_card.dart';
 import 'package:flutter/material.dart';
