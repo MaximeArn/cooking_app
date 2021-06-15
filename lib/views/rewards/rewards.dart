@@ -20,6 +20,7 @@ class _RewardsState extends State<Rewards> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      padding: EdgeInsets.all(10),
       itemBuilder: (BuildContext context, int index) {
         return RewardCard(reward: rewards[index]);
       },
