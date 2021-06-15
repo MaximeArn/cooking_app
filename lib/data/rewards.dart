@@ -10,7 +10,7 @@ List<Reward> rewardsList = [
       image: "assets/images/rewards/vegetables.jpg"),
   Reward(
       price: 25,
-      title: " a free baguette for 2 purchased",
+      title: " A free baguette for 2 purchased",
       description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor.",
       logo: "logo",
@@ -31,7 +31,7 @@ List<Reward> rewardsList = [
       image: "assets/images/rewards/fish.jpeg"),
   Reward(
       price: 25,
-      title: "a goat cheese offered for 30€ of purchase",
+      title: "A goat cheese offered for 30€ of purchase",
       description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor.",
       logo: "logo",

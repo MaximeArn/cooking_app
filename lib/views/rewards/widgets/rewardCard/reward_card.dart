@@ -21,7 +21,62 @@ class RewardCard extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(8.0))),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [RewardCardImage(image: reward.image)],
+            children: [
+              RewardCardImage(image: reward.image),
+              Flexible(
+                flex:2,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Flexible(
+                        flex: 2,
+                        child: Text(
+                          reward.title,
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Flexible(
+                        flex: 1,
+                        child: RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                  text: reward.price.toString(),
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 18)),
+                              WidgetSpan(
+                                alignment: PlaceholderAlignment.middle,
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 2.0,
+                                  ),
+                                  child: Icon(
+                                    Icons.star,
+                                    size: 50,
+                                    color: Color.fromRGBO(
+                                      232,
+                                      196,
+                                      81,
+                                      1,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

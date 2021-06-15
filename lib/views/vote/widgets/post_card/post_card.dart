@@ -15,7 +15,7 @@ class PostCard extends StatelessWidget {
     return Card(
       elevation: 5,
       shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15))),
+          borderRadius: BorderRadius.all(Radius.circular(15))),
       child: Container(
         height: 350,
         padding: EdgeInsets.all(10),
