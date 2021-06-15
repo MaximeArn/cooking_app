@@ -24,13 +24,13 @@ class RewardCard extends StatelessWidget {
             children: [
               RewardCardImage(image: reward.image),
               Flexible(
-                flex:2,
+                flex: 3,
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Flexible(
                         flex: 2,
@@ -76,6 +76,13 @@ class RewardCard extends StatelessWidget {
                   ),
                 ),
               ),
+              Flexible(
+                flex: 1,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Text("read more -->", style: TextStyle(color: Colors.blue.shade800,fontWeight: FontWeight.w500),),
+                ),
+              )
             ],
           ),
         ),

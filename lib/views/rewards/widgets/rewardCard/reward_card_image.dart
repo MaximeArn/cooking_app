@@ -8,7 +8,7 @@ class RewardCardImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Flexible(
-      flex: 5,
+      flex: 7,
       fit: FlexFit.tight,
       child: ClipRRect(
         borderRadius: BorderRadius.only(
