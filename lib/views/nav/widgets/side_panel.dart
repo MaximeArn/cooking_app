@@ -17,18 +17,30 @@ class SidePanel extends StatelessWidget {
             ),
           ],
         ),
-        Padding(
-          padding: EdgeInsets.only(left: 50, bottom: 30, top: 30),
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 10),
           child: Row(
-            children: [Icon(Icons.supervised_user_circle), Text("Profile")],
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 40, right: 5),
+                child: Icon(Icons.home),
+              ),
+              Text("icon1")
+            ],
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(left: 50),
+        Container(
+          margin: EdgeInsets.only(bottom: 10),
           child: Row(
-            children: [Icon(Icons.subway_rounded), Text("subway")],
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 40, right: 5),
+                child: Icon(Icons.home),
+              ),
+              Text("Icon2")
+            ],
           ),
-        )
+        ),
       ],
     ));
   }

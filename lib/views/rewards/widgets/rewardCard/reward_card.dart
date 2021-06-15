@@ -80,7 +80,12 @@ class RewardCard extends StatelessWidget {
                 flex: 1,
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Text("read more -->", style: TextStyle(color: Colors.blue.shade800,fontWeight: FontWeight.w500),),
+                  child: Text(
+                    "read more -->",
+                    style: TextStyle(
+                        color: Colors.blue.shade800,
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
               )
             ],
