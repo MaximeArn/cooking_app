@@ -3,7 +3,7 @@ import 'package:cooking/models/User.dart';
 
 class Post {
   final String id;
-  final User author;
+  final String author;
   final String image;
   final int note;
   final String description;

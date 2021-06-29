@@ -31,12 +31,13 @@ class User {
             .map((jsonPost) => Post.fromJson(jsonPost))
             .toList();
 
-  Future<User> getById(String userId) async {
-    http.Response response =
-        await http.get(Uri.parse("$serverUrl/user/$userId"));
-    if (response.statusCode == 200) {
-      var decodedBody = json.decode(response.body);
-      return User.fromJson(decodedBody);
-    }
-  }
+  // Future<User> getById(String userId) async {
+  //   http.Response response =
+  //       await http.get(Uri.parse("$serverUrl/user/$userId"));
+
+  //   if (response.statusCode == 200) {
+  //     var decodedBody = json.decode(response.body);
+  //     return User.fromJson(decodedBody);
+  //   }
+  // }
 }
