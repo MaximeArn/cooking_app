@@ -18,8 +18,9 @@ mongoose.connect(
     useNewUrlParser: true,
   }
 );
+console.log(__dirname);
 
-server.use(express.static(`${__dirname}../public`));
+server.use(express.static(`${__dirname}/../public`));
 server.use("/user", userRouter);
 
 server.get("/", (_, res) => {
