@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import commentModel from "./comments";
+import commentModel from "./comment";
 
 const postSchema = new Schema({
   image: { type: String, required: true },

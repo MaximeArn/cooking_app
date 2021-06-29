@@ -4,6 +4,7 @@ import userRouter from "./routers/user";
 const server = express();
 const port = 3000;
 
+server.use(express.static("../public"));
 server.use("/user", userRouter);
 
 server.get("/", (_, res) => {
