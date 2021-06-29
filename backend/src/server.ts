@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import { config } from "dotenv";
 import userRouter from "./routers/user";
+import Post from "../models/post";
 
 config();
 const server = express();
@@ -24,7 +25,24 @@ server.use(express.static(`${__dirname}/../public`));
 server.use("/user", userRouter);
 
 server.get("/", (_, res) => {
-  res.send("Hello world !!!");
+  new Post({
+    image: `http://localhost:${PORT}/assets/images/posts/dish_1.jpg`,
+  }).save(),
+    new Post({
+      image: `http://localhost:${PORT}/assets/images/posts/dish_2.jpg`,
+    }).save(),
+    new Post({
+      image: `http://localhost:${PORT}/assets/images/posts/dish_3.jpg`,
+    }).save(),
+    new Post({
+      image: `http://localhost:${PORT}/assets/images/posts/dish_4.jpg`,
+    }).save(),
+    new Post({
+      image: `http://localhost:${PORT}/assets/images/posts/dish_5.jpg`,
+    }).save(),
+    new Post({
+      image: `http://localhost:${PORT}/assets/images/posts/dish_6.jpg`,
+    }).save();
 });
 
 server.listen(PORT, () => console.log(`server is listening on ${PORT}`));
