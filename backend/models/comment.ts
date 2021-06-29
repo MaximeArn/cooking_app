@@ -1,9 +1,9 @@
 import { model, Schema } from "mongoose";
-import userModel from "./user";
+// import { userSchema } from "./user";
 
-const commentSchema = new Schema({
+export const commentSchema = new Schema({
   content: { type: String, required: true },
-  author: { type: userModel, required: true },
+  author: { type: String, required: true },
 });
 
 export default model("comment", commentSchema);

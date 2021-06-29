@@ -1,10 +1,10 @@
 import { Schema, model } from "mongoose";
-import commentModel from "./comment";
+import { commentSchema } from "./comment";
 
-const postSchema = new Schema({
+export const postSchema = new Schema({
   image: { type: String, required: true },
   note: { type: Number, default: null },
-  comments: [commentModel],
+  comments: { type: [commentSchema], default: [] },
 });
 
 export default model("post", postSchema);

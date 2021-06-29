@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-const rewardSchema = new Schema({
+export const rewardSchema = new Schema({
   image: { type: String, required: true },
   price: { type: Number, required: true },
   title: { type: String, required: true },
