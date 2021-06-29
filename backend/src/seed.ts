@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
+import { config } from "dotenv";
 import Post from "../models/post";
 
+config();
 const PORT = process.env.PORT;
 const DB_USERNAME = process.env.DB_USERNAME;
 const DB_PWD = process.env.DB_PWD;

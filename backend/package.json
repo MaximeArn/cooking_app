@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev --respawn src/server.ts --transpileOnly",
-    "prod": "tsc && node dist/server.js"
+    "prod": "tsc && node dist/server.js",
+    "seed": "ts-node-dev --respawn src/seed.ts --transpileOnly"
   },
   "keywords": [],
   "author": "ARNOULD Maxime (https://maxime-dev.com)",
