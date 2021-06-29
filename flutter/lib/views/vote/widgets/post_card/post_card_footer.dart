@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class PostCardFooter extends StatelessWidget {
   final int note;
-  final void Function(String, int) notePost;
+  final Function notePost;
   final String id;
 
   PostCardFooter(

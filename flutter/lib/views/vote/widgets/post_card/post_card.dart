@@ -6,9 +6,10 @@ import 'package:flutter/material.dart';
 
 class PostCard extends StatelessWidget {
   final Post post;
-  final void Function(String, int) notePost;
+  // final void Function(String, int) notePost;
 
-  PostCard({required this.post, required this.notePost});
+  // PostCard({required this.post, required this.notePost});
+  PostCard({required this.post});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +22,8 @@ class PostCard extends StatelessWidget {
         padding: EdgeInsets.all(10),
         child: Column(
           children: [
-            PostCardHeader(
-                authorAvatar: post.authorAvatar, author: post.author),
+            // PostCardHeader(
+            //     authorAvatar: post.authorAvatar, author: post.author),
             Divider(
               height: 30,
               color: Color.fromRGBO(
@@ -33,10 +34,10 @@ class PostCard extends StatelessWidget {
               ),
               thickness: .7,
             ),
-            PostCardImage(photo: post.photo),
+            PostCardImage(photo: post.image),
             PostCardFooter(
               note: post.note,
-              notePost: notePost,
+              notePost: () => print('hello'),
               id: post.id,
             ),
           ],

@@ -4,19 +4,10 @@ import 'package:cooking/views/rewards/widgets/rewardCard/reward_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class Rewards extends StatefulWidget {
-  @override
-  _RewardsState createState() => _RewardsState();
-}
 
-class _RewardsState extends State<Rewards> {
-  late List<Reward> rewards;
 
-  @override
-  void initState() {
-    rewards = [];
-    super.initState();
-  }
+class Rewards extends StatelessWidget {
+  List<Reward> rewards = [];
 
   @override
   Widget build(BuildContext context) {
