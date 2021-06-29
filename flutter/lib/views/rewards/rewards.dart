@@ -4,8 +4,6 @@ import 'package:cooking/views/rewards/widgets/rewardCard/reward_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-
-
 class Rewards extends StatelessWidget {
   List<Reward> rewards = [];
 

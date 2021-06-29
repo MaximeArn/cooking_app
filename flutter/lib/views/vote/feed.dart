@@ -9,12 +9,10 @@ class Feed extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Post> posts = Provider.of<PostsProvider>(context).posts;
 
-
     return ListView.separated(
       padding: EdgeInsets.all(10),
       itemCount: posts.length,
-      itemBuilder: (context, index) =>
-          PostCard(post: posts[index]),
+      itemBuilder: (context, index) => PostCard(post: posts[index]),
       separatorBuilder: (context, index) => Divider(
         height: 25,
       ),
