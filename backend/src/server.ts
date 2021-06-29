@@ -25,12 +25,8 @@ server.use(urlencoded({ extended: true }));
 server.use(json());
 
 server.use(express.static(`${__dirname}/../public`));
-server.use("/user", userRouter);
-server.use("/post", postRouter);
-server.use("/reward", rewardRouter);
-
-server.get("/", (_, res) => {
-  res.send("Hello worlld !");
-});
+server.use("/users", userRouter);
+server.use("/posts", postRouter);
+server.use("/rewards", rewardRouter);
 
 server.listen(PORT, () => console.log(`server is listening on ${PORT}`));
