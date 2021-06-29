@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { config } from "dotenv";
 import Post from "../models/post";
+import Reward from "../models/reward";
 
 config();
 const PORT = process.env.PORT;
@@ -35,6 +36,41 @@ mongoose
       }).save(),
       new Post({
         image: `http://localhost:${PORT}/assets/images/posts/dish_6.jpg`,
+      }).save(),
+      new Reward({
+        price: 15,
+        title: " 20% on vegetables",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor.",
+        image: "assets/images/rewards/vegetables.jpg",
+      }).save(),
+      new Reward({
+        price: 10,
+        title: " A free baguette for 2 purchased",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor.",
+        image: "assets/images/rewards/bakery.jpg",
+      }).save(),
+      new Reward({
+        price: 30,
+        title: "10% on beef ",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor.",
+        image: "assets/images/rewards/meat.jpg",
+      }).save(),
+      new Reward({
+        price: 45,
+        title: "15% on the whole shelf",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor.",
+        image: "assets/images/rewards/fish.jpeg",
+      }).save(),
+      new Reward({
+        price: 20,
+        title: "A goat cheese offered for 30€ of purchase",
+        description:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor.",
+        image: "assets/images/rewards/cheese.jpg",
       }).save(),
     ]).then((res) => {
       console.log("data installed");

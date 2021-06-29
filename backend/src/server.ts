@@ -2,6 +2,7 @@ import express, { urlencoded, json } from "express";
 import mongoose from "mongoose";
 import userRouter from "./routers/user";
 import postRouter from "./routers/post";
+import rewardRouter from "./routers/reward";
 import { config } from "dotenv";
 
 config();
@@ -26,6 +27,7 @@ server.use(json());
 server.use(express.static(`${__dirname}/../public`));
 server.use("/user", userRouter);
 server.use("/post", postRouter);
+server.use("/reward", rewardRouter);
 
 server.get("/", (_, res) => {
   res.send("Hello worlld !");
