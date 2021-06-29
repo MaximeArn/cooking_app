@@ -1,3 +1,4 @@
+import 'package:cooking/environment/env.dart';
 import 'package:flutter/material.dart';
 
 class RewardCardImage extends StatelessWidget {
@@ -13,8 +14,8 @@ class RewardCardImage extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(15), topRight: Radius.circular(15)),
-        child: Image.asset(
-          image,
+        child: Image.network(
+          '$serverUrl/$image',
           fit: BoxFit.cover,
         ),
       ),

@@ -46,17 +46,7 @@ class _HomeState extends State<Home> {
               ]),
         ),
       ),
-      body: index == 0
-          ? Feed()
-          : index == 1
-              ? Rewards()
-              : index == 2
-                  ? AddPost()
-                  : index == 3
-                      ? Ranking()
-                      : index == 4
-                          ? Profile()
-                          : Text("sorry we have a problem"),
+      body: Rewards(),
       bottomNavigationBar: BottomNavigation(
         setIndex: setIndex,
         index: index,

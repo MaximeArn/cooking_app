@@ -16,7 +16,7 @@ class Reward {
   });
 
   Reward.fromJson(Map<String, dynamic> json)
-      : id = json["id"],
+      : id = json["_id"],
         price = json["price"],
         title = json["title"],
         description = json["description"],
