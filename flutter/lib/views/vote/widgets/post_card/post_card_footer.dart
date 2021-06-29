@@ -16,7 +16,7 @@ class PostCardFooter extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: List.generate(5, (index) {
+        children: List.generate(3, (index) {
           return IconButton(
             icon: Icon(
               index < note ? Icons.star : Icons.star_border,

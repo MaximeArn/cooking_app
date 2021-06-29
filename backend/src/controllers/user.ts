@@ -1,15 +1,12 @@
-import { NextFunction, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import User from "../../models/user";
 
 module.exports = {
-  addUser: async (_: Request, res: Response) => {
+  getUserById: async ({ params: { userId } }: Request, res: Response) => {
     try {
-      const user1 = await new User({
-        name: "Maxime",
-        email: "maxime-arnould@outlook.fr",
-        password: "strongPassword",
-      }).save();
-      res.send(user1);
+      const user = await User.findById(userId);
+      res.json(user);
+      console.log(user);
     } catch (error) {
       console.log(error);
     }

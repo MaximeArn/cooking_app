@@ -1,8 +1,9 @@
 import { Router } from "express";
-const { addUser } = require("../controllers/user");
+import user from "../../models/user";
+const { getUserById } = require("../controllers/user");
 
 const userRouter = Router();
 
-userRouter.post("/", addUser);
+userRouter.get("/:userId", getUserById);
 
 export default userRouter;

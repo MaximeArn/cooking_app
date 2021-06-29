@@ -18,7 +18,7 @@ class PostCardHeader extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(right: 20),
               child: CircleAvatar(
-                backgroundImage: AssetImage(authorAvatar),
+                backgroundImage: NetworkImage(authorAvatar),
               ),
             ),
             Text(

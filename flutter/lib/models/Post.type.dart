@@ -1,8 +1,9 @@
 import 'package:cooking/models/Comment.dart';
+import 'package:cooking/models/User.dart';
 
 class Post {
   final String id;
-  final String author;
+  final User author;
   final String image;
   final int note;
   final String description;
