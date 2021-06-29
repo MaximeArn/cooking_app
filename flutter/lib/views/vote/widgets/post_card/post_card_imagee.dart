@@ -13,7 +13,7 @@ class PostCardImage extends StatelessWidget {
         children: [
           Expanded(
             child: Ink.image(
-              image: AssetImage(photo),
+              image: NetworkImage(photo),
               fit: BoxFit.cover,
               child: InkWell(
                 borderRadius: BorderRadius.all(Radius.circular(5)),
