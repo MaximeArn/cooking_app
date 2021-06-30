@@ -31,13 +31,19 @@ class User {
             .map((jsonPost) => Post.fromJson(jsonPost))
             .toList();
 
-  // Future<User> getById(String userId) async {
-  //   http.Response response =
-  //       await http.get(Uri.parse("$serverUrl/user/$userId"));
-
-  //   if (response.statusCode == 200) {
-  //     var decodedBody = json.decode(response.body);
-  //     return User.fromJson(decodedBody);
-  //   }
-  // }
+  static findById(String userId) async {
+    print("find user by id !");
+    try {
+      http.Response response =
+          await http.get(Uri.parse("$serverUrl/users/$userId"));
+      if (response.statusCode == 200) {
+        var decodedBody = json.decode(response.body);
+        print("decodedBody : $decodedBody");
+        return User.fromJson(decodedBody);
+      }
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
+  }
 }
