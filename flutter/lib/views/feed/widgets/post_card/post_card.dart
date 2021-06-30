@@ -1,7 +1,7 @@
 import 'package:cooking/models/Post.type.dart';
-import 'package:cooking/views/vote/widgets/post_card/post_card_footer.dart';
-import 'package:cooking/views/vote/widgets/post_card/post_card_header.dart';
-import 'package:cooking/views/vote/widgets/post_card/post_card_imagee.dart';
+import 'package:cooking/views/feed/widgets/post_card/post_card_footer.dart';
+import 'package:cooking/views/feed/widgets/post_card/post_card_header.dart';
+import 'package:cooking/views/feed/widgets/post_card/post_card_imagee.dart';
 import 'package:flutter/material.dart';
 
 class PostCard extends StatelessWidget {

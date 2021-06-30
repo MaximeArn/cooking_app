@@ -1,13 +1,11 @@
-import 'package:cooking/widgets/bottom_navigation.dart';
-import 'package:cooking/widgets/side_panel.dart';
+import 'package:cooking/views/feed/feed.dart';
+import 'package:cooking/widgets/main_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class NotFound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: SidePanel(),
-      // bottomNavigationBar: BottomNavigation(),
+    return MainScaffold(
       body: Container(
         alignment: Alignment.center,
         child: Column(
@@ -15,7 +13,7 @@ class NotFound extends StatelessWidget {
           children: [
             Text('Not Found'),
             ElevatedButton(
-                onPressed: () => Navigator.pushNamed(context, "/"),
+                onPressed: () => Navigator.pushNamed(context, Feed.routeName),
                 child: Text("Homepage"))
           ],
         ),
