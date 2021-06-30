@@ -1,5 +1,5 @@
 import 'package:cooking/models/Reward.type.dart';
-import 'package:cooking/widgets/secondary_scaffold.dart';
+import 'package:cooking/widgets/scaffolds/secondary_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class RewardDetail extends StatelessWidget {

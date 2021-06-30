@@ -3,7 +3,7 @@ import 'package:cooking/views/feed/feed.dart';
 import 'package:cooking/views/profile/profile.dart';
 import 'package:cooking/views/ranking/ranking.dart';
 import 'package:cooking/views/rewards/rewards.dart';
-import 'package:cooking/widgets/main_scaffold.dart';
+import 'package:cooking/widgets/scaffolds/main_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {

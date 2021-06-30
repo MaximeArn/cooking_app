@@ -1,4 +1,4 @@
-import 'package:cooking/widgets/cooking_app_bar.dart';
+import 'package:cooking/widgets/scaffolds/cooking_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class SecondaryScaffold extends StatelessWidget {
