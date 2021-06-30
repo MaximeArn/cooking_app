@@ -1,4 +1,4 @@
-import { Response } from "express";
+import { Request, Response } from "express";
 import Post from "../../models/post";
 
 module.exports = {
@@ -6,6 +6,22 @@ module.exports = {
     try {
       const posts = await Post.find();
       res.json(posts);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  updatePost: async (
+    { params: { postId }, body: { newNote } }: Request,
+    res: Response
+  ) => {
+    try {
+      const updatedPost = await Post.findByIdAndUpdate(
+        postId,
+        { note: newNote },
+        { useFindAndModify: true, new: true }
+      );
+      res.json(updatedPost);
     } catch (error) {
       console.log(error);
     }

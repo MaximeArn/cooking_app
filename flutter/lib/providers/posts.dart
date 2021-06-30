@@ -19,8 +19,14 @@ class PostsProvider with ChangeNotifier {
     }
   }
 
-  Future<void> notePost(String id, int note) async {
-    http.Response response = await http.patch(Uri.parse("$serverUrl/post/$id"));
+  Future<void> notePost(String postId, int note) async {
+    Post post = posts.firstWhere((post) => post.id == postId);
+    http.Response response = await http.patch(
+      Uri.parse("$serverUrl/posts/$postId"),
+      headers: {'Content-type': 'application/json'},
+      body: json.encode({'newNote': note}),
+    );
+    print(response.request);
     print(response.statusCode);
   }
 }
