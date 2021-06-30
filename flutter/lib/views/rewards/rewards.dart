@@ -10,12 +10,15 @@ class Rewards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     rewards = Provider.of<RewardsProvider>(context).rewards;
-    return ListView.builder(
-      padding: EdgeInsets.all(10),
-      itemBuilder: (BuildContext context, int index) {
-        return RewardCard(reward: rewards[index]);
-      },
-      itemCount: rewards.length,
+    return RefreshIndicator(
+      onRefresh: Provider.of<RewardsProvider>(context).fetchRewards,
+      child: ListView.builder(
+        padding: EdgeInsets.all(10),
+        itemBuilder: (BuildContext context, int index) {
+          return RewardCard(reward: rewards[index]);
+        },
+        itemCount: rewards.length,
+      ),
     );
   }
 }
