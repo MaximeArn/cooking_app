@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:cooking/environment/env.dart';
 import 'package:http/http.dart' as http;
-import 'package:cooking/models/Post.type.dart';
+import 'package:cooking/models/Post.dart';
 
 class User {
   final String id;

@@ -1,6 +1,7 @@
-import 'package:cooking/models/Reward.type.dart';
+import 'package:cooking/models/Reward.dart';
 import 'package:cooking/providers/rewards.dart';
 import 'package:cooking/views/rewards/widgets/rewardCard/reward_card.dart';
+import 'package:cooking/widgets/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,10 +11,12 @@ class Rewards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    rewards = Provider.of<RewardsProvider>(context).rewards;
+    RewardsProvider rewardsProvider = Provider.of<RewardsProvider>(context);
+    rewards = rewardsProvider.rewards;
+
     return RefreshIndicator(
       onRefresh: Provider.of<RewardsProvider>(context).fetchRewards,
-      child: ListView.builder(
+      child: rewardsProvider.isLoading ? Loader() :  ListView.builder(
         padding: EdgeInsets.all(10),
         itemBuilder: (BuildContext context, int index) {
           return RewardCard(reward: rewards[index]);

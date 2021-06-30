@@ -1,4 +1,4 @@
-import 'package:cooking/models/Post.type.dart';
+import 'package:cooking/models/Post.dart';
 import 'package:cooking/providers/posts.dart';
 import 'package:cooking/views/feed/widgets/post_card/post_card_footer.dart';
 import 'package:cooking/views/feed/widgets/post_card/post_card_header.dart';
