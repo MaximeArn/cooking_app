@@ -1,6 +1,7 @@
 import 'package:cooking/providers/posts.dart';
 import 'package:cooking/providers/rewards.dart';
 import 'package:cooking/views/nav/home.dart';
+import 'package:cooking/views/reward_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -34,7 +35,10 @@ class _CookingState extends State<Cooking> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "homepage",
-        home: Home(),
+        routes: {
+          '/': (_) => Home(),
+          RewardDetail.routeName: (_) => RewardDetail(),
+        },
         theme: ThemeData(
           primaryColor: Colors.white,
           brightness: Brightness.light,
