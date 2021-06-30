@@ -22,7 +22,8 @@ class Post {
         // author = json["author"],
         author = {
           "name": "Djibril",
-          "avatar": "http://localhost:4545/assets/images/avatars/profile_photo_1.jpg",
+          "avatar":
+              "http://localhost:4545/assets/images/avatars/profile_photo_1.jpg",
         },
         image = json["image"],
         note = json["note"] == null ? 0 : json["note"],

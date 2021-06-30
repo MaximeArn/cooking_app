@@ -4,7 +4,7 @@ class BottomNavigation extends StatelessWidget {
   final void Function(int) setIndex;
   final int index;
 
-  BottomNavigation({required this.setIndex, required this.index});
+  const BottomNavigation({required this.setIndex, required this.index});
 
   @override
   Widget build(BuildContext context) {

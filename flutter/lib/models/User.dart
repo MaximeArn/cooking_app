@@ -35,9 +35,8 @@ class User {
     try {
       http.Response response =
           await http.get(Uri.parse("$serverUrl/users/$userId"));
-        var decodedBody = json.decode(response.body);
-        return User.fromJson(decodedBody);
-      
+      var decodedBody = json.decode(response.body);
+      return User.fromJson(decodedBody);
     } catch (e) {
       print(e);
       rethrow;

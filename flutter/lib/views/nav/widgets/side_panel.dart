@@ -35,9 +35,12 @@ class SidePanel extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 40, right: 5),
-                child: Icon(Icons.home),
+                child: IconButton(
+                  icon: Icon(Icons.home),
+                  onPressed: () => Navigator.pushNamed(context, "falseRoute"),
+                ),
               ),
-              Text("Icon2")
+              Text("Not Found Page")
             ],
           ),
         ),

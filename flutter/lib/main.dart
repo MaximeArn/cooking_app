@@ -1,7 +1,8 @@
 import 'package:cooking/providers/posts.dart';
 import 'package:cooking/providers/rewards.dart';
 import 'package:cooking/views/nav/home.dart';
-import 'package:cooking/views/reward_detail.dart';
+import 'package:cooking/views/RewardDetail/reward_detail.dart';
+import 'package:cooking/views/not_found/not_found.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -39,6 +40,7 @@ class _CookingState extends State<Cooking> {
           '/': (_) => Home(),
           RewardDetail.routeName: (_) => RewardDetail(),
         },
+        onUnknownRoute: (_) => MaterialPageRoute(builder: (_) => NotFound()),
         theme: ThemeData(
           primaryColor: Colors.white,
           brightness: Brightness.light,

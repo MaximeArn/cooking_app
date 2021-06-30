@@ -1,5 +1,5 @@
 import 'package:cooking/models/Reward.type.dart';
-import 'package:cooking/views/reward_detail.dart';
+import 'package:cooking/views/RewardDetail/reward_detail.dart';
 import 'package:cooking/views/rewards/widgets/rewardCard/reward_card_image.dart';
 import 'package:flutter/material.dart';
 
@@ -88,7 +88,9 @@ class RewardCard extends StatelessWidget {
                           color: Colors.blue.shade800,
                           fontWeight: FontWeight.w500),
                     ),
-                    onTap: () => Navigator.pushNamed(context, RewardDetail.routeName, arguments: reward),
+                    onTap: () => Navigator.pushNamed(
+                        context, RewardDetail.routeName,
+                        arguments: reward),
                   ),
                 ),
               )
