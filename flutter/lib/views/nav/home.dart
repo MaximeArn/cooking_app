@@ -1,6 +1,8 @@
 import 'package:cooking/views/add_post/add_post.dart';
-import 'package:cooking/views/nav/widgets/bottom_navigation.dart';
-import 'package:cooking/views/nav/widgets/side_panel.dart';
+import 'package:cooking/widgets/bottom_navigation.dart';
+import 'package:cooking/widgets/cooking_app_bar.dart';
+import 'package:cooking/widgets/main_scaffold.dart';
+import 'package:cooking/widgets/side_panel.dart';
 import 'package:cooking/views/profile/profile.dart';
 import 'package:cooking/views/ranking/ranking.dart';
 import 'package:cooking/views/rewards/rewards.dart';
@@ -29,23 +31,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(
-          size: 20,
-        ),
-        title: RichText(
-          text: TextSpan(
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-              children: [
-                TextSpan(text: "Coo", style: TextStyle(color: Colors.black)),
-                TextSpan(
-                    text: "K",
-                    style: TextStyle(color: Color.fromRGBO(232, 196, 81, 1))),
-                TextSpan(text: "ing", style: TextStyle(color: Colors.black)),
-              ]),
-        ),
-      ),
+    return MainScaffold(
+      index: index,
+      setIndex: setIndex,
       body: index == 0
           ? Feed()
           : index == 1
@@ -55,11 +43,6 @@ class _HomeState extends State<Home> {
                   : index == 3
                       ? Ranking()
                       : Profile(),
-      bottomNavigationBar: BottomNavigation(
-        setIndex: setIndex,
-        index: index,
-      ),
-      drawer: SidePanel(),
     );
   }
 }

@@ -1,5 +1,5 @@
-import 'package:cooking/views/nav/widgets/bottom_navigation.dart';
-import 'package:cooking/views/nav/widgets/side_panel.dart';
+import 'package:cooking/widgets/bottom_navigation.dart';
+import 'package:cooking/widgets/side_panel.dart';
 import 'package:flutter/material.dart';
 
 class NotFound extends StatelessWidget {
@@ -10,7 +10,15 @@ class NotFound extends StatelessWidget {
       // bottomNavigationBar: BottomNavigation(),
       body: Container(
         alignment: Alignment.center,
-        child: Text('Not Found'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Not Found'),
+            ElevatedButton(
+                onPressed: () => Navigator.pushNamed(context, "/"),
+                child: Text("Homepage"))
+          ],
+        ),
       ),
     );
   }
