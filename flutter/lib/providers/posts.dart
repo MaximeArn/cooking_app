@@ -26,7 +26,10 @@ class PostsProvider with ChangeNotifier {
       headers: {'Content-type': 'application/json'},
       body: json.encode({'newNote': note}),
     );
-    print(response.request);
-    print(response.statusCode);
+    if (response.statusCode == 200) {
+      int id = _posts.indexWhere((post) => post.id == postId);
+      _posts[id] = Post.fromJson(json.decode(response.body));
+      notifyListeners();
+    }
   }
 }

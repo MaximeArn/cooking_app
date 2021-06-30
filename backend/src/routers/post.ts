@@ -1,9 +1,9 @@
 import { Router } from "express";
-const { getPosts, updatePost } = require("../controllers/post");
+const { getPosts, votePost } = require("../controllers/post");
 
 const postRouter = Router();
 
 postRouter.get("/", getPosts);
-postRouter.patch("/:postId", updatePost);
+postRouter.patch("/:postId", votePost);
 
 export default postRouter;

@@ -11,7 +11,7 @@ module.exports = {
     }
   },
 
-  updatePost: async (
+  votePost: async (
     { params: { postId }, body: { newNote } }: Request,
     res: Response
   ) => {
