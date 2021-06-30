@@ -1,5 +1,4 @@
 import 'package:cooking/models/Reward.type.dart';
-import 'package:cooking/widgets/main_scaffold.dart';
 import 'package:cooking/widgets/secondary_scaffold.dart';
 import 'package:flutter/material.dart';
 

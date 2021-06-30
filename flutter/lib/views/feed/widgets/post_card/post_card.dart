@@ -1,14 +1,14 @@
 import 'package:cooking/models/Post.type.dart';
+import 'package:cooking/providers/posts.dart';
 import 'package:cooking/views/feed/widgets/post_card/post_card_footer.dart';
 import 'package:cooking/views/feed/widgets/post_card/post_card_header.dart';
 import 'package:cooking/views/feed/widgets/post_card/post_card_imagee.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PostCard extends StatelessWidget {
   final Post post;
-  // final void Function(String, int) notePost;
 
-  // PostCard({required this.post, required this.notePost});
   PostCard({required this.post});
 
   @override
@@ -39,7 +39,6 @@ class PostCard extends StatelessWidget {
             PostCardImage(photo: post.image),
             PostCardFooter(
               note: post.note,
-              notePost: () => print('hello'),
               id: post.id,
             ),
           ],

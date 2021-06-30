@@ -1,6 +1,6 @@
 import 'package:cooking/providers/posts.dart';
 import 'package:cooking/providers/rewards.dart';
-import 'package:cooking/views/RewardDetail/reward_detail.dart';
+import 'package:cooking/views/reward_detail/reward_detail.dart';
 import 'package:cooking/views/home/home_view.dart';
 import 'package:cooking/views/not_found/not_found.dart';
 import 'package:flutter/material.dart';

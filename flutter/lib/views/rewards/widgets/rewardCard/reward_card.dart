@@ -1,5 +1,5 @@
 import 'package:cooking/models/Reward.type.dart';
-import 'package:cooking/views/RewardDetail/reward_detail.dart';
+import 'package:cooking/views/reward_detail/reward_detail.dart';
 import 'package:cooking/views/rewards/widgets/rewardCard/reward_card_image.dart';
 import 'package:flutter/material.dart';
 

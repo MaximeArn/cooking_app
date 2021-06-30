@@ -1,15 +1,18 @@
+import 'package:cooking/providers/posts.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PostCardFooter extends StatelessWidget {
   final int note;
-  final Function notePost;
   final String id;
+  late void Function(String, int) notePost;
 
   PostCardFooter(
-      {required this.note, required this.notePost, required this.id});
+      {required this.note, required this.id});
 
   @override
   Widget build(BuildContext context) {
+    notePost = Provider.of<PostsProvider>(context).notePost;
     return Flexible(
       flex: 1,
       fit: FlexFit.tight,

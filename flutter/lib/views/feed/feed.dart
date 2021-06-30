@@ -1,7 +1,6 @@
 import 'package:cooking/models/Post.type.dart';
 import 'package:cooking/providers/posts.dart';
 import 'package:cooking/views/feed/widgets/post_card/post_card.dart';
-import 'package:cooking/widgets/main_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

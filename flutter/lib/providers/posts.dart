@@ -18,4 +18,9 @@ class PostsProvider with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  Future<void> notePost(String id, int note) async {
+    http.Response response = await http.patch(Uri.parse("$serverUrl/post/$id"));
+    print(response.statusCode);
+  }
 }
