@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class Rewards extends StatelessWidget {
-  List<Reward> rewards = [];
+  static const String routeName = "/rewards";
+  late List<Reward> rewards = [];
 
   @override
   Widget build(BuildContext context) {
