@@ -1,4 +1,3 @@
-import 'package:cooking/views/feed/feed.dart';
 import 'package:flutter/material.dart';
 
 class NotFound extends StatelessWidget {
@@ -11,7 +10,7 @@ class NotFound extends StatelessWidget {
         children: [
           Text('Not Found'),
           ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, Feed.routeName),
+              onPressed: () => Navigator.pushNamed(context, '/'),
               child: Text("Homepage"))
         ],
       ),
