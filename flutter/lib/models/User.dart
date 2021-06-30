@@ -31,16 +31,13 @@ class User {
             .map((jsonPost) => Post.fromJson(jsonPost))
             .toList();
 
-  static findById(String userId) async {
-    print("find user by id !");
+  static Future<User> findById(String userId) async {
     try {
       http.Response response =
           await http.get(Uri.parse("$serverUrl/users/$userId"));
-      if (response.statusCode == 200) {
         var decodedBody = json.decode(response.body);
-        print("decodedBody : $decodedBody");
         return User.fromJson(decodedBody);
-      }
+      
     } catch (e) {
       print(e);
       rethrow;

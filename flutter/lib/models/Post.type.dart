@@ -3,7 +3,7 @@ import 'package:cooking/models/User.dart';
 
 class Post {
   final String id;
-  final String author;
+  final Map<String, String> author;
   final String image;
   final int note;
   final String description;
@@ -19,7 +19,11 @@ class Post {
 
   Post.fromJson(Map<String, dynamic> json)
       : id = json["_id"],
-        author = json["author"],
+        // author = json["author"],
+        author = {
+          "name": "Djibril",
+          "avatar": "http://localhost:4545/assets/images/avatars/profile_photo_1.jpg",
+        },
         image = json["image"],
         note = json["note"] == null ? 0 : json["note"],
         description = json["description"],

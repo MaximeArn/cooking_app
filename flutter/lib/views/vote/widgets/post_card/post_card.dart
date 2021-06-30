@@ -22,8 +22,9 @@ class PostCard extends StatelessWidget {
         padding: EdgeInsets.all(10),
         child: Column(
           children: [
-            // PostCardHeader(
-            //     authorAvatar: post.authorAvatar, author: post.author),
+            PostCardHeader(
+              //must pass dynamic data
+                authorAvatar: post.author["avatar"] as String, author: post.author["name"] as String),
             Divider(
               height: 30,
               color: Color.fromRGBO(

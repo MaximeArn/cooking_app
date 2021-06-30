@@ -21,7 +21,7 @@ mongoose
   .then(() => {
     Promise.all([
       new User({
-        name: "Djibrilhn",
+        name: "Djibril",
         email: "djibril@gmail.com",
         password: "Djibril",
         avatar: `http://localhost:${PORT}/assets/images/avatars/profile_photo_1.jpg`,
@@ -58,37 +58,37 @@ mongoose
       }).save(),
       new Post({
         image: `http://localhost:${PORT}/assets/images/posts/dish_1.jpg`,
-        author: "60db8137d1903a2ea01edf50",
+        author: "replace_in_atlas",
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor.",
       }).save(),
       new Post({
         image: `http://localhost:${PORT}/assets/images/posts/dish_2.jpg`,
-        author: "60db8137d1903a2ea01edf51",
+        author: "replace_in_atlas",
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor. ",
       }).save(),
       new Post({
         image: `http://localhost:${PORT}/assets/images/posts/dish_3.jpg`,
-        author: "60db8137d1903a2ea01edf52",
+        author: "replace_in_atlas",
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor. ",
       }).save(),
       new Post({
         image: `http://localhost:${PORT}/assets/images/posts/dish_4.jpg`,
-        author: "60db8137d1903a2ea01edf53",
+        author: "replace_in_atlas",
         description:
           " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor.",
       }).save(),
       new Post({
         image: `http://localhost:${PORT}/assets/images/posts/dish_5.jpg`,
-        author: "60db8137d1903a2ea01edf54",
+        author: "replace_in_atlas",
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor. ",
       }).save(),
       new Post({
         image: `http://localhost:${PORT}/assets/images/posts/dish_6.jpg`,
-        author: "60db8137d1903a2ea01edf55",
+        author: "replace_in_atlas",
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor. ",
       }).save(),
