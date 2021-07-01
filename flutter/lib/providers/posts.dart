@@ -20,8 +20,10 @@ class PostsProvider with ChangeNotifier {
         _posts =
             decodedBody.map((jsonPost) => Post.fromJson(jsonPost)).toList();
         notifyListeners();
+        isLoading = false;
       }
     } catch (e) {
+      isLoading = false;
       rethrow;
     }
   }

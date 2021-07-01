@@ -19,7 +19,7 @@ module.exports = {
       const updatedPost = await Post.findByIdAndUpdate(
         postId,
         { note: newNote },
-        { useFindAndModify: true, new: true }
+        { useFindAndModify: false, new: true }
       );
       res.json(updatedPost);
     } catch (error) {

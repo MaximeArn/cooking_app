@@ -21,10 +21,8 @@ class _CookingState extends State<Cooking> {
 
   @override
   void initState() {
-    rewardsProvider
-        .fetchRewards()
-        .then((_) => rewardsProvider.isLoading = false);
-    postsProvider.fetchPosts().then((_) => postsProvider.isLoading = false);
+    rewardsProvider.fetchRewards();
+    postsProvider.fetchPosts();
     super.initState();
   }
 

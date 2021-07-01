@@ -21,8 +21,10 @@ class RewardsProvider with ChangeNotifier {
             .map((jsonReward) => Reward.fromJson(jsonReward))
             .toList();
         notifyListeners();
+        isLoading = false;
       }
     } catch (e) {
+      isLoading = false;
       rethrow;
     }
   }
