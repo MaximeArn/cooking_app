@@ -28,6 +28,18 @@ class _CookingState extends State<Cooking> {
 
   @override
   Widget build(BuildContext context) {
+
+      ThemeData cookingTheme = ThemeData(
+        primaryColor: Colors.white,
+        brightness: Brightness.light,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+         style: ButtonStyle(
+           backgroundColor: MaterialStateProperty.all<Color>(Color.fromRGBO(232, 196, 81, 1)),
+           
+         ),
+        ),
+      );
+      
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: rewardsProvider),
@@ -42,14 +54,7 @@ class _CookingState extends State<Cooking> {
           RewardDetail.routeName: (_) => RewardDetail()
         },
         onUnknownRoute: (_) => MaterialPageRoute(builder: (_) => NotFound()),
-        theme: ThemeData(
-          primaryColor: Colors.white,
-          brightness: Brightness.light,
-          textTheme: TextTheme(
-            headline1: TextStyle(
-                color: Colors.black, fontSize: 28, fontWeight: FontWeight.bold),
-          ),
-        ),
+        theme: cookingTheme,
       ),
     );
   }

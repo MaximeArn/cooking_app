@@ -20,6 +20,12 @@ class RewardDetail extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 child: Image.network("$serverUrl/${reward.image}",fit: BoxFit.cover,),
               ),
+              Row(
+                children: [
+                  Text(reward.title),
+                  ElevatedButton(onPressed: (){}, child: Text("Visite site"))
+                ],
+              ),
             ],
           ),
         ),
