@@ -1,3 +1,4 @@
+import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/Reward.dart';
 import 'package:cooking/widgets/scaffolds/secondary_scaffold.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +10,20 @@ class RewardDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     Reward reward = ModalRoute.of(context)!.settings.arguments as Reward;
     return SecondaryScaffold(
-      body: Center(
-        child: Text(reward.description),
-      ),
+      body: SingleChildScrollView(
+        child: Container(
+          // padding: const EdgeInsets.symmetric(vertical: 15),
+          child: Column(
+            children: [
+              Container(
+                height: 250,
+                width: MediaQuery.of(context).size.width,
+                child: Image.network("$serverUrl/${reward.image}",fit: BoxFit.cover,),
+              ),
+            ],
+          ),
+        ),
+      )
     );
   }
 }
