@@ -16,13 +16,15 @@ class Rewards extends StatelessWidget {
 
     return RefreshIndicator(
       onRefresh: Provider.of<RewardsProvider>(context).fetchRewards,
-      child: rewardsProvider.isLoading ? Loader() :  ListView.builder(
-        padding: EdgeInsets.all(10),
-        itemBuilder: (BuildContext context, int index) {
-          return RewardCard(reward: rewards[index]);
-        },
-        itemCount: rewards.length,
-      ),
+      child: rewardsProvider.isLoading
+          ? Loader()
+          : ListView.builder(
+              padding: EdgeInsets.all(10),
+              itemBuilder: (BuildContext context, int index) {
+                return RewardCard(reward: rewards[index]);
+              },
+              itemCount: rewards.length,
+            ),
     );
   }
 }

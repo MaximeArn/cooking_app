@@ -15,14 +15,16 @@ class Feed extends StatelessWidget {
 
     return RefreshIndicator(
       onRefresh: Provider.of<PostsProvider>(context).fetchPosts,
-      child: postsProvider.isLoading ? Loader() :  ListView.separated(
-        padding: EdgeInsets.all(10),
-        itemCount: posts.length,
-        itemBuilder: (context, index) => PostCard(post: posts[index]),
-        separatorBuilder: (context, index) => Divider(
-          height: 25,
-        ),
-      ),
+      child: postsProvider.isLoading
+          ? Loader()
+          : ListView.separated(
+              padding: EdgeInsets.all(10),
+              itemCount: posts.length,
+              itemBuilder: (context, index) => PostCard(post: posts[index]),
+              separatorBuilder: (context, index) => Divider(
+                height: 25,
+              ),
+            ),
     );
   }
 }

@@ -6,7 +6,7 @@ class SecondaryScaffold extends StatelessWidget {
 
   SecondaryScaffold({
     required this.body,
-    });
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -7,8 +7,7 @@ class PostCardFooter extends StatelessWidget {
   final String id;
   late void Function(String, int) notePost;
 
-  PostCardFooter(
-      {required this.note, required this.id});
+  PostCardFooter({required this.note, required this.id});
 
   @override
   Widget build(BuildContext context) {
