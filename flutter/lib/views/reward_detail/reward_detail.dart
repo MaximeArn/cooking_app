@@ -14,26 +14,34 @@ class RewardDetail extends StatelessWidget {
       body: Container(
         child: Column(
           children: [
-            Container(
-              height: 250,
-              width: deviceWidth,
-              child: Image.network(
-                "$serverUrl/${reward.image}",
-                fit: BoxFit.cover,
+            Flexible(
+              flex: 30,
+              fit: FlexFit.tight,
+              child: Container(
+                width: deviceWidth,
+                child: Image.network(
+                  "$serverUrl/${reward.image}",
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-            Container(
-              margin: const EdgeInsets.only(top: 15),
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    reward.title,
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  ElevatedButton(onPressed: () {}, child: Text("Voir le site"))
-                ],
+            Flexible(
+              flex: 8,
+               fit: FlexFit.tight,
+              child: Container(
+                margin: const EdgeInsets.only(top: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      reward.title,
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    ElevatedButton(
+                        onPressed: () {}, child: Text("Voir le site"))
+                  ],
+                ),
               ),
             ),
             Divider(
@@ -42,25 +50,37 @@ class RewardDetail extends StatelessWidget {
               indent: 0.25 * deviceWidth,
               endIndent: 0.25 * deviceWidth,
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Text(
-                reward.description,
-                style: const TextStyle(fontSize: 18, wordSpacing: 1.5),
+            Flexible(
+              flex: 50,
+              fit: FlexFit.tight,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: SingleChildScrollView(
+                  child: Text(
+                    reward.description,
+                    style: const TextStyle(fontSize: 18, wordSpacing: 1.5, height: 1.3),
+                  ),
+                ),
               ),
             ),
-            Container(
-              width: double.infinity,
-              height: 60,
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text("Purchase for ${reward.price} "),
+            Flexible(
+              flex: 12,
+               fit: FlexFit.tight,
+              child: Container(
+                width: double.infinity,
+                height: 80,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Purchase for ${reward.price}",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                  ),
+                ),
               ),
             ),
           ],
         ),
       ),
-    
-  );
+    );
   }
 }
