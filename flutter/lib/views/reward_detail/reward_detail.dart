@@ -11,22 +11,20 @@ class RewardDetail extends StatelessWidget {
     Reward reward = ModalRoute.of(context)!.settings.arguments as Reward;
     final double deviceWidth = MediaQuery.of(context).size.width;
     return SecondaryScaffold(
-        body: SingleChildScrollView(
-      child: Container(
-        // padding: const EdgeInsets.symmetric(vertical: 15),
+      body: Container(
         child: Column(
           children: [
             Container(
               height: 250,
-              width: MediaQuery.of(context).size.width,
+              width: deviceWidth,
               child: Image.network(
                 "$serverUrl/${reward.image}",
                 fit: BoxFit.cover,
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 15),
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              margin: const EdgeInsets.only(top: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -45,13 +43,15 @@ class RewardDetail extends StatelessWidget {
               endIndent: 0.25 * deviceWidth,
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Text(
                 reward.description,
-                style: TextStyle(fontSize: 18, wordSpacing: 1.5),
+                style: const TextStyle(fontSize: 18, wordSpacing: 1.5),
               ),
             ),
             Container(
+              width: double.infinity,
+              height: 60,
               child: ElevatedButton(
                 onPressed: () {},
                 child: Text("Purchase for ${reward.price} "),
@@ -60,6 +60,7 @@ class RewardDetail extends StatelessWidget {
           ],
         ),
       ),
-    ));
+    
+  );
   }
 }
