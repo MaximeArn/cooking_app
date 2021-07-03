@@ -53,15 +53,19 @@ class RewardDetail extends StatelessWidget {
             Flexible(
               flex: 50,
               fit: FlexFit.tight,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: SingleChildScrollView(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
                   child: Text(
                     reward.description,
                     style: const TextStyle(fontSize: 18, wordSpacing: 1.5, height: 1.3),
                   ),
                 ),
               ),
+              Divider(
+              height: 25,
+              thickness: 1,
+              indent: 0.25 * deviceWidth,
+              endIndent: 0.25 * deviceWidth,
             ),
             Flexible(
               flex: 12,
