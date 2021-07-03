@@ -30,16 +30,23 @@ class RewardDetail extends StatelessWidget {
                fit: FlexFit.tight,
               child: Container(
                 margin: const EdgeInsets.only(top: 15),
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      reward.title,
-                      style: TextStyle(fontSize: 18),
+                    Flexible(
+                      flex: 7,
+                      fit: FlexFit.tight,
+                      child: Text(
+                        reward.title,
+                        style: TextStyle(fontSize: 18),
+                      ),
                     ),
-                    ElevatedButton(
-                        onPressed: () {}, child: Text("Voir le site"))
+                    Flexible(
+                      flex:3,
+                      child: ElevatedButton(
+                          onPressed: () {}, child: Text("Voir le site")),
+                    )
                   ],
                 ),
               ),
@@ -54,7 +61,7 @@ class RewardDetail extends StatelessWidget {
               flex: 50,
               fit: FlexFit.tight,
                 child: SingleChildScrollView(
-                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Text(
                     reward.description,
                     style: const TextStyle(fontSize: 18, wordSpacing: 1.5, height: 1.3),
