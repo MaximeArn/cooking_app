@@ -3,8 +3,27 @@ import 'package:cooking/models/Reward.dart';
 import 'package:cooking/widgets/scaffolds/secondary_scaffold.dart';
 import 'package:flutter/material.dart';
 
-class RewardDetail extends StatelessWidget {
+class RewardDetail extends StatefulWidget {
   static const String routeName = '/rewardDetail';
+
+  @override
+  _RewardDetailState createState() => _RewardDetailState();
+}
+
+class _RewardDetailState extends State<RewardDetail> {
+  late bool isBuying;
+
+  @override
+  void initState() {
+    isBuying = false;
+    super.initState();
+  }
+
+  void toggleIsBuying() {
+    setState(() {
+      isBuying = !isBuying;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +46,7 @@ class RewardDetail extends StatelessWidget {
             ),
             Flexible(
               flex: 8,
-               fit: FlexFit.tight,
+              fit: FlexFit.tight,
               child: Container(
                 margin: const EdgeInsets.only(top: 15),
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -43,7 +62,7 @@ class RewardDetail extends StatelessWidget {
                       ),
                     ),
                     Flexible(
-                      flex:3,
+                      flex: 3,
                       child: ElevatedButton(
                           onPressed: () {}, child: Text("Voir le site")),
                     )
@@ -60,15 +79,16 @@ class RewardDetail extends StatelessWidget {
             Flexible(
               flex: 50,
               fit: FlexFit.tight,
-                child: SingleChildScrollView(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Text(
-                    reward.description,
-                    style: const TextStyle(fontSize: 18, wordSpacing: 1.5, height: 1.3),
-                  ),
+              child: SingleChildScrollView(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  reward.description,
+                  style: const TextStyle(
+                      fontSize: 18, wordSpacing: 1.5, height: 1.3),
                 ),
               ),
-              Divider(
+            ),
+            Divider(
               height: 25,
               thickness: 1,
               indent: 0.25 * deviceWidth,
@@ -76,18 +96,40 @@ class RewardDetail extends StatelessWidget {
             ),
             Flexible(
               flex: 12,
-               fit: FlexFit.tight,
-              child: Container(
-                width: double.infinity,
-                height: 80,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text(
-                    "Purchase for ${reward.price}",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                  ),
-                ),
-              ),
+              fit: FlexFit.tight,
+              child: isBuying
+                  ? Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Flexible(
+                          fit: FlexFit.tight,
+                          child: ElevatedButton(
+                            onPressed: toggleIsBuying,
+                            child: Text("Cancel"),
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all(BeveledRectangleBorder()),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.grey.shade500),),
+                          ),
+                        ),
+                        Flexible(
+                            fit: FlexFit.tight,
+                            child: ElevatedButton(
+                                onPressed: () {}, child: Text("Confirm")))
+                      ],
+                    )
+                  : Container(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: toggleIsBuying,
+                        child: Text(
+                          "Purchase for ${reward.price}",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                    ),
             ),
           ],
         ),
