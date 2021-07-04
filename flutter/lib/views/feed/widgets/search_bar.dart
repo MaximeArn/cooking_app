@@ -32,6 +32,7 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
         children: [
           Expanded(
             child: TextField(
+              autocorrect: false,
               controller: searchBarController,
               style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
