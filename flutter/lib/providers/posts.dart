@@ -7,19 +7,19 @@ import 'package:flutter/material.dart';
 
 class PostsProvider with ChangeNotifier {
   List<Post> _posts = [];
-  List<Post> _filteredPosts = [];
+  // List<Post> _filteredPosts = [];
   bool isLoading = false;
 
   UnmodifiableListView<Post> get posts => UnmodifiableListView(_posts);
-  UnmodifiableListView<Post> get filteredPosts => UnmodifiableListView(_filteredPosts);
+  // UnmodifiableListView<Post> get filteredPosts => UnmodifiableListView(_filteredPosts);
 
-  void setFilteredPosts(String filter){ 
-      _filteredPosts = UnmodifiableListView(_posts
-          .where((post) => post.author["name"]!
-              .toLowerCase()
-              .startsWith(filter.toLowerCase()))
-          .toList());
-}
+//   void setFilteredPosts(String filter){ 
+//       _filteredPosts = UnmodifiableListView(_posts
+//           .where((post) => post.author["name"]!
+//               .toLowerCase()
+//               .startsWith(filter.toLowerCase()))
+//           .toList());
+// }
   Future<void> fetchPosts() async {
     isLoading = true;
     try {

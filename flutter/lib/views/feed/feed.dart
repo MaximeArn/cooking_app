@@ -13,7 +13,6 @@ class Feed extends StatelessWidget {
   Widget build(BuildContext context) {
     PostsProvider postsProvider = Provider.of<PostsProvider>(context);
     List<Post> posts = postsProvider.posts;
-    List<Post> filteredPosts = postsProvider.filteredPosts;
 
     return RefreshIndicator(
       onRefresh: Provider.of<PostsProvider>(context).fetchPosts,

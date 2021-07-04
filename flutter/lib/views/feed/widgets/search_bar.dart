@@ -1,4 +1,6 @@
+import 'package:cooking/providers/users.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class FeedSearchBar extends StatefulWidget {
   const FeedSearchBar({Key? key}) : super(key: key);
@@ -13,7 +15,7 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
   @override
   void initState() {
     searchBarController.addListener(() {
-      setState(() {});
+      Provider.of<UsersProvider>(context).getFilteredUsers; 
     });
     super.initState();
   }
