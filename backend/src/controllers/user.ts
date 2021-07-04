@@ -17,6 +17,7 @@ module.exports = {
       const filteredUsers = await User.find({
         name: { $regex: filter, $options: "i" },
       });
+      res.json(filteredUsers);
       console.log(filteredUsers);
     } catch (error) {
       console.log(error);
