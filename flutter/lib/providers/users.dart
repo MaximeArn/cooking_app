@@ -15,5 +15,6 @@ class UsersProvider with ChangeNotifier {
     http.Response response = await http.get(
       Uri.parse("$serverUrl/users/$filter"),
     );
+    print(response.statusCode);
   }
 }

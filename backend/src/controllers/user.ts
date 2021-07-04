@@ -11,4 +11,15 @@ module.exports = {
       console.log(error);
     }
   },
+  getUsersByName: async ({ params: { filter } }: Request, res: Response) => {
+    try {
+      console.log(filter);
+      const filteredUsers = await User.find({
+        name: { $regex: filter, $options: "i" },
+      });
+      console.log(filteredUsers);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
