@@ -34,7 +34,6 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    print("build");
     List<User> filteredUsers =
         Provider.of<UsersProvider>(context).filteredUsers;
 

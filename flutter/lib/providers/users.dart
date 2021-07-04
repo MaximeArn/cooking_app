@@ -12,17 +12,25 @@ class UsersProvider with ChangeNotifier {
   UnmodifiableListView<User> get filteredUsers =>
       UnmodifiableListView(_filteredUsers);
 
+  void emptyArray() {
+    _filteredUsers = [];
+  }
+
   Future<void> getFilteredUsers(String filter) async {
     isLoading = true;
     http.Response response = await http.get(
       Uri.parse("$serverUrl/users/$filter"),
     );
     if (response.statusCode == 200) {
-      final decodedBody = json.decode(response.body);
-      _filteredUsers = (decodedBody as List)
-          .map((userJson) => User.fromJson(userJson))
-          .toList();
+      final List decodedBody = json.decode(response.body);
+      print(decodedBody.length);
+      decodedBody.length > 0
+          ? _filteredUsers =
+              (decodedBody).map((userJson) => User.fromJson(userJson)).toList()
+          : emptyArray();
     }
+    if (filteredUsers.isEmpty) emptyArray();
+
     isLoading = false;
   }
 }
