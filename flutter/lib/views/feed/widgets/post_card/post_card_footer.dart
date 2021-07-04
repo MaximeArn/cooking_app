@@ -27,7 +27,7 @@ class PostCardFooter extends StatelessWidget {
                 size: 30,
               ),
               onPressed: () {
-                notePost(id, index + 1);
+                if (note != (index + 1)) notePost(id, index + 1);
               },
             );
           }),
