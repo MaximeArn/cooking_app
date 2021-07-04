@@ -11,6 +11,9 @@ class UsersProvider with ChangeNotifier {
       UnmodifiableListView(_filteredUsers);
 
   Future<void> getFilteredUsers(String filter) async {
-    http.Response response = await http.get(Uri.parse("$serverUrl/users"),);
+    print("filter : $filter");
+    http.Response response = await http.get(
+      Uri.parse("$serverUrl/users/$filter"),
+    );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:cooking/providers/posts.dart';
 import 'package:cooking/providers/rewards.dart';
+import 'package:cooking/providers/users.dart';
 import 'package:cooking/views/reward_detail/reward_detail.dart';
 import 'package:cooking/views/home/home_view.dart';
 import 'package:cooking/views/not_found/not_found.dart';
@@ -43,6 +44,7 @@ class _CookingState extends State<Cooking> {
       providers: [
         ChangeNotifierProvider.value(value: rewardsProvider),
         ChangeNotifierProvider.value(value: postsProvider),
+        ChangeNotifierProvider.value(value: UsersProvider())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

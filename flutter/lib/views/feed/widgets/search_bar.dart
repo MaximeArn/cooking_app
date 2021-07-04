@@ -15,8 +15,9 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
   @override
   void initState() {
     searchBarController.addListener(() {
-      Provider.of<UsersProvider>(context).getFilteredUsers; 
-    });
+      Provider.of<UsersProvider>(context, listen: false)
+          .getFilteredUsers(searchBarController.text);
+    },);
     super.initState();
   }
 

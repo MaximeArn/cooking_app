@@ -13,7 +13,7 @@ class PostsProvider with ChangeNotifier {
   UnmodifiableListView<Post> get posts => UnmodifiableListView(_posts);
   // UnmodifiableListView<Post> get filteredPosts => UnmodifiableListView(_filteredPosts);
 
-//   void setFilteredPosts(String filter){ 
+//   void setFilteredPosts(String filter){
 //       _filteredPosts = UnmodifiableListView(_posts
 //           .where((post) => post.author["name"]!
 //               .toLowerCase()
