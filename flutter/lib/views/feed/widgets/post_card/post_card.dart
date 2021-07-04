@@ -13,35 +13,38 @@ class PostCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(15))),
-      child: Container(
-        height: 350,
-        padding: EdgeInsets.all(10),
-        child: Column(
-          children: [
-            PostCardHeader(
-                //must pass dynamic data
-                authorAvatar: post.author["avatar"] as String,
-                author: post.author["name"] as String),
-            Divider(
-              height: 30,
-              color: Color.fromRGBO(
-                232,
-                196,
-                81,
-                1,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+      child: Card(
+        elevation: 5,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15))),
+        child: Container(
+          height: 350,
+          padding: EdgeInsets.all(10),
+          child: Column(
+            children: [
+              PostCardHeader(
+                  //must pass dynamic data
+                  authorAvatar: post.author["avatar"] as String,
+                  author: post.author["name"] as String),
+              Divider(
+                height: 30,
+                color: Color.fromRGBO(
+                  232,
+                  196,
+                  81,
+                  1,
+                ),
+                thickness: .7,
               ),
-              thickness: .7,
-            ),
-            PostCardImage(photo: post.image),
-            PostCardFooter(
-              note: post.note,
-              id: post.id,
-            ),
-          ],
+              PostCardImage(photo: post.image),
+              PostCardFooter(
+                note: post.note,
+                id: post.id,
+              ),
+            ],
+          ),
         ),
       ),
     );

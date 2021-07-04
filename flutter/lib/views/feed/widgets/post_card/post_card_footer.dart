@@ -40,7 +40,7 @@ class PostCardFooter extends StatelessWidget {
               child: IconButton(
                 onPressed: () {},
                 icon: Icon(Icons.comment_rounded),
-                iconSize: 30,
+                iconSize: 25,
                 color: Color.fromRGBO(232, 196, 81, 1),
               ),
             )
