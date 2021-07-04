@@ -15,22 +15,38 @@ class PostCardFooter extends StatelessWidget {
     return Flexible(
       flex: 1,
       fit: FlexFit.tight,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: List.generate(3, (index) {
-          return IconButton(
-            icon: Icon(
-              index < note ? Icons.star : Icons.star_border,
-              color: Color.fromRGBO(232, 196, 81, 1),
-              size: 30,
-            ),
-            onPressed: () {
-              notePost(id, index + 1);
-            },
-          );
-        }),
-      ),
+      child: Stack(children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: List.generate(3, (index) {
+            return IconButton(
+              icon: Icon(
+                index < note ? Icons.star : Icons.star_border,
+                color: Color.fromRGBO(232, 196, 81, 1),
+                size: 30,
+              ),
+              onPressed: () {
+                notePost(id, index + 1);
+              },
+            );
+          }),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 5),
+              child: IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.comment_rounded),
+                iconSize: 30,
+                color: Color.fromRGBO(232, 196, 81, 1),
+              ),
+            )
+          ],
+        )
+      ]),
     );
   }
 }

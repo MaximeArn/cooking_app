@@ -99,7 +99,7 @@ class _RewardDetailState extends State<RewardDetail> {
               fit: FlexFit.tight,
               child: isBuying
                   ? Row(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Flexible(
                           fit: FlexFit.tight,
@@ -107,10 +107,11 @@ class _RewardDetailState extends State<RewardDetail> {
                             onPressed: toggleIsBuying,
                             child: Text("Cancel"),
                             style: ButtonStyle(
-                              shape: MaterialStateProperty.all(BeveledRectangleBorder()),
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.grey.shade500),),
+                              shape: MaterialStateProperty.all(
+                                  BeveledRectangleBorder()),
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.grey.shade500),
+                            ),
                           ),
                         ),
                         Flexible(
