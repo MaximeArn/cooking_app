@@ -24,6 +24,10 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
     super.dispose();
   }
 
+  void fetchFilteredUsers(filter) {
+    Provider.of<UsersProvider>(context, listen: false).getFilteredUsers(filter);
+  }
+
   @override
   Widget build(BuildContext context) {
     List<User> filteredUsers =
@@ -32,13 +36,22 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
     return Column(
       children: [
         Container(
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(232, 196, 81, .7),
+            border: Border(
+              bottom: BorderSide(
+                width: 1,
+                color: Colors.white,
+              ),
+            ),
+          ),
           padding: EdgeInsets.symmetric(horizontal: 5),
           child: Row(
             children: [
               Expanded(
                 child: TextField(
                   onChanged: (text) {
-                    Provider.of<UsersProvider>(context, listen: false).getFilteredUsers(text);
+                    fetchFilteredUsers(text);
                   },
                   autocorrect: false,
                   controller: searchBarController,
@@ -62,6 +75,7 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
               IconButton(
                 onPressed: () {
                   searchBarController.clear();
+                  fetchFilteredUsers("");
                 },
                 icon: Icon(
                   Icons.clear,
@@ -70,24 +84,14 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
               )
             ],
           ),
-          color: Color.fromRGBO(
-            232,
-            196,
-            81,
-            .7,
-          ),
         ),
         if (filteredUsers.length > 0)
           Container(
-            color: Color.fromRGBO(
-              232,
-              196,
-              81,
-              .7,
-            ),
-            height: 250,
+            color: Color.fromRGBO(232, 196, 81, .7),
+            constraints: BoxConstraints(maxHeight: 250),
             child: Column(
               children: filteredUsers
+                  .take(4)
                   .map(
                     (user) => Card(
                       child: ListTile(
