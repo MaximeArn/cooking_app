@@ -18,8 +18,10 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
     searchBarController.addListener(
       () {
         setState(() {
+          if (searchBarController.text.isNotEmpty) {
           Provider.of<UsersProvider>(context, listen: false)
               .getFilteredUsers(searchBarController.text);
+          }
         });
       },
     );
@@ -31,6 +33,7 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
     searchBarController.dispose();
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -82,19 +85,32 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
             .7,
           ),
         ),
-        filteredUsers.length > 0
-            ? Column(
-                children: filteredUsers
-                    .map((user) => Card(
-                            child: ListTile(
-                          leading: CircleAvatar(
-                            backgroundImage: NetworkImage(user.avatar),
-                          ),
-                          title: Text(user.name),
-                        )))
-                    .toList(),
-              )
-            : Text("no results")
+        if (filteredUsers.length > 0)
+          Container(
+            color: Color.fromRGBO(
+              232,
+              196,
+              81,
+              .7,
+            ),
+            height: 250,
+            child: Column(
+              children: filteredUsers
+                  .map(
+                    (user) => Card(
+                      child: ListTile(
+                        onTap: () => Navigator.pushNamed(context, "/profile",
+                            arguments: user.name),
+                        leading: CircleAvatar(
+                          backgroundImage: NetworkImage(user.avatar),
+                        ),
+                        title: Text(user.name),
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
+          ),
       ],
     );
   }

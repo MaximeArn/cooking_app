@@ -18,7 +18,6 @@ module.exports = {
         name: { $regex: `^${filter}`, $options: "i" },
       });
       res.json(filteredUsers);
-      console.log(filteredUsers);
     } catch (error) {
       console.log(error);
     }
