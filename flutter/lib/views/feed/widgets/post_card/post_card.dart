@@ -4,7 +4,6 @@ import 'package:cooking/views/feed/widgets/post_card/post_card_footer.dart';
 import 'package:cooking/views/feed/widgets/post_card/post_card_header.dart';
 import 'package:cooking/views/feed/widgets/post_card/post_card_imagee.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class PostCard extends StatelessWidget {
   final Post post;
@@ -25,7 +24,6 @@ class PostCard extends StatelessWidget {
           child: Column(
             children: [
               PostCardHeader(
-                  //must pass dynamic data
                   authorAvatar: post.author["avatar"] as String,
                   author: post.author["name"] as String),
               Divider(
