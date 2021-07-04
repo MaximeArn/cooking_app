@@ -17,26 +17,20 @@ class UsersProvider with ChangeNotifier {
   }
 
   Future<void> getFilteredUsers(String filter) async {
-    // print("filter --------------> $filter");
-    print(filter.isEmpty);
-    print(filter == "");
     isLoading = true;
     late http.Response response;
     if (filter.isNotEmpty) {
       response = await http.get(
         Uri.parse("$serverUrl/users/$filter"),
       );
-
       if (response.statusCode == 200) {
         final List decodedBody = json.decode(response.body);
-        // print(decodedBody.toString());
         _filteredUsers =
             (decodedBody).map((userJson) => User.fromJson(userJson)).toList();
       }
     } else {
       emptyArray();
     }
-    print("length : ${filteredUsers.length}");
     notifyListeners();
     isLoading = false;
   }

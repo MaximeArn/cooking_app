@@ -15,16 +15,6 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
 
   @override
   void initState() {
-    searchBarController.addListener(
-      () {
-        setState(() {
-          if (searchBarController.text.isNotEmpty) {
-          Provider.of<UsersProvider>(context, listen: false)
-              .getFilteredUsers(searchBarController.text);
-          }
-        });
-      },
-    );
     super.initState();
   }
 
@@ -33,7 +23,6 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
     searchBarController.dispose();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +37,9 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
             children: [
               Expanded(
                 child: TextField(
+                  onChanged: (text) {
+                    Provider.of<UsersProvider>(context, listen: false).getFilteredUsers(text);
+                  },
                   autocorrect: false,
                   controller: searchBarController,
                   style: TextStyle(color: Colors.white),
