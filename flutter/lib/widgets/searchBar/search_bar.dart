@@ -1,5 +1,6 @@
 import 'package:cooking/models/User.dart';
 import 'package:cooking/providers/users.dart';
+import 'package:cooking/widgets/searchBar/results_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -86,27 +87,7 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
           ),
         ),
         if (filteredUsers.length > 0)
-          Container(
-            color: Color.fromRGBO(232, 196, 81, .7),
-            constraints: BoxConstraints(maxHeight: 250),
-            child: Column(
-              children: filteredUsers
-                  .take(4)
-                  .map(
-                    (user) => Card(
-                      child: ListTile(
-                        onTap: () => Navigator.pushNamed(context, "/profile",
-                            arguments: user.name),
-                        leading: CircleAvatar(
-                          backgroundImage: NetworkImage(user.avatar),
-                        ),
-                        title: Text(user.name),
-                      ),
-                    ),
-                  )
-                  .toList(),
-            ),
-          ),
+       ResultsList(filteredUsers: filteredUsers)   
       ],
     );
   }

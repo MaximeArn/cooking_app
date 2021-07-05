@@ -1,4 +1,4 @@
-import 'package:cooking/views/feed/widgets/search_bar.dart';
+import 'package:cooking/widgets/searchBar/search_bar.dart';
 import 'package:cooking/widgets/scaffolds/secondary_scaffold.dart';
 import 'package:flutter/material.dart';
 

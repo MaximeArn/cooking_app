@@ -2,6 +2,7 @@ import 'package:cooking/providers/posts.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class PostCardFooter extends StatelessWidget {
   final int note;
   final String id;
