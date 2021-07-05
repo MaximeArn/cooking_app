@@ -7,12 +7,12 @@ class UserPosts extends StatelessWidget {
       flex: 70,
       child: Container(
         child: Padding(
-          padding: const EdgeInsets.all(25),
+          padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Container(
-                margin: EdgeInsets.only(bottom: 15),
+                margin: EdgeInsets.only(bottom: 25),
                 child: Text(
                   "Mes Plats :",
                   style: TextStyle(fontSize: 18),
@@ -20,9 +20,11 @@ class UserPosts extends StatelessWidget {
               ),
               Expanded(
                 child: GridView.count(
+                  scrollDirection: Axis.vertical,
                   mainAxisSpacing: 15,
                   crossAxisSpacing: 15,
                   crossAxisCount: 2,
+                  
                   children: List.generate(
                       12,
                       (index) => Container(
