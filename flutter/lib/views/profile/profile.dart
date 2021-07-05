@@ -15,7 +15,7 @@ class Profile extends StatelessWidget {
             Flexible(
               flex: 33,
               child: Container(
-                  color: Colors.green,
+                  // color: Colors.green,
                   child: Stack(
                     children: [
                       Column(
@@ -34,8 +34,13 @@ class Profile extends StatelessWidget {
                        Container(
                             alignment: Alignment.center,
                         child: CircleAvatar(
-                          radius: 45,
-                          backgroundImage: NetworkImage(user.avatar),
+                          radius: 46,
+                          backgroundColor: Colors.black,
+                          child: CircleAvatar(
+                            
+                            radius: 45,
+                            backgroundImage: NetworkImage(user.avatar),
+                          ),
                         ),
                       )
                     ],
@@ -44,7 +49,7 @@ class Profile extends StatelessWidget {
             Flexible(
               flex: 67,
               child: Container(
-                color: Colors.blue,
+                // color: Colors.blue,
                 child: Padding(
                   padding: const EdgeInsets.all(25),
                   child: Column(
