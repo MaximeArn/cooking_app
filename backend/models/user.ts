@@ -9,7 +9,7 @@ export const userSchema = new Schema({
   password: { type: String, required: true },
   avatar: {
     type: String,
-    default: `http://localhost:${PORT}/assets/images/avatar/default_avatar.jpg`,
+    default: `http://localhost:4545/assets/images/avatars/default_avatar.jpg`,
   },
   posts: { type: [postSchema], default: [] },
 });

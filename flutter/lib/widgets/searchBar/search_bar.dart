@@ -1,11 +1,14 @@
 import 'package:cooking/models/User.dart';
 import 'package:cooking/providers/users.dart';
-import 'package:cooking/widgets/searchBar/results_list.dart';
+import 'package:cooking/widgets/searchBar/full_page_results.dart';
+import 'package:cooking/widgets/searchBar/results.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class FeedSearchBar extends StatefulWidget {
-  const FeedSearchBar({Key? key}) : super(key: key);
+  late bool isFullPage;
+
+  FeedSearchBar({required this.isFullPage});
 
   @override
   _FeedSearchBarState createState() => _FeedSearchBarState();
@@ -87,7 +90,9 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
           ),
         ),
         if (filteredUsers.length > 0)
-       ResultsList(filteredUsers: filteredUsers)   
+          widget.isFullPage
+              ? FullPageResults(filteredUsers: filteredUsers)
+              : ResultsList(filteredUsers: filteredUsers)
       ],
     );
   }

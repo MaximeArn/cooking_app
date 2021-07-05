@@ -22,4 +22,12 @@ module.exports = {
       console.log(error);
     }
   },
+  addUser: (req: Request, res: Response) => {
+    User.create({
+      name: "Marcel",
+      email: "marcel@gmail.com",
+      password: "StrongPassword",
+    });
+    res.send("inserted");
+  },
 };

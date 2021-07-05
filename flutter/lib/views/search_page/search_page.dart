@@ -11,7 +11,11 @@ class SearchPage extends StatelessWidget {
       body: Container(
           alignment: Alignment.center,
           child: Column(
-            children: [FeedSearchBar()],
+            children: [
+              FeedSearchBar(
+                isFullPage: true,
+              ),
+            ],
           )),
     );
   }

@@ -1,9 +1,9 @@
 import { Router } from "express";
-const { getUserById, getUsersByName } = require("../controllers/user");
+const { getUsersByName, addUser } = require("../controllers/user");
 
 const userRouter = Router();
 
 userRouter.get("/:filter", getUsersByName);
-// userRouter.get("/:userId", getUserById);
+userRouter.post("", addUser);
 
 export default userRouter;

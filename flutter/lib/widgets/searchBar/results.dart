@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class ResultsList extends StatelessWidget {
   late List<User> filteredUsers;
 
-  ResultsList({required this.filteredUsers}); 
+  ResultsList({required this.filteredUsers});
 
   @override
   Widget build(BuildContext context) {
