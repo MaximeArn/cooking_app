@@ -20,22 +20,23 @@ class UsersProvider with ChangeNotifier {
   Future<void> getFilteredUsers(String filter) async {
     isLoading = true;
     late http.Response response;
-    if (filter.isNotEmpty && (firstSearch || _filteredUsers.length > 0)) {
-      print("request");
+    // the filter must not be empty and it must either be the first search or that there are already results so as not to continue to search if no user matches with the filter.
+    if (filter.isNotEmpty && (firstSearch || _filteredUsers.isNotEmpty)) {
       response = await http.get(
         Uri.parse("$serverUrl/users/$filter"),
       );
       if (response.statusCode == 200) {
         final List decodedBody = json.decode(response.body);
-        print(decodedBody.length);
         _filteredUsers =
             (decodedBody).map((userJson) => User.fromJson(userJson)).toList();
+        // after making the request "firstSearch" is now false.
         firstSearch = false;
       }
     } else {
       emptyArray();
     }
     if (filter.isEmpty) {
+      // when the user deletes his search, we return firstSearch to true
       firstSearch = true;
     }
     notifyListeners();
