@@ -8,25 +8,23 @@ class FullPageResults extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Color.fromRGBO(232, 196, 81, .7),
-      child: Column(
-        children: filteredUsers
-            .take(4)
-            .map(
-              (user) => Card(
-                child: ListTile(
-                  onTap: () => Navigator.pushNamed(context, "/profile",
-                      arguments: user.name),
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(user.avatar),
-                  ),
-                  title: Text(user.name),
-                ),
-              ),
-            )
-            .toList(),
-      ),
+    return ListView.builder(
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
+      itemCount: filteredUsers.length,
+      itemBuilder: (context, index) {
+        User user = filteredUsers[index];
+        return Card(
+          child: ListTile(
+            onTap: () =>
+                Navigator.pushNamed(context, "/profile", arguments: user.name),
+            leading: CircleAvatar(
+              backgroundImage: NetworkImage(user.avatar),
+            ),
+            title: Text(user.name),
+          ),
+        );
+      },
     );
   }
 }

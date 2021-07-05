@@ -1,5 +1,4 @@
 import 'package:cooking/models/User.dart';
-import 'package:cooking/models/User.dart';
 import 'package:flutter/material.dart';
 
 class ResultsList extends StatelessWidget {
@@ -13,7 +12,7 @@ class ResultsList extends StatelessWidget {
       color: Color.fromRGBO(232, 196, 81, .7),
       child: Column(
         children: [
-          ...filteredUsers.take(4).map(
+          ...filteredUsers.take(3).map(
                 (user) => Card(
                   child: ListTile(
                     onTap: () => Navigator.pushNamed(context, "/profile",
