@@ -10,8 +10,54 @@ class Profile extends StatelessWidget {
     User user = ModalRoute.of(context)!.settings.arguments as User;
     return SecondaryScaffold(
       body: Container(
-        alignment: Alignment.center,
-        child: Text(user.name),
+        child: Column(
+          children: [
+            Flexible(
+              flex: 33,
+              child: Container(
+                  color: Colors.green,
+                  child: Stack(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                              child: Container(
+                            alignment: Alignment.topCenter,
+                            color: Color.fromRGBO(223, 102, 103, 1),
+                            padding: EdgeInsets.only(top: 25),
+                            child: Text(user.name, style: TextStyle(fontSize: 25),),
+                          )),
+                          Expanded(child: Container()),
+                        ],
+                      ),
+                       Container(
+                            alignment: Alignment.center,
+                        child: CircleAvatar(
+                          radius: 45,
+                          backgroundImage: NetworkImage(user.avatar),
+                        ),
+                      )
+                    ],
+                  )),
+            ),
+            Flexible(
+              flex: 67,
+              child: Container(
+                color: Colors.blue,
+                child: Padding(
+                  padding: const EdgeInsets.all(25),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text("Mes Plats")
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -98,7 +98,8 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
           widget.isFullPage
               ? FullPageResults(
                   filteredUsers: filteredUsers, clearTextField: clearTextField)
-              : ResultsList(filteredUsers: filteredUsers, clearTextField: clearTextField)
+              : ResultsList(
+                  filteredUsers: filteredUsers, clearTextField: clearTextField)
       ],
     );
   }

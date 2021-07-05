@@ -22,7 +22,8 @@ class FullPageResults extends StatelessWidget {
           child: ListTile(
             onTap: () {
               Navigator.pushNamed(context, "/profile", arguments: user);
-              Provider.of<UsersProvider>(context, listen: false).getFilteredUsers("");
+              Provider.of<UsersProvider>(context, listen: false)
+                  .getFilteredUsers("");
               clearTextField();
             },
             leading: CircleAvatar(
