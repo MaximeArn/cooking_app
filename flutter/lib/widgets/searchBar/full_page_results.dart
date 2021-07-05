@@ -1,6 +1,7 @@
 import 'package:cooking/models/User.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class FullPageResults extends StatelessWidget {
   late List<User> filteredUsers;
 
