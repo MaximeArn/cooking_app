@@ -9,7 +9,7 @@ class ProfileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Flexible(
-      flex: 33,
+      flex: 30,
       child: Container(
           child: Stack(
         children: [
@@ -28,7 +28,62 @@ class ProfileHeader extends StatelessWidget {
                   style: TextStyle(fontSize: 25),
                 ),
               )),
-              Expanded(child: Container()),
+              Expanded(
+                child: Container(
+                  // color: Colors.grey.shade200,
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            123.toString(),
+                            style: TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.w500,
+                              color: Color.fromRGBO(232, 196, 81, .7)
+                            ),
+                          ),
+                          Text("Etoiles", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),)
+                        ],
+                      ),
+                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            345.toString(),
+                             style: TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.w500,
+                              color: Color.fromRGBO(232, 196, 81, .7)
+                            ),
+                          ),
+                          Text("Abonnés",style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),)
+                        ],
+                      ),
+                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            97.toString(),
+                             style: TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.w500,
+                              color: Color.fromRGBO(232, 196, 81, .7)
+                            ),
+                          ),
+                          Text("Abonnements",style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),)
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
           Container(
