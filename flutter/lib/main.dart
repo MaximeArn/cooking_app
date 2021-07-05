@@ -1,6 +1,7 @@
 import 'package:cooking/providers/posts.dart';
 import 'package:cooking/providers/rewards.dart';
 import 'package:cooking/providers/users.dart';
+import 'package:cooking/views/profile/profile.dart';
 import 'package:cooking/views/reward_detail/reward_detail.dart';
 import 'package:cooking/views/home/home_view.dart';
 import 'package:cooking/views/not_found/not_found.dart';
@@ -55,6 +56,7 @@ class _CookingState extends State<Cooking> {
           "/": (_) => HomeView(),
           RewardDetail.routeName: (_) => RewardDetail(),
           SearchPage.routeName: (_) => SearchPage(),
+          Profile.routeName: (_) => Profile(),
         },
         onUnknownRoute: (_) => MaterialPageRoute(builder: (_) => NotFound()),
         theme: cookingTheme,

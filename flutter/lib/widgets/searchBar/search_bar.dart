@@ -33,6 +33,10 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
     Provider.of<UsersProvider>(context, listen: false).getFilteredUsers(filter);
   }
 
+  void clearTextField() {
+    searchBarController.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     List<User> filteredUsers =
@@ -92,8 +96,9 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
         ),
         if (filteredUsers.length > 0)
           widget.isFullPage
-              ? FullPageResults(filteredUsers: filteredUsers)
-              : ResultsList(filteredUsers: filteredUsers)
+              ? FullPageResults(
+                  filteredUsers: filteredUsers, clearTextField: clearTextField)
+              : ResultsList(filteredUsers: filteredUsers, clearTextField: clearTextField)
       ],
     );
   }
