@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import Post from "../../models/post";
 
 module.exports = {
@@ -22,6 +22,15 @@ module.exports = {
         { useFindAndModify: false, new: true }
       );
       res.json(updatedPost);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  addPost: async ({ body }: Request, res: Response, next: NextFunction) => {
+    try {
+      const newPost = await Post.create(body);
+      res.json(newPost);
     } catch (error) {
       console.log(error);
     }
