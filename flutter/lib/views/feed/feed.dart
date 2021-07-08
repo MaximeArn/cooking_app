@@ -19,12 +19,12 @@ class Feed extends StatelessWidget {
       child: postsProvider.isLoading
           ? Loader()
           : ListView.builder(
-              itemCount: posts.length,
+              itemCount: posts.length + 1,
               itemBuilder: (context, index) => index == 0
                   ? FeedSearchBar(
                       isFullPage: false,
                     )
-                  : PostCard(post: posts[index]),
+                  : PostCard(post: posts[index - 1]),
             ),
     );
   }
