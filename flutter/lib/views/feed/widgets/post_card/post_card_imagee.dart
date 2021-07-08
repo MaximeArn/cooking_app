@@ -16,7 +16,7 @@ class PostCardImage extends StatelessWidget {
               image: NetworkImage(photo),
               fit: BoxFit.cover,
               child: InkWell(
-                borderRadius: BorderRadius.all(Radius.circular(5)),
+                borderRadius: const BorderRadius.all(Radius.circular(5)),
                 onTap: () {
                   print("image tapped");
                 },

@@ -11,19 +11,19 @@ class PostCardHeader extends StatelessWidget {
     return Flexible(
       flex: 1,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              margin: EdgeInsets.only(right: 20),
+              margin: const EdgeInsets.only(right: 20),
               child: CircleAvatar(
                 backgroundImage: NetworkImage(authorAvatar),
               ),
             ),
             Text(
               author,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
             )
           ],
         ),

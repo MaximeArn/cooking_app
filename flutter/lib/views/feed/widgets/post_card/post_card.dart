@@ -16,11 +16,11 @@ class PostCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
       child: Card(
         elevation: 5,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(15))),
         child: Container(
           height: 350,
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Column(
             children: [
               PostCardHeader(
@@ -28,11 +28,11 @@ class PostCard extends StatelessWidget {
                   author: post.author["name"] as String),
               Divider(
                 height: 30,
-                color: Color.fromRGBO(
+                color: const Color.fromRGBO(
                   232,
                   196,
                   81,
-                  1,
+                  1
                 ),
                 thickness: .7,
               ),

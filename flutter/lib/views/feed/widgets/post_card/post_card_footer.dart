@@ -24,7 +24,7 @@ class PostCardFooter extends StatelessWidget {
             return IconButton(
               icon: Icon(
                 index < note ? Icons.star : Icons.star_border,
-                color: Color.fromRGBO(232, 196, 81, 1),
+                color: const Color.fromRGBO(232, 196, 81, 1),
                 size: 30,
               ),
               onPressed: () {
@@ -40,9 +40,9 @@ class PostCardFooter extends StatelessWidget {
               padding: const EdgeInsets.only(top: 5),
               child: IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.comment_rounded),
+                icon: const Icon(Icons.comment_rounded),
                 iconSize: 25,
-                color: Color.fromRGBO(232, 196, 81, 1),
+                color: const Color.fromRGBO(232, 196, 81, 1),
               ),
             )
           ],
