@@ -98,9 +98,9 @@ mongoose
       }).save(),
       new Post({
         image: [
-          `http://localhost:${PORT}/assets/images/posts/dish_4.jpg`,
-          `http://localhost:${PORT}/assets/images/posts/dish_4.jpg`,
-          `http://localhost:${PORT}/assets/images/posts/dish_4.jpg`,
+          `http://localhost:${PORT}/assets/images/posts/dish_5.jpg`,
+          `http://localhost:${PORT}/assets/images/posts/dish_5.jpg`,
+          `http://localhost:${PORT}/assets/images/posts/dish_5.jpg`,
         ],
         author: "replace_in_atlas",
         description:

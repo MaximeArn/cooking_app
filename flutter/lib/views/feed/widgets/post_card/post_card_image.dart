@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class PostCardImage extends StatelessWidget {
-  final String photo;
+  final List<String> images;
 
-  PostCardImage({required this.photo});
+  PostCardImage({required this.images});
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +15,11 @@ class PostCardImage extends StatelessWidget {
           Expanded(
             child: CarouselSlider(
               options: CarouselOptions(viewportFraction: 1),
-              items: [photo, photo, photo]
+              items: images
                   .map((image) => Container(
                         color: Colors.red,
                         child: Image.network(
-                          photo,
+                          image,
                           fit: BoxFit.cover,
                           width: MediaQuery.of(context).size.width,
                         ),

@@ -1,8 +1,7 @@
 import 'package:cooking/models/Post.dart';
-import 'package:cooking/providers/posts.dart';
 import 'package:cooking/views/feed/widgets/post_card/post_card_footer.dart';
 import 'package:cooking/views/feed/widgets/post_card/post_card_header.dart';
-import 'package:cooking/views/feed/widgets/post_card/post_card_imagee.dart';
+import 'package:cooking/views/feed/widgets/post_card/post_card_image.dart';
 import 'package:flutter/material.dart';
 
 class PostCard extends StatelessWidget {
@@ -31,7 +30,7 @@ class PostCard extends StatelessWidget {
                 color: const Color.fromRGBO(232, 196, 81, 1),
                 thickness: .7,
               ),
-              PostCardImage(photo: post.image),
+              PostCardImage(images: post.image),
               PostCardFooter(
                 note: post.note,
                 id: post.id,
