@@ -15,7 +15,7 @@ class Profile extends StatelessWidget {
         child: Column(
           children: [
             ProfileHeader(name: user.name, avatar: user.avatar),
-            UserPosts(),
+            const UserPosts(),
           ],
         ),
       ),

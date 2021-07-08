@@ -55,7 +55,7 @@ class _CookingState extends State<Cooking> {
         routes: {
           "/": (_) => HomeView(),
           RewardDetail.routeName: (_) => RewardDetail(),
-          SearchPage.routeName: (_) => SearchPage(),
+          SearchPage.routeName: (_) => const SearchPage(),
           Profile.routeName: (_) => Profile(),
         },
         onUnknownRoute: (_) => MaterialPageRoute(builder: (_) => NotFound()),

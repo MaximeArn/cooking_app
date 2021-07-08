@@ -19,19 +19,18 @@ class ProfileHeader extends StatelessWidget {
               Expanded(
                   child: Container(
                 alignment: Alignment.topCenter,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Color.fromRGBO(223, 102, 103, 1),
                     border: Border(bottom: BorderSide(width: 1))),
-                padding: EdgeInsets.only(top: 35),
+                padding: const EdgeInsets.only(top: 35),
                 child: Text(
                   name,
-                  style: TextStyle(fontSize: 25),
+                  style: const TextStyle(fontSize: 25),
                 ),
               )),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
-                  // color: Colors.grey.shade200,
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
                   alignment: Alignment.center,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -43,13 +42,13 @@ class ProfileHeader extends StatelessWidget {
                           children: [
                             Text(
                               123.toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 28,
                                 fontWeight: FontWeight.w500,
                                 color: Color.fromRGBO(232, 196, 81, .7)
                               ),
                             ),
-                            Text("Etoiles", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),)
+                            const Text("Etoiles", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),)
                           ],
                         ),
                       ),
@@ -60,13 +59,13 @@ class ProfileHeader extends StatelessWidget {
                           children: [
                             Text(
                               345.toString(),
-                               style: TextStyle(
+                               style: const TextStyle(
                                 fontSize: 28,
                                 fontWeight: FontWeight.w500,
                                 color: Color.fromRGBO(232, 196, 81, .7)
                               ),
                             ),
-                            Text("Abonnés",style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),)
+                            const Text("Abonnés",style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),)
                           ],
                                              ),
                        ),
@@ -77,15 +76,15 @@ class ProfileHeader extends StatelessWidget {
                           children: [
                             Text(
                               97.toString(),
-                               style: TextStyle(
+                               style: const TextStyle(
                                 fontSize: 28,
                                 fontWeight: FontWeight.w500,
                                 color: Color.fromRGBO(232, 196, 81, .7)
                               ),
                             ),
-                            Text("Abonnements",style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),)
+                            const Text("Abonnements",style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),)
                           ],
-                                             ),
+                        ),
                        ),
                     ],
                   ),

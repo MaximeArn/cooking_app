@@ -11,15 +11,15 @@ class RewardCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 30),
+      margin: const EdgeInsets.only(bottom: 30),
       child: Card(
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(15))),
         elevation: 5,
         child: Container(
           height: 350,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(8.0))),
+          decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(8.0),),),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -37,7 +37,7 @@ class RewardCard extends StatelessWidget {
                         flex: 2,
                         child: Text(
                           reward.title,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -49,9 +49,9 @@ class RewardCard extends StatelessWidget {
                             children: [
                               TextSpan(
                                   text: reward.price.toString(),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.black, fontSize: 18)),
-                              WidgetSpan(
+                              const WidgetSpan(
                                 alignment: PlaceholderAlignment.middle,
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
@@ -80,7 +80,7 @@ class RewardCard extends StatelessWidget {
               Flexible(
                 flex: 1,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: InkWell(
                     child: Text(
                       "read more -->",

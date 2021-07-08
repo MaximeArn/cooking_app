@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class UserPosts extends StatelessWidget {
+  const UserPosts();
+
   @override
   Widget build(BuildContext context) {
     return Flexible(
@@ -24,7 +26,6 @@ class UserPosts extends StatelessWidget {
                   mainAxisSpacing: 15,
                   crossAxisSpacing: 15,
                   crossAxisCount: 2,
-                  
                   children: List.generate(
                       12,
                       (index) => Container(

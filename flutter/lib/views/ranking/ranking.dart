@@ -4,7 +4,7 @@ class Ranking extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text("ranking"),
+      child: const Text("ranking"),
     );
   }
 }

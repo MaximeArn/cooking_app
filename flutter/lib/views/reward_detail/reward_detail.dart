@@ -58,13 +58,13 @@ class _RewardDetailState extends State<RewardDetail> {
                       fit: FlexFit.tight,
                       child: Text(
                         reward.title,
-                        style: TextStyle(fontSize: 18),
+                        style: const TextStyle(fontSize: 18),
                       ),
                     ),
                     Flexible(
                       flex: 3,
                       child: ElevatedButton(
-                          onPressed: () {}, child: Text("Voir le site")),
+                          onPressed: () {}, child: const Text("Voir le site")),
                     )
                   ],
                 ),
@@ -80,7 +80,7 @@ class _RewardDetailState extends State<RewardDetail> {
               flex: 50,
               fit: FlexFit.tight,
               child: SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   reward.description,
                   style: const TextStyle(
@@ -105,7 +105,7 @@ class _RewardDetailState extends State<RewardDetail> {
                           fit: FlexFit.tight,
                           child: ElevatedButton(
                             onPressed: toggleIsBuying,
-                            child: Text("Cancel"),
+                            child: const Text("Cancel"),
                             style: ButtonStyle(
                               shape: MaterialStateProperty.all(
                                   BeveledRectangleBorder()),
@@ -117,7 +117,7 @@ class _RewardDetailState extends State<RewardDetail> {
                         Flexible(
                             fit: FlexFit.tight,
                             child: ElevatedButton(
-                                onPressed: () {}, child: Text("Confirm")))
+                                onPressed: () {}, child: const Text("Confirm")))
                       ],
                     )
                   : Container(
@@ -126,7 +126,7 @@ class _RewardDetailState extends State<RewardDetail> {
                         onPressed: toggleIsBuying,
                         child: Text(
                           "Purchase for ${reward.price}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.w500),
                         ),
                       ),
