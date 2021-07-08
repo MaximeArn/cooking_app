@@ -57,37 +57,61 @@ mongoose
         avatar: `http://localhost:${PORT}/assets/images/avatars/profile_photo_6.jpg`,
       }).save(),
       new Post({
-        image: `http://localhost:${PORT}/assets/images/posts/dish_1.jpg`,
+        image: [
+          `http://localhost:${PORT}/assets/images/posts/dish_1.jpg`,
+          `http://localhost:${PORT}/assets/images/posts/dish_1.jpg`,
+          `http://localhost:${PORT}/assets/images/posts/dish_1.jpg`,
+        ],
         author: "replace_in_atlas",
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor.",
       }).save(),
       new Post({
-        image: `http://localhost:${PORT}/assets/images/posts/dish_2.jpg`,
+        image: [
+          `http://localhost:${PORT}/assets/images/posts/dish_2.jpg`,
+          `http://localhost:${PORT}/assets/images/posts/dish_2.jpg`,
+          `http://localhost:${PORT}/assets/images/posts/dish_2.jpg`,
+        ],
         author: "replace_in_atlas",
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor. ",
       }).save(),
       new Post({
-        image: `http://localhost:${PORT}/assets/images/posts/dish_3.jpg`,
+        image: [
+          `http://localhost:${PORT}/assets/images/posts/dish_3.jpg`,
+          `http://localhost:${PORT}/assets/images/posts/dish_3.jpg`,
+          `http://localhost:${PORT}/assets/images/posts/dish_3.jpg`,
+        ],
         author: "replace_in_atlas",
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor. ",
       }).save(),
       new Post({
-        image: `http://localhost:${PORT}/assets/images/posts/dish_4.jpg`,
+        image: [
+          `http://localhost:${PORT}/assets/images/posts/dish_4.jpg`,
+          `http://localhost:${PORT}/assets/images/posts/dish_4.jpg`,
+          `http://localhost:${PORT}/assets/images/posts/dish_4.jpg`,
+        ],
         author: "replace_in_atlas",
         description:
           " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor.",
       }).save(),
       new Post({
-        image: `http://localhost:${PORT}/assets/images/posts/dish_5.jpg`,
+        image: [
+          `http://localhost:${PORT}/assets/images/posts/dish_4.jpg`,
+          `http://localhost:${PORT}/assets/images/posts/dish_4.jpg`,
+          `http://localhost:${PORT}/assets/images/posts/dish_4.jpg`,
+        ],
         author: "replace_in_atlas",
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor. ",
       }).save(),
       new Post({
-        image: `http://localhost:${PORT}/assets/images/posts/dish_6.jpg`,
+        image: [
+          `http://localhost:${PORT}/assets/images/posts/dish_6.jpg`,
+          `http://localhost:${PORT}/assets/images/posts/dish_6.jpg`,
+          `http://localhost:${PORT}/assets/images/posts/dish_6.jpg`,
+        ],
         author: "replace_in_atlas",
         description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor. ",
