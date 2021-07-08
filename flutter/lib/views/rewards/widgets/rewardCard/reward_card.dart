@@ -19,7 +19,10 @@ class RewardCard extends StatelessWidget {
         child: Container(
           height: 350,
           decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(8.0),),),
+            borderRadius: BorderRadius.all(
+              Radius.circular(8.0),
+            ),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [

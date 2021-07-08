@@ -13,7 +13,7 @@ class RewardCardImage extends StatelessWidget {
       fit: FlexFit.tight,
       child: ClipRRect(
         borderRadius: const BorderRadius.only(
-            topLeft:  Radius.circular(15), topRight: Radius.circular(15)),
+            topLeft: Radius.circular(15), topRight: Radius.circular(15)),
         child: Image.network(
           '$serverUrl/$image',
           fit: BoxFit.cover,

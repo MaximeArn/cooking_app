@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CookingAppBar extends StatelessWidget with PreferredSizeWidget {
   const CookingAppBar();
-  
+
   @override
   Widget build(BuildContext context) {
     return AppBar(

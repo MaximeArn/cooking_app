@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class PostCardImage extends StatelessWidget {
   final String photo;
@@ -12,16 +13,26 @@ class PostCardImage extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Ink.image(
-              image: NetworkImage(photo),
-              fit: BoxFit.cover,
-              child: InkWell(
-                borderRadius: const BorderRadius.all(Radius.circular(5)),
-                onTap: () {
-                  print("image tapped");
-                },
+            child: CarouselSlider(
+              options: CarouselOptions(
+                viewportFraction: 1
               ),
+              items: [photo, photo, photo]
+                  .map(
+                    (image) => Image(image: NetworkImage(image), fit: BoxFit.cover,)
+                  )
+                  .toList(),
             ),
+            // child: Ink.image(
+            //   image: NetworkImage(photo),
+            //   fit: BoxFit.cover,
+            //   child: InkWell(
+            //     borderRadius: const BorderRadius.all(Radius.circular(5)),
+            //     onTap: () {
+            //       print("image tapped");
+            //     },
+            //   ),
+            // ),
           )
         ],
       ),

@@ -43,49 +43,58 @@ class ProfileHeader extends StatelessWidget {
                             Text(
                               123.toString(),
                               style: const TextStyle(
-                                fontSize: 28,
-                                fontWeight: FontWeight.w500,
-                                color: Color.fromRGBO(232, 196, 81, .7)
-                              ),
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color.fromRGBO(232, 196, 81, .7)),
                             ),
-                            const Text("Etoiles", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),)
+                            const Text(
+                              "Etoiles",
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w500),
+                            )
                           ],
                         ),
                       ),
-                       Expanded(
-                         child: Column(
+                      Expanded(
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
                               345.toString(),
-                               style: const TextStyle(
-                                fontSize: 28,
-                                fontWeight: FontWeight.w500,
-                                color: Color.fromRGBO(232, 196, 81, .7)
-                              ),
+                              style: const TextStyle(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color.fromRGBO(232, 196, 81, .7)),
                             ),
-                            const Text("Abonnés",style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),)
+                            const Text(
+                              "Abonnés",
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w500),
+                            )
                           ],
-                                             ),
-                       ),
-                       Expanded(
-                         child: Column(
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
                               97.toString(),
-                               style: const TextStyle(
-                                fontSize: 28,
-                                fontWeight: FontWeight.w500,
-                                color: Color.fromRGBO(232, 196, 81, .7)
-                              ),
+                              style: const TextStyle(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color.fromRGBO(232, 196, 81, .7)),
                             ),
-                            const Text("Abonnements",style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),)
+                            const Text(
+                              "Abonnements",
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w500),
+                            )
                           ],
                         ),
-                       ),
+                      ),
                     ],
                   ),
                 ),

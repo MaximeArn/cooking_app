@@ -28,12 +28,7 @@ class PostCard extends StatelessWidget {
                   author: post.author["name"] as String),
               Divider(
                 height: 30,
-                color: const Color.fromRGBO(
-                  232,
-                  196,
-                  81,
-                  1
-                ),
+                color: const Color.fromRGBO(232, 196, 81, 1),
                 thickness: .7,
               ),
               PostCardImage(photo: post.image),
