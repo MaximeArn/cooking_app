@@ -14,26 +14,19 @@ class PostCardImage extends StatelessWidget {
         children: [
           Expanded(
             child: CarouselSlider(
-              options: CarouselOptions(
-                viewportFraction: 1
-              ),
+              options: CarouselOptions(viewportFraction: 1),
               items: [photo, photo, photo]
-                  .map(
-                    (image) => Image(image: NetworkImage(image), fit: BoxFit.cover,)
-                  )
+                  .map((image) => Container(
+                        color: Colors.red,
+                        child: Image.network(
+                          photo,
+                          fit: BoxFit.cover,
+                          width: MediaQuery.of(context).size.width,
+                        ),
+                      ))
                   .toList(),
             ),
-            // child: Ink.image(
-            //   image: NetworkImage(photo),
-            //   fit: BoxFit.cover,
-            //   child: InkWell(
-            //     borderRadius: const BorderRadius.all(Radius.circular(5)),
-            //     onTap: () {
-            //       print("image tapped");
-            //     },
-            //   ),
-            // ),
-          )
+          ),
         ],
       ),
     );
