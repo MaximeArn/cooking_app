@@ -3,10 +3,9 @@ import 'package:cooking/providers/users.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-// ignore: must_be_immutable
 class FullPageResults extends StatelessWidget {
-  late List<User> filteredUsers;
-  late VoidCallback clearTextField;
+  final List<User> filteredUsers;
+  final VoidCallback clearTextField;
 
   FullPageResults({required this.filteredUsers, required this.clearTextField});
 

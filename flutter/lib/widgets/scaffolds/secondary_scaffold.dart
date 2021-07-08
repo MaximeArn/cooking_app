@@ -11,7 +11,7 @@ class SecondaryScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CookingAppBar(),
+      appBar: const CookingAppBar(),
       body: body,
     );
   }

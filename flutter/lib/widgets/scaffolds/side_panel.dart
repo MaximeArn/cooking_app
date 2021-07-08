@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SidePanel extends StatelessWidget {
+  const SidePanel();
+  
   @override
   Widget build(BuildContext context) {
     return Drawer(

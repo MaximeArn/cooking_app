@@ -45,7 +45,7 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
     return Column(
       children: [
         Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Color.fromRGBO(232, 196, 81, .7),
             border: Border(
               bottom: BorderSide(
@@ -54,7 +54,7 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
               ),
             ),
           ),
-          padding: EdgeInsets.symmetric(horizontal: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 5),
           child: Row(
             children: [
               Expanded(
@@ -64,9 +64,9 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
                   },
                   autocorrect: false,
                   controller: searchBarController,
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(
+                    prefixIcon: const Icon(
                       Icons.search,
                       color: Colors.white,
                       size: 25,
@@ -86,7 +86,7 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
                   searchBarController.clear();
                   fetchFilteredUsers("");
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.clear,
                   color: Colors.white,
                 ),

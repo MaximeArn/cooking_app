@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 class CookingAppBar extends StatelessWidget with PreferredSizeWidget {
+  const CookingAppBar();
+  
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      iconTheme: IconThemeData(
+      iconTheme: const IconThemeData(
         size: 20,
       ),
       title: RichText(
-        text: TextSpan(
+        text: const TextSpan(
             style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
             children: [
               TextSpan(text: "Coo", style: TextStyle(color: Colors.black)),
@@ -22,5 +24,5 @@ class CookingAppBar extends StatelessWidget with PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

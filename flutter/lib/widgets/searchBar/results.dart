@@ -13,7 +13,7 @@ class ResultsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromRGBO(232, 196, 81, .7),
+      color: const Color.fromRGBO(232, 196, 81, .7),
       child: Column(
         children: [
           ...filteredUsers.take(3).map(
@@ -33,7 +33,7 @@ class ResultsList extends StatelessWidget {
                 ),
               ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
             width: double.infinity,
             child: ElevatedButton(
               style: ButtonStyle(
@@ -42,7 +42,7 @@ class ResultsList extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, "/searchPage");
               },
-              child: Icon(
+              child: const Icon(
                 Icons.more_horiz,
                 color: Colors.black,
               ),
