@@ -1,12 +1,12 @@
 import { Schema, model } from "mongoose";
-import { commentSchema } from "./comment";
+import { ObjectId } from "mongodb";
 
 export const postSchema = new Schema({
-  author: { type: String, required: true },
-  image: { type: [String], required: true },
-  note: { type: Number, default: null },
+  authorId: { type: ObjectId, required: true },
+  images: { type: [String], required: true },
+  note: { type: Number, default: null }, // maybe an "Note" documents array
   description: { type: String, required: true },
-  comments: { type: [commentSchema], default: [] },
+  comments: { type: [ObjectId], default: [] },
 });
 
 export default model("post", postSchema);
