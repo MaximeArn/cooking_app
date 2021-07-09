@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { postSchema } from "./post";
+import { ObjectId } from "mongodb";
 
 const PORT = process.env.PORT;
 
@@ -14,7 +14,7 @@ export const userSchema = new Schema({
     type: String,
     default: `http://localhost:4545/assets/images/avatars/default_avatar.jpg`,
   },
-  posts: { type: [postSchema], default: [] },
+  posts: { type: [ObjectId], default: [] },
 });
 
 export default model("user", userSchema);
