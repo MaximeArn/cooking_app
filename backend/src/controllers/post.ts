@@ -1,10 +1,19 @@
 import { NextFunction, Request, Response } from "express";
+import post from "../../models/post";
 import Post from "../../models/post";
+import User from "../../models/user";
 
 module.exports = {
   getPosts: async (req: Request, res: Response) => {
     try {
-      const posts = await Post.find();
+      const posts: any = await Post.find();
+      posts.map(async (post) => {
+        const author = await User.findById(post.authorId, {
+          name: 1,
+          avatar: 1,
+        });
+        post.author = author;
+      });
       res.json(posts);
     } catch (error) {
       console.log(error);
