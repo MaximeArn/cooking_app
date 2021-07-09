@@ -26,7 +26,7 @@ class Post {
           "avatar":
               "http://localhost:4545/assets/images/avatars/profile_photo_1.jpg",
         },
-        images = List<String>.from(json["image"]),
+        images = List<String>.from(json["images"]),
         note = json["note"] == null ? 0 : json["note"],
         description = json["description"],
         comments = (json["comments"] as List)

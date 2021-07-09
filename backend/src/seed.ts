@@ -57,7 +57,7 @@ mongoose
         avatar: `http://localhost:${PORT}/assets/images/avatars/profile_photo_6.jpg`,
       }).save(),
       new Post({
-        image: [
+        images: [
           `http://localhost:${PORT}/assets/images/posts/dish_1.jpg`,
           `http://localhost:${PORT}/assets/images/posts/dish_1.jpg`,
           `http://localhost:${PORT}/assets/images/posts/dish_1.jpg`,
@@ -66,7 +66,7 @@ mongoose
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor.",
       }).save(),
       new Post({
-        image: [
+        images: [
           `http://localhost:${PORT}/assets/images/posts/dish_2.jpg`,
           `http://localhost:${PORT}/assets/images/posts/dish_2.jpg`,
           `http://localhost:${PORT}/assets/images/posts/dish_2.jpg`,
@@ -75,7 +75,7 @@ mongoose
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor. ",
       }).save(),
       new Post({
-        image: [
+        images: [
           `http://localhost:${PORT}/assets/images/posts/dish_3.jpg`,
           `http://localhost:${PORT}/assets/images/posts/dish_3.jpg`,
           `http://localhost:${PORT}/assets/images/posts/dish_3.jpg`,
@@ -84,7 +84,7 @@ mongoose
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor. ",
       }).save(),
       new Post({
-        image: [
+        images: [
           `http://localhost:${PORT}/assets/images/posts/dish_4.jpg`,
           `http://localhost:${PORT}/assets/images/posts/dish_4.jpg`,
           `http://localhost:${PORT}/assets/images/posts/dish_4.jpg`,
@@ -93,7 +93,7 @@ mongoose
           " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor.",
       }).save(),
       new Post({
-        image: [
+        images: [
           `http://localhost:${PORT}/assets/images/posts/dish_5.jpg`,
           `http://localhost:${PORT}/assets/images/posts/dish_5.jpg`,
           `http://localhost:${PORT}/assets/images/posts/dish_5.jpg`,
@@ -102,7 +102,7 @@ mongoose
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum pharetra mauris vitae bibendum. Duis gravida tellus mauris, in fermentum massa pharetra non. Aliquam rhoncus faucibus mauris, a auctor nulla feugiat nec. Quisque sed pharetra lorem. Quisque egestas, odio a cursus cursus, lectus ipsum tristique odio, sit amet condimentum tortor. ",
       }).save(),
       new Post({
-        image: [
+        images: [
           `http://localhost:${PORT}/assets/images/posts/dish_6.jpg`,
           `http://localhost:${PORT}/assets/images/posts/dish_6.jpg`,
           `http://localhost:${PORT}/assets/images/posts/dish_6.jpg`,

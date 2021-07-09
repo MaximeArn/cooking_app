@@ -30,7 +30,7 @@ class PostCard extends StatelessWidget {
                 color: const Color.fromRGBO(232, 196, 81, 1),
                 thickness: .7,
               ),
-              PostCardImage(images: post.image),
+              PostCardImage(images: post.images),
               PostCardFooter(
                 note: post.note,
                 id: post.id,
