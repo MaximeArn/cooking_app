@@ -5,15 +5,22 @@ import User from "../../models/user";
 module.exports = {
   getPosts: async (_: Request, res: Response) => {
     try {
-      const posts: PostInterface[] = await Post.find();
+      const posts = await Post.find({});
 
-      const postsAndAuthors = posts.map(async (post) => {
+      const promisesArray = posts.map(async (post) => {
         const author = await User.findById(post.authorId, {
           name: 1,
           avatar: 1,
         });
+        post.author = author;
+        console.log("post with the author ", post);
+        return posts;
       });
-      console.log(postsAndAuthors);
+
+      const postsAndAuthors = await Promise.all(promisesArray);
+
+      // console.log(postsAndAuthors);
+
       res.json(postsAndAuthors);
     } catch (error) {
       console.log(error);

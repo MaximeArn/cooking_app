@@ -1,5 +1,6 @@
 import { Schema, model, Document, Model } from "mongoose";
 import { ObjectId } from "mongodb";
+import { UserInterface } from "./user";
 
 export interface PostInterface extends Document {
   authorId: String;
@@ -7,7 +8,7 @@ export interface PostInterface extends Document {
   note: Number;
   description: String;
   comments: String[];
-  author?: authorInterface;
+  author?: UserInterface;
 }
 
 export const postSchema = new Schema({
