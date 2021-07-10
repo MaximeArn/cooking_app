@@ -1,13 +1,14 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Document, Model } from "mongoose";
 import { ObjectId } from "mongodb";
 
-// export type PostType = {
-//   authorId: String;
-//   images: Array<String>;
-//   note: Number;
-//   description: String;
-//   comments: Array<String>;
-// };
+export interface PostInterface extends Document {
+  authorId: String;
+  images: String[];
+  note: Number;
+  description: String;
+  comments: String[];
+  author?: authorInterface;
+}
 
 export const postSchema = new Schema({
   // authorId: { type: ObjectId, required: true },
@@ -18,4 +19,5 @@ export const postSchema = new Schema({
   comments: { type: [ObjectId], default: [] },
 });
 
-export default model("post", postSchema);
+const postModel: Model<PostInterface> = model("post", postSchema);
+export default postModel;
