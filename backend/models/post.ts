@@ -1,6 +1,6 @@
 import { Schema, model, Document, Model } from "mongoose";
 import { ObjectId } from "mongodb";
-import { UserInterface } from "./user";
+import User, { UserInterface } from "./user";
 
 export interface PostInterface extends Document {
   authorId: String;

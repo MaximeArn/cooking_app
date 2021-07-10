@@ -6,8 +6,7 @@ import User from "../../models/user";
 module.exports = {
   getPosts: async (_: Request, res: Response) => {
     try {
-      const posts = await Post.find();
-
+      const posts: PostInterface[] = await Post.find();
       res.json(posts);
     } catch (error) {
       console.log(error);

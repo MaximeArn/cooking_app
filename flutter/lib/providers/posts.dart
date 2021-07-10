@@ -18,7 +18,9 @@ class PostsProvider with ChangeNotifier {
       if (response.statusCode == 200) {
         List decodedBody = json.decode(response.body);
         print(decodedBody);
-        _posts = decodedBody.map((jsonPost) => Post.fromJson(jsonPost)).toList();
+        print(decodedBody);
+        _posts =
+            decodedBody.map((jsonPost) => Post.fromJson(jsonPost)).toList();
         notifyListeners();
         isLoading = false;
       }
