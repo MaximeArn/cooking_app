@@ -4,7 +4,7 @@ class Post {
   final String id;
   final Map<String, String> author;
   final List<String> images;
-  final int note;
+  int note;
   final String description;
   List<Comment> comments = [];
 
@@ -24,7 +24,8 @@ class Post {
           "id": json["authorId"]["_id"],
         },
         images = List<String>.from(json["images"]),
-        note = json["note"] == null ? 0 : json["note"],
+        // note = json["note"] == null ? 0 : json["note"],
+        note = 3,
         description = json["description"],
         comments = (json["comments"] as List)
             .map((jsonComment) => Comment.fromJson(jsonComment))
