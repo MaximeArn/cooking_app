@@ -9,7 +9,7 @@ class PostCardHeader extends StatelessWidget {
   PostCardHeader(
       {required this.authorAvatar,
       required this.author,
-      required this.authorId});
+      required this.authorId,});
 
   @override
   Widget build(BuildContext context) {

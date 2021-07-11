@@ -24,7 +24,7 @@ class UsersProvider with ChangeNotifier {
     // the filter must not be empty and it must either be the first search or that there are already results so as not to continue to search if no user matches with the filter.
     if (filter.isNotEmpty && (firstSearch || _filteredUsers.isNotEmpty)) {
       response = await http.get(
-        Uri.parse("$serverUrl/users/$filter"),
+        Uri.parse("$serverUrl/users/search/$filter"),
       );
       if (response.statusCode == 200) {
         final List decodedBody = json.decode(response.body);
