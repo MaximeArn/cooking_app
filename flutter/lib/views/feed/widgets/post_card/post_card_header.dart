@@ -16,7 +16,7 @@ class PostCardHeader extends StatelessWidget {
         child: GestureDetector(
           onTap: () {
             Navigator.pushNamed(context, Profile.routeName,
-                arguments: author.id);
+                arguments: author);
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,

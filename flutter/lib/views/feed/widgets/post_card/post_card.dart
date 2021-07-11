@@ -1,4 +1,5 @@
 import 'package:cooking/models/Post.dart';
+import 'package:cooking/models/User.dart';
 import 'package:cooking/views/feed/widgets/post_card/post_card_footer.dart';
 import 'package:cooking/views/feed/widgets/post_card/post_card_header.dart';
 import 'package:cooking/views/feed/widgets/post_card/post_card_image.dart';
@@ -23,9 +24,7 @@ class PostCard extends StatelessWidget {
           child: Column(
             children: [
               PostCardHeader(
-                  authorAvatar: post.author["avatar"] as String,
-                  author: post.author["name"] as String,
-                  authorId: post.author["name"] as String,
+                  author: post.author as User,
                   ),
               Divider(
                 height: 30,

@@ -11,6 +11,9 @@ class User {
   final String password;
   final String avatar;
   final List<Post> posts;
+  final int stars;
+  final int subscribers;
+  final int subscriptions;
 
   User({
     required this.id,
@@ -19,6 +22,9 @@ class User {
     required this.password,
     required this.avatar,
     required this.posts,
+    required this.stars, 
+    required this.subscribers,
+    required this.subscriptions,
   });
 
   User.fromJson(Map<String, dynamic> json)
@@ -29,7 +35,10 @@ class User {
         avatar = json["avatar"],
         posts = (json["posts"] as List)
             .map((jsonPost) => Post.fromJson(jsonPost))
-            .toList();
+            .toList(),
+        stars = json["stars"],
+        subscribers = json["subscribers"],
+        subscriptions = json["subscriptions"];
 
   static Future<User> findById(String userId) async {
     try {
