@@ -24,8 +24,7 @@ class Post {
           "id": json["authorId"]["_id"],
         },
         images = List<String>.from(json["images"]),
-        // note = json["note"] == null ? 0 : json["note"],
-        note = 3,
+        note = json["note"] == null ? 0 : json["note"],
         description = json["description"],
         comments = (json["comments"] as List)
             .map((jsonComment) => Comment.fromJson(jsonComment))

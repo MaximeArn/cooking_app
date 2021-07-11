@@ -24,7 +24,9 @@ class PostCard extends StatelessWidget {
             children: [
               PostCardHeader(
                   authorAvatar: post.author["avatar"] as String,
-                  author: post.author["name"] as String),
+                  author: post.author["name"] as String,
+                  authorId: post.author["name"] as String,
+                  ),
               Divider(
                 height: 30,
                 color: const Color.fromRGBO(232, 196, 81, 1),
