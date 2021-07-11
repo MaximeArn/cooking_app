@@ -1,14 +1,13 @@
 import { Schema, model, Document, Model } from "mongoose";
 import { ObjectId } from "mongodb";
-import User, { UserInterface } from "./user";
+import { UserInterface } from "./user";
 
 export interface PostInterface extends Document {
-  authorId: String;
+  authorId: String | UserInterface;
   images: String[];
   note: Number;
   description: String;
   comments: String[];
-  author?: UserInterface;
 }
 
 export const postSchema = new Schema({

@@ -12,7 +12,6 @@ module.exports = {
           avatar: 1,
         },
       });
-      console.log(posts);
       res.json(posts);
     } catch (error) {
       console.log(error);
