@@ -6,7 +6,6 @@ module.exports = {
     try {
       const user: UserInterface = await User.findById(userId);
       res.json(user);
-      console.log(user);
     } catch (error) {
       console.log(error);
     }

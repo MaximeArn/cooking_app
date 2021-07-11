@@ -9,6 +9,7 @@ class UsersProvider with ChangeNotifier {
   bool isLoading = false;
   List<User> _filteredUsers = [];
   bool firstSearch = true;
+  var profileUser;
 
   UnmodifiableListView<User> get filteredUsers =>
       UnmodifiableListView(_filteredUsers);
@@ -16,6 +17,17 @@ class UsersProvider with ChangeNotifier {
   void emptyArray() {
     _filteredUsers.clear();
     notifyListeners();
+  }
+
+  Future<void> getUserById(String userId) async {
+    try {
+      http.Response response =
+          await http.get(Uri.parse("$serverUrl/users/$userId"));
+      if (response.statusCode == 200) {
+        profileUser = User.fromJson(json.decode(response.body));
+        notifyListeners();
+      }
+    } catch (e) {}
   }
 
   Future<void> getFilteredUsers(String filter, [String? bla]) async {
