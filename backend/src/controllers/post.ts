@@ -1,12 +1,18 @@
-import { lookup } from "dns";
 import { NextFunction, Request, Response } from "express";
 import Post, { PostInterface } from "../../models/post";
-import User from "../../models/user";
 
 module.exports = {
   getPosts: async (_: Request, res: Response) => {
     try {
-      const posts: PostInterface[] = await Post.find();
+      const posts: PostInterface[] = await Post.find().populate({
+        path: "authorId",
+        model: "user",
+        select: {
+          name: 1,
+          avatar: 1,
+        },
+      });
+      console.log(posts);
       res.json(posts);
     } catch (error) {
       console.log(error);

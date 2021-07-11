@@ -13,11 +13,15 @@ export interface PostInterface extends Document {
 
 export const postSchema = new Schema({
   // authorId: { type: ObjectId, required: true },
-  authorId: { type: ObjectId, default: new ObjectId(), $ref: "users" }, // provisional default for the seed
+  authorId: {
+    type: Schema.Types.ObjectId,
+    default: new ObjectId(),
+    ref: "user",
+  }, // provisional default for the seed
   images: { type: [String], required: true },
   note: { type: Number, default: null }, // maybe an "Note" documents array
   description: { type: String, required: true },
-  comments: { type: [ObjectId], default: [] },
+  comments: { type: [Schema.Types.ObjectId], default: [] },
 });
 
 const postModel: Model<PostInterface> = model("post", postSchema);
