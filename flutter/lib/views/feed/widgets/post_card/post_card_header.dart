@@ -1,15 +1,11 @@
+import 'package:cooking/models/User.dart';
 import 'package:cooking/views/profile/profile.dart';
 import 'package:flutter/material.dart';
 
 class PostCardHeader extends StatelessWidget {
-  final String authorAvatar;
-  final String author;
-  final String authorId;
+  final User author;
 
-  PostCardHeader(
-      {required this.authorAvatar,
-      required this.author,
-      required this.authorId,});
+  PostCardHeader({required this.author,});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +16,7 @@ class PostCardHeader extends StatelessWidget {
         child: GestureDetector(
           onTap: () {
             Navigator.pushNamed(context, Profile.routeName,
-                arguments: authorId);
+                arguments: author.id);
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -28,11 +24,11 @@ class PostCardHeader extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.only(right: 20),
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage(authorAvatar),
+                  backgroundImage: NetworkImage(author.avatar),
                 ),
               ),
               Text(
-                author,
+                author.name,
                 style:
                     const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               )
