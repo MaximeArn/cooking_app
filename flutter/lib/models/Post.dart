@@ -2,7 +2,6 @@ import 'package:cooking/models/Comment.dart';
 
 class Post {
   final String id;
-  final String authorId; 
   final Map<String, String> author;
   final List<String> images;
   final int note;
@@ -11,7 +10,6 @@ class Post {
 
   Post({
     required this.id,
-    required this.authorId,
     required this.author,
     required this.images,
     required this.note,
@@ -20,11 +18,10 @@ class Post {
 
   Post.fromJson(Map<String, dynamic> json)
       : id = json["_id"],
-        authorId = json["authorId"],
         author = {
-          "name": "Djibril",
-          "avatar":
-              "http://localhost:4545/assets/images/avatars/profile_photo_1.jpg",
+          "name" : json["authorId"]["name"],
+          "avatar" : json["authorId"]["avatar"],
+          "id": json["authorId"]["_id"],
         },
         images = List<String>.from(json["images"]),
         note = json["note"] == null ? 0 : json["note"],
