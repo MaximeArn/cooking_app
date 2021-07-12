@@ -1,4 +1,3 @@
-import 'package:cooking/models/User.dart';
 import 'package:cooking/providers/users.dart';
 import 'package:cooking/views/Profiles/widgets/profile_header.dart';
 import 'package:cooking/views/profiles/widgets/user_posts.dart';
@@ -16,7 +15,6 @@ class OwnProfile extends StatelessWidget {
         if (snapshot.hasError) {
           return Text(snapshot.error.toString());
         } else if (snapshot.hasData) {
-          print((snapshot.data as User).posts);
           return Container(
             padding: EdgeInsets.only(bottom: 10),
             child: Column(

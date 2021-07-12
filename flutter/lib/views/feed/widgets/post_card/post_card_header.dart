@@ -1,9 +1,8 @@
-import 'package:cooking/models/User.dart';
 import 'package:cooking/views/profiles/profile/profile.dart';
 import 'package:flutter/material.dart';
 
 class PostCardHeader extends StatelessWidget {
-  final User author;
+  final Map<String, dynamic>? author;
 
   PostCardHeader({
     required this.author,
@@ -25,11 +24,11 @@ class PostCardHeader extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.only(right: 20),
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage(author.avatar),
+                  backgroundImage: NetworkImage(author!["avatar"]),
                 ),
               ),
               Text(
-                author.name,
+                author!["name"],
                 style:
                     const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               )

@@ -3,7 +3,7 @@ import 'package:cooking/models/User.dart';
 
 class Post {
   final String id;
-  final User? author;
+  final Map<String, dynamic>? author;
   final List<String> images;
   int note;
   final String description;
@@ -19,12 +19,17 @@ class Post {
 
   Post.fromJson(Map<String, dynamic> json, {bool isPopulated = true})
       : id = json["_id"],
-        author = isPopulated
-            ? User.fromJson(
-                json["authorId"],
-                isPopulated: false
-              )
-            : null,
+        // author = isPopulated
+        //     ? User.fromJson(
+        //         json["authorId"],
+        //         isPopulated: false
+        //       )
+        //     : null,
+        author = isPopulated ? {
+          "name" : json["authorId"]["name"],
+          "avatar" : json["authorId"]["avatar"],
+          "id" : json["authorId"]["_id"],
+        }: null,
         images = List<String>.from(json["images"]),
         note = json["note"] == null ? 0 : json["note"],
         description = json["description"],
