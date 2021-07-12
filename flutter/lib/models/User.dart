@@ -1,7 +1,3 @@
-import 'dart:convert';
-
-import 'package:cooking/environment/env.dart';
-import 'package:http/http.dart' as http;
 import 'package:cooking/models/Post.dart';
 
 class User {
@@ -27,15 +23,15 @@ class User {
     required this.subscriptions,
   });
 
-  User.fromJson(Map<String, dynamic> json, {bool isPostsPopulated = true})
+  User.fromJson(Map<String, dynamic> json)
       : id = json["_id"],
         name = json["name"],
         email = json["email"],
         password = json["password"],
         avatar = json["avatar"],
-        posts = isPostsPopulated ? (json["posts"] as List).map((jsonPost) {
+        posts =  (json["posts"] as List).map((jsonPost) {
           return Post.fromJson(jsonPost);
-        }).toList(): [],
+        }).toList(),
         stars = json["stars"],
         subscribers = json["subscribers"],
         subscriptions = json["subscriptions"];

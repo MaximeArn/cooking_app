@@ -8,16 +8,28 @@ import 'package:provider/provider.dart';
 class OwnProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final User connectdUser =
-        Provider.of<UsersProvider>(context, listen: false).connectedUser;
-    return Container(
-      padding: EdgeInsets.only(bottom: 10),
-      child: Column(
-        children: [
-          ProfileHeader(name: connectdUser.name, avatar: connectdUser.avatar),
-          UserPosts(posts: connectdUser.posts)
-        ],
-      ),
+    final UsersProvider usersProvider = Provider.of<UsersProvider>(context);
+    // final User connectedUser = Provider.of<UsersProvider>(context);
+    return FutureBuilder(
+      future: usersProvider.fetchConnectedUser("60e8c2140e7c9296fa2380c3"),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.hasError) {
+          return Text(snapshot.error.toString());
+        } else {
+          print(snapshot.data);
+          return Container(
+            padding: EdgeInsets.only(bottom: 10),
+            child: Column(
+                    children: [
+                      ProfileHeader(
+                          name: snapshot.data.name,
+                          avatar: snapshot.data.avatar),
+                      UserPosts(posts: snapshot.data.posts)
+                    ],
+                  ),
+          );
+        }
+      },
     );
   }
 }

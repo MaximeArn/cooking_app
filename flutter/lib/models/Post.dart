@@ -19,7 +19,7 @@ class Post {
 
   Post.fromJson(Map<String, dynamic> json)
       : id = json["_id"],
-        author = User.fromJson(json["authorId"], isPostsPopulated: false),
+        author = User.fromJson(json["authorId"]),
         images = List<String>.from(json["images"]),
         note = json["note"] == null ? 0 : json["note"],
         description = json["description"],

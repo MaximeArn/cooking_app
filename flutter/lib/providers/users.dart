@@ -9,8 +9,7 @@ class UsersProvider with ChangeNotifier {
   bool isLoading = false;
   List<User> _filteredUsers = [];
   bool firstSearch = true;
-  var profileUser;
-  late User connectedUser;
+
 
   UnmodifiableListView<User> get filteredUsers =>
       UnmodifiableListView(_filteredUsers);
@@ -20,28 +19,18 @@ class UsersProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getUserById(String userId) async {
+  Future<dynamic> fetchConnectedUser(String userId) async {
     try {
       http.Response response =
           await http.get(Uri.parse("$serverUrl/users/$userId"));
+      print(response.statusCode);
       if (response.statusCode == 200) {
-        profileUser = User.fromJson(json.decode(response.body));
+        return User.fromJson(json.decode(response.body));
         notifyListeners();
       }
-    } catch (e) {}
-  }
-
-  Future<void> fetchConnectedUser(String userId) async {
-    print("         FETCH CONNECTED USER          ");
-    try {
-      http.Response response =
-          await http.get(Uri.parse("$serverUrl/users/$userId"));
-      if (response.statusCode == 200) {
-        print(
-            " Data in provider   ==>  ${(json.decode(response.body) as Map<String, dynamic>)["posts"]}");
-        connectedUser = User.fromJson(json.decode(response.body));
-      }
-    } catch (e) {}
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Future<void> getFilteredUsers(String filter, [String? bla]) async {
