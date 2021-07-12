@@ -23,15 +23,17 @@ class User {
     required this.subscriptions,
   });
 
-  User.fromJson(Map<String, dynamic> json)
+  User.fromJson(Map<String, dynamic> json, {bool isPopulated = true})
       : id = json["_id"],
         name = json["name"],
         email = json["email"],
         password = json["password"],
         avatar = json["avatar"],
-        posts =  (json["posts"] as List).map((jsonPost) {
-          return Post.fromJson(jsonPost);
-        }).toList(),
+        posts = isPopulated
+            ? (json["posts"] as List).map((jsonPost) {
+                return Post.fromJson(jsonPost);
+              }).toList()
+            : [],
         stars = json["stars"],
         subscribers = json["subscribers"],
         subscriptions = json["subscriptions"];

@@ -10,7 +10,6 @@ class UsersProvider with ChangeNotifier {
   List<User> _filteredUsers = [];
   bool firstSearch = true;
 
-
   UnmodifiableListView<User> get filteredUsers =>
       UnmodifiableListView(_filteredUsers);
 
@@ -26,7 +25,6 @@ class UsersProvider with ChangeNotifier {
       print(response.statusCode);
       if (response.statusCode == 200) {
         return User.fromJson(json.decode(response.body));
-        notifyListeners();
       }
     } catch (e) {
       rethrow;

@@ -31,7 +31,6 @@ class _CookingState extends State<Cooking> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     ThemeData cookingTheme = ThemeData(
@@ -44,7 +43,6 @@ class _CookingState extends State<Cooking> {
         ),
       ),
     );
-
 
     return MultiProvider(
       providers: [
