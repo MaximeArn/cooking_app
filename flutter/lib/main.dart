@@ -21,11 +21,13 @@ class Cooking extends StatefulWidget {
 class _CookingState extends State<Cooking> {
   final RewardsProvider rewardsProvider = RewardsProvider();
   final PostsProvider postsProvider = PostsProvider();
+  final UsersProvider usersProvider = UsersProvider();
 
   @override
   void initState() {
     rewardsProvider.fetchRewards();
     postsProvider.fetchPosts();
+    usersProvider.fetchConnectedUser("60e8c2140e7c9296fa2380c3");
     super.initState();
   }
 
@@ -46,7 +48,7 @@ class _CookingState extends State<Cooking> {
       providers: [
         ChangeNotifierProvider.value(value: rewardsProvider),
         ChangeNotifierProvider.value(value: postsProvider),
-        ChangeNotifierProvider.value(value: UsersProvider())
+        ChangeNotifierProvider.value(value: usersProvider)
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
