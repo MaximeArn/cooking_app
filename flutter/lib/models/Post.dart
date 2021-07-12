@@ -1,5 +1,4 @@
 import 'package:cooking/models/Comment.dart';
-import 'package:cooking/models/User.dart';
 
 class Post {
   final String id;
@@ -19,12 +18,6 @@ class Post {
 
   Post.fromJson(Map<String, dynamic> json, {bool isPopulated = true})
       : id = json["_id"],
-        // author = isPopulated
-        //     ? User.fromJson(
-        //         json["authorId"],
-        //         isPopulated: false
-        //       )
-        //     : null,
         author = isPopulated ? {
           "name" : json["authorId"]["name"],
           "avatar" : json["authorId"]["avatar"],

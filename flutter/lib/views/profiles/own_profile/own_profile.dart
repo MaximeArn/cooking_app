@@ -10,7 +10,7 @@ class OwnProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     final UsersProvider usersProvider = Provider.of<UsersProvider>(context);
     return FutureBuilder(
-      future: usersProvider.fetchConnectedUser("60e8c2140e7c9296fa2380c3"),
+      future: usersProvider.getUserById("60e8c2140e7c9296fa2380c3"),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.hasError) {
           return Text(snapshot.error.toString());

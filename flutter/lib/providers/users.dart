@@ -18,7 +18,7 @@ class UsersProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<dynamic> fetchConnectedUser(String userId) async {
+  Future<dynamic> getUserById(String userId) async {
     try {
       http.Response response =
           await http.get(Uri.parse("$serverUrl/users/$userId"));
