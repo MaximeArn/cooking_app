@@ -31,7 +31,7 @@ class User {
         avatar = json["avatar"],
         posts = isPopulated
             ? (json["posts"] as List).map((jsonPost) {
-                return Post.fromJson(jsonPost);
+                return Post.fromJson(jsonPost, isPopulated: false);
               }).toList()
             : [],
         stars = json["stars"],
