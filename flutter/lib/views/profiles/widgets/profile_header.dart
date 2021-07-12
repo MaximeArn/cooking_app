@@ -9,7 +9,7 @@ class ProfileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Flexible(
-      flex: 30,
+      flex: 35,
       child: Container(
           child: Stack(
         children: [
@@ -27,7 +27,7 @@ class ProfileHeader extends StatelessWidget {
                   name,
                   style: const TextStyle(fontSize: 25),
                 ),
-              )),
+              ),),
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 30),

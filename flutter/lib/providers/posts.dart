@@ -37,7 +37,6 @@ class PostsProvider with ChangeNotifier {
       );
       if (response.statusCode == 200) {
         int id = _posts.indexWhere((post) => post.id == postId);
-        print(json.decode(response.body));
         _posts[id].note = note;
         notifyListeners();
       }

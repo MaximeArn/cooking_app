@@ -6,10 +6,10 @@ class UserPosts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Flexible(
-      flex: 70,
+      flex: 65,
       child: Container(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 30),
+          padding: const EdgeInsets.only(top: 50, left: 30, right:30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [

@@ -37,7 +37,6 @@ class UsersProvider with ChangeNotifier {
           await http.get(Uri.parse("$serverUrl/users/$userId"));
       if (response.statusCode == 200) {
         connectedUser = User.fromJson(json.decode(response.body));
-        notifyListeners();
       }
     } catch (e) {}
   }

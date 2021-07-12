@@ -9,9 +9,10 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    User user = ModalRoute.of(context)!.settings.arguments as User;
+    User user = ModalRoute.of(context,)!.settings.arguments as User;
     return SecondaryScaffold(
       body: Container(
+        padding: EdgeInsets.only(bottom: 50),
         child: Column(
           children: [
             ProfileHeader(name: user.name, avatar: user.avatar),
