@@ -1,6 +1,8 @@
+import 'package:cooking/models/User.dart';
 import 'package:cooking/providers/users.dart';
 import 'package:cooking/views/Profiles/widgets/profile_header.dart';
 import 'package:cooking/views/profiles/widgets/user_posts.dart';
+import 'package:cooking/widgets/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,8 +16,8 @@ class OwnProfile extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.hasError) {
           return Text(snapshot.error.toString());
-        } else {
-          print(snapshot.data);
+        } else if (snapshot.hasData) {
+          print((snapshot.data as User).posts);
           return Container(
             padding: EdgeInsets.only(bottom: 10),
             child: Column(
@@ -26,6 +28,8 @@ class OwnProfile extends StatelessWidget {
               ],
             ),
           );
+        } else {
+          return Loader();
         }
       },
     );
