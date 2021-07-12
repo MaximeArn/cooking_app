@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 class PostCardHeader extends StatelessWidget {
   final User author;
 
-  PostCardHeader({required this.author,});
+  PostCardHeader({
+    required this.author,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +17,7 @@ class PostCardHeader extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
         child: GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, Profile.routeName,
-                arguments: author);
+            Navigator.pushNamed(context, Profile.routeName, arguments: author);
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,

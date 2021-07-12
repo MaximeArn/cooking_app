@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CookingAppBar extends StatelessWidget with PreferredSizeWidget {
-  const CookingAppBar();
+  final bool isOwnProfile;
+
+  const CookingAppBar({required this.isOwnProfile});
 
   @override
   Widget build(BuildContext context) {
@@ -9,6 +11,12 @@ class CookingAppBar extends StatelessWidget with PreferredSizeWidget {
       iconTheme: const IconThemeData(
         size: 20,
       ),
+      actions: [
+        if(isOwnProfile)IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.edit),
+        ),
+      ],
       title: RichText(
         text: const TextSpan(
             style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),

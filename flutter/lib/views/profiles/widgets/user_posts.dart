@@ -9,7 +9,7 @@ class UserPosts extends StatelessWidget {
       flex: 65,
       child: Container(
         child: Padding(
-          padding: const EdgeInsets.only(top: 50, left: 30, right:30),
+          padding: const EdgeInsets.only(top: 50, left: 30, right: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [

@@ -22,7 +22,7 @@ class User {
     required this.password,
     required this.avatar,
     required this.posts,
-    required this.stars, 
+    required this.stars,
     required this.subscribers,
     required this.subscriptions,
   });

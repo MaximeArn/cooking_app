@@ -17,17 +17,18 @@ class ProfileHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
-                  child: Container(
-                alignment: Alignment.topCenter,
-                decoration: const BoxDecoration(
-                    color: Color.fromRGBO(223, 102, 103, 1),
-                    border: Border(bottom: BorderSide(width: 1))),
-                padding: const EdgeInsets.only(top: 35),
-                child: Text(
-                  name,
-                  style: const TextStyle(fontSize: 25),
+                child: Container(
+                  alignment: Alignment.topCenter,
+                  decoration: const BoxDecoration(
+                      color: Color.fromRGBO(223, 102, 103, 1),
+                      border: Border(bottom: BorderSide(width: 1))),
+                  padding: const EdgeInsets.only(top: 35),
+                  child: Text(
+                    name,
+                    style: const TextStyle(fontSize: 25),
+                  ),
                 ),
-              ),),
+              ),
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 30),
