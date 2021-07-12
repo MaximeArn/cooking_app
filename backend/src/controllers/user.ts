@@ -4,7 +4,12 @@ import User, { UserInterface } from "../../models/user";
 module.exports = {
   getUserById: async ({ params: { userId } }: Request, res: Response) => {
     try {
-      const user: UserInterface = await User.findById(userId);
+      const user: UserInterface = await User.findById(userId).populate({
+        path: "posts",
+        model: "post",
+      });
+      console.log(user);
+
       res.json(user);
     } catch (error) {
       console.log(error);

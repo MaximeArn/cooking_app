@@ -1,7 +1,10 @@
+import 'package:cooking/models/Post.dart';
 import 'package:flutter/material.dart';
 
 class UserPosts extends StatelessWidget {
-  const UserPosts();
+  final List<Post> posts;
+
+  UserPosts({required this.posts});
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +29,7 @@ class UserPosts extends StatelessWidget {
                   mainAxisSpacing: 15,
                   crossAxisSpacing: 15,
                   crossAxisCount: 2,
-                  children: List.generate(
-                      12,
-                      (index) => Container(
-                            alignment: Alignment.center,
-                            color: Colors.red,
-                            child: Text(index.toString()),
-                          )).toList(),
+                  children: posts.map((post) => Container(child: Image.network(post.images[0]),),).toList()
                 ),
               )
             ],

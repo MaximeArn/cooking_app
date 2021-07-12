@@ -33,9 +33,10 @@ class User {
         email = json["email"],
         password = json["password"],
         avatar = json["avatar"],
-        posts = (json["posts"] as List)
-            .map((jsonPost) => Post.fromJson(jsonPost))
-            .toList(),
+        posts = (json["posts"] as List).map((jsonPost) {
+          print(" post ===>  $jsonPost");
+          return Post.fromJson(jsonPost);
+        }).toList(),
         stars = json["stars"],
         subscribers = json["subscribers"],
         subscriptions = json["subscriptions"];

@@ -7,11 +7,8 @@ module.exports = {
       const posts: PostInterface[] = await Post.find().populate({
         path: "authorId",
         model: "user",
-        // select: {
-        //   name: 1,
-        //   avatar: 1,
-        // },
       });
+      console.log(posts);
       res.json(posts);
     } catch (error) {
       console.log(error);
