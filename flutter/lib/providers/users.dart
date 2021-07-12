@@ -10,6 +10,7 @@ class UsersProvider with ChangeNotifier {
   List<User> _filteredUsers = [];
   bool firstSearch = true;
   var profileUser;
+  late User connectedUser;
 
   UnmodifiableListView<User> get filteredUsers =>
       UnmodifiableListView(_filteredUsers);
@@ -25,6 +26,17 @@ class UsersProvider with ChangeNotifier {
           await http.get(Uri.parse("$serverUrl/users/$userId"));
       if (response.statusCode == 200) {
         profileUser = User.fromJson(json.decode(response.body));
+        notifyListeners();
+      }
+    } catch (e) {}
+  }
+
+  Future<void> fetchConnectedUser(String userId) async {
+    try {
+      http.Response response =
+          await http.get(Uri.parse("$serverUrl/users/$userId"));
+      if (response.statusCode == 200) {
+        connectedUser = User.fromJson(json.decode(response.body));
         notifyListeners();
       }
     } catch (e) {}
