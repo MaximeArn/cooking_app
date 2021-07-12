@@ -18,7 +18,10 @@ module.exports = {
       const filterObject: any = {
         name: { $regex: `^${filter}`, $options: "i" },
       };
-      const filteredUsers: UserInterface[] = await User.find(filterObject);
+      const filteredUsers: UserInterface[] = await User.find(filterObject, {
+        name: 1,
+        avatar: 1,
+      });
       res.json(filteredUsers);
     } catch (error) {
       console.log(error);

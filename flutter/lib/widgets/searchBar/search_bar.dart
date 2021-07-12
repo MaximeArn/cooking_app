@@ -39,7 +39,7 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    List<User> filteredUsers =
+    List<Map<String, dynamic>> filteredUsers =
         Provider.of<UsersProvider>(context).filteredUsers;
 
     return Column(

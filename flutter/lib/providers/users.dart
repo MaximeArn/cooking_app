@@ -7,10 +7,10 @@ import 'package:http/http.dart' as http;
 
 class UsersProvider with ChangeNotifier {
   bool isLoading = false;
-  List<User> _filteredUsers = [];
+  List<Map<String, dynamic>> _filteredUsers = [];
   bool firstSearch = true;
 
-  UnmodifiableListView<User> get filteredUsers =>
+  UnmodifiableListView<Map<String, dynamic>> get filteredUsers =>
       UnmodifiableListView(_filteredUsers);
 
   void emptyArray() {
@@ -42,7 +42,11 @@ class UsersProvider with ChangeNotifier {
       if (response.statusCode == 200) {
         final List decodedBody = json.decode(response.body);
         _filteredUsers =
-            (decodedBody).map((userJson) => User.fromJson(userJson)).toList();
+            (decodedBody).map((userJson) => {
+              "name": userJson["name"],
+              "avatar": userJson["avatar"],
+              "id": userJson["_id"],
+            }).toList();
         // after making the request "firstSearch" is now false.
         firstSearch = false;
       }

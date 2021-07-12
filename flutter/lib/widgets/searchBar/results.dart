@@ -1,12 +1,10 @@
-import 'package:cooking/models/User.dart';
 import 'package:cooking/providers/users.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-// ignore: must_be_immutable
 class ResultsList extends StatelessWidget {
-  late List<User> filteredUsers;
-  late VoidCallback clearTextField;
+  late final List<Map<String, dynamic>> filteredUsers;
+  late final VoidCallback clearTextField;
 
   ResultsList({required this.filteredUsers, required this.clearTextField});
 
@@ -20,15 +18,15 @@ class ResultsList extends StatelessWidget {
                 (user) => Card(
                   child: ListTile(
                     onTap: () {
-                      Navigator.pushNamed(context, "/profile", arguments: user);
+                      Navigator.pushNamed(context, "/profile", arguments: user["id"]);
                       Provider.of<UsersProvider>(context, listen: false)
                           .getFilteredUsers("");
                       clearTextField();
                     },
                     leading: CircleAvatar(
-                      backgroundImage: NetworkImage(user.avatar),
+                      backgroundImage: NetworkImage(user["avatar"]),
                     ),
-                    title: Text(user.name),
+                    title: Text(user["name"]),
                   ),
                 ),
               ),
