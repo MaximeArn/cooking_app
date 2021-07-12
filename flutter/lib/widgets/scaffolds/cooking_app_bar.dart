@@ -1,3 +1,4 @@
+import 'package:cooking/views/edit_profile/edit_profile.dart';
 import 'package:flutter/material.dart';
 
 class CookingAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -12,10 +13,12 @@ class CookingAppBar extends StatelessWidget with PreferredSizeWidget {
         size: 20,
       ),
       actions: [
-        if(isOwnProfile)IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.edit),
-        ),
+        if (isOwnProfile)
+          IconButton(
+            onPressed: () =>
+                Navigator.pushNamed(context, EditProfile.routeName),
+            icon: Icon(Icons.edit),
+          ),
       ],
       title: RichText(
         text: const TextSpan(

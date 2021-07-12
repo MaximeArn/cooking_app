@@ -18,7 +18,9 @@ class MainScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: index == 4
-          ? CookingAppBar(isOwnProfile: true)
+          ? CookingAppBar(
+              isOwnProfile: true,
+            )
           : CookingAppBar(isOwnProfile: false),
       drawer: const SidePanel(),
       bottomNavigationBar: BottomNavigation(index: index, setIndex: setIndex),
