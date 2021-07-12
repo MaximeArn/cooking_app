@@ -8,8 +8,6 @@ module.exports = {
         path: "posts",
         model: "post",
       });
-      console.log(user);
-
       res.json(user);
     } catch (error) {
       console.log(error);

@@ -27,29 +27,16 @@ class User {
     required this.subscriptions,
   });
 
-  User.fromJson(Map<String, dynamic> json)
+  User.fromJson(Map<String, dynamic> json, {bool isPostsPopulated = true})
       : id = json["_id"],
         name = json["name"],
         email = json["email"],
         password = json["password"],
         avatar = json["avatar"],
-        posts = (json["posts"] as List).map((jsonPost) {
-          print(" post ===>  $jsonPost");
+        posts = isPostsPopulated ? (json["posts"] as List).map((jsonPost) {
           return Post.fromJson(jsonPost);
-        }).toList(),
+        }).toList(): [],
         stars = json["stars"],
         subscribers = json["subscribers"],
         subscriptions = json["subscriptions"];
-
-  static Future<User> findById(String userId) async {
-    try {
-      http.Response response =
-          await http.get(Uri.parse("$serverUrl/users/$userId"));
-      var decodedBody = json.decode(response.body);
-      return User.fromJson(decodedBody);
-    } catch (e) {
-      print(e);
-      rethrow;
-    }
-  }
 }

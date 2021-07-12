@@ -32,11 +32,13 @@ class UsersProvider with ChangeNotifier {
   }
 
   Future<void> fetchConnectedUser(String userId) async {
+    print("         FETCH CONNECTED USER          ");
     try {
       http.Response response =
           await http.get(Uri.parse("$serverUrl/users/$userId"));
       if (response.statusCode == 200) {
-        // print(json.decode(response.body));
+        print(
+            " Data in provider   ==>  ${(json.decode(response.body) as Map<String, dynamic>)["posts"]}");
         connectedUser = User.fromJson(json.decode(response.body));
       }
     } catch (e) {}

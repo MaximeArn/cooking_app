@@ -17,8 +17,11 @@ class PostsProvider with ChangeNotifier {
       http.Response response = await http.get(Uri.parse("$serverUrl/posts"));
       if (response.statusCode == 200) {
         List decodedBody = json.decode(response.body);
-        _posts =
-            decodedBody.map((jsonPost) => Post.fromJson(jsonPost)).toList();
+        _posts = decodedBody
+            .map(
+              (jsonPost) => Post.fromJson(jsonPost),
+            )
+            .toList();
         notifyListeners();
         isLoading = false;
       }

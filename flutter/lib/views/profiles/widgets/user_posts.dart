@@ -25,12 +25,17 @@ class UserPosts extends StatelessWidget {
               ),
               Expanded(
                 child: GridView.count(
-                  scrollDirection: Axis.vertical,
-                  mainAxisSpacing: 15,
-                  crossAxisSpacing: 15,
-                  crossAxisCount: 2,
-                  children: posts.map((post) => Container(child: Image.network(post.images[0]),),).toList()
-                ),
+                    scrollDirection: Axis.vertical,
+                    mainAxisSpacing: 15,
+                    crossAxisSpacing: 15,
+                    crossAxisCount: 2,
+                    children: posts
+                        .map(
+                          (post) => Container(
+                            child: Image.network(post.images[0]),
+                          ),
+                        )
+                        .toList()),
               )
             ],
           ),
