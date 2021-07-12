@@ -1,5 +1,5 @@
 import 'package:cooking/models/User.dart';
-import 'package:cooking/views/profile/profile.dart';
+import 'package:cooking/views/profiles/profile/profile.dart';
 import 'package:flutter/material.dart';
 
 class PostCardHeader extends StatelessWidget {
