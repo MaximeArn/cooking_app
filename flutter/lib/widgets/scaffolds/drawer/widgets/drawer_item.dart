@@ -11,7 +11,7 @@ class DrawerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         child: Container(
-          margin: EdgeInsets.only(bottom: 20),
+          margin: EdgeInsets.only(bottom: 30),
           padding: EdgeInsets.symmetric(horizontal: 25),
           child: Row(
             children: [

@@ -21,13 +21,14 @@ class SidePanel extends StatelessWidget {
           ],
         ),
         Container(
-          padding: EdgeInsets.symmetric(vertical: 15),
+          padding: EdgeInsets.symmetric(vertical: 50),
           child: Column(
             children: [
                 const DrawerItem(title: "Settings", icon: Icon(Icons.settings), routeName: "",),
-                const DrawerItem(title: "Confidentialité", icon: Icon(Icons.policy), routeName: "",),
+                const DrawerItem(title: "Confidentiality", icon: Icon(Icons.policy), routeName: "",),
                 const DrawerItem(title: 'Payements', icon: Icon(Icons.payments), routeName: ""),
-                const DrawerItem(title: "Frequently asked questions", icon: Icon(Icons.help), routeName: "")
+                const DrawerItem(title: "Frequently Asked Questions", icon: Icon(Icons.help), routeName: ""),
+                const DrawerItem(title: "Legals", icon: Icon(Icons.copyright), routeName: "")
             ],
             
           ),
