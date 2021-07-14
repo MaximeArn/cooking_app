@@ -8,6 +8,12 @@ class ProfileHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future showImage() => showDialog(
+        context: context,
+        builder: (_) => Dialog(
+              backgroundColor: Colors.black45,
+            ));
+
     return Flexible(
       flex: 35,
       child: Container(
@@ -107,9 +113,14 @@ class ProfileHeader extends StatelessWidget {
             child: CircleAvatar(
               radius: 46,
               backgroundColor: Colors.black,
-              child: CircleAvatar(
-                radius: 45,
-                backgroundImage: NetworkImage(avatar),
+              child: GestureDetector(
+                child: CircleAvatar(
+                  radius: 45,
+                  backgroundImage: NetworkImage(avatar),
+                ),
+                onTap: () {
+                  showImage();
+                },
               ),
             ),
           )
