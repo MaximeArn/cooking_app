@@ -14,8 +14,8 @@ class NotFound extends StatelessWidget {
           children: [
             Text('Not Found'),
             ElevatedButton(
-                onPressed: () => Navigator.pushNamed(context, '/'),
-                child: Text("Homepage"))
+                onPressed: () => Navigator.pop(context),
+                child: Text("Return"))
           ],
         ),
       ),
