@@ -41,12 +41,13 @@ class UsersProvider with ChangeNotifier {
       );
       if (response.statusCode == 200) {
         final List decodedBody = json.decode(response.body);
-        _filteredUsers =
-            (decodedBody).map((userJson) => {
-              "name": userJson["name"],
-              "avatar": userJson["avatar"],
-              "id": userJson["_id"],
-            }).toList();
+        _filteredUsers = (decodedBody)
+            .map((userJson) => {
+                  "name": userJson["name"],
+                  "avatar": userJson["avatar"],
+                  "id": userJson["_id"],
+                })
+            .toList();
         // after making the request "firstSearch" is now false.
         firstSearch = false;
       }

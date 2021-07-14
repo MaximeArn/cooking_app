@@ -18,7 +18,8 @@ class ResultsList extends StatelessWidget {
                 (user) => Card(
                   child: ListTile(
                     onTap: () {
-                      Navigator.pushNamed(context, "/profile", arguments: user["id"]);
+                      Navigator.pushNamed(context, "/profile",
+                          arguments: user["id"]);
                       Provider.of<UsersProvider>(context, listen: false)
                           .getFilteredUsers("");
                       clearTextField();

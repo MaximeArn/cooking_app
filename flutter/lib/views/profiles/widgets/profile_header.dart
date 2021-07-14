@@ -9,10 +9,20 @@ class ProfileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future showImage() => showDialog(
-        context: context,
-        builder: (_) => Dialog(
-              backgroundColor: Colors.black45,
-            ));
+          barrierColor: Color.fromRGBO(0, 0, 0, .7),
+          context: context,
+          builder: (_) => Dialog(
+            backgroundColor: Colors.transparent,
+            child: CircleAvatar(backgroundImage: NetworkImage(avatar), radius: MediaQuery.of(context).size.width * (1/3),)
+            
+            // Container(
+            //     color: Colors.transparent,
+            //     height: MediaQuery.of(context).size.height * 0.2,
+            //     width: MediaQuery.of(context).size.width * 0.5,
+            //     child: Image.network(avatar),
+            // ),
+          ),
+        );
 
     return Flexible(
       flex: 35,

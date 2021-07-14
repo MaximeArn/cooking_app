@@ -32,7 +32,7 @@ class Profile extends StatelessWidget {
                 ),
               ],
             ),
-      );
+          );
         } else {
           return Loader();
         }
@@ -40,4 +40,3 @@ class Profile extends StatelessWidget {
     ));
   }
 }
-
