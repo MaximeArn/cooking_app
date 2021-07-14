@@ -14,13 +14,6 @@ class ProfileHeader extends StatelessWidget {
           builder: (_) => Dialog(
             backgroundColor: Colors.transparent,
             child: CircleAvatar(backgroundImage: NetworkImage(avatar), radius: MediaQuery.of(context).size.width * (1/3),)
-            
-            // Container(
-            //     color: Colors.transparent,
-            //     height: MediaQuery.of(context).size.height * 0.2,
-            //     width: MediaQuery.of(context).size.width * 0.5,
-            //     child: Image.network(avatar),
-            // ),
           ),
         );
 
