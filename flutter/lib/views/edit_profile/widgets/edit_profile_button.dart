@@ -7,12 +7,14 @@ class EditProfileButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {},
-      child: Text(text),
-      style: ButtonStyle(
-          shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)))),
+    return Expanded(
+      child: ElevatedButton(
+        onPressed: () {},
+        child: Text(text),
+        style: ButtonStyle(
+            shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)))),
+      ),
     );
   }
 }

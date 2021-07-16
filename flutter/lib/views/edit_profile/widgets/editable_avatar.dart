@@ -11,8 +11,8 @@ class EditableAvatar extends StatelessWidget {
     final User? user =
         Provider.of<UsersProvider>(context, listen: false).connectedUser;
 
-    return Flexible(
-      flex: 3,
+    return Container(
+      margin: EdgeInsets.only(bottom: 80),
       child: GestureDetector(
         onTap: () {
           print("change avatar");

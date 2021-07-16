@@ -12,31 +12,41 @@ class EditProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final User user = Provider.of<UsersProvider>(context, listen: false).connectedUser as User;
+    final User user = Provider.of<UsersProvider>(context, listen: false)
+        .connectedUser as User;
 
     return SecondaryScaffold(
       body: Container(
-        padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 25),
+        padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 25),
         child: Column(
           children: [
             const EditableAvatar(),
-            Flexible(
-                flex: 3,
-                child: Column(
-                  children: [
-                    Field(labelText: "Name", placeholder: user.name),
-                    Field(labelText: "Email", placeholder: user.email),
-                     Field(labelText: "Password", placeholder: user.password, isPassword: true,),
-                  ],
-                )),
-            Flexible(
-                flex: 3,
-                child: Row(
-                  children: [
-                    EditProfileButton(text: "Cancel"),
-                    EditProfileButton(text: "Save"),
-                  ],
-                )),
+            Container(
+              padding: EdgeInsets.only(bottom: 70),
+              child: Column(
+                children: [
+                  Field(labelText: "Name", placeholder: user.name),
+                  Field(labelText: "Email", placeholder: user.email),
+                  Field(
+                      labelText: "Age",
+                      placeholder: 19.toString(),
+                      isAge: true),
+                  Field(
+                    labelText: "Password",
+                    placeholder: user.password,
+                    isPassword: true,
+                  ),
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                EditProfileButton(text: "Cancel"),
+                SizedBox(width: 50),
+                EditProfileButton(text: "Save"),
+              ],
+            )
           ],
         ),
       ),
