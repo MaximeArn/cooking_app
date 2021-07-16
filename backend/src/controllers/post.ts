@@ -19,7 +19,7 @@ module.exports = {
   },
 
   votePost: async (
-    { params: { postId }, body: { newNote } }: Request,
+    { params: { postId }, body: { newNote, previousNote } }: Request,
     res: Response
   ) => {
     try {
@@ -28,7 +28,10 @@ module.exports = {
         { note: newNote },
         { useFindAndModify: false, new: true }
       );
-      //addd stars to author
+      //add stars to author
+      const starsToAdd: Number = newNote - previousNote;
+      console.log(starsToAdd);
+
       res.json(updatedPost);
     } catch (error) {
       console.log(error);
