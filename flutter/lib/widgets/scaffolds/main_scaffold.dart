@@ -17,6 +17,7 @@ class MainScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: index == 4
           ? CookingAppBar(
               isOwnProfile: true,
