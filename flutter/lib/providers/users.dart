@@ -9,6 +9,7 @@ class UsersProvider with ChangeNotifier {
   bool isLoading = false;
   List<Map<String, dynamic>> _filteredUsers = [];
   bool firstSearch = true;
+  User? connectedUser = null;
 
   UnmodifiableListView<Map<String, dynamic>> get filteredUsers =>
       UnmodifiableListView(_filteredUsers);
@@ -24,6 +25,21 @@ class UsersProvider with ChangeNotifier {
           await http.get(Uri.parse("$serverUrl/users/$userId"));
       if (response.statusCode == 200) {
         return User.fromJson(json.decode(response.body));
+      }
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
+  }
+
+  Future<dynamic> getConnectedUser(String userId) async {
+    try {
+      http.Response response =
+          await http.get(Uri.parse("$serverUrl/users/$userId"));
+      if (response.statusCode == 200) {
+        User user = User.fromJson(json.decode(response.body));
+        connectedUser = user;
+        return user;
       }
     } catch (e) {
       print(e);
