@@ -8,7 +8,8 @@ import 'package:provider/provider.dart';
 class OwnProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final UsersProvider usersProvider = Provider.of<UsersProvider>(context);
+    final UsersProvider usersProvider =
+        Provider.of<UsersProvider>(context, listen: false);
     return FutureBuilder(
       future: usersProvider.getConnectedUser("60e8c2140e7c9296fa2380c3"),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
