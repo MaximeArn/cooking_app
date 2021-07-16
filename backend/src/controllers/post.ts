@@ -32,7 +32,7 @@ module.exports = {
       const starsToAdd: Number = newNote - previousNote;
       console.log(starsToAdd);
       await User.findByIdAndUpdate(updatedPost.authorId, {
-        $stars: { $add: starsToAdd },
+        $inc: { stars: starsToAdd },
       });
 
       res.json(updatedPost);
