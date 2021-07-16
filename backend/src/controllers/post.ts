@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import Post, { PostInterface } from "../../models/post";
+import User from "../../models/user";
 
 module.exports = {
   getPosts: async (_: Request, res: Response) => {
@@ -28,9 +29,11 @@ module.exports = {
         { note: newNote },
         { useFindAndModify: false, new: true }
       );
-      //add stars to author
       const starsToAdd: Number = newNote - previousNote;
       console.log(starsToAdd);
+      await User.findByIdAndUpdate(updatedPost.authorId, {
+        $stars: { $add: starsToAdd },
+      });
 
       res.json(updatedPost);
     } catch (error) {

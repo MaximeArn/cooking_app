@@ -3,8 +3,17 @@ import 'package:flutter/material.dart';
 class ProfileHeader extends StatelessWidget {
   final String name;
   final String avatar;
+  final int stars;
+  final int subscribers;
+  final int subscriptions;
 
-  ProfileHeader({required this.name, required this.avatar});
+  ProfileHeader({
+    required this.name,
+    required this.avatar,
+    required this.stars,
+    required this.subscribers,
+    required this.subscriptions,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +62,7 @@ class ProfileHeader extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              123.toString(),
+                              stars.toString(),
                               style: const TextStyle(
                                   fontSize: 28,
                                   fontWeight: FontWeight.w500,
@@ -73,7 +82,7 @@ class ProfileHeader extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              345.toString(),
+                              subscribers.toString(),
                               style: const TextStyle(
                                   fontSize: 28,
                                   fontWeight: FontWeight.w500,
@@ -93,7 +102,7 @@ class ProfileHeader extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              97.toString(),
+                              subscriptions.toString(),
                               style: const TextStyle(
                                   fontSize: 28,
                                   fontWeight: FontWeight.w500,

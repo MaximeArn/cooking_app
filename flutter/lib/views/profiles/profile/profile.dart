@@ -26,7 +26,13 @@ class Profile extends StatelessWidget {
             padding: EdgeInsets.only(bottom: 50),
             child: Column(
               children: [
-                ProfileHeader(name: user.name, avatar: user.avatar),
+                ProfileHeader(
+                  name: user.name,
+                  avatar: user.avatar,
+                  stars: user.stars,
+                  subscribers: user.subscribers,
+                  subscriptions: user.subscriptions,
+                ),
                 UserPosts(
                   posts: user.posts,
                 ),

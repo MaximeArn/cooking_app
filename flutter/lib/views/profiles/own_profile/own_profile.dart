@@ -1,5 +1,5 @@
 import 'package:cooking/providers/users.dart';
-import 'package:cooking/views/Profiles/widgets/profile_header.dart';
+import 'package:cooking/views/profiles/widgets/profile_header.dart';
 import 'package:cooking/views/profiles/widgets/user_posts.dart';
 import 'package:cooking/widgets/loader.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +20,12 @@ class OwnProfile extends StatelessWidget {
             child: Column(
               children: [
                 ProfileHeader(
-                    name: snapshot.data.name, avatar: snapshot.data.avatar),
+                  name: snapshot.data.name,
+                  avatar: snapshot.data.avatar,
+                  stars: snapshot.data.stars,
+                  subscribers: snapshot.data.subscribers,
+                  subscriptions: snapshot.data.subscriptions,
+                ),
                 UserPosts(posts: snapshot.data.posts)
               ],
             ),
