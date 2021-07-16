@@ -28,6 +28,7 @@ module.exports = {
         { note: newNote },
         { useFindAndModify: false, new: true }
       );
+      //addd stars to author
       res.json(updatedPost);
     } catch (error) {
       console.log(error);

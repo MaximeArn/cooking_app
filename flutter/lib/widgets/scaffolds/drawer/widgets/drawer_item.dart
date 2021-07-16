@@ -5,7 +5,11 @@ class DrawerItem extends StatelessWidget {
   final String routeName;
   final Icon icon;
 
-  const DrawerItem({required this.title,required this.icon, required this.routeName,});
+  const DrawerItem({
+    required this.title,
+    required this.icon,
+    required this.routeName,
+  });
 
   @override
   Widget build(BuildContext context) {

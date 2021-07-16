@@ -31,16 +31,22 @@ class PostsProvider with ChangeNotifier {
     }
   }
 
-  Future<void> notePost(String postId, int note) async {
+  Future<void> notePost(
+      {required String postId,
+      required int newNote,
+      required int previousNote}) async {
     try {
       http.Response response = await http.patch(
-        Uri.parse("$serverUrl/posts/$postId"),
+        Uri.parse("$serverUrl/posts/$postId/note"),
         headers: {'Content-type': 'application/json'},
-        body: json.encode({'newNote': note}),
+        body: json.encode({
+          'newNote': newNote,
+          "previousNote": previousNote,
+        }),
       );
       if (response.statusCode == 200) {
         int id = _posts.indexWhere((post) => post.id == postId);
-        _posts[id].note = note;
+        _posts[id].note = newNote;
         notifyListeners();
       }
     } catch (e) {

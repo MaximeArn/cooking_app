@@ -12,9 +12,11 @@ class ProfileHeader extends StatelessWidget {
           barrierColor: Color.fromRGBO(0, 0, 0, .7),
           context: context,
           builder: (_) => Dialog(
-            backgroundColor: Colors.transparent,
-            child: CircleAvatar(backgroundImage: NetworkImage(avatar), radius: MediaQuery.of(context).size.width * (1/3),)
-          ),
+              backgroundColor: Colors.transparent,
+              child: CircleAvatar(
+                backgroundImage: NetworkImage(avatar),
+                radius: MediaQuery.of(context).size.width * (1 / 3),
+              )),
         );
 
     return Flexible(

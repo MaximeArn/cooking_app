@@ -6,7 +6,10 @@ import 'package:provider/provider.dart';
 class PostCardFooter extends StatelessWidget {
   final int note;
   final String id;
-  late void Function(String, int) notePost;
+  late void Function(
+      {required int newNote,
+      required String postId,
+      required int previousNote}) notePost;
 
   PostCardFooter({required this.note, required this.id});
 
@@ -28,7 +31,13 @@ class PostCardFooter extends StatelessWidget {
                 size: 30,
               ),
               onPressed: () {
-                if (note != (index + 1)) notePost(id, index + 1);
+                //if newNote != previousNote
+                if (note != (index + 1))
+                  notePost(
+                    postId: id,
+                    newNote: (index + 1),
+                    previousNote: note,
+                  );
               },
             );
           }),
