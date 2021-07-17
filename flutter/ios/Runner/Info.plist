@@ -26,6 +26,13 @@
 		<true/>
 		<key>UILaunchStoryboardName</key>
 		<string>LaunchScreen</string>
+
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>We need it to allow you to change your avatar</string>
+
+		<key>NSCameraUsageDescription</key>
+		<string>Essential to post your dishes</string>
+
 		<key>UIMainStoryboardFile</key>
 		<string>Main</string>
 		<key>UISupportedInterfaceOrientations</key>
