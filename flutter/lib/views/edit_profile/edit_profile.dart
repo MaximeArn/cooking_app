@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 
 class EditProfile extends StatefulWidget {
   static const routeName = "/editProfile";
+  final RegExp emailRegex = RegExp("^\S+@\S+\$");
 
   @override
   _EditProfileState createState() => _EditProfileState();
@@ -20,14 +21,17 @@ class _EditProfileState extends State<EditProfile> {
     final User user = Provider.of<UsersProvider>(context, listen: false)
         .connectedUser as User;
 
+    final formKey = GlobalKey<FormState>();
     final TextEditingController nameController = TextEditingController();
     final TextEditingController emailController = TextEditingController();
-    final TextEditingController birthController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
 
-
     void onSubmit() {
-      // do something
+      if (formKey.currentState!.validate()) {
+        print("Fields Validated");
+      } else {
+        print("Fields not Validated");
+      }
     }
 
     void onCancel() {
@@ -39,54 +43,85 @@ class _EditProfileState extends State<EditProfile> {
       super.dispose();
       nameController.dispose();
       emailController.dispose();
-      birthController.dispose();
       passwordController.dispose();
     }
 
+    // dynamic nameValidator(String value) {
+    //   print("name validator");
+    // }
+
+    // dynamic emailValidator(String value) {
+    //   print("email validator");
+    //   print(widget.emailRegex.hasMatch(value).toString());
+    //   return widget.emailRegex.hasMatch(value)
+    //       ? Exception("email does not match ")
+    //       : null;
+    // }
+
+    // dynamic passwordValidator(String value) {
+    //   print("password validator");
+    //   return null;
+    // }
+
     return SecondaryScaffold(
-      body: Container(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 25),
-        child: Column(
-          children: [
-            EditableAvatar(),
-            Container(
-              padding: EdgeInsets.only(bottom: 70),
-              child: Column(
-                children: [
-                  Field(
-                    labelText: "Name",
-                    placeholder: user.name,
-                    controller: nameController,
-                  ),
-                  Field(
-                    labelText: "Email",
-                    placeholder: user.email,
-                    controller: emailController,
-                  ),
-                  Field(
-                    labelText: "Birth",
-                    placeholder: 19.toString(),
-                    isBirth: true,
-                    controller: birthController,
-                  ),
-                  Field(
-                    labelText: "Password",
-                    placeholder: user.password,
-                    isPassword: true,
-                    controller: passwordController,
-                  ),
-                ],
+        child: Form(
+          key: formKey,
+          child: Column(
+            children: [
+              EditableAvatar(),
+              Container(
+                padding: EdgeInsets.only(bottom: 70),
+                child: Column(
+                  children: [
+                    Field(
+                      labelText: "Name",
+                      placeholder: user.name,
+                      controller: nameController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return null;
+                      },
+                    ),
+                    Field(
+                      labelText: "Email",
+                      placeholder: user.email,
+                      controller: emailController,
+                      validator: (String value) {
+                        print(widget.emailRegex.hasMatch(value).toString());
+                        return widget.emailRegex.hasMatch(value)
+                            ? Exception("email does not match ")
+                            : null;
+                      },
+                    ),
+                    Field(
+                      labelText: "Password",
+                      placeholder: user.password,
+                      isPassword: true,
+                      controller: passwordController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return null;
+                      },
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                EditProfileButton(text: "Cancel", action: onCancel),
-                SizedBox(width: 50),
-                EditProfileButton(text: "Save", action: onSubmit),
-              ],
-            )
-          ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  EditProfileButton(text: "Cancel", action: onCancel),
+                  SizedBox(width: 50),
+                  EditProfileButton(text: "Save", action: onSubmit),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

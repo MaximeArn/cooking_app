@@ -6,6 +6,7 @@ class Field extends StatelessWidget {
   final String placeholder;
   final bool isBirth;
   final TextEditingController controller;
+  final Function validator;
 
   Field({
     this.isPassword = false,
@@ -13,13 +14,17 @@ class Field extends StatelessWidget {
     required this.placeholder,
     this.isBirth = false,
     required this.controller,
+    required this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(bottom: 25),
-      child: TextField(
+      child: TextFormField(
+        validator: (value) {
+          validator(value);
+        },
         controller: controller,
         obscureText: isPassword ? true : false,
         decoration: InputDecoration(
