@@ -19,17 +19,29 @@ class _EditProfileState extends State<EditProfile> {
   Widget build(BuildContext context) {
     final User user = Provider.of<UsersProvider>(context, listen: false)
         .connectedUser as User;
-    final TextEditingController editProfileController = TextEditingController();
+
+    final TextEditingController nameController = TextEditingController();
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController birthController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+
 
     void onSubmit() {
-      print(editProfileController.value);
+      // do something
     }
 
-    void onCancel (){
+    void onCancel() {
       Navigator.of(context).pop();
     }
-    
-    
+
+    @override
+    void dispose() {
+      super.dispose();
+      nameController.dispose();
+      emailController.dispose();
+      birthController.dispose();
+      passwordController.dispose();
+    }
 
     return SecondaryScaffold(
       body: Container(
@@ -44,24 +56,24 @@ class _EditProfileState extends State<EditProfile> {
                   Field(
                     labelText: "Name",
                     placeholder: user.name,
-                    controller: editProfileController,
+                    controller: nameController,
                   ),
                   Field(
                     labelText: "Email",
                     placeholder: user.email,
-                    controller: editProfileController,
+                    controller: emailController,
                   ),
                   Field(
-                    labelText: "Age",
+                    labelText: "Birth",
                     placeholder: 19.toString(),
-                    isAge: true,
-                    controller: editProfileController,
+                    isBirth: true,
+                    controller: birthController,
                   ),
                   Field(
                     labelText: "Password",
                     placeholder: user.password,
                     isPassword: true,
-                    controller: editProfileController,
+                    controller: passwordController,
                   ),
                 ],
               ),

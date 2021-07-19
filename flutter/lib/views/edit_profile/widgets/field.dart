@@ -4,14 +4,14 @@ class Field extends StatelessWidget {
   final bool isPassword;
   final String labelText;
   final String placeholder;
-  final bool isAge;
+  final bool isBirth;
   final TextEditingController controller;
 
   Field({
     this.isPassword = false,
     required this.labelText,
     required this.placeholder,
-    this.isAge = false,
+    this.isBirth = false,
     required this.controller,
   });
 
@@ -30,7 +30,7 @@ class Field extends StatelessWidget {
             labelStyle: TextStyle(color: Color.fromRGBO(232, 196, 81, 1)),
             hintText: placeholder,
             hintStyle: TextStyle(fontSize: 16)),
-        keyboardType: isAge ? TextInputType.number : TextInputType.text,
+        keyboardType: isBirth ? TextInputType.datetime : TextInputType.text,
       ),
     );
   }
