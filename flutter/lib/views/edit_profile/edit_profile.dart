@@ -20,7 +20,7 @@ class EditProfile extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 25),
         child: Column(
           children: [
-            const EditableAvatar(),
+            EditableAvatar(),
             Container(
               padding: EdgeInsets.only(bottom: 70),
               child: Column(

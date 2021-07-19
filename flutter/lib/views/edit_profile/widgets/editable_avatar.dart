@@ -5,24 +5,30 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
-class EditableAvatar extends StatelessWidget {
-  const EditableAvatar();
+class EditableAvatar extends StatefulWidget {
+  @override
+  _EditableAvatarState createState() => _EditableAvatarState();
+}
 
+class _EditableAvatarState extends State<EditableAvatar> {
   @override
   Widget build(BuildContext context) {
     final User? user =
-        Provider.of<UsersProvider>(context, listen: false).connectedUser;
-    late File deviceImage;
+        Provider.of<UsersProvider>(context, listen: true).connectedUser;
+    File? _deviceImage;
+    final picker = ImagePicker();
 
-    Future<void> getImage() async {
-      final ImagePicker imagePicker = ImagePicker();
-      final PickedFile pickedFile = await imagePicker.pickImage(
-          source: ImageSource.gallery) as PickedFile;
-      File deviceImage = File(pickedFile.path);
-      if (deviceImage != null) {
-        print("image is ok");
-      }
-      try {} catch (e) {
+    Future<void> _pickImage() async {
+      try {
+        XFile? pickedFile =
+            await picker.pickImage(source: ImageSource.gallery);
+        if (pickedFile != null) {
+          _deviceImage = File(pickedFile.path);
+          print("pickedFIle is all right !!!");
+        } else {
+          print("putain de merde");
+        }
+      } catch (e) {
         rethrow;
       }
     }
@@ -30,9 +36,7 @@ class EditableAvatar extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(bottom: 80),
       child: GestureDetector(
-        onTap: () {
-          getImage();
-        },
+        onTap: _pickImage,
         child: Container(
           alignment: Alignment.topCenter,
           child: Stack(
