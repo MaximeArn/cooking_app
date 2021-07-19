@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'package:cooking/models/User.dart';
 import 'package:cooking/providers/users.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class EditableAvatar extends StatelessWidget {
@@ -10,12 +12,26 @@ class EditableAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     final User? user =
         Provider.of<UsersProvider>(context, listen: false).connectedUser;
+    late File deviceImage;
+
+    Future<void> getImage() async {
+      final ImagePicker imagePicker = ImagePicker();
+      final PickedFile pickedFile = await imagePicker.pickImage(
+          source: ImageSource.gallery) as PickedFile;
+      File deviceImage = File(pickedFile.path);
+      if (deviceImage != null) {
+        print("image is ok");
+      }
+      try {} catch (e) {
+        rethrow;
+      }
+    }
 
     return Container(
       margin: EdgeInsets.only(bottom: 80),
       child: GestureDetector(
         onTap: () {
-          print("change avatar");
+          getImage();
         },
         child: Container(
           alignment: Alignment.topCenter,
