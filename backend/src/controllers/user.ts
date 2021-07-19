@@ -27,4 +27,17 @@ module.exports = {
       console.log(error);
     }
   },
+  updateProfile: async (
+    { params: { userId }, body }: Request,
+    res: Response
+  ) => {
+    try {
+      console.log(body);
+      console.log(userId);
+      const newUser = await User.findByIdAndUpdate(userId);
+      res.end();
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
