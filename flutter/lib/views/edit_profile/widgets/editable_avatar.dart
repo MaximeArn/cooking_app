@@ -13,20 +13,15 @@ class EditableAvatar extends StatefulWidget {
 class _EditableAvatarState extends State<EditableAvatar> {
   @override
   Widget build(BuildContext context) {
-    final User? user =
-        Provider.of<UsersProvider>(context, listen: true).connectedUser;
-    File? _deviceImage;
+    final User? user = Provider.of<UsersProvider>(context).connectedUser;
     final picker = ImagePicker();
+    File? deviceImage;
 
-    Future<void> _pickImage() async {
+    Future<void> pickImage() async {
       try {
-        XFile? pickedFile =
-            await picker.pickImage(source: ImageSource.gallery);
+        XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
         if (pickedFile != null) {
-          _deviceImage = File(pickedFile.path);
-          print("pickedFIle is all right !!!");
-        } else {
-          print("putain de merde");
+          deviceImage = File(pickedFile.path);
         }
       } catch (e) {
         rethrow;
@@ -36,7 +31,7 @@ class _EditableAvatarState extends State<EditableAvatar> {
     return Container(
       margin: EdgeInsets.only(bottom: 80),
       child: GestureDetector(
-        onTap: _pickImage,
+        onTap: pickImage,
         child: Container(
           alignment: Alignment.topCenter,
           child: Stack(
@@ -48,7 +43,9 @@ class _EditableAvatarState extends State<EditableAvatar> {
                   border: Border.all(color: Colors.black, width: 1.5),
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                      fit: BoxFit.cover, image: NetworkImage(user!.avatar)),
+                    fit: BoxFit.cover,
+                    image: NetworkImage(user!.avatar),
+                  ),
                 ),
               ),
               Positioned(

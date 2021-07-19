@@ -5,18 +5,22 @@ class Field extends StatelessWidget {
   final String labelText;
   final String placeholder;
   final bool isAge;
+  final TextEditingController controller;
 
-  Field(
-      {this.isPassword = false,
-      required this.labelText,
-      required this.placeholder,
-      this.isAge = false});
+  Field({
+    this.isPassword = false,
+    required this.labelText,
+    required this.placeholder,
+    this.isAge = false,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(bottom: 25),
       child: TextField(
+        controller: controller,
         obscureText: isPassword ? true : false,
         decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
@@ -26,7 +30,7 @@ class Field extends StatelessWidget {
             labelStyle: TextStyle(color: Color.fromRGBO(232, 196, 81, 1)),
             hintText: placeholder,
             hintStyle: TextStyle(fontSize: 16)),
-            keyboardType: isAge ? TextInputType.number : TextInputType.text,
+        keyboardType: isAge ? TextInputType.number : TextInputType.text,
       ),
     );
   }
