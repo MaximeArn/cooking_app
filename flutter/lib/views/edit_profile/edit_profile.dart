@@ -9,7 +9,8 @@ import 'package:provider/provider.dart';
 
 class EditProfile extends StatefulWidget {
   static const routeName = "/editProfile";
-  final RegExp emailRegex = RegExp("^\S+@\S+\$");
+  final RegExp emailRegex = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 
   @override
   _EditProfileState createState() => _EditProfileState();
@@ -81,6 +82,7 @@ class _EditProfileState extends State<EditProfile> {
                       controller: nameController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
+                          print(value == null || value.isEmpty);
                           return 'Please enter some text';
                         }
                         return null;
@@ -90,11 +92,11 @@ class _EditProfileState extends State<EditProfile> {
                       labelText: "Email",
                       placeholder: user.email,
                       controller: emailController,
-                      validator: (String value) {
-                        print(widget.emailRegex.hasMatch(value).toString());
-                        return widget.emailRegex.hasMatch(value)
-                            ? Exception("email does not match ")
-                            : null;
+                      validator: (value) {
+                        if (value == null || value.isEmpty || !widget.emailRegex.hasMatch(value)) {
+                          print(value == null || value.isEmpty);
+                          return 'Please enter some text';
+                        }
                       },
                     ),
                     Field(
@@ -107,8 +109,8 @@ class _EditProfileState extends State<EditProfile> {
                           return 'Please enter some text';
                         }
                         return null;
-                      },
-                    ),
+                      }
+                    )
                   ],
                 ),
               ),
