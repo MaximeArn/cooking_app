@@ -82,8 +82,8 @@ class _EditProfileState extends State<EditProfile> {
                       controller: nameController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          print(value == null || value.isEmpty);
                           return 'Please enter some text';
+                          // nameController.text.trim();
                         }
                         return null;
                       },
@@ -93,24 +93,26 @@ class _EditProfileState extends State<EditProfile> {
                       placeholder: user.email,
                       controller: emailController,
                       validator: (value) {
-                        if (value == null || value.isEmpty || !widget.emailRegex.hasMatch(value)) {
-                          print(value == null || value.isEmpty);
+                        if (value == null ||
+                            value.isEmpty ||
+                            !widget.emailRegex.hasMatch(value)) {
+                          emailController.text.trim();
                           return 'Please enter some text';
                         }
                       },
                     ),
                     Field(
-                      labelText: "Password",
-                      placeholder: user.password,
-                      isPassword: true,
-                      controller: passwordController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      }
-                    )
+                        labelText: "Password",
+                        placeholder: user.password,
+                        isPassword: true,
+                        controller: passwordController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                            // passwordController.text.trim();
+                          }
+                          return null;
+                        })
                   ],
                 ),
               ),
