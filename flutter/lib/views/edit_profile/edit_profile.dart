@@ -22,6 +22,8 @@ class _EditProfileState extends State<EditProfile> {
     final User user = Provider.of<UsersProvider>(context, listen: false)
         .connectedUser as User;
 
+    bool avatarHasBeenChanged = false;
+
     final formKey = GlobalKey<FormState>();
     final TextEditingController nameController = TextEditingController();
     final TextEditingController emailController = TextEditingController();
@@ -71,7 +73,7 @@ class _EditProfileState extends State<EditProfile> {
           key: formKey,
           child: Column(
             children: [
-              EditableAvatar(),
+              avatarHasBeenChanged ? EditableAvatar(image: NetworkImage(user.name)) :  EditableAvatar(image: NetworkImage(user.avatar)),
               Container(
                 padding: EdgeInsets.only(bottom: 70),
                 child: Column(
@@ -81,7 +83,8 @@ class _EditProfileState extends State<EditProfile> {
                       placeholder: user.name,
                       controller: nameController,
                       validator: (value) {
-                        if (value == null || value.isEmpty) {
+                        String trimedValue = value!.trim();
+                        if (trimedValue == null || trimedValue.isEmpty) {
                           return 'Please enter some text';
                           // nameController.text.trim();
                         }
@@ -93,11 +96,12 @@ class _EditProfileState extends State<EditProfile> {
                       placeholder: user.email,
                       controller: emailController,
                       validator: (value) {
-                        if (value == null ||
-                            value.isEmpty ||
+                        String trimedValue = value!.trim();
+                        if (trimedValue == null ||
+                            trimedValue.isEmpty ||
                             !widget.emailRegex.hasMatch(value)) {
                           emailController.text.trim();
-                          return 'Please enter some text';
+                          return 'Invalid email format';
                         }
                       },
                     ),
@@ -107,7 +111,8 @@ class _EditProfileState extends State<EditProfile> {
                         isPassword: true,
                         controller: passwordController,
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
+                          String trimedValue = value!.trim();
+                          if (trimedValue == null || trimedValue.isEmpty) {
                             return 'Please enter some text';
                             // passwordController.text.trim();
                           }

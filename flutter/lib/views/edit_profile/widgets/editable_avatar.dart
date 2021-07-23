@@ -6,6 +6,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class EditableAvatar extends StatefulWidget {
+  final ImageProvider image;
+
+  EditableAvatar({
+    required this.image,
+  });
+
   @override
   _EditableAvatarState createState() => _EditableAvatarState();
 }
@@ -13,15 +19,22 @@ class EditableAvatar extends StatefulWidget {
 class _EditableAvatarState extends State<EditableAvatar> {
   @override
   Widget build(BuildContext context) {
-    final User? user = Provider.of<UsersProvider>(context).connectedUser;
     final picker = ImagePicker();
     File? deviceImage;
+
 
     Future<void> pickImage() async {
       try {
         XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
+        print(pickedFile == null);
         if (pickedFile != null) {
-          deviceImage = File(pickedFile.path);
+          print(pickedFile.path);
+          setState(() {
+            print("set state");
+            deviceImage = File(pickedFile.path);
+            image = FileImage(deviceImage!);
+          });
+          print(deviceImage);
         }
       } catch (e) {
         rethrow;
@@ -44,7 +57,7 @@ class _EditableAvatarState extends State<EditableAvatar> {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: NetworkImage(user!.avatar),
+                    image: widget.image,
                   ),
                 ),
               ),
