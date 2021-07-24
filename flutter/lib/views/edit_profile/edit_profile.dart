@@ -22,7 +22,15 @@ class _EditProfileState extends State<EditProfile> {
     final User user = Provider.of<UsersProvider>(context, listen: false)
         .connectedUser as User;
 
+    ImageProvider? image;
+
     bool avatarHasBeenChanged = false;
+    final void displayAvatar = (newImage) {
+      setState(() {
+        avatarHasBeenChanged = true;
+        image = newImage;
+      });
+    };
 
     final formKey = GlobalKey<FormState>();
     final TextEditingController nameController = TextEditingController();
@@ -37,7 +45,7 @@ class _EditProfileState extends State<EditProfile> {
       }
     }
 
-    void onCancel() {
+    void onCancel(newImage) {
       Navigator.of(context).pop();
     }
 
@@ -73,7 +81,9 @@ class _EditProfileState extends State<EditProfile> {
           key: formKey,
           child: Column(
             children: [
-              avatarHasBeenChanged ? EditableAvatar(image: NetworkImage(user.name)) :  EditableAvatar(image: NetworkImage(user.avatar)),
+              avatarHasBeenChanged
+                  ? EditableAvatar(image: NetworkImage(user.name))
+                  : EditableAvatar(image: NetworkImage(user.avatar)),
               Container(
                 padding: EdgeInsets.only(bottom: 70),
                 child: Column(
