@@ -14,13 +14,23 @@ class EditProfile extends StatefulWidget {
 class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
-    User user = Provider.of<UsersProvider>(context).connectedUser as User;
+    late User user = Provider.of<UsersProvider>(context).connectedUser as User;
+    String avatar = user.avatar;
+
+    void setImage() {
+      print(avatar);
+      //must modifiy the image in provider because on rebuild the db avatar is re-set 
+      user.avatar =
+          "https://d1fmx1rbmqrxrr.cloudfront.net/cnet/optim/i/edit/2019/04/eso1644bsmall__w770.jpg";
+      setState(() {});
+      print(avatar);
+    }
 
     return SecondaryScaffold(
         body: Container(
       margin: EdgeInsets.only(bottom: 80),
       child: GestureDetector(
-        onTap: () {},
+        onTap: setImage,
         child: Container(
           alignment: Alignment.topCenter,
           child: Stack(
@@ -33,7 +43,7 @@ class _EditProfileState extends State<EditProfile> {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: NetworkImage(user.avatar),
+                    image: NetworkImage(avatar),
                   ),
                 ),
               ),

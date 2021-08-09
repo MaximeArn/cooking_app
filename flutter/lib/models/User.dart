@@ -5,7 +5,7 @@ class User {
   final String name;
   final String email;
   final String password;
-  final String avatar;
+  String avatar;
   final List<Post> posts;
   final int stars;
   final int subscribers;
