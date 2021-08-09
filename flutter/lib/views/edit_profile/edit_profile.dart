@@ -18,12 +18,10 @@ class _EditProfileState extends State<EditProfile> {
     String avatar = user.avatar;
 
     void setImage() {
-      print(avatar);
-      //must modifiy the image in provider because on rebuild the db avatar is re-set 
-      user.avatar =
-          "https://d1fmx1rbmqrxrr.cloudfront.net/cnet/optim/i/edit/2019/04/eso1644bsmall__w770.jpg";
+      //must modifiy the image in provider because on rebuild the db avatar is re-set
+      user.updateImage(
+          "https://d1fmx1rbmqrxrr.cloudfront.net/cnet/optim/i/edit/2019/04/eso1644bsmall__w770.jpg");
       setState(() {});
-      print(avatar);
     }
 
     return SecondaryScaffold(

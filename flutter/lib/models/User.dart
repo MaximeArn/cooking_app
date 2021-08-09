@@ -23,6 +23,10 @@ class User {
     required this.subscriptions,
   });
 
+  void updateImage(String newAvatar) {
+    this.avatar = newAvatar;
+  }
+
   User.fromJson(Map<String, dynamic> json, {bool isPopulated = true})
       : id = json["_id"],
         name = json["name"],
