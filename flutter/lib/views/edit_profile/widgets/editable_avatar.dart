@@ -1,15 +1,14 @@
 import 'dart:io';
-import 'package:cooking/models/User.dart';
-import 'package:cooking/providers/users.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
 
 class EditableAvatar extends StatefulWidget {
   final ImageProvider image;
+  final Function setImage;
 
   EditableAvatar({
     required this.image,
+    required this.setImage,
   });
 
   @override
@@ -19,22 +18,14 @@ class EditableAvatar extends StatefulWidget {
 class _EditableAvatarState extends State<EditableAvatar> {
   @override
   Widget build(BuildContext context) {
+    print("build");
     final picker = ImagePicker();
-    File? deviceImage;
-
 
     Future<void> pickImage() async {
       try {
         XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
-        print(pickedFile == null);
         if (pickedFile != null) {
-          print(pickedFile.path);
-          setState(() {
-            print("set state");
-            deviceImage = File(pickedFile.path);
-            image = FileImage(deviceImage!);
-          });
-          print(deviceImage);
+          widget.setImage(FileImage(File("/Users/maxime/Library/Developer/CoreSimulator/Devices/A25F91DF-E64B-4F09-AC66-3532673201F2/data/Containers/Data/Application/48E9CB72-CF9F-4A1F-9388-F15AAB6F468C/tmp/image_picker_AEC92256-0C39-4E42-8034-9515A11ED62B-13246-00000BD0AFB741B7.jpg")));
         }
       } catch (e) {
         rethrow;
