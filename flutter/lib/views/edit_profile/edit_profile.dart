@@ -14,6 +14,7 @@ class EditProfile extends StatefulWidget {
   static const routeName = "/editProfile";
   final RegExp emailRegex = RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+  final RegExp ageRegex = RegExp("^[0-9]*\$");
 
   @override
   _EditProfileState createState() => _EditProfileState();
@@ -39,17 +40,26 @@ class _EditProfileState extends State<EditProfile> {
 
     fieldValidator(value, FieldsType fieldtype) {
       value.trim();
-      print(fieldtype);
-      print(fieldtype == FieldsType.Email);
       if (value.isEmpty) {
-        return "please enter some text";
-      } 
+        return "Please enter some text";
+      }
+      // Email tests
       else if (fieldtype == FieldsType.Email &&
           !widget.emailRegex.hasMatch(value)) {
         print(widget.emailRegex.hasMatch(value));
-        return "invalid email format";
+        return "Invalid email format";
       }
-       else {
+      // Age tests
+      else if (fieldtype == FieldsType.Age) {
+        if (value == null || !widget.ageRegex.hasMatch(value)) {
+          return "Invalid age format";
+        }
+
+        value = int.tryParse(value);
+        if (!(value > 15 && value < 100)) {
+          return "Age must be between 15 and 100";
+        }
+      } else {
         return null;
       }
     }
@@ -83,7 +93,7 @@ class _EditProfileState extends State<EditProfile> {
                     Field(
                       labelText: "Age",
                       placeholder: 19.toString(),
-                      isBirth: true,
+                      isAge: true,
                       validator: (value) {
                         return fieldValidator(value, FieldsType.Age);
                       },

@@ -4,7 +4,7 @@ class Field extends StatelessWidget {
   final bool isPassword;
   final String labelText;
   final String placeholder;
-  final bool isBirth;
+  final bool isAge;
   // final TextEditingController controller;
   final String? Function(String?)? validator;
 
@@ -12,7 +12,7 @@ class Field extends StatelessWidget {
     this.isPassword = false,
     required this.labelText,
     required this.placeholder,
-    this.isBirth = false,
+    this.isAge = false,
     // required this.controller,
     required this.validator,
   });
@@ -22,6 +22,7 @@ class Field extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(bottom: 25),
       child: TextFormField(
+        enableInteractiveSelection: false,
         validator: validator,
         // controller: controller,
         obscureText: isPassword ? true : false,
@@ -33,7 +34,7 @@ class Field extends StatelessWidget {
             labelStyle: TextStyle(color: Color.fromRGBO(232, 196, 81, 1)),
             hintText: placeholder,
             hintStyle: TextStyle(fontSize: 16)),
-        keyboardType: isBirth ? TextInputType.datetime : TextInputType.text,
+        keyboardType: isAge ? TextInputType.number : TextInputType.text,
       ),
     );
   }

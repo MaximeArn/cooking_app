@@ -29,7 +29,7 @@ class User {
         name = json["name"],
         email = json["email"],
         password = json["password"],
-        avatar = NetworkImage(json["avatar"]) ,
+        avatar = NetworkImage(json["avatar"]),
         posts = isPopulated
             ? (json["posts"] as List).map((jsonPost) {
                 return Post.fromJson(
