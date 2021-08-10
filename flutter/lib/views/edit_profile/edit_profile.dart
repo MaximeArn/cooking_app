@@ -15,6 +15,7 @@ class EditProfile extends StatefulWidget {
   final RegExp emailRegex = RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
   final RegExp ageRegex = RegExp("^[0-9]*\$");
+  final RegExp nameRegex = RegExp("^[A-Za-z,.'-]+\$");
 
   @override
   _EditProfileState createState() => _EditProfileState();
@@ -38,6 +39,8 @@ class _EditProfileState extends State<EditProfile> {
       print("pop location");
     }
 
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
     fieldValidator(value, FieldsType fieldtype) {
       value.trim();
       if (value.isEmpty) {
@@ -59,10 +62,20 @@ class _EditProfileState extends State<EditProfile> {
         if (!(value > 15 && value < 100)) {
           return "Age must be between 15 and 100";
         }
-      } else {
+      }
+      // Name tests
+        else if (fieldtype == FieldsType.Name) {
+          print("name");
+          if (!widget.nameRegex.hasMatch(value)) {
+            return "Only alphabetic characters allowed";
+          }
+        }
+       else {
         return null;
       }
     }
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     return SecondaryScaffold(
       body: Container(
