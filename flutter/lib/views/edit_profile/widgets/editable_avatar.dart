@@ -8,13 +8,6 @@ import 'package:provider/provider.dart';
 
 class EditableAvatar extends StatefulWidget {
   static const routeName = "/editProfile";
-  final Function toggleAvatarHasBeenModified;
-  final bool avataHasBeenModified;
-
-  EditableAvatar({
-    required this.avataHasBeenModified,
-    required this.toggleAvatarHasBeenModified,
-  });
 
   @override
   _EditableAvatarState createState() => _EditableAvatarState();

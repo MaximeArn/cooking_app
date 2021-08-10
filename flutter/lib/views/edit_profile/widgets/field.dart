@@ -5,16 +5,16 @@ class Field extends StatelessWidget {
   final String labelText;
   final String placeholder;
   final bool isBirth;
-  final TextEditingController controller;
-  final String? Function(String?)? validator;
+  // final TextEditingController controller;
+  // final String? Function(String?)? validator;
 
   Field({
     this.isPassword = false,
     required this.labelText,
     required this.placeholder,
     this.isBirth = false,
-    required this.controller,
-    required this.validator,
+    // required this.controller,
+    // required this.validator,
   });
 
   @override
@@ -22,8 +22,8 @@ class Field extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(bottom: 25),
       child: TextFormField(
-        validator: validator,
-        controller: controller,
+        // validator: validator,
+        // controller: controller,
         obscureText: isPassword ? true : false,
         decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
