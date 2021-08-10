@@ -8,6 +8,8 @@ import 'package:provider/provider.dart';
 import 'widgets/edit_profile_button.dart';
 import 'widgets/field.dart';
 
+enum FieldsType { Email, Age, Name, Password }
+
 class EditProfile extends StatefulWidget {
   static const routeName = "/editProfile";
   final RegExp emailRegex = RegExp(
@@ -25,9 +27,9 @@ class _EditProfileState extends State<EditProfile> {
 
     void onSubmit() {
       if (formKey.currentState!.validate()) {
-      print("submit form"); 
+        print("submit form");
       } else {
-      print("bad format !!!"); 
+        print("bad format !!!");
       }
     }
 
@@ -35,11 +37,19 @@ class _EditProfileState extends State<EditProfile> {
       print("pop location");
     }
 
-    fieldValidator(value) {
+    fieldValidator(value, FieldsType fieldtype) {
       value.trim();
+      print(fieldtype);
+      print(fieldtype == FieldsType.Email);
       if (value.isEmpty) {
         return "please enter some text";
-      } else {
+      } 
+      else if (fieldtype == FieldsType.Email &&
+          !widget.emailRegex.hasMatch(value)) {
+        print(widget.emailRegex.hasMatch(value));
+        return "invalid email format";
+      }
+       else {
         return null;
       }
     }
@@ -59,24 +69,32 @@ class _EditProfileState extends State<EditProfile> {
                     Field(
                       labelText: "Name",
                       placeholder: user.name,
-                      validator: fieldValidator,
+                      validator: (value) {
+                        return fieldValidator(value, FieldsType.Name);
+                      },
                     ),
                     Field(
                       labelText: "Email",
                       placeholder: user.email,
-                      validator: fieldValidator,
+                      validator: (value) {
+                        return fieldValidator(value, FieldsType.Email);
+                      },
                     ),
                     Field(
                       labelText: "Age",
                       placeholder: 19.toString(),
                       isBirth: true,
-                      validator: fieldValidator,
+                      validator: (value) {
+                        return fieldValidator(value, FieldsType.Age);
+                      },
                     ),
                     Field(
                       labelText: "Password",
                       placeholder: user.password,
                       isPassword: true,
-                      validator: fieldValidator,
+                      validator: (value) {
+                        return fieldValidator(value, FieldsType.Password);
+                      },
                     ),
                   ],
                 ),
