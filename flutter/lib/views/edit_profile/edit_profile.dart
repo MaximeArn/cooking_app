@@ -31,6 +31,15 @@ class _EditProfileState extends State<EditProfile> {
       print("pop location");
     }
 
+    fieldValidator(value) {
+      value.trim();
+      if (value.isEmpty) {
+        return "please enter some text";
+      } else {
+        return null;
+      }
+    }
+
     return SecondaryScaffold(
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 25, horizontal: 25),
@@ -43,16 +52,27 @@ class _EditProfileState extends State<EditProfile> {
                 padding: EdgeInsets.only(bottom: 70),
                 child: Column(
                   children: [
-                    Field(labelText: "Name", placeholder: user.name),
-                    Field(labelText: "Email", placeholder: user.email),
                     Field(
-                        labelText: "Age",
-                        placeholder: 19.toString(),
-                        isBirth: true),
+                      labelText: "Name",
+                      placeholder: user.name,
+                      validator: fieldValidator,
+                    ),
+                    Field(
+                      labelText: "Email",
+                      placeholder: user.email,
+                      validator: fieldValidator,
+                    ),
+                    Field(
+                      labelText: "Age",
+                      placeholder: 19.toString(),
+                      isBirth: true,
+                      validator: fieldValidator,
+                    ),
                     Field(
                       labelText: "Password",
                       placeholder: user.password,
                       isPassword: true,
+                      validator: fieldValidator,
                     ),
                   ],
                 ),
