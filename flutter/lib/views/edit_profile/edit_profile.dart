@@ -10,6 +10,8 @@ import 'widgets/field.dart';
 
 class EditProfile extends StatefulWidget {
   static const routeName = "/editProfile";
+  final RegExp emailRegex = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 
   @override
   _EditProfileState createState() => _EditProfileState();
@@ -18,16 +20,26 @@ class EditProfile extends StatefulWidget {
 class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
-
+    final GlobalKey formKey = GlobalKey<FormState>();
     late User user = Provider.of<UsersProvider>(context).connectedUser as User;
 
+    void onSubmit() {
+      print("submit form");
+    }
+
+    void onCancel() {
+      print("pop location");
+    }
+
     return SecondaryScaffold(
-        body: Container(
-      padding: EdgeInsets.symmetric(vertical: 25, horizontal: 25),
-      child: ListView(
-          children: [
-            EditableAvatar(),
-            Container(
+      body: Container(
+        padding: EdgeInsets.symmetric(vertical: 25, horizontal: 25),
+        child: Form(
+          key: formKey,
+          child: ListView(
+            children: [
+              EditableAvatar(),
+              Container(
                 padding: EdgeInsets.only(bottom: 70),
                 child: Column(
                   children: [
@@ -45,7 +57,8 @@ class _EditProfileState extends State<EditProfile> {
                   ],
                 ),
               ),
-          ],
+            ],
+          ),
         ),
       ),
     );
