@@ -5,7 +5,7 @@ import 'package:cooking/widgets/scaffolds/secondary_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
-
+import 'widgets/edit_profile_button.dart';
 import 'widgets/field.dart';
 
 class EditProfile extends StatefulWidget {
@@ -20,11 +20,15 @@ class EditProfile extends StatefulWidget {
 class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
-    final GlobalKey formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     late User user = Provider.of<UsersProvider>(context).connectedUser as User;
 
     void onSubmit() {
-      print("submit form");
+      if (formKey.currentState!.validate()) {
+      print("submit form"); 
+      } else {
+      print("bad format !!!"); 
+      }
     }
 
     void onCancel() {
@@ -77,6 +81,14 @@ class _EditProfileState extends State<EditProfile> {
                   ],
                 ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  EditProfileButton(text: "Cancel", action: onCancel),
+                  SizedBox(width: 50),
+                  EditProfileButton(text: "Save", action: onSubmit),
+                ],
+              )
             ],
           ),
         ),
