@@ -16,6 +16,8 @@ class EditProfile extends StatefulWidget {
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
   final RegExp ageRegex = RegExp("^[0-9]*\$");
   final RegExp nameRegex = RegExp("^[A-Za-z,.'-]+\$");
+  final RegExp passwordRegex =
+      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
 
   @override
   _EditProfileState createState() => _EditProfileState();
@@ -36,7 +38,7 @@ class _EditProfileState extends State<EditProfile> {
     }
 
     void onCancel() {
-      print("pop location");
+      Navigator.pop(context);
     }
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -64,13 +66,19 @@ class _EditProfileState extends State<EditProfile> {
         }
       }
       // Name tests
-        else if (fieldtype == FieldsType.Name) {
-          print("name");
-          if (!widget.nameRegex.hasMatch(value)) {
-            return "Only alphabetic characters allowed";
-          }
+      else if (fieldtype == FieldsType.Name) {
+        if (!widget.nameRegex.hasMatch(value)) {
+          return "Only alphabetic characters allowed";
         }
-       else {
+        if (value.length > 25) return "Name length must be under 25";
+      }
+
+      //password tests
+      else if (fieldtype == FieldsType.Password && !widget.passwordRegex.hasMatch(value)) {
+          return "invalid password format";
+      }
+      // final validation
+      else {
         return null;
       }
     }
