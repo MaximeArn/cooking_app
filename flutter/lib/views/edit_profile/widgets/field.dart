@@ -8,7 +8,6 @@ class Field extends StatelessWidget {
   final String placeholder;
   final bool isAge;
   // final TextEditingController controller;
-  // final String? Function(String?)? validator;
   final FieldsType fieldsType;
 
   Field(
@@ -17,11 +16,11 @@ class Field extends StatelessWidget {
       required this.placeholder,
       this.isAge = false,
       // required this.controller,
-      // required this.validator,
       required this.fieldsType});
 
   @override
   Widget build(BuildContext context) {
+
     final emailRegex = RegExp(
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
     final ageRegex = RegExp("^[0-9]*\$");
@@ -56,7 +55,6 @@ class Field extends StatelessWidget {
         }
         if (value.length > 25) return "Name length must be under 25";
       }
-
       //password tests
       else if (fieldtype == FieldsType.Password &&
           !passwordRegex.hasMatch(value)) {
