@@ -1,11 +1,12 @@
 import 'package:cooking/models/Post.dart';
+import 'package:flutter/material.dart';
 
 class User {
   final String id;
   final String name;
   final String email;
   final String password;
-  String avatar;
+  ImageProvider avatar;
   final List<Post> posts;
   final int stars;
   final int subscribers;
@@ -23,16 +24,12 @@ class User {
     required this.subscriptions,
   });
 
-  void updateImage(String newAvatar) {
-    this.avatar = newAvatar;
-  }
-
   User.fromJson(Map<String, dynamic> json, {bool isPopulated = true})
       : id = json["_id"],
         name = json["name"],
         email = json["email"],
         password = json["password"],
-        avatar = json["avatar"],
+        avatar = NetworkImage(json["avatar"]) ,
         posts = isPopulated
             ? (json["posts"] as List).map((jsonPost) {
                 return Post.fromJson(

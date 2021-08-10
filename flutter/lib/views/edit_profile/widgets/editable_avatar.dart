@@ -1,14 +1,19 @@
 import 'dart:io';
+
+import 'package:cooking/models/User.dart';
+import 'package:cooking/providers/users.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class EditableAvatar extends StatefulWidget {
-  final ImageProvider image;
-  final Function setImage;
+  static const routeName = "/editProfile";
+  final Function toggleAvatarHasBeenModified;
+  final bool avataHasBeenModified;
 
   EditableAvatar({
-    required this.image,
-    required this.setImage,
+    required this.avataHasBeenModified,
+    required this.toggleAvatarHasBeenModified,
   });
 
   @override
@@ -18,14 +23,20 @@ class EditableAvatar extends StatefulWidget {
 class _EditableAvatarState extends State<EditableAvatar> {
   @override
   Widget build(BuildContext context) {
-    print("build");
-    final picker = ImagePicker();
+    late User user = Provider.of<UsersProvider>(context).connectedUser as User;
+    ImageProvider avatar = user.avatar;
+
+    ImagePicker imagePicker = ImagePicker();
 
     Future<void> pickImage() async {
       try {
-        XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
-        if (pickedFile != null) {
-          widget.setImage(FileImage(File("/Users/maxime/Library/Developer/CoreSimulator/Devices/A25F91DF-E64B-4F09-AC66-3532673201F2/data/Containers/Data/Application/48E9CB72-CF9F-4A1F-9388-F15AAB6F468C/tmp/image_picker_AEC92256-0C39-4E42-8034-9515A11ED62B-13246-00000BD0AFB741B7.jpg")));
+        XFile? pickedImage =
+            await imagePicker.pickImage(source: ImageSource.gallery);
+        if (pickedImage != null) {
+          File pickedFile = File(pickedImage.path);
+          setState(() {
+            user.avatar = FileImage(pickedFile);
+          });
         }
       } catch (e) {
         rethrow;
@@ -48,7 +59,7 @@ class _EditableAvatarState extends State<EditableAvatar> {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: widget.image,
+                    image: avatar,
                   ),
                 ),
               ),

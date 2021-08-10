@@ -1,5 +1,6 @@
 import 'package:cooking/models/User.dart';
 import 'package:cooking/providers/users.dart';
+import 'package:cooking/views/edit_profile/widgets/editable_avatar.dart';
 import 'package:cooking/widgets/scaffolds/secondary_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,56 +15,24 @@ class EditProfile extends StatefulWidget {
 class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
-    late User user = Provider.of<UsersProvider>(context).connectedUser as User;
-    String avatar = user.avatar;
+    bool avatarHasBeenModified = false;
 
-    void setImage() {
-      //must modifiy the image in provider because on rebuild the db avatar is re-set
-      user.updateImage(
-          "https://d1fmx1rbmqrxrr.cloudfront.net/cnet/optim/i/edit/2019/04/eso1644bsmall__w770.jpg");
-      setState(() {});
+    toggleAvatarHasBeenModified() {
+      avatarHasBeenModified = !avatarHasBeenModified;
     }
+
+    late User user = Provider.of<UsersProvider>(context).connectedUser as User;
 
     return SecondaryScaffold(
         body: Container(
-      margin: EdgeInsets.only(bottom: 80),
-      child: GestureDetector(
-        onTap: setImage,
-        child: Container(
-          alignment: Alignment.topCenter,
-          child: Stack(
-            children: [
-              Container(
-                width: 130,
-                height: 130,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black, width: 1.5),
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(avatar),
-                  ),
-                ),
-              ),
-              Positioned(
-                bottom: 5,
-                right: 5,
-                child: Container(
-                  height: 30,
-                  width: 30,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white,
-                      border: Border.all(color: Colors.black, width: 1.5)),
-                  child: Icon(
-                    Icons.edit,
-                    size: 19,
-                  ),
-                ),
-              )
-            ],
+      padding: EdgeInsets.symmetric(vertical: 25),
+      child: Column(
+        children: [
+          EditableAvatar(
+            avataHasBeenModified: avatarHasBeenModified, 
+            toggleAvatarHasBeenModified: toggleAvatarHasBeenModified,
           ),
-        ),
+        ],
       ),
     ));
   }
