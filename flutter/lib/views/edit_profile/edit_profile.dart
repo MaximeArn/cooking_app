@@ -8,16 +8,9 @@ import 'package:provider/provider.dart';
 import 'widgets/edit_profile_button.dart';
 import 'widgets/field.dart';
 
-enum FieldsType { Email, Age, Name, Password }
-
 class EditProfile extends StatefulWidget {
   static const routeName = "/editProfile";
-  final RegExp emailRegex = RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-  final RegExp ageRegex = RegExp("^[0-9]*\$");
-  final RegExp nameRegex = RegExp("^[A-Za-z,.'-]+\$");
-  final RegExp passwordRegex =
-      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+  
 
   @override
   _EditProfileState createState() => _EditProfileState();
@@ -41,50 +34,6 @@ class _EditProfileState extends State<EditProfile> {
       Navigator.pop(context);
     }
 
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-    fieldValidator(value, FieldsType fieldtype) {
-      value.trim();
-      if (value.isEmpty) {
-        return "Please enter some text";
-      }
-      // Email tests
-      else if (fieldtype == FieldsType.Email &&
-          !widget.emailRegex.hasMatch(value)) {
-        print(widget.emailRegex.hasMatch(value));
-        return "Invalid email format";
-      }
-      // Age tests
-      else if (fieldtype == FieldsType.Age) {
-        if (value == null || !widget.ageRegex.hasMatch(value)) {
-          return "Invalid age format";
-        }
-
-        value = int.tryParse(value);
-        if (!(value > 15 && value < 100)) {
-          return "Age must be between 15 and 100";
-        }
-      }
-      // Name tests
-      else if (fieldtype == FieldsType.Name) {
-        if (!widget.nameRegex.hasMatch(value)) {
-          return "Only alphabetic characters allowed";
-        }
-        if (value.length > 25) return "Name length must be under 25";
-      }
-
-      //password tests
-      else if (fieldtype == FieldsType.Password && !widget.passwordRegex.hasMatch(value)) {
-          return "invalid password format";
-      }
-      // final validation
-      else {
-        return null;
-      }
-    }
-
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
     return SecondaryScaffold(
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 25, horizontal: 25),
@@ -100,32 +49,24 @@ class _EditProfileState extends State<EditProfile> {
                     Field(
                       labelText: "Name",
                       placeholder: user.name,
-                      validator: (value) {
-                        return fieldValidator(value, FieldsType.Name);
-                      },
+                      fieldsType: FieldsType.Name,
                     ),
                     Field(
                       labelText: "Email",
                       placeholder: user.email,
-                      validator: (value) {
-                        return fieldValidator(value, FieldsType.Email);
-                      },
+                      fieldsType: FieldsType.Email,
                     ),
                     Field(
                       labelText: "Age",
                       placeholder: 19.toString(),
                       isAge: true,
-                      validator: (value) {
-                        return fieldValidator(value, FieldsType.Age);
-                      },
+                      fieldsType: FieldsType.Age,
                     ),
                     Field(
                       labelText: "Password",
                       placeholder: user.password,
                       isPassword: true,
-                      validator: (value) {
-                        return fieldValidator(value, FieldsType.Password);
-                      },
+                      fieldsType: FieldsType.Password,
                     ),
                   ],
                 ),
