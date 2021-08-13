@@ -10,7 +10,6 @@ import 'widgets/field.dart';
 
 class EditProfile extends StatefulWidget {
   static const routeName = "/editProfile";
-  
 
   @override
   _EditProfileState createState() => _EditProfileState();
@@ -20,14 +19,42 @@ class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
+    final nameController = TextEditingController();
+    final emailController = TextEditingController();
+    final ageController = TextEditingController();
+    final passwordController = TextEditingController();
     late User user = Provider.of<UsersProvider>(context).connectedUser as User;
 
     void onSubmit() {
       if (formKey.currentState!.validate()) {
         print("submit form");
+        Provider.of<UsersProvider>(context, listen: false).updateUser(
+          name: nameController.text,
+          email: emailController.text,
+          age: ageController.text,
+          pwd: passwordController.text,
+        );
       } else {
         print("bad format !!!");
       }
+    }
+
+    @override
+    void initState() {
+      nameController.addListener(() {});
+      emailController.addListener(() {});
+      ageController.addListener(() {});
+      passwordController.addListener(() {});
+      super.initState();
+    }
+
+    @override
+    void dispose() {
+      nameController.dispose();
+      emailController.dispose();
+      ageController.dispose();
+      passwordController.dispose();
+      super.dispose();
     }
 
     void onCancel() {
@@ -50,23 +77,27 @@ class _EditProfileState extends State<EditProfile> {
                       labelText: "Name",
                       placeholder: user.name,
                       fieldsType: FieldsType.Name,
+                      controller: nameController,
                     ),
                     Field(
                       labelText: "Email",
                       placeholder: user.email,
                       fieldsType: FieldsType.Email,
+                      controller: emailController,
                     ),
                     Field(
                       labelText: "Age",
                       placeholder: 19.toString(),
                       isAge: true,
                       fieldsType: FieldsType.Age,
+                      controller: ageController,
                     ),
                     Field(
                       labelText: "Password",
                       placeholder: user.password,
                       isPassword: true,
                       fieldsType: FieldsType.Password,
+                      controller: passwordController,
                     ),
                   ],
                 ),

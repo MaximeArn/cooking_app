@@ -77,4 +77,13 @@ class UsersProvider with ChangeNotifier {
     notifyListeners();
     isLoading = false;
   }
+
+  Future<void> updateUser({
+    required String name,
+    required String email,
+    required String age,
+    required String pwd,
+  }) async {
+    
+  }
 }

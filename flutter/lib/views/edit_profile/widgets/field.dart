@@ -7,7 +7,7 @@ class Field extends StatelessWidget {
   final String labelText;
   final String placeholder;
   final bool isAge;
-  // final TextEditingController controller;
+  final TextEditingController controller;
   final FieldsType fieldsType;
 
   Field(
@@ -15,7 +15,7 @@ class Field extends StatelessWidget {
       required this.labelText,
       required this.placeholder,
       this.isAge = false,
-      // required this.controller,
+      required this.controller,
       required this.fieldsType});
 
   @override
@@ -73,7 +73,7 @@ class Field extends StatelessWidget {
         validator: (value) {
           return fieldValidator(value, fieldsType);
         },
-        // controller: controller,
+        controller: controller,
         obscureText: isPassword ? true : false,
         decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(

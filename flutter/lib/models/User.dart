@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class User {
   final String id;
-  final String name;
-  final String email;
+  String name;
+  String email;
   final String password;
   ImageProvider avatar;
   final List<Post> posts;
