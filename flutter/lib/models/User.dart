@@ -5,7 +5,7 @@ class User {
   final String id;
   String name;
   String email;
-  final String password;
+  String password;
   ImageProvider avatar;
   final List<Post> posts;
   final int stars;
@@ -23,6 +23,11 @@ class User {
     required this.subscribers,
     required this.subscriptions,
   });
+
+  void setHashedPassword(String password) {
+    //pass hashed password 
+    this.password = password;
+  }
 
   User.fromJson(Map<String, dynamic> json, {bool isPopulated = true})
       : id = json["_id"],

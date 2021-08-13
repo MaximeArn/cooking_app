@@ -84,6 +84,10 @@ class UsersProvider with ChangeNotifier {
     required String age,
     required String pwd,
   }) async {
-    
+    connectedUser!.name = name;
+    connectedUser!.email = email;
+    // add age in User model
+    // connectedUser!.age = int.parse(age);
+    connectedUser!.setHashedPassword(pwd);
   }
 }
