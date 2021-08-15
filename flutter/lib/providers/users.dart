@@ -90,5 +90,18 @@ class UsersProvider with ChangeNotifier {
     connectedUser!.password = pwd;
 
     String jsonUser = connectedUser!.toJson();
+
+    try {
+      http.Response response = await http.patch(
+          Uri.parse(
+            "$serverUrl/users/${connectedUser!.id}",
+          ),
+          headers: {'Content-type': 'application/json'},
+          body: jsonUser);
+      print(json.decode(response.body));
+      connectedUser = User.fromJson(json.decode(response.body));
+    } catch (e) {
+      rethrow;
+    }
   }
 }

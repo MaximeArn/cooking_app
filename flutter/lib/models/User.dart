@@ -55,7 +55,6 @@ class User {
       "email": this.email,
       "password": this.password,
     });
-    print(userJson);
     return userJson;
   }
 }

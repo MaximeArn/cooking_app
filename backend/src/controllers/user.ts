@@ -32,10 +32,13 @@ module.exports = {
     res: Response
   ) => {
     try {
-      console.log(body);
-      console.log(userId);
-      const newUser = await User.findByIdAndUpdate(userId);
-      res.end();
+      const newUser = await User.findByIdAndUpdate(userId, body, {
+        useFindAndModify: false,
+      }).populate({
+        path: "posts",
+        model: "post",
+      });
+      res.status(200).json(newUser);
     } catch (error) {
       console.log(error);
     }
