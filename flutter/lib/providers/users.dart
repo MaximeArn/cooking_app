@@ -86,8 +86,7 @@ class UsersProvider with ChangeNotifier {
   }) async {
     connectedUser!.name = name;
     connectedUser!.email = email;
-    // add age in User model
-    // connectedUser!.age = int.parse(age);
+    connectedUser!.age = int.parse(age);
     connectedUser!.setHashedPassword(pwd);
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class User {
   final String id;
+  int age;
   String name;
   String email;
   String password;
@@ -14,6 +15,7 @@ class User {
 
   User({
     required this.id,
+    required this.age,
     required this.name,
     required this.email,
     required this.password,
@@ -25,12 +27,13 @@ class User {
   });
 
   void setHashedPassword(String password) {
-    //pass hashed password 
+    //pass hashed password
     this.password = password;
   }
 
   User.fromJson(Map<String, dynamic> json, {bool isPopulated = true})
       : id = json["_id"],
+        age = json["age"],
         name = json["name"],
         email = json["email"],
         password = json["password"],
