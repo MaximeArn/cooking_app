@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cooking/models/Post.dart';
 import 'package:flutter/material.dart';
 
@@ -26,11 +28,6 @@ class User {
     required this.subscriptions,
   });
 
-  void setHashedPassword(String password) {
-    //pass hashed password
-    this.password = password;
-  }
-
   User.fromJson(Map<String, dynamic> json, {bool isPopulated = true})
       : id = json["_id"],
         age = json["age"],
@@ -49,4 +46,16 @@ class User {
         stars = json["stars"],
         subscribers = json["subscribers"],
         subscriptions = json["subscriptions"];
+
+  String toJson() {
+    final userJson = json.encode({
+      "_id": this.id,
+      "age": this.age,
+      "name": this.name,
+      "email": this.email,
+      "password": this.password,
+    });
+    print(userJson);
+    return userJson;
+  }
 }

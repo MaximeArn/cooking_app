@@ -87,6 +87,8 @@ class UsersProvider with ChangeNotifier {
     connectedUser!.name = name;
     connectedUser!.email = email;
     connectedUser!.age = int.parse(age);
-    connectedUser!.setHashedPassword(pwd);
+    connectedUser!.password = pwd;
+
+    String jsonUser = connectedUser!.toJson();
   }
 }
