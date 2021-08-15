@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import User, { UserInterface } from "../../models/user";
+import { hashPassword } from "../utils/passwordHash";
 
 module.exports = {
   getUserById: async ({ params: { userId } }: Request, res: Response) => {
@@ -32,9 +33,16 @@ module.exports = {
     res: Response
   ) => {
     try {
-      const newUser = await User.findByIdAndUpdate(userId, body, {
-        useFindAndModify: false,
-      }).populate({
+      const passwordIsHashed = body.password.length == 60;
+      const newUser = await User.findByIdAndUpdate(
+        userId,
+        passwordIsHashed
+          ? { body }
+          : { ...body, password: await hashPassword(body.password) },
+        {
+          useFindAndModify: false,
+        }
+      ).populate({
         path: "posts",
         model: "post",
       });
