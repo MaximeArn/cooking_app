@@ -32,13 +32,16 @@ class UsersProvider with ChangeNotifier {
     }
   }
 
-  Future<dynamic> getConnectedUser(String userId) async {
+  Future<dynamic> getConnectedUser(String userId, [bool refresh = false]) async {
     try {
       http.Response response =
           await http.get(Uri.parse("$serverUrl/users/$userId"));
       if (response.statusCode == 200) {
         User user = User.fromJson(json.decode(response.body));
         connectedUser = user;
+        if(refresh) {
+          notifyListeners();
+        }
         return user;
       }
     } catch (e) {
@@ -47,7 +50,7 @@ class UsersProvider with ChangeNotifier {
     }
   }
 
-  Future<void> getFilteredUsers(String filter, [String? bla]) async {
+  Future<void> getFilteredUsers(String filter) async {
     isLoading = true;
     late http.Response response;
     // the filter must not be empty and it must either be the first search or that there are already results so as not to continue to search if no user matches with the filter.
@@ -99,7 +102,7 @@ class UsersProvider with ChangeNotifier {
           headers: {'Content-type': 'application/json'},
           body: jsonUser);
       print(json.decode(response.body));
-      connectedUser = User.fromJson(json.decode(response.body));
+      connectedUser = await getConnectedUser(connectedUser!.id, true);
     } catch (e) {
       rethrow;
     }

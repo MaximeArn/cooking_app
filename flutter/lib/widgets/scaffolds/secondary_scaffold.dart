@@ -11,7 +11,6 @@ class SecondaryScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
       appBar: const CookingAppBar(
         isOwnProfile: false,
       ),

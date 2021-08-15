@@ -34,27 +34,10 @@ class _EditProfileState extends State<EditProfile> {
           age: ageController.text,
           pwd: passwordController.text,
         );
+        Navigator.pop(context, true);
       } else {
         print("bad format !!!");
       }
-    }
-
-    @override
-    void initState() {
-      nameController.addListener(() {});
-      emailController.addListener(() {});
-      ageController.addListener(() {});
-      passwordController.addListener(() {});
-      super.initState();
-    }
-
-    @override
-    void dispose() {
-      nameController.dispose();
-      emailController.dispose();
-      ageController.dispose();
-      passwordController.dispose();
-      super.dispose();
     }
 
     void onCancel() {
