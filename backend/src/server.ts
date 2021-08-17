@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import userRouter from "./routers/user";
 import postRouter from "./routers/post";
 import rewardRouter from "./routers/reward";
+import imagesRouter from "./routers/images";
 import { config } from "dotenv";
 
 config();
@@ -28,5 +29,6 @@ server.use(express.static(`${__dirname}/../public`));
 server.use("/users", userRouter);
 server.use("/posts", postRouter);
 server.use("/rewards", rewardRouter);
+server.use("/images", imagesRouter);
 
 server.listen(PORT, () => console.log(`server is listening on ${PORT}`));

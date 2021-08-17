@@ -94,6 +94,7 @@ class UsersProvider with ChangeNotifier {
     File? avatar = connectedUser!.fileImage;
     if (avatar != null) {
       print(avatar.path);
+
       try {
         http.MultipartRequest request = http.MultipartRequest(
             "POST", Uri.parse("$serverUrl/images/user/avatar"));
@@ -106,6 +107,9 @@ class UsersProvider with ChangeNotifier {
             contentType: MediaType("multipart", "form-data"),
           ),
         );
+
+        var response = await request.send();
+        print(response);
       } catch (e) {
         rethrow;
       }
