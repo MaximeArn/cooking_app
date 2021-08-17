@@ -33,35 +33,20 @@ module.exports = {
     res: Response
   ) => {
     try {
-      // console.log(body);
-
+      console.log(body);
       const filteredBody: any = {};
       for (const key in body) {
         if (body[key] != "") {
-          filteredBody[key] = body[key];
+          console.log(key);
+          key == "password"
+            ? (filteredBody[key] = await hashPassword(body[key]))
+            : (filteredBody[key] = body[key]);
         }
       }
 
-      // console.log(filteredBody);
-      // let passwordIsHashed: boolean = true;
-      // if (filteredBody.password) {
-      //   passwordIsHashed = filteredBody.password.length == 60;
-      // }
-
-      // console.log(passwordIsHashed);
-      const newUser = await User.findByIdAndUpdate(
-        userId,
-        filteredBody,
-        // passwordIsHashed
-        //   ? { filteredBody }
-        //   : {
-        //       ...filteredBody,
-        //       password: await hashPassword(filteredBody.password),
-        //     },
-        {
-          useFindAndModify: false,
-        }
-      ).populate({
+      const newUser = await User.findByIdAndUpdate(userId, filteredBody, {
+        useFindAndModify: false,
+      }).populate({
         path: "posts",
         model: "post",
       });
