@@ -5,6 +5,8 @@ import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/User.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:path/path.dart';
+import 'package:http_parser/http_parser.dart';
 
 class UsersProvider with ChangeNotifier {
   bool isLoading = false;
@@ -91,7 +93,22 @@ class UsersProvider with ChangeNotifier {
   }) async {
     File? avatar = connectedUser!.fileImage;
     if (avatar != null) {
-      print(avatar.path);    
+      print(avatar.path);
+      try {
+        http.MultipartRequest request = http.MultipartRequest(
+            "POST", Uri.parse("$serverUrl/images/user/avatar"));
+
+        request.files.add(
+          http.MultipartFile.fromBytes(
+            "profile",
+            avatar.readAsBytesSync(),
+            filename: basename(avatar.path),
+            contentType: MediaType("multipart", "form-data"),
+          ),
+        );
+      } catch (e) {
+        rethrow;
+      }
     }
 
     connectedUser!.name = name;
