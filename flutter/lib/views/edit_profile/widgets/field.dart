@@ -49,7 +49,7 @@ class Field extends StatelessWidget {
         }
       }
       // Name tests
-      else if (fieldtype == FieldsType.Name) {
+      else if (fieldtype == FieldsType.Name && value.isNotEmpty) {
         if (!nameRegex.hasMatch(value)) {
           return "Only alphabetic characters allowed";
         }
