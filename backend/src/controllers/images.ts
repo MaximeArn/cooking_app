@@ -1,11 +1,8 @@
-import { Request, Response, NextFunction } from "express";
-import multer from "multer";
+import { Response } from "express";
 
 module.exports = {
-  uploadAvatar: (req: Request, res: Response, next: NextFunction) => {
-    console.log("upload avatar !");
-    const upload = multer({
-      dest: "public/assets/images/avatars",
-    });
+  uploadAvatar: ({ file: { originalName } }, res: Response) => {
+    const path = `http://localhost/public/assets/images/avatars/${originalName}`;
+    res.send(path).status(200);
   },
 };

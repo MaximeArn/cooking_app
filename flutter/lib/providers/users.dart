@@ -93,15 +93,12 @@ class UsersProvider with ChangeNotifier {
   }) async {
     File? avatar = connectedUser!.fileImage;
     if (avatar != null) {
-      print(avatar.path);
-
       try {
         http.MultipartRequest request = http.MultipartRequest(
             "POST", Uri.parse("$serverUrl/images/user/avatar"));
-
         request.files.add(
           http.MultipartFile.fromBytes(
-            "profile",
+            "avatar",
             avatar.readAsBytesSync(),
             filename: basename(avatar.path),
             contentType: MediaType("multipart", "form-data"),
@@ -115,25 +112,25 @@ class UsersProvider with ChangeNotifier {
       }
     }
 
-    connectedUser!.name = name;
-    connectedUser!.email = email;
-    if (age.isNotEmpty) {
-      connectedUser!.age = int.parse(age);
-    }
-    connectedUser!.password = pwd;
+    // connectedUser!.name = name;
+    // connectedUser!.email = email;
+    // if (age.isNotEmpty) {
+    //   connectedUser!.age = int.parse(age);
+    // }
+    // connectedUser!.password = pwd;
 
-    String jsonUser = connectedUser!.toJson();
+    // String jsonUser = connectedUser!.toJson();
 
-    try {
-      http.Response response = await http.patch(
-          Uri.parse(
-            "$serverUrl/users/${connectedUser!.id}",
-          ),
-          headers: {'Content-type': 'application/json'},
-          body: jsonUser);
-      connectedUser = await getConnectedUser(connectedUser!.id, true);
-    } catch (e) {
-      rethrow;
-    }
+    // try {
+    //   http.Response response = await http.patch(
+    //       Uri.parse(
+    //         "$serverUrl/users/${connectedUser!.id}",
+    //       ),
+    //       headers: {'Content-type': 'application/json'},
+    //       body: jsonUser);
+    //   connectedUser = await getConnectedUser(connectedUser!.id, true);
+    // } catch (e) {
+    //   rethrow;
+    // }
   }
 }
