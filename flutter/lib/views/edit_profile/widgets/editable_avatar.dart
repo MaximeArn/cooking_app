@@ -28,6 +28,7 @@ class _EditableAvatarState extends State<EditableAvatar> {
         if (pickedImage != null) {
           File pickedFile = File(pickedImage.path);
           setState(() {
+            user.fileImage = pickedFile;
             user.avatar = FileImage(pickedFile);
           });
         }

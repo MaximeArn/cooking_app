@@ -1,5 +1,6 @@
 import 'dart:collection';
 import 'dart:convert';
+import 'dart:io';
 import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/User.dart';
 import 'package:flutter/material.dart';
@@ -32,14 +33,15 @@ class UsersProvider with ChangeNotifier {
     }
   }
 
-  Future<dynamic> getConnectedUser(String userId, [bool refresh = false]) async {
+  Future<dynamic> getConnectedUser(String userId,
+      [bool refresh = false]) async {
     try {
       http.Response response =
           await http.get(Uri.parse("$serverUrl/users/$userId"));
       if (response.statusCode == 200) {
         User user = User.fromJson(json.decode(response.body));
         connectedUser = user;
-        if(refresh) {
+        if (refresh) {
           notifyListeners();
         }
         return user;
@@ -87,11 +89,16 @@ class UsersProvider with ChangeNotifier {
     required String age,
     required String pwd,
   }) async {
+    File? avatar = connectedUser!.fileImage;
+    if (avatar != null) {
+      print(avatar.path);    
+    }
+
     connectedUser!.name = name;
     connectedUser!.email = email;
     if (age.isNotEmpty) {
-    connectedUser!.age = int.parse(age);  
-    } 
+      connectedUser!.age = int.parse(age);
+    }
     connectedUser!.password = pwd;
 
     String jsonUser = connectedUser!.toJson();
@@ -103,7 +110,6 @@ class UsersProvider with ChangeNotifier {
           ),
           headers: {'Content-type': 'application/json'},
           body: jsonUser);
-      print(json.decode(response.body));
       connectedUser = await getConnectedUser(connectedUser!.id, true);
     } catch (e) {
       rethrow;

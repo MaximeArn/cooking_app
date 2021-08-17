@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:cooking/models/Post.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class User {
   final int stars;
   final int subscribers;
   final int subscriptions;
+  File? fileImage = null;
 
   User({
     required this.id,
