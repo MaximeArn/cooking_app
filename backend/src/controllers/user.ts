@@ -33,7 +33,6 @@ module.exports = {
     res: Response
   ) => {
     try {
-      console.log(body);
       const filteredBody: any = {};
       for (const key in body) {
         if (body[key] != "") {

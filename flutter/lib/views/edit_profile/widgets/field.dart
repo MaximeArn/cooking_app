@@ -20,7 +20,6 @@ class Field extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final emailRegex = RegExp(
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
     final ageRegex = RegExp("^[0-9]*\$");
@@ -30,38 +29,37 @@ class Field extends StatelessWidget {
 
     fieldValidator(value, FieldsType fieldtype) {
       value.trim();
-      // if (value.isEmpty) {
-      //   return "Please enter some text";
-      // }
-      // Email tests
-      if ((fieldtype == FieldsType.Email && value.isNotEmpty )&& !emailRegex.hasMatch(value)) {
-        return "Invalid email format";
-      }
-      // Age tests
-      else if (fieldtype == FieldsType.Age) {
-        if (value == null || !ageRegex.hasMatch(value)) {
-          return "Invalid age format";
+      if (value.isNotEmpty) {
+        // Email tests
+        if ((fieldtype == FieldsType.Email) && !emailRegex.hasMatch(value)) {
+          return "Invalid email format";
         }
+        // Age tests
+        else if (fieldtype == FieldsType.Age) {
+          if (value == null || !ageRegex.hasMatch(value)) {
+            return "Invalid age format";
+          }
 
-        value = int.tryParse(value);
-        if (value != null && (!(value > 15 && value < 100))) {
-          return "Age must be between 15 and 100";
+          value = int.tryParse(value);
+          if (!(value > 15 && value < 100)) {
+            return "Age must be between 15 and 100";
+          }
         }
-      }
-      // Name tests
-      else if (fieldtype == FieldsType.Name && value.isNotEmpty) {
-        if (!nameRegex.hasMatch(value)) {
-          return "Only alphabetic characters allowed";
+        // Name tests
+        else if (fieldtype == FieldsType.Name) {
+          if (!nameRegex.hasMatch(value)) {
+            return "Only alphabetic characters allowed";
+          }
+          if (value.length > 25) return "Name length must be under 25";
         }
-        if (value.length > 25) return "Name length must be under 25";
-      }
-      //password tests
-      else if ((fieldtype == FieldsType.Password && value.isNotEmpty) &&
-          !passwordRegex.hasMatch(value)) {
-        return "invalid password format";
-      }
-      // final validation
-      else {
+        //password tests
+        else if (fieldtype == FieldsType.Password &&
+            !passwordRegex.hasMatch(value)) {
+          return "invalid password format";
+        }
+        // final validation
+
+      } else {
         return null;
       }
     }
