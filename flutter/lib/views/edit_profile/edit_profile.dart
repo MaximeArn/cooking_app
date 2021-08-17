@@ -23,11 +23,15 @@ class _EditProfileState extends State<EditProfile> {
     final emailController = TextEditingController();
     final ageController = TextEditingController();
     final passwordController = TextEditingController();
+
     late User user = Provider.of<UsersProvider>(context).connectedUser as User;
 
     void onSubmit() {
-      if (formKey.currentState!.validate()) {
-        print("submit form");
+      final bool allFieldsAreEmpty = nameController.text.isEmpty ||
+          emailController.text.isEmpty ||
+          ageController.text.isEmpty ||
+          passwordController.text.isEmpty;
+      if (formKey.currentState!.validate() && !allFieldsAreEmpty) {
         Provider.of<UsersProvider>(context, listen: false).updateUser(
           name: nameController.text,
           email: emailController.text,
@@ -36,6 +40,7 @@ class _EditProfileState extends State<EditProfile> {
         );
         Navigator.pop(context, true);
       } else {
+        Navigator.pop(context);
         print("bad format !!!");
       }
     }
@@ -70,7 +75,7 @@ class _EditProfileState extends State<EditProfile> {
                     ),
                     Field(
                       labelText: "Age",
-                      placeholder: 19.toString(),
+                      placeholder: user.age.toString(),
                       isAge: true,
                       fieldsType: FieldsType.Age,
                       controller: ageController,
