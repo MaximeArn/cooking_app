@@ -30,11 +30,11 @@ class Field extends StatelessWidget {
 
     fieldValidator(value, FieldsType fieldtype) {
       value.trim();
-      if (value.isEmpty) {
-        return "Please enter some text";
-      }
+      // if (value.isEmpty) {
+      //   return "Please enter some text";
+      // }
       // Email tests
-      else if (fieldtype == FieldsType.Email && !emailRegex.hasMatch(value)) {
+      if ((fieldtype == FieldsType.Email && value.isNotEmpty )&& !emailRegex.hasMatch(value)) {
         return "Invalid email format";
       }
       // Age tests
@@ -44,7 +44,7 @@ class Field extends StatelessWidget {
         }
 
         value = int.tryParse(value);
-        if (!(value > 15 && value < 100)) {
+        if (value != null && (!(value > 15 && value < 100))) {
           return "Age must be between 15 and 100";
         }
       }
@@ -56,7 +56,7 @@ class Field extends StatelessWidget {
         if (value.length > 25) return "Name length must be under 25";
       }
       //password tests
-      else if (fieldtype == FieldsType.Password &&
+      else if ((fieldtype == FieldsType.Password && value.isNotEmpty) &&
           !passwordRegex.hasMatch(value)) {
         return "invalid password format";
       }

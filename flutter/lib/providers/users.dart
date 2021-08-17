@@ -89,7 +89,9 @@ class UsersProvider with ChangeNotifier {
   }) async {
     connectedUser!.name = name;
     connectedUser!.email = email;
-    connectedUser!.age = int.parse(age);
+    if (age.isNotEmpty) {
+    connectedUser!.age = int.parse(age);  
+    } 
     connectedUser!.password = pwd;
 
     String jsonUser = connectedUser!.toJson();

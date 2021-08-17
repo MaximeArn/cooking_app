@@ -33,12 +33,31 @@ module.exports = {
     res: Response
   ) => {
     try {
-      const passwordIsHashed = body.password.length == 60;
+      // console.log(body);
+
+      const filteredBody: any = {};
+      for (const key in body) {
+        if (body[key] != "") {
+          filteredBody[key] = body[key];
+        }
+      }
+
+      // console.log(filteredBody);
+      // let passwordIsHashed: boolean = true;
+      // if (filteredBody.password) {
+      //   passwordIsHashed = filteredBody.password.length == 60;
+      // }
+
+      // console.log(passwordIsHashed);
       const newUser = await User.findByIdAndUpdate(
         userId,
-        passwordIsHashed
-          ? { body }
-          : { ...body, password: await hashPassword(body.password) },
+        filteredBody,
+        // passwordIsHashed
+        //   ? { filteredBody }
+        //   : {
+        //       ...filteredBody,
+        //       password: await hashPassword(filteredBody.password),
+        //     },
         {
           useFindAndModify: false,
         }
@@ -46,6 +65,7 @@ module.exports = {
         path: "posts",
         model: "post",
       });
+
       res.status(200).json(newUser);
     } catch (error) {
       console.log(error);
