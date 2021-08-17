@@ -30,7 +30,8 @@ class _EditProfileState extends State<EditProfile> {
       final bool allFieldsAreEmpty = nameController.text.isEmpty &&
           emailController.text.isEmpty &&
           ageController.text.isEmpty &&
-          passwordController.text.isEmpty;
+          passwordController.text.isEmpty &&
+          user.fileImage == null;
 
       if (formKey.currentState!.validate() && !allFieldsAreEmpty) {
         Provider.of<UsersProvider>(context, listen: false).updateUser(
