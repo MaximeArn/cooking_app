@@ -1,9 +1,21 @@
 import { Router } from "express";
+import multer from "multer";
+import path from "path";
 const { uploadAvatar } = require("../controllers/images");
 
-import multer from "multer";
-const avatarsUpload = multer({
-  dest: "public/assets/images/avatars",
+const subpath = "/public/assets/images/activities";
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "public/assets/images/avatars");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+
+var avatarsUpload = multer({
+  storage,
 });
 
 const imagesRouter = Router();

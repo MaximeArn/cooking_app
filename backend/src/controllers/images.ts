@@ -8,3 +8,4 @@ module.exports = {
 };
 
 //not the same name beetween the uploaded file name and the url returned by the api !!!
+// use the disk storage to configure the filename and extension.
