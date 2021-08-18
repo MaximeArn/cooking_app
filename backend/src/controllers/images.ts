@@ -1,8 +1,9 @@
 import { Response } from "express";
 
 module.exports = {
-  uploadAvatar: ({ file: { originalname } }, res: Response) => {
-    const path = `http://localhost/public/assets/images/avatars/${originalname}`;
+  uploadAvatar: ({ file: { filename } }, res: Response) => {
+    const path = `http://localhost:4545/assets/images/avatars/${filename}`;
+    console.log(path);
     res.json(path).status(200);
   },
 };

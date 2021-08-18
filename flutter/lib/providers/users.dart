@@ -128,7 +128,9 @@ class UsersProvider with ChangeNotifier {
     }
     connectedUser!.password = pwd;
 
+    print(connectedUser!.avatar);
     String jsonUser = connectedUser!.toJson();
+    print(jsonUser);
 
     try {
       http.Response response = await http.patch(

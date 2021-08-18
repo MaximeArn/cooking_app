@@ -56,6 +56,7 @@ class User {
       "name": this.name,
       "email": this.email,
       "password": this.password,
+      "avatar": this.avatar,
     });
     return userJson;
   }
