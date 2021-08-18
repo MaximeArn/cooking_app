@@ -17,7 +17,7 @@ class _EditableAvatarState extends State<EditableAvatar> {
   @override
   Widget build(BuildContext context) {
     late User user = Provider.of<UsersProvider>(context).connectedUser as User;
-    ImageProvider avatar = user.avatar;
+    String avatar = user.avatar;
 
     ImagePicker imagePicker = ImagePicker();
 
@@ -29,7 +29,6 @@ class _EditableAvatarState extends State<EditableAvatar> {
           File pickedFile = File(pickedImage.path);
           setState(() {
             user.fileImage = pickedFile;
-            user.avatar = FileImage(pickedFile);
           });
         }
       } catch (e) {
@@ -53,7 +52,7 @@ class _EditableAvatarState extends State<EditableAvatar> {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: avatar,
+                    image: user.fileImage == null ? NetworkImage(avatar) : FileImage(user.fileImage as File) as ImageProvider,
                   ),
                 ),
               ),

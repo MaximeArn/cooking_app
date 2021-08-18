@@ -109,6 +109,8 @@ class UsersProvider with ChangeNotifier {
         if (response.statusCode == 200) {
           final responseData = await response.stream.toBytes();
           String decodedUrl = json.decode(String.fromCharCodes(responseData));
+
+          //modify the value of connectedUser avatar before updating user in DB.
           // connectedUser!.avatar = NetworkImage(decodedUrl);
         } else {
           throw Exception("server error during image upload");

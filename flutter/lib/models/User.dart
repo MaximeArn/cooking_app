@@ -10,7 +10,7 @@ class User {
   String name;
   String email;
   String password;
-  ImageProvider avatar;
+  String avatar;
   final List<Post> posts;
   final int stars;
   final int subscribers;
@@ -36,7 +36,7 @@ class User {
         name = json["name"],
         email = json["email"],
         password = json["password"],
-        avatar = NetworkImage(json["avatar"]),
+        avatar = json["avatar"],
         posts = isPopulated
             ? (json["posts"] as List).map((jsonPost) {
                 return Post.fromJson(

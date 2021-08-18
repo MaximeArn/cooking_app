@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class ProfileHeader extends StatelessWidget {
   final String name;
-  final ImageProvider avatar;
+  final String avatar;
   final int stars;
   final int subscribers;
   final int subscriptions;
@@ -23,7 +23,7 @@ class ProfileHeader extends StatelessWidget {
           builder: (_) => Dialog(
               backgroundColor: Colors.transparent,
               child: CircleAvatar(
-                backgroundImage: avatar,
+                backgroundImage: NetworkImage(avatar),
                 radius: MediaQuery.of(context).size.width * (1 / 3),
               )),
         );
@@ -130,7 +130,7 @@ class ProfileHeader extends StatelessWidget {
               child: GestureDetector(
                 child: CircleAvatar(
                   radius: 45,
-                  backgroundImage: avatar,
+                  backgroundImage: NetworkImage(avatar),
                 ),
                 onTap: () {
                   showImage();
