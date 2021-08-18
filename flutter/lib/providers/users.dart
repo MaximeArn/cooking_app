@@ -106,31 +106,37 @@ class UsersProvider with ChangeNotifier {
         );
 
         var response = await request.send();
-        print(response);
+        if (response.statusCode == 200) {
+          final responseData = await response.stream.toBytes();
+          String decodedUrl = json.decode(String.fromCharCodes(responseData));
+          // connectedUser!.avatar = NetworkImage(decodedUrl);
+        } else {
+          throw Exception("server error during image upload");
+        }
       } catch (e) {
         rethrow;
       }
     }
 
-    // connectedUser!.name = name;
-    // connectedUser!.email = email;
-    // if (age.isNotEmpty) {
-    //   connectedUser!.age = int.parse(age);
-    // }
-    // connectedUser!.password = pwd;
+    connectedUser!.name = name;
+    connectedUser!.email = email;
+    if (age.isNotEmpty) {
+      connectedUser!.age = int.parse(age);
+    }
+    connectedUser!.password = pwd;
 
-    // String jsonUser = connectedUser!.toJson();
+    String jsonUser = connectedUser!.toJson();
 
-    // try {
-    //   http.Response response = await http.patch(
-    //       Uri.parse(
-    //         "$serverUrl/users/${connectedUser!.id}",
-    //       ),
-    //       headers: {'Content-type': 'application/json'},
-    //       body: jsonUser);
-    //   connectedUser = await getConnectedUser(connectedUser!.id, true);
-    // } catch (e) {
-    //   rethrow;
-    // }
+    try {
+      http.Response response = await http.patch(
+          Uri.parse(
+            "$serverUrl/users/${connectedUser!.id}",
+          ),
+          headers: {'Content-type': 'application/json'},
+          body: jsonUser);
+      connectedUser = await getConnectedUser(connectedUser!.id, true);
+    } catch (e) {
+      rethrow;
+    }
   }
 }
