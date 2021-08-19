@@ -1,4 +1,3 @@
-import 'package:cooking/models/User.dart';
 import 'package:cooking/providers/users.dart';
 import 'package:cooking/views/profiles/widgets/profile_header.dart';
 import 'package:cooking/views/profiles/widgets/user_posts.dart';
@@ -16,8 +15,6 @@ class OwnProfile extends StatefulWidget {
 class _OwnProfileState extends State<OwnProfile> {
   @override
   Widget build(BuildContext context) {
-
-    User? user = Provider.of<UsersProvider>(context).connectedUser;
     final UsersProvider usersProvider = Provider.of<UsersProvider>(context);
 
     return FutureBuilder(

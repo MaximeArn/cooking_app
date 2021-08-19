@@ -85,60 +85,61 @@ class UsersProvider with ChangeNotifier {
     isLoading = false;
   }
 
+  Future<void> uploadAvatar() async {
+    File avatar = connectedUser!.fileImage as File;
+    try {
+      http.MultipartRequest request = http.MultipartRequest(
+          "POST", Uri.parse("$serverUrl/images/user/avatar"));
+      request.files.add(
+        http.MultipartFile.fromBytes(
+          "avatar",
+          avatar.readAsBytesSync(),
+          filename: basename(avatar.path),
+          contentType: MediaType("multipart", "form-data"),
+        ),
+      );
+
+      final response = await request.send();
+      if (response.statusCode == 200) {
+        final responseData = await response.stream.toBytes();
+        String decodedUrl = json.decode(String.fromCharCodes(responseData));
+        String oldUrl = connectedUser!.avatar;
+        print(oldUrl);
+        connectedUser!.avatar = decodedUrl;
+        print(decodedUrl);
+      } else {
+        throw Exception("server error during image upload");
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<void> updateUser({
     required String name,
     required String email,
     required String age,
     required String pwd,
   }) async {
-    File? avatar = connectedUser!.fileImage;
-    if (avatar != null) {
-      try {
-        http.MultipartRequest request = http.MultipartRequest(
-            "POST", Uri.parse("$serverUrl/images/user/avatar"));
-        request.files.add(
-          http.MultipartFile.fromBytes(
-            "avatar",
-            avatar.readAsBytesSync(),
-            filename: basename(avatar.path),
-            contentType: MediaType("multipart", "form-data"),
-          ),
-        );
-
-        var response = await request.send();
-        if (response.statusCode == 200) {
-          final responseData = await response.stream.toBytes();
-          String decodedUrl = json.decode(String.fromCharCodes(responseData));
-
-          //modify the value of connectedUser avatar before updating user in DB.
-          print(decodedUrl);
-          connectedUser!.avatar = decodedUrl;
-        } else {
-          throw Exception("server error during image upload");
-        }
-      } catch (e) {
-        rethrow;
-      }
-    }
+    if (connectedUser!.fileImage != null) await uploadAvatar();
 
     connectedUser!.name = name;
     connectedUser!.email = email;
+    connectedUser!.password = pwd;
     if (age.isNotEmpty) {
       connectedUser!.age = int.parse(age);
     }
-    connectedUser!.password = pwd;
 
-    print(connectedUser!.avatar);
     String jsonUser = connectedUser!.toJson();
-    print(jsonUser);
 
     try {
-      http.Response response = await http.patch(
-          Uri.parse(
-            "$serverUrl/users/${connectedUser!.id}",
-          ),
-          headers: {'Content-type': 'application/json'},
-          body: jsonUser);
+      await http.patch(
+        Uri.parse(
+          "$serverUrl/users/${connectedUser!.id}",
+        ),
+        headers: {'Content-type': 'application/json'},
+        body: jsonUser,
+      );
       connectedUser = await getConnectedUser(connectedUser!.id, true);
     } catch (e) {
       rethrow;

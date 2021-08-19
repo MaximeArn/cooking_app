@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:cooking/models/Post.dart';
-import 'package:flutter/material.dart';
 
 class User {
   final String id;

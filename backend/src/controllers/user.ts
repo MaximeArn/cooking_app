@@ -14,6 +14,7 @@ module.exports = {
       console.log(error);
     }
   },
+
   getUsersByName: async ({ params: { filter } }: Request, res: Response) => {
     try {
       const filterObject: any = {
@@ -28,6 +29,7 @@ module.exports = {
       console.log(error);
     }
   },
+
   updateProfile: async (
     { params: { userId }, body }: Request,
     res: Response
@@ -36,7 +38,6 @@ module.exports = {
       const filteredBody: any = {};
       for (const key in body) {
         if (body[key] != "") {
-          console.log(key);
           key == "password"
             ? (filteredBody[key] = await hashPassword(body[key]))
             : (filteredBody[key] = body[key]);
