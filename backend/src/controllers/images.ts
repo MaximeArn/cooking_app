@@ -20,6 +20,9 @@ module.exports = {
     try {
       const compressedAvatarPath = `${destination}/${nameWithoutExtension}-compressed.jpg`;
       sharp(path).jpeg({ quality: 30 }).toFile(compressedAvatarPath);
+
+      // REMOVE THE FULL SIZE AVATAR AFTER
+      // TRY TO SIMPLIFY THE CODE
     } catch (error) {
       console.log(error);
     }
