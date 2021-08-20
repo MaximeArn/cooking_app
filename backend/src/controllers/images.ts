@@ -8,13 +8,18 @@ module.exports = {
   ) => {
     const path = `http://localhost:4545/assets/images/avatars/${filename}`;
 
-    console.log(oldAvatar);
-    console.log("OLD AVVATTARRR -----> ", oldAvatar);
+    const previousFileName = oldAvatar.replace(
+      "http://localhost:4545/assets/images/avatars/",
+      ""
+    );
+    console.log(previousFileName);
+
     try {
-      fs.unlinkSync(
-        `../../assets/images/avatars/image_picker_A2FED644-7197-43E4-BA1D-FB427E3C7EAD-68182-00001F15F44C2616.jpg`
+      const resolvedPath = fs.realpathSync(
+        `public/assets/images/avatars/${previousFileName}`
       );
-      console.log("IMAGE DELETED !!!!!!");
+      fs.unlinkSync(resolvedPath);
+      console.log("PREVIOUS AVATAR DELETED !!");
     } catch (error) {
       console.log(error);
     }
