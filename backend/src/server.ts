@@ -6,8 +6,6 @@ import rewardRouter from "./routers/reward";
 import imagesRouter from "./routers/images";
 import { config } from "dotenv";
 
-import fs from "fs";
-
 config();
 const server = express();
 const PORT = process.env.PORT || 3000;
