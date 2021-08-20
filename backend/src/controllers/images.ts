@@ -6,24 +6,14 @@ module.exports = {
     { file: { filename }, body: { oldAvatar } },
     res: Response
   ) => {
-    const path = `http://localhost:4545/assets/images/avatars/${filename}`;
+    const previousAvatarPath = oldAvatar.replace("http://localhost:4545/", "");
 
-    const previousFileName = oldAvatar.replace(
-      "http://localhost:4545/assets/images/avatars/",
-      ""
+    const absolutePreviousAvatarPath = fs.realpathSync(
+      `public/${previousAvatarPath}`
     );
-    console.log(previousFileName);
+    fs.unlinkSync(absolutePreviousAvatarPath);
 
-    try {
-      const resolvedPath = fs.realpathSync(
-        `public/assets/images/avatars/${previousFileName}`
-      );
-      fs.unlinkSync(resolvedPath);
-      console.log("PREVIOUS AVATAR DELETED !!");
-    } catch (error) {
-      console.log(error);
-    }
-
+    const path = `http://localhost:4545/assets/images/avatars/${filename}`;
     res.json(path).status(200);
   },
 };
