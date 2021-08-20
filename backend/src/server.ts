@@ -6,6 +6,8 @@ import rewardRouter from "./routers/reward";
 import imagesRouter from "./routers/images";
 import { config } from "dotenv";
 
+import fs from "fs";
+
 config();
 const server = express();
 const PORT = process.env.PORT || 3000;
@@ -30,5 +32,13 @@ server.use("/users", userRouter);
 server.use("/posts", postRouter);
 server.use("/rewards", rewardRouter);
 server.use("/images", imagesRouter);
+
+console.log(__dirname);
+const resolvedPath = fs.realpathSync(
+  "public/assets/images/avatars/image_picker_6EB4142E-553E-430F-A664-2872B366C982-68182-00002D2A9556EEB1.jpg"
+);
+console.log(resolvedPath);
+
+fs.unlinkSync(resolvedPath);
 
 server.listen(PORT, () => console.log(`server is listening on ${PORT}`));

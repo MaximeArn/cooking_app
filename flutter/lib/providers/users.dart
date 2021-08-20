@@ -98,15 +98,13 @@ class UsersProvider with ChangeNotifier {
           contentType: MediaType("multipart", "form-data"),
         ),
       );
+      request.fields["oldAvatar"] = connectedUser!.avatar;
 
       final response = await request.send();
       if (response.statusCode == 200) {
         final responseData = await response.stream.toBytes();
         String decodedUrl = json.decode(String.fromCharCodes(responseData));
-        String oldUrl = connectedUser!.avatar;
-        print(oldUrl);
         connectedUser!.avatar = decodedUrl;
-        print(decodedUrl);
       } else {
         throw Exception("server error during image upload");
       }
@@ -140,7 +138,7 @@ class UsersProvider with ChangeNotifier {
         headers: {'Content-type': 'application/json'},
         body: jsonUser,
       );
-      connectedUser = await getConnectedUser(connectedUser!.id, true);
+      getConnectedUser(connectedUser!.id, true);
     } catch (e) {
       rethrow;
     }
