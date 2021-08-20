@@ -16,16 +16,14 @@ module.exports = {
 
     // _____________________________________________________ //
 
+    const nameWithoutExtension = filename.substring(0, filename.length - 4);
     try {
-      const nameWithoutExtension = filename.substring(0, filename.length - 4);
-
       const compressedAvatarPath = `${destination}/${nameWithoutExtension}-compressed.jpg`;
-      // sharp(path).jpeg({ quality: 30 }).toFile(compressedAvatarPath);
-      console.log(compressedAvatarPath);
+      sharp(path).jpeg({ quality: 30 }).toFile(compressedAvatarPath);
     } catch (error) {
       console.log(error);
     }
-    const newPath = `http://localhost:4545/assets/images/avatars/${filename}`;
+    const newPath = `http://localhost:4545/assets/images/avatars/${nameWithoutExtension}-compressed.jpg`;
     res.json(newPath).status(200);
   },
 };
