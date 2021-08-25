@@ -15,8 +15,13 @@ module.exports = {
     );
     fs.unlinkSync(absolutePreviousAvatarPath);
 
-    // console.log(Path.resolve(destination));
-    // await sharp(path).resize(180, 180).toFile(Path.resolve(destination, ));
+    console.log(filename.substring(0, filename.length - 4));
+    const compressedAvatarPath = Path.resolve(
+      destination,
+      `${filename.substring(0, filename.length - 4)}-compressed.jpg`
+    );
+    console.log(compressedAvatarPath);
+    await sharp(path).resize(180, 180).toFile(compressedAvatarPath);
 
     const newPath = `http://localhost:4545/assets/images/avatars/${filename}`;
     res.json(newPath).status(200);
