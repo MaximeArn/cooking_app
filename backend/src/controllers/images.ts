@@ -15,15 +15,17 @@ module.exports = {
     );
     fs.unlinkSync(absolutePreviousAvatarPath);
 
-    console.log(filename.substring(0, filename.length - 4));
-    const compressedAvatarPath = Path.resolve(
-      destination,
-      `${filename.substring(0, filename.length - 4)}-compressed.jpg`
-    );
+    const compressedFilename = `${filename.substring(
+      0,
+      filename.length - 4
+    )}-compressed.jpg`;
+    const compressedAvatarPath = Path.resolve(destination, compressedFilename);
     console.log(compressedAvatarPath);
     await sharp(path).resize(180, 180).toFile(compressedAvatarPath);
 
-    const newPath = `http://localhost:4545/assets/images/avatars/${filename}`;
+    fs.unlinkSync(Path.resolve(path));
+
+    const newPath = `http://localhost:4545/assets/images/avatars/${compressedFilename}`;
     res.json(newPath).status(200);
   },
 };
