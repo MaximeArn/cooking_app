@@ -14,17 +14,6 @@ class CookingAppBar extends StatelessWidget with PreferredSizeWidget {
         iconTheme: const IconThemeData(
           size: 20,
         ),
-        // bottom: const TabBar(tabs: [
-        //   Tab(
-        //     icon: Icon(Icons.cloud_outlined),
-        //   ),
-        //   Tab(
-        //     icon: Icon(Icons.beach_access_sharp),
-        //   ),
-        //   Tab(
-        //     icon: Icon(Icons.brightness_5_sharp),
-        //   ),
-        // ]),
         actions: [
           if (isOwnProfile)
             IconButton(

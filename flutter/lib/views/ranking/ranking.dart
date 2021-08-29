@@ -4,17 +4,16 @@ class Ranking extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Container(
-        child: TabBar(tabs: [
+        child: TabBar(
+          indicatorColor:  Theme.of(context).highlightColor, 
+          tabs: [
           Tab(
-            icon: Icon(Icons.cloud_outlined),
+            text: "Nationals",
           ),
           Tab(
-            icon: Icon(Icons.beach_access_sharp),
-          ),
-          Tab(
-            icon: Icon(Icons.brightness_5_sharp),
+            text: "Groups",
           ),
         ]),
       ),

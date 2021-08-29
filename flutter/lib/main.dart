@@ -36,6 +36,7 @@ class _CookingState extends State<Cooking> {
     ThemeData cookingTheme = ThemeData(
       primaryColor: Colors.white,
       brightness: Brightness.light,
+      highlightColor: Color.fromRGBO(232, 196, 81, 1),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
           backgroundColor:
