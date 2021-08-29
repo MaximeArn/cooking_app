@@ -9,22 +9,35 @@ class Ranking extends StatelessWidget {
         child: Column(
           children: [
             TabBar(
-              indicatorColor:  Theme.of(context).highlightColor, 
+              unselectedLabelColor: Colors.black54,
+              labelColor: Theme.of(context).highlightColor,
+              indicatorColor: Theme.of(context).highlightColor,
               indicatorWeight: 2.5,
               tabs: [
-              Tab(
-                text: "Nationals",
-              ),
-              Tab(
-                text: "Groups",
-              ),
-            ],),
+                Tab(
+                  text: "National",
+                ),
+                Tab(
+                  text: "Groups",
+                ),
+              ],
+            ),
             Expanded(
               flex: 1,
-              child: TabBarView(children: [
-                Text("Nationals"),
-                Text("Groups"),
-              ],),
+              child: TabBarView(
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Nationals",
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    child: Text("Groups"),
+                  ),
+                ],
+              ),
             )
           ],
         ),
