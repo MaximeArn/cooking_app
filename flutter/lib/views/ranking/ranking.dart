@@ -6,16 +6,28 @@ class Ranking extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Container(
-        child: TabBar(
-          indicatorColor:  Theme.of(context).highlightColor, 
-          tabs: [
-          Tab(
-            text: "Nationals",
-          ),
-          Tab(
-            text: "Groups",
-          ),
-        ]),
+        child: Column(
+          children: [
+            TabBar(
+              indicatorColor:  Theme.of(context).highlightColor, 
+              indicatorWeight: 2.5,
+              tabs: [
+              Tab(
+                text: "Nationals",
+              ),
+              Tab(
+                text: "Groups",
+              ),
+            ],),
+            Expanded(
+              flex: 1,
+              child: TabBarView(children: [
+                Text("Nationals"),
+                Text("Groups"),
+              ],),
+            )
+          ],
+        ),
       ),
     );
   }
