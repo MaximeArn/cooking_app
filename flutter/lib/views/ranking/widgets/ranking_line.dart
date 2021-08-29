@@ -12,9 +12,26 @@ class RankingLine extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        onTap: () => Navigator.pushNamed(context, Profile.routeName,
-            arguments: user.id),
-        leading: Icon(Icons.star),
+        onTap: () =>
+            Navigator.pushNamed(context, Profile.routeName, arguments: user.id),
+        leading: (index == 0
+            ? Icon(
+                Icons.star,
+                color: Color.fromRGBO(255, 215, 0, 1),
+              )
+            : index == 1 ?
+            Icon(
+                Icons.star,
+                color: Color.fromRGBO(190, 194, 203, 1),
+              )
+            : index == 2 ? 
+            Icon(
+                Icons.star,
+                color: Color.fromRGBO(184, 115, 51, 1),
+              )
+            :
+            Text((index + 1).toString(),)
+            ),
         title: Text(user.name),
         trailing: Text(
           user.stars.toString(),
