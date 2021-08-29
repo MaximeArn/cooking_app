@@ -1,3 +1,5 @@
+import 'package:cooking/views/ranking/widgets/group_ranking.dart';
+import 'package:cooking/views/ranking/widgets/national_ranking.dart';
 import 'package:flutter/material.dart';
 
 class Ranking extends StatelessWidget {
@@ -26,16 +28,8 @@ class Ranking extends StatelessWidget {
               flex: 1,
               child: TabBarView(
                 children: [
-                  Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Nationals",
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    child: Text("Groups"),
-                  ),
+                  NationalRanking(),
+                  GroupRanking()
                 ],
               ),
             )
