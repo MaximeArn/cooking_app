@@ -1,3 +1,4 @@
+import { count } from "console";
 import { NextFunction, Request, Response } from "express";
 import User, { UserInterface } from "../../models/user";
 import { hashPassword } from "../utils/passwordHash";
@@ -58,10 +59,13 @@ module.exports = {
   },
 
   getNationalRanking: async (
-    { params: { country } }: Request,
+    { params: { countryCode } }: Request,
     res: Response
   ) => {
-    console.log(country);
-    res.send("get national ranking !");
+    console.log(countryCode);
+    const ranking = await User.find({ countryCode: countryCode })
+      .sort({ stars: "descending" })
+      .limit(10);
+    res.json(ranking);
   },
 };

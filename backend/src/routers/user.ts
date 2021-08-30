@@ -11,6 +11,6 @@ const userRouter = Router();
 userRouter.get("/:userId", getUserById);
 userRouter.get("/search/:filter", getUsersByName);
 userRouter.patch("/:userId", updateProfile);
-userRouter.get("/ranking/:country", getNationalRanking);
+userRouter.get("/ranking/national/:countryCode", getNationalRanking);
 
 export default userRouter;

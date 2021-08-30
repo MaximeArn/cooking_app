@@ -26,6 +26,7 @@ export const userSchema = new Schema({
     default: `http://localhost:4545/assets/images/avatars/default_avatar.jpg`,
   },
   posts: { type: [{ type: Schema.Types.ObjectId, ref: "post" }], default: [] },
+  countryCode: { type: String, required: true },
 });
 
 const userModel: Model<UserInterface> = model("user", userSchema);
