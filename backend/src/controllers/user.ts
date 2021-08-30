@@ -1,4 +1,3 @@
-import { count } from "console";
 import { NextFunction, Request, Response } from "express";
 import User, { UserInterface } from "../../models/user";
 import { hashPassword } from "../utils/passwordHash";

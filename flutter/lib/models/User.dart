@@ -14,6 +14,7 @@ class User {
   final int subscribers;
   final int subscriptions;
   File? fileImage = null;
+  String countryCode;
 
   User({
     required this.id,
@@ -26,6 +27,7 @@ class User {
     required this.stars,
     required this.subscribers,
     required this.subscriptions,
+    required this.countryCode,
   });
 
   User.fromJson(Map<String, dynamic> json, {bool isPopulated = true})
@@ -45,7 +47,8 @@ class User {
             : [],
         stars = json["stars"],
         subscribers = json["subscribers"],
-        subscriptions = json["subscriptions"];
+        subscriptions = json["subscriptions"],
+        countryCode = json["countryCode"];
 
   String toJson() {
     final userJson = json.encode({

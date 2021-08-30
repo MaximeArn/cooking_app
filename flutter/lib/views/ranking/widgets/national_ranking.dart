@@ -14,6 +14,7 @@ class _NationalRankingState extends State<NationalRanking> {
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
+
     final hardUser = User(
       id: "id",
       age: 35,
@@ -25,6 +26,7 @@ class _NationalRankingState extends State<NationalRanking> {
       stars: 120,
       subscribers: 560,
       subscriptions: 234,
+      countryCode: "FR",
     );
     
     return Container(
