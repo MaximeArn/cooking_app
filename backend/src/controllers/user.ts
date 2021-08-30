@@ -62,7 +62,10 @@ module.exports = {
     res: Response
   ) => {
     console.log(countryCode);
-    const ranking = await User.find({ countryCode: countryCode })
+    const ranking = await User.find(
+      { countryCode: countryCode },
+      { name: 1, avatar: 1, stars: 1 }
+    )
       .sort({ stars: "descending" })
       .limit(10);
     res.json(ranking).status(200);

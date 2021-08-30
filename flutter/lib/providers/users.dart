@@ -1,5 +1,6 @@
 import 'dart:collection';
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/User.dart';
@@ -144,14 +145,24 @@ class UsersProvider with ChangeNotifier {
     }
   }
 
-  Future<void> getNationalRanking(countryCode) async {
+  Future<dynamic> getNationalRanking(countryCode) async {
     isLoading = true;
     try {
       http.Response response = await http
           .get(Uri.parse("$serverUrl/users/ranking/national/$countryCode"));
 
       if (response.statusCode == 200) {
-        print(response.body);
+        final decodedBody = json.decode(response.body);
+        final List nationalRanking = decodedBody
+            .map((user) => {
+                  "id": user["_id"],
+                  "name": user["name"],
+                  "avatar": user["avatar"],
+                  "stars": user["stars"],
+                })
+            .toList();
+        isLoading = false;
+        return nationalRanking;
       }
     } catch (e) {
       isLoading = false;

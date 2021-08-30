@@ -1,9 +1,8 @@
-import 'package:cooking/models/User.dart';
 import 'package:cooking/views/profiles/profile/profile.dart';
 import 'package:flutter/material.dart';
 
 class RankingLine extends StatelessWidget {
-  final User user;
+  final Map user;
   final int index;
 
   RankingLine({required this.user, required this.index});
@@ -14,7 +13,7 @@ class RankingLine extends StatelessWidget {
       elevation: 2.5,
       child: ListTile(
         onTap: () =>
-            Navigator.pushNamed(context, Profile.routeName, arguments: user.id),
+            Navigator.pushNamed(context, Profile.routeName, arguments: user["id"]),
         leading: (index == 0
             ? Icon(
                 Icons.star,
@@ -40,13 +39,13 @@ class RankingLine extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(right: 30),
-              child: CircleAvatar(backgroundImage: NetworkImage(user.avatar),),
+              child: CircleAvatar(backgroundImage: NetworkImage(user["avatar"]),),
             ),
-            Text(user.name,),
+            Text(user["name"],),
           ],
         ),
         trailing: Text(
-          user.stars.toString(),
+          user["stars"].toString(),
         ),
       ),
     );
