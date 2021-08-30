@@ -11,6 +11,7 @@ class RankingLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 2.5,
       child: ListTile(
         onTap: () =>
             Navigator.pushNamed(context, Profile.routeName, arguments: user.id),
@@ -35,7 +36,15 @@ class RankingLine extends StatelessWidget {
             :
             Text("#${(index + 1).toString()}", style: TextStyle(fontSize: 18),)
             ),
-        title: Text(user.name,),
+        title: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 30),
+              child: CircleAvatar(backgroundImage: NetworkImage(user.avatar),),
+            ),
+            Text(user.name,),
+          ],
+        ),
         trailing: Text(
           user.stars.toString(),
         ),

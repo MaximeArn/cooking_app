@@ -1,3 +1,4 @@
+import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/User.dart';
 import 'package:cooking/views/ranking/widgets/ranking_line.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class _NationalRankingState extends State<NationalRanking> {
       name: "name",
       email: "email",
       password: "password",
-      avatar: "avatar",
+      avatar: "$serverUrl/assets/images/avatars/profile_photo_1.jpg",
       posts: [],
       stars: 120,
       subscribers: 560,
