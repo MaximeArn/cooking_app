@@ -61,7 +61,6 @@ module.exports = {
     { params: { countryCode } }: Request,
     res: Response
   ) => {
-    console.log(countryCode);
     const ranking = await User.find(
       { countryCode: countryCode },
       { name: 1, avatar: 1, stars: 1 }

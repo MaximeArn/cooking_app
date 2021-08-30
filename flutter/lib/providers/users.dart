@@ -148,7 +148,7 @@ class UsersProvider with ChangeNotifier {
     }
   }
 
-  Future<void> getNationalRanking(countryCode) async {
+  Future<void> getNationalRanking([countryCode = "FR"]) async {
     isLoading = true;
     try {
       http.Response response = await http

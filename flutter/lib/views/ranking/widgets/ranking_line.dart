@@ -9,9 +9,11 @@ class RankingLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return 
+    Card(
       elevation: 2.5,
-      child: ListTile(
+      child: 
+      ListTile(
         onTap: () =>
             Navigator.pushNamed(context, Profile.routeName, arguments: user["id"]),
         leading: (index == 0
