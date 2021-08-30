@@ -143,4 +143,19 @@ class UsersProvider with ChangeNotifier {
       rethrow;
     }
   }
+
+  Future<void> getNationalRanking(countryCode) async {
+    isLoading = true;
+    try {
+      http.Response response = await http
+          .get(Uri.parse("$serverUrl/users/ranking/national/$countryCode"));
+
+      if (response.statusCode == 200) {
+        print(response.body);
+      }
+    } catch (e) {
+      isLoading = false;
+      rethrow;
+    }
+  }
 }

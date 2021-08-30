@@ -1,7 +1,9 @@
 import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/User.dart';
+import 'package:cooking/providers/users.dart';
 import 'package:cooking/views/ranking/widgets/ranking_line.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class NationalRanking extends StatefulWidget {
   const NationalRanking({Key? key}) : super(key: key);
@@ -14,6 +16,8 @@ class _NationalRankingState extends State<NationalRanking> {
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
+    final getNationalRanking =
+        Provider.of<UsersProvider>(context).getNationalRanking;
 
     final hardUser = User(
       id: "id",
@@ -28,7 +32,9 @@ class _NationalRankingState extends State<NationalRanking> {
       subscriptions: 234,
       countryCode: "FR",
     );
-    
+
+    // return FutureBuilder(builder: builder);
+
     return Container(
       color: Colors.white,
       padding: EdgeInsets.symmetric(vertical: 35, horizontal: 20),
