@@ -1,6 +1,5 @@
 import 'dart:collection';
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/User.dart';
@@ -12,11 +11,15 @@ import 'package:http_parser/http_parser.dart';
 class UsersProvider with ChangeNotifier {
   bool isLoading = false;
   List<Map<String, dynamic>> _filteredUsers = [];
+  List<Map<String, dynamic>> _nationalRanking = [];
   bool firstSearch = true;
   User? connectedUser = null;
 
   UnmodifiableListView<Map<String, dynamic>> get filteredUsers =>
       UnmodifiableListView(_filteredUsers);
+
+  UnmodifiableListView<Map<String, dynamic>> get nationalRanking =>
+      UnmodifiableListView(_nationalRanking);
 
   void emptyArray() {
     _filteredUsers.clear();
@@ -152,8 +155,8 @@ class UsersProvider with ChangeNotifier {
           .get(Uri.parse("$serverUrl/users/ranking/national/$countryCode"));
 
       if (response.statusCode == 200) {
-        final decodedBody = json.decode(response.body);
-        final List nationalRanking = decodedBody
+        final List decodedBody = json.decode(response.body);
+        _nationalRanking = decodedBody
             .map((user) => {
                   "id": user["_id"],
                   "name": user["name"],
@@ -162,7 +165,7 @@ class UsersProvider with ChangeNotifier {
                 })
             .toList();
         isLoading = false;
-        return nationalRanking;
+        notifyListeners();
       }
     } catch (e) {
       isLoading = false;
