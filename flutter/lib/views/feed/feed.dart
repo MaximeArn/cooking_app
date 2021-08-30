@@ -15,7 +15,7 @@ class Feed extends StatelessWidget {
     List<Post> posts = postsProvider.posts;
 
     return RefreshIndicator(
-      onRefresh: Provider.of<PostsProvider>(context).fetchPosts,
+      onRefresh: Provider.of<PostsProvider>(context, listen: false).fetchPosts,
       child: postsProvider.isLoading
           ? Loader()
           : ListView.builder(

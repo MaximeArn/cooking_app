@@ -17,27 +17,22 @@ class _NationalRankingState extends State<NationalRanking> {
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
-    final usersProvider = Provider.of<UsersProvider>(context);
+    final List<Map<String, dynamic>> nationalRanking =
+        Provider.of<UsersProvider>(context).nationalRanking;
+    final bool isLoading = Provider.of<UsersProvider>(context).isLoading;
+    final getNationalRanking = Provider.of<UsersProvider>(context, listen: false).getNationalRanking;
 
-    return FutureBuilder(
-        future: usersProvider.getNationalRanking("FR"),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.hasError) {
-            return Center(
-              child: Text(
-                snapshot.error.toString(),
-              ),
-            );
-          } else if (usersProvider.isLoading) {
-            return Loader();
-          } else {
-            return Container(
+    return isLoading
+        ? Loader()
+        : RefreshIndicator(
+          onRefresh: () => getNationalRanking("FR"),
+          child: Container(
               color: Colors.white,
               padding: EdgeInsets.symmetric(vertical: 35, horizontal: 20),
               alignment: Alignment.center,
               child: ListView.separated(
                 itemBuilder: (_, int index) => RankingLine(
-                  user: snapshot.data[index],
+                  user: nationalRanking[index],
                   index: index,
                 ),
                 separatorBuilder: (_, __) => Divider(
@@ -47,10 +42,9 @@ class _NationalRankingState extends State<NationalRanking> {
                   thickness: 2,
                   color: Colors.black38,
                 ),
-                itemCount: snapshot.data.length,
+                itemCount: nationalRanking.length,
               ),
-            );
-          }
-        });
+            ),
+        );
   }
 }
