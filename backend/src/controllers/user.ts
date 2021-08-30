@@ -56,4 +56,12 @@ module.exports = {
       console.log(error);
     }
   },
+
+  getNationalRanking: async (
+    { params: { country } }: Request,
+    res: Response
+  ) => {
+    console.log(country);
+    res.send("get national ranking !");
+  },
 };
