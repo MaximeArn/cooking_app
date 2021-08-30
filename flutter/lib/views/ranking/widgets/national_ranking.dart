@@ -43,7 +43,7 @@ class _NationalRankingState extends State<NationalRanking> {
           thickness: 2,
           color: Colors.black38,
         ),
-        itemCount: 5,
+        itemCount: 10,
       ),
     );
   }
