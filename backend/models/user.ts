@@ -11,6 +11,8 @@ export interface UserInterface extends Document {
   subscriptions: Number;
   avatar: String;
   posts: String[];
+  countryCode: String;
+  groups: String[];
 }
 
 export const userSchema = new Schema({
@@ -27,6 +29,10 @@ export const userSchema = new Schema({
   },
   posts: { type: [{ type: Schema.Types.ObjectId, ref: "post" }], default: [] },
   countryCode: { type: String, required: true },
+  groups: {
+    type: [{ type: Schema.Types.ObjectId, ref: "group" }],
+    default: [],
+  },
 });
 
 const userModel: Model<UserInterface> = model("user", userSchema);
