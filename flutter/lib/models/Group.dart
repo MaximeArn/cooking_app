@@ -8,4 +8,8 @@ class Group {
     required this.users,
     required this.name,
   });
+
+  Group.fromJson(json, {bool isPopulated = true}): 
+    name = json["name"],
+    users = [];
 }

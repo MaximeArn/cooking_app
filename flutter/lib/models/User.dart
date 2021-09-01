@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:cooking/models/Group.dart';
 import 'package:cooking/models/Post.dart';
+import 'package:flutter/material.dart';
 
 class User {
   final String id;
@@ -52,7 +53,10 @@ class User {
         subscribers = json["subscribers"],
         subscriptions = json["subscriptions"],
         countryCode = json["countryCode"],
-        groups = json["groups"];
+        groups = isPopulated
+            ? (json["groups"] as List)
+                .map((jsonGroup) => Group.fromJson(jsonGroup)).toList()
+            : [];
 
   String toJson() {
     final userJson = json.encode({
