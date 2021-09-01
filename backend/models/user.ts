@@ -1,7 +1,5 @@
 import { Schema, model, Document, Model } from "mongoose";
 
-const PORT = process.env.PORT;
-
 export interface UserInterface extends Document {
   name: String;
   email: String;
