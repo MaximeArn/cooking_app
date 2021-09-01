@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:cooking/models/Group.dart';
 import 'package:cooking/models/Post.dart';
 
 class User {

@@ -7,7 +7,7 @@ export interface GroupInterface extends Document {
 
 export const groupSchema = new Schema({
   users: { type: [{ type: Schema.Types.ObjectId, ref: "user" }], default: [] },
-  title: { type: String, required: true },
+  name: { type: String, required: true },
 });
 
 const groupModel: Model<GroupInterface> = model("group", groupSchema);
