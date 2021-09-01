@@ -29,6 +29,7 @@ class _CookingState extends State<Cooking> {
     rewardsProvider.fetchRewards();
     postsProvider.fetchPosts();
     usersProvider.getNationalRanking();
+    usersProvider.getConnectedUser("60e8c2140e7c9296fa2380c3");
     super.initState();
   }
 
