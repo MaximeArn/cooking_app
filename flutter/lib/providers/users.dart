@@ -39,17 +39,14 @@ class UsersProvider with ChangeNotifier {
     }
   }
 
-  Future<dynamic> getConnectedUser(String userId,
-      [bool refresh = false]) async {
+  Future<dynamic> getConnectedUser(String userId) async {
     try {
       http.Response response =
           await http.get(Uri.parse("$serverUrl/users/$userId"));
       if (response.statusCode == 200) {
         User user = User.fromJson(json.decode(response.body));
         connectedUser = user;
-        if (refresh) {
-          notifyListeners();
-        }
+        notifyListeners();
         return user;
       }
     } catch (e) {
@@ -142,7 +139,7 @@ class UsersProvider with ChangeNotifier {
         headers: {'Content-type': 'application/json'},
         body: jsonUser,
       );
-      getConnectedUser(connectedUser!.id, true);
+      getConnectedUser(connectedUser!.id);
     } catch (e) {
       rethrow;
     }
