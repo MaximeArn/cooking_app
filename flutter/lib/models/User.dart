@@ -15,6 +15,7 @@ class User {
   final int subscriptions;
   File? fileImage = null;
   String countryCode;
+  List<Group> groups;
 
   User({
     required this.id,
@@ -28,6 +29,7 @@ class User {
     required this.subscribers,
     required this.subscriptions,
     required this.countryCode,
+    required this.groups,
   });
 
   User.fromJson(Map<String, dynamic> json, {bool isPopulated = true})
@@ -48,7 +50,8 @@ class User {
         stars = json["stars"],
         subscribers = json["subscribers"],
         subscriptions = json["subscriptions"],
-        countryCode = json["countryCode"];
+        countryCode = json["countryCode"],
+        groups = json["groups"];
 
   String toJson() {
     final userJson = json.encode({
