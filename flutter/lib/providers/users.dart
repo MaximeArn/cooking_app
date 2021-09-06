@@ -53,7 +53,7 @@ class UsersProvider with ChangeNotifier {
         connectedUser!.groups = [
           Group(id: "", users: [], name: "Family"),
           Group(id: "", users: [], name: "Friends"),
-          Group(id: "", users: [], name: "Colleague")
+          Group(id: "", users: [], name: "Colleague"),
         ];
 
         notifyListeners();

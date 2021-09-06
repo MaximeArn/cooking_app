@@ -14,7 +14,7 @@ class GroupsRankingLine extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(bottom: 25),
       child: Card(
-        elevation: 5,
+        elevation: 3,
         child: ListTile(
           onTap: () => Navigator.pushNamed(context, GroupDetail.routeName, arguments: group.id),
           leading: Icon(Icons.group),

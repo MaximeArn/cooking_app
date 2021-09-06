@@ -15,17 +15,30 @@ class _GroupRankingState extends State<GroupRanking> {
   Widget build(BuildContext context) {
     final groups = Provider.of<UsersProvider>(context).connectedUser!.groups;
     print(groups);
-    return Container(
-      color: Colors.white,
-      alignment: Alignment.center,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
-        child: ListView.builder(
-          itemBuilder: (_, int index) =>
-              GroupsRankingLine(group: groups[index]),
-          itemCount: groups.length,
+    return Stack(
+      children: [
+        Container(
+          color: Colors.white,
+          alignment: Alignment.center,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
+            child: ListView.builder(
+              itemBuilder: (_, int index) =>
+                  GroupsRankingLine(group: groups[index]),
+              itemCount: groups.length,
+            ),
+          ),
         ),
-      ),
+        Container(
+          padding: EdgeInsets.all(15),
+          alignment: Alignment.bottomRight,
+          child: FloatingActionButton(
+            onPressed: () {},
+            backgroundColor: Theme.of(context).highlightColor,
+            child: Icon(Icons.add_rounded, size: 30,),
+          ),
+        )
+      ],
     );
   }
 }
