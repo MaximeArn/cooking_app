@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 import 'package:cooking/environment/env.dart';
+import 'package:cooking/models/Group.dart';
 import 'package:cooking/models/User.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -46,6 +47,15 @@ class UsersProvider with ChangeNotifier {
       if (response.statusCode == 200) {
         User user = User.fromJson(json.decode(response.body));
         connectedUser = user;
+
+        // must be remove
+        //only for tests
+        connectedUser!.groups = [
+          Group(users: [], name: "Family"),
+          Group(users: [], name: "Friends"),
+          Group(users: [], name: "Colleague")
+        ];
+
         notifyListeners();
         return user;
       }
