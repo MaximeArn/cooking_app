@@ -16,16 +16,19 @@ class _GroupRankingState extends State<GroupRanking> {
     final groups = Provider.of<UsersProvider>(context).connectedUser!.groups;
     print(groups);
     return Container(
+      color: Colors.white,
         alignment: Alignment.center,
-        child: ListView.separated(
-            itemBuilder: (_, int index) => Card(
-              child: ListTile(
-                leading: Icon(Icons.group),
-                title: Text(groups[index].name),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
+          child: ListView.builder(
+              itemBuilder: (_, int index) => Card(
+                child: ListTile(
+                  leading: Icon(Icons.group),
+                  title: Text(groups[index].name),
+                ),
               ),
-            ),
-            separatorBuilder: (_, __) => Divider(),
-            itemCount: groups.length,
+              itemCount: groups.length,
+          ),
         ),);
   }
 }

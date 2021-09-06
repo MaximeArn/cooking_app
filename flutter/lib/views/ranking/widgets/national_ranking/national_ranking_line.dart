@@ -1,11 +1,11 @@
 import 'package:cooking/views/profiles/profile/profile.dart';
 import 'package:flutter/material.dart';
 
-class RankingLine extends StatelessWidget {
+class NationalRankingLine extends StatelessWidget {
   final Map user;
   final int index;
 
-  RankingLine({required this.user, required this.index});
+  NationalRankingLine({required this.user, required this.index});
 
   @override
   Widget build(BuildContext context) {

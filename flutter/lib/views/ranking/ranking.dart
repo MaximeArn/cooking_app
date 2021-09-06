@@ -1,5 +1,5 @@
-import 'package:cooking/views/ranking/widgets/group_ranking.dart';
-import 'package:cooking/views/ranking/widgets/national_ranking.dart';
+import 'package:cooking/views/ranking/widgets/groups_ranking/group_ranking.dart';
+import 'package:cooking/views/ranking/widgets/national_ranking/national_ranking.dart';
 import 'package:flutter/material.dart';
 
 class Ranking extends StatelessWidget {

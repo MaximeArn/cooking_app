@@ -1,5 +1,5 @@
 import 'package:cooking/providers/users.dart';
-import 'package:cooking/views/ranking/widgets/ranking_line.dart';
+import 'package:cooking/views/ranking/widgets/national_ranking/national_ranking_line.dart';
 import 'package:cooking/widgets/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -33,7 +33,7 @@ class _NationalRankingState extends State<NationalRanking> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ListView.separated(
-                    itemBuilder: (_, int index) => RankingLine(
+                    itemBuilder: (_, int index) => NationalRankingLine(
                       user: nationalRanking[index],
                       index: index,
                     ),
