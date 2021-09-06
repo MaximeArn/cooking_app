@@ -51,9 +51,9 @@ class UsersProvider with ChangeNotifier {
         // must be remove
         //only for tests
         connectedUser!.groups = [
-          Group(users: [], name: "Family"),
-          Group(users: [], name: "Friends"),
-          Group(users: [], name: "Colleague")
+          Group(id: "", users: [], name: "Family"),
+          Group(id: "", users: [], name: "Friends"),
+          Group(id: "", users: [], name: "Colleague")
         ];
 
         notifyListeners();
