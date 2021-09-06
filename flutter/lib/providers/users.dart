@@ -42,11 +42,7 @@ class UsersProvider with ChangeNotifier {
 
   Future<dynamic> getConnectedUser(String userId) async {
     try {
-      http.Response response =
-          await http.get(Uri.parse("$serverUrl/users/$userId"));
-      if (response.statusCode == 200) {
-        User user = User.fromJson(json.decode(response.body));
-        connectedUser = user;
+        connectedUser = await getUserById(userId);
 
         // must be remove
         //only for tests
@@ -55,10 +51,9 @@ class UsersProvider with ChangeNotifier {
           Group(id: "", users: [], name: "Friends"),
           Group(id: "", users: [], name: "Colleague"),
         ];
-
         notifyListeners();
-        return user;
-      }
+        return connectedUser;
+
     } catch (e) {
       print(e);
       rethrow;
