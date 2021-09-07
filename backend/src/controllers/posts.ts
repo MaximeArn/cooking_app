@@ -3,7 +3,7 @@ import Post, { PostInterface } from "../../models/post";
 import User from "../../models/user";
 
 module.exports = {
-  getPosts: async (_: Request, res: Response) => {
+  getPosts: async (_: Request, res: Response, next: NextFunction) => {
     try {
       const posts: PostInterface[] = await Post.find().populate({
         path: "authorId",
@@ -15,13 +15,15 @@ module.exports = {
       });
       res.json(posts);
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      next(error);
     }
   },
 
   votePost: async (
     { params: { postId }, body: { newNote, previousNote } }: Request,
-    res: Response
+    res: Response,
+    next: NextFunction
   ) => {
     try {
       const updatedPost = await Post.findByIdAndUpdate(
@@ -37,7 +39,8 @@ module.exports = {
 
       res.json(updatedPost);
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      next(error);
     }
   },
 
@@ -46,7 +49,8 @@ module.exports = {
       const newPost = await Post.create(body);
       res.json(newPost);
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      next(error);
     }
   },
 };
