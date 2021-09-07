@@ -6,11 +6,11 @@ const {
   getNationalRanking,
 } = require("../controllers/user");
 
-const userRouter = Router();
+const usersRouter = Router();
 
-userRouter.get("/:userId", getUserById);
-userRouter.get("/search/:filter", getUsersByName);
-userRouter.patch("/:userId", updateProfile);
-userRouter.get("/ranking/national/:countryCode", getNationalRanking);
+usersRouter.get("/:userId", getUserById);
+usersRouter.get("/search/:filter", getUsersByName);
+usersRouter.patch("/:userId", updateProfile);
+usersRouter.get("/ranking/national/:countryCode", getNationalRanking);
 
-export default userRouter;
+export default usersRouter;

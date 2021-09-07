@@ -1,8 +1,8 @@
 import express, { urlencoded, json } from "express";
 import mongoose from "mongoose";
-import userRouter from "./routers/user";
-import postRouter from "./routers/post";
-import rewardRouter from "./routers/reward";
+import usersRouter from "./routers/user";
+import postsRouter from "./routers/post";
+import rewardsRouter from "./routers/reward";
 import imagesRouter from "./routers/images";
 import groupsRouter from "./routers/groups";
 import { config } from "dotenv";
@@ -27,9 +27,9 @@ server.use(urlencoded({ extended: true }));
 server.use(json());
 
 server.use(express.static(`${__dirname}/../public`));
-server.use("/users", userRouter);
-server.use("/posts", postRouter);
-server.use("/rewards", rewardRouter);
+server.use("/users", usersRouter);
+server.use("/posts", postsRouter);
+server.use("/rewards", rewardsRouter);
 server.use("/images", imagesRouter);
 server.use("/groups", groupsRouter);
 

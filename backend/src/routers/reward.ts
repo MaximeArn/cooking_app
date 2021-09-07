@@ -1,8 +1,8 @@
 import { Router } from "express";
 const { getRewards } = require("../controllers/reward");
 
-const rewardRouter = Router();
+const rewardsRouter = Router();
 
-rewardRouter.get("/", getRewards);
+rewardsRouter.get("/", getRewards);
 
-export default rewardRouter;
+export default rewardsRouter;
