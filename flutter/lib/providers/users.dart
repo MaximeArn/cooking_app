@@ -42,18 +42,15 @@ class UsersProvider with ChangeNotifier {
 
   Future<dynamic> getConnectedUser(String userId) async {
     try {
-        connectedUser = await getUserById(userId);
+      connectedUser = await getUserById(userId);
 
-        // must be remove
-        //only for tests
-        connectedUser!.groups = [
-          Group(id: "", users: [], name: "Family"),
-          Group(id: "", users: [], name: "Friends"),
-          Group(id: "", users: [], name: "Colleague"),
-        ];
-        notifyListeners();
-        return connectedUser;
-
+      //only for tests
+      connectedUser!.groups = [
+        Group(id: "", users: [], name: "Family"),
+        Group(id: "", users: [], name: "Friends"),
+        Group(id: "", users: [], name: "Colleague"),
+      ];
+      notifyListeners();
     } catch (e) {
       print(e);
       rethrow;
