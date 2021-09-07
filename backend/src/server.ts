@@ -1,8 +1,8 @@
 import express, { urlencoded, json } from "express";
 import mongoose from "mongoose";
-import usersRouter from "./routers/user";
-import postsRouter from "./routers/post";
-import rewardsRouter from "./routers/reward";
+import usersRouter from "./routers/users";
+import postsRouter from "./routers/posts";
+import rewardsRouter from "./routers/rewards";
 import imagesRouter from "./routers/images";
 import groupsRouter from "./routers/groups";
 import { config } from "dotenv";

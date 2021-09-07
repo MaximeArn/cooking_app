@@ -4,7 +4,7 @@ const {
   getUserById,
   updateProfile,
   getNationalRanking,
-} = require("../controllers/user");
+} = require("../controllers/users");
 
 const usersRouter = Router();
 

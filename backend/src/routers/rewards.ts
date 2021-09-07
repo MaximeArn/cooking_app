@@ -1,5 +1,5 @@
 import { Router } from "express";
-const { getRewards } = require("../controllers/reward");
+const { getRewards } = require("../controllers/rewards");
 
 const rewardsRouter = Router();
 
