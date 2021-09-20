@@ -1,3 +1,4 @@
+import 'package:cooking/environment/env.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -8,8 +9,6 @@ class PostCardImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(images);
-
     return Flexible(
       flex: 4,
       child: Row(
@@ -21,7 +20,7 @@ class PostCardImage extends StatelessWidget {
                   .map((image) => Container(
                         color: Colors.red,
                         child: Image.network(
-                          image,
+                          serverUrl + image,
                           fit: BoxFit.cover,
                           width: MediaQuery.of(context).size.width,
                         ),
