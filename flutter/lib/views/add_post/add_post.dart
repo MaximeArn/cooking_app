@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:cooking/views/add_post/widgets/preview_screen.dart';
 import 'package:cooking/widgets/loader.dart';
@@ -18,6 +20,8 @@ class AddPost extends StatefulWidget {
 class _AddPostState extends State<AddPost> {
   late CameraController _controller;
   late Future<void> _initializeControllerFuture;
+  bool photoWasTaken = false;
+  File? photo = null;
 
   @override
   void initState() {
@@ -28,6 +32,14 @@ class _AddPostState extends State<AddPost> {
     _initializeControllerFuture = _controller.initialize();
   }
 
+  void setPhoto(photoFile) {
+    print("setPhoto");
+    photo = File(photoFile.path);
+    setState(() {
+      photoWasTaken = true;
+    });
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -36,11 +48,16 @@ class _AddPostState extends State<AddPost> {
 
   @override
   Widget build(BuildContext context) {
+    print("build");
     return FutureBuilder<void>(
       future: _initializeControllerFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          return PreviousScreen(controller: _controller);
+          return photoWasTaken
+              ? Center(
+                  child: Image.file(photo as File),
+                )
+              : PreviousScreen(controller: _controller, setPhoto: setPhoto);
         } else {
           return const Loader();
         }

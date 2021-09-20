@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 
 class PreviousScreen extends StatelessWidget {
   final CameraController controller;
-  const PreviousScreen({Key? key, required this.controller}) : super(key: key);
+  final Function setPhoto;
+
+  const PreviousScreen({
+    Key? key,
+    required this.controller,
+    required this.setPhoto,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +20,10 @@ class PreviousScreen extends StatelessWidget {
           Flexible(
               flex: 1,
               child: FloatingActionButton(onPressed: () async {
-                final image = await controller.takePicture();
-                Navigator.pushNamed(context, "/addPostForm", arguments: image);
+                setPhoto(await controller.takePicture());
+                // controller.value =
+                // File(image);
+                // Navigator.pushNamed(context, "/addPostForm", arguments: image);
               }))
         ],
       ),
