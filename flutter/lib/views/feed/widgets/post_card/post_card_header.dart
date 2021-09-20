@@ -1,3 +1,4 @@
+import 'package:cooking/environment/env.dart';
 import 'package:cooking/views/profiles/profile/profile.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,7 @@ class PostCardHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(author!["avatar"]);
     return Flexible(
       flex: 1,
       child: Container(
@@ -25,7 +27,7 @@ class PostCardHeader extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.only(right: 20),
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage(author!["avatar"]),
+                  backgroundImage: NetworkImage(serverUrl + author!["avatar"]),
                 ),
               ),
               Text(

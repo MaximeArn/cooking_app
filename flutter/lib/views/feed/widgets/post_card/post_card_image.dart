@@ -8,6 +8,8 @@ class PostCardImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(images);
+
     return Flexible(
       flex: 4,
       child: Row(
