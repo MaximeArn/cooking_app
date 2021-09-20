@@ -12,7 +12,7 @@ export interface PostInterface extends Document {
 
 export const postSchema = new Schema({
   // authorId: { type: ObjectId, required: true },
-  authorId: {
+  author: {
     type: Schema.Types.ObjectId,
     default: new ObjectId(),
     ref: "user",

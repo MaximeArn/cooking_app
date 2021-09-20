@@ -1,5 +1,6 @@
 import 'dart:collection';
 import 'dart:convert';
+import 'dart:io';
 import 'package:cooking/environment/env.dart';
 import 'package:http/http.dart' as http;
 import 'package:cooking/models/Post.dart';
@@ -52,5 +53,24 @@ class PostsProvider with ChangeNotifier {
     } catch (e) {
       rethrow;
     }
+  }
+
+  Future<void> createPost(
+      {required List<File> images, required String authorId}) async {
+    // create the body to send to the server
+    print(images);
+    print(authorId);
+
+    final newPost = {
+      "author": authorId,
+      "images": images,
+    };
+
+    http.Response reponse = await http.post(
+      Uri.parse("$serverUrl/posts"),
+      headers: {'Content-type': 'application/json'},
+      // Pass the constructed body to the server
+      body: newPost,
+    );
   }
 }
