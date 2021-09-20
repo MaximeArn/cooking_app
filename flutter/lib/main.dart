@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:cooking/providers/posts.dart';
 import 'package:cooking/providers/rewards.dart';
 import 'package:cooking/providers/users.dart';
@@ -10,7 +11,10 @@ import 'package:cooking/views/search_page/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final cameras = await availableCameras();
+  print(cameras.length);
   runApp(Cooking());
 }
 
