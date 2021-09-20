@@ -1,3 +1,4 @@
+import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/Post.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +33,7 @@ class UserPosts extends StatelessWidget {
                     children: posts
                         .map(
                           (post) => Container(
-                            child: Image.network(post.images[0]),
+                            child: Image.network(serverUrl + post.images[0]),
                           ),
                         )
                         .toList()),
