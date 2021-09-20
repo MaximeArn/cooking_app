@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:cooking/views/add_post/widgets/preview_screen.dart';
 import 'package:cooking/widgets/loader.dart';
 import 'package:flutter/material.dart';
 
@@ -21,11 +22,8 @@ class _AddPostState extends State<AddPost> {
   @override
   void initState() {
     super.initState();
-    _controller = CameraController(
-      widget.camera,
-      ResolutionPreset.high,
-      imageFormatGroup: ImageFormatGroup.yuv420
-    );
+    _controller = CameraController(widget.camera, ResolutionPreset.high,
+        imageFormatGroup: ImageFormatGroup.yuv420);
 
     _initializeControllerFuture = _controller.initialize();
   }
@@ -37,12 +35,12 @@ class _AddPostState extends State<AddPost> {
   }
 
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     return FutureBuilder<void>(
       future: _initializeControllerFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          return Center(child: CameraPreview(_controller));
+          return PreviousScreen(controller: _controller);
         } else {
           return const Loader();
         }

@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:cooking/providers/posts.dart';
 import 'package:cooking/providers/rewards.dart';
 import 'package:cooking/providers/users.dart';
+import 'package:cooking/views/add_post/widgets/addPostForm.dart';
 import 'package:cooking/views/edit_profile/edit_profile.dart';
 import 'package:cooking/views/profiles/profile/profile.dart';
 import 'package:cooking/views/reward_detail/reward_detail.dart';
@@ -71,6 +72,7 @@ class _CookingState extends State<Cooking> {
           SearchPage.routeName: (_) => const SearchPage(),
           Profile.routeName: (_) => Profile(),
           EditProfile.routeName: (_) => EditProfile(),
+          AddPostForm.routeName: (_) => AddPostForm(),
         },
         onUnknownRoute: (_) =>
             MaterialPageRoute(builder: (_) => const NotFound()),
