@@ -15,10 +15,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final cameras = await availableCameras();
   print(cameras.length);
-  runApp(Cooking());
+  runApp(Cooking(camera: cameras.first,));
 }
 
 class Cooking extends StatefulWidget {
+  final CameraDescription camera;
+
+  Cooking({required this.camera});
+
   @override
   _CookingState createState() => _CookingState();
 }
@@ -62,7 +66,7 @@ class _CookingState extends State<Cooking> {
         title: "homepage",
         initialRoute: "/",
         routes: {
-          "/": (_) => HomeView(),
+          "/": (_) => HomeView(camera: widget.camera,),
           RewardDetail.routeName: (_) => RewardDetail(),
           SearchPage.routeName: (_) => const SearchPage(),
           Profile.routeName: (_) => Profile(),
