@@ -1,3 +1,4 @@
+import 'package:cooking/environment/env.dart';
 import 'package:cooking/views/profiles/profile/profile.dart';
 import 'package:flutter/material.dart';
 
@@ -41,7 +42,7 @@ class NationalRankingLine extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(right: 30),
-              child: CircleAvatar(backgroundImage: NetworkImage(user["avatar"]),),
+              child: CircleAvatar(backgroundImage: NetworkImage("$serverUrl${user["avatar"]}"),),
             ),
             Text(user["name"],),
           ],

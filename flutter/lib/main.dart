@@ -12,17 +12,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  final cameras = await availableCameras();
-  print(cameras.length);
-  runApp(Cooking(camera: cameras.first,));
+  runApp(Cooking());
 }
 
 class Cooking extends StatefulWidget {
-  final CameraDescription camera;
-
-  Cooking({required this.camera});
-
   @override
   _CookingState createState() => _CookingState();
 }
@@ -66,7 +59,7 @@ class _CookingState extends State<Cooking> {
         title: "homepage",
         initialRoute: "/",
         routes: {
-          "/": (_) => HomeView(camera: widget.camera,),
+          "/": (_) => HomeView(),
           RewardDetail.routeName: (_) => RewardDetail(),
           SearchPage.routeName: (_) => const SearchPage(),
           Profile.routeName: (_) => Profile(),
