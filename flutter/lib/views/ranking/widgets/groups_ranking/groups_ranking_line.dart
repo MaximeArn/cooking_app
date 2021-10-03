@@ -1,5 +1,5 @@
 import 'package:cooking/models/Group.dart';
-import 'package:cooking/views/groups/group_detail.dart';
+import 'package:cooking/views/ranking/widgets/groups_ranking/group_detail.dart';
 import 'package:flutter/material.dart';
 
 class GroupsRankingLine extends StatelessWidget {
@@ -16,7 +16,7 @@ class GroupsRankingLine extends StatelessWidget {
       child: Card(
         elevation: 3,
         child: ListTile(
-          onTap: () => Navigator.pushNamed(context, GroupDetail.routeName, arguments: group.id),
+          onTap: () => Navigator.pushNamed(context, GroupDetail.routeName, arguments: group),
           leading: Icon(Icons.group),
           title: Text(group.name),
         ),
