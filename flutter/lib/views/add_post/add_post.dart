@@ -1,9 +1,6 @@
 import 'dart:io';
-
 import 'package:camera/camera.dart';
 import 'package:cooking/providers/posts.dart';
-import 'package:cooking/providers/users.dart';
-import 'package:cooking/views/add_post/widgets/preview_screen.dart';
 import 'package:cooking/widgets/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -51,30 +48,10 @@ class _AddPostState extends State<AddPost> {
 
   @override
   Widget build(BuildContext context) {
-    print("build");
     return FutureBuilder<void>(
       future: _initializeControllerFuture,
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return photoWasTaken
-              ? Center(
-                  child: Stack(children: [
-                    Image.file(photo as File),
-                    Container(
-                        alignment: Alignment.bottomCenter,
-                        child: ElevatedButton(
-                            onPressed: () {
-                              Provider.of<PostsProvider>(context, listen: false)
-                                  .createPost(
-                                      images: [photo as File], authorId: "60e8c2140e7c9296fa2380c3");
-                            },
-                            child: Text("Post ")))
-                  ]),
-                )
-              : PreviousScreen(controller: _controller, setPhoto: setPhoto);
-        } else {
-          return const Loader();
-        }
+        return Text("camera");
       },
     );
   }

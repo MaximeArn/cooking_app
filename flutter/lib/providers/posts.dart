@@ -70,7 +70,7 @@ class PostsProvider with ChangeNotifier {
       Uri.parse("$serverUrl/posts"),
       headers: {'Content-type': 'application/json'},
       // Pass the constructed body to the server
-      body: newPost,
+      body: json.encode(newPost),
     );
   }
 }
