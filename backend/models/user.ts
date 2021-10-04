@@ -5,8 +5,8 @@ export interface UserInterface extends Document {
   email: String;
   password: String;
   stars: Number;
-  subscribers: Number;
-  subscriptions: Number;
+  subscribers: String[];
+  subscriptions: String[];
   avatar: String;
   posts: String[];
   countryCode: String;
@@ -19,8 +19,14 @@ export const userSchema = new Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
   stars: { type: Number, default: 0 },
-  subscribers: { type: Number, default: 0 },
-  subscriptions: { type: Number, default: 0 },
+  subscribers: {
+    type: [{ type: Schema.Types.ObjectId, ref: "user" }],
+    default: [],
+  },
+  subscriptions: {
+    type: [{ type: Schema.Types.ObjectId, ref: "user" }],
+    default: [],
+  },
   avatar: {
     type: String,
     default: `http://localhost:4545/assets/images/avatars/default_avatar.jpg`,
