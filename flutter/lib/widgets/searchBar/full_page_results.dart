@@ -1,17 +1,17 @@
-import 'package:cooking/environment/env.dart';
-import 'package:cooking/providers/users.dart';
+import 'package:cooking/widgets/searchBar/results_lines/classic_result.dart';
+import 'package:cooking/widgets/searchBar/results_lines/selectable_result.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class FullPageResults extends StatelessWidget {
   final List<Map<String, dynamic>> filteredUsers;
   final VoidCallback clearTextField;
   final bool addMembersPage;
 
-  FullPageResults(
-      {required this.filteredUsers,
-      required this.clearTextField,
-      this.addMembersPage = false});
+  FullPageResults({
+    required this.filteredUsers,
+    required this.clearTextField,
+    this.addMembersPage = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,31 +22,10 @@ class FullPageResults extends StatelessWidget {
       itemBuilder: (context, index) {
         Map<String, dynamic> user = filteredUsers[index];
         return addMembersPage
-            ? Card(
-                child: CheckboxListTile(
-                  value: true,
-                  onChanged: (_){},
-                  secondary: CircleAvatar(
-                    backgroundImage: NetworkImage(serverUrl + user["avatar"]),
-                  ),
-                  title: Text(user["name"]),
-                ),
+            ? SelectableResult(
+                user: user,
               )
-            : Card(
-                child: ListTile(
-                  onTap: () {
-                    Navigator.pushNamed(context, "/profile",
-                        arguments: user["id"]);
-                    Provider.of<UsersProvider>(context, listen: false)
-                        .getFilteredUsers("");
-                    clearTextField();
-                  },
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(serverUrl + user["avatar"]),
-                  ),
-                  title: Text(user["name"]),
-                ),
-              );
+            : ClassicResult(user: user, clearTextField: clearTextField);
       },
     );
   }
