@@ -65,7 +65,7 @@ class UsersProvider with ChangeNotifier {
     if (filter.isNotEmpty && (firstSearch || _filteredUsers.isNotEmpty)) {
       response = await http.get(
         Uri.parse(searAmoungFriends
-            ? "$serverUrl/users/searchAmoungFriends/$filter"
+            ? "$serverUrl/users/searchAmoungFriends/$filter/${connectedUser!.id}"
             : "$serverUrl/users/search/$filter"),
       );
       if (response.statusCode == 200) {

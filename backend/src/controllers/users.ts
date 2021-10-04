@@ -41,18 +41,22 @@ module.exports = {
   },
 
   getFriendsByName: async (
-    { params: { filter } }: Request,
+    { params: { filter, connectedUserId } }: Request,
     res: Response,
     next: NextFunction
   ) => {
     try {
-      const filterObject: any = {
-        name: { $regex: `^${filter}`, $options: "i" },
-      };
-      const filteredUsers: UserInterface[] = await User.find(filterObject, {
-        name: 1,
-        avatar: 1,
+      const { subscribers } = await User.findById(connectedUserId).populate({
+        path: "subscribers",
+        model: "user",
       });
+
+      const regExp = new RegExp(`^${filter.toLocaleLowerCase()}`, "i");
+
+      const filteredUsers = subscribers.filter((subscriber: any) =>
+        regExp.test(subscriber.name)
+      );
+
       res.json(filteredUsers);
     } catch (error) {
       console.error(error);
