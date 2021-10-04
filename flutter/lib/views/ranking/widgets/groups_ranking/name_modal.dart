@@ -21,21 +21,12 @@ class NameModal extends StatelessWidget {
             thickness: 0,
             color: Colors.transparent,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              ElevatedButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text("Cancel"),
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, AddMembers.routeName);
-                  },
-                  child: Text("Create")),
-            ],
-          ),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, AddMembers.routeName);
+              },
+              child: Text("Add members")),
         ],
       ),
     );

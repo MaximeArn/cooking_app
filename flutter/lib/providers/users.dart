@@ -57,13 +57,16 @@ class UsersProvider with ChangeNotifier {
     }
   }
 
-  Future<void> getFilteredUsers(String filter) async {
+  Future<void> getFilteredUsers(String filter,
+      {searAmoungFriends = false}) async {
     isLoading = true;
     late http.Response response;
     // the filter must not be empty and it must either be the first search or that there are already results so as not to continue to search if no user matches with the filter.
     if (filter.isNotEmpty && (firstSearch || _filteredUsers.isNotEmpty)) {
       response = await http.get(
-        Uri.parse("$serverUrl/users/search/$filter"),
+        Uri.parse(searAmoungFriends
+            ? "$serverUrl/users/searchAmoungFriends/$filter"
+            : "$serverUrl/users/search/$filter"),
       );
       if (response.statusCode == 200) {
         final List decodedBody = json.decode(response.body);

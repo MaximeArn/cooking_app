@@ -29,8 +29,9 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
     super.dispose();
   }
 
-  void fetchFilteredUsers(filter) {
-    Provider.of<UsersProvider>(context, listen: false).getFilteredUsers(filter);
+  void fetchFilteredUsers(filter, {searchAmoungFriends}) {
+    Provider.of<UsersProvider>(context, listen: false)
+        .getFilteredUsers(filter, searAmoungFriends: searchAmoungFriends);
   }
 
   void clearTextField() {
@@ -60,9 +61,8 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
               Expanded(
                 child: TextField(
                   onChanged: (text) {
-                    // widget.addMembersPage
-                        // ? print("search")
-                         fetchFilteredUsers(text);
+                    fetchFilteredUsers(text,
+                        searchAmoungFriends: widget.addMembersPage);
                   },
                   autocorrect: false,
                   controller: searchBarController,
@@ -99,8 +99,9 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
         if (filteredUsers.length > 0)
           widget.isFullPage
               ? FullPageResults(
-                addMembersPage: widget.addMembersPage,
-                  filteredUsers: filteredUsers, clearTextField: clearTextField)
+                  addMembersPage: widget.addMembersPage,
+                  filteredUsers: filteredUsers,
+                  clearTextField: clearTextField)
               : ResultsList(
                   filteredUsers: filteredUsers, clearTextField: clearTextField)
       ],
