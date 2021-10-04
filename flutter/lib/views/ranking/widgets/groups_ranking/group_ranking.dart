@@ -24,13 +24,27 @@ class _GroupRankingState extends State<GroupRanking> {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              TextField(decoration: InputDecoration(hintText: "Name"),),
-              Divider(height: 40, thickness: 0, color: Colors.transparent,),
+              TextField(
+                decoration: InputDecoration(hintText: "Name"),
+              ),
+              Divider(
+                height: 40,
+                thickness: 0,
+                color: Colors.transparent,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ElevatedButton(onPressed: () {}, child: Text("Cancel"),),
-                  ElevatedButton(onPressed: () {}, child: Text("Create")),
+                  ElevatedButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text("Cancel"),
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        Navigator.pushNamed(context, CreateGroup.routeName);
+                      },
+                      child: Text("Create")),
                 ],
               ),
             ],
