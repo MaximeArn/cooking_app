@@ -40,6 +40,26 @@ module.exports = {
     }
   },
 
+  getFriendsByName: async (
+    { params: { filter } }: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const filterObject: any = {
+        name: { $regex: `^${filter}`, $options: "i" },
+      };
+      const filteredUsers: UserInterface[] = await User.find(filterObject, {
+        name: 1,
+        avatar: 1,
+      });
+      res.json(filteredUsers);
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
+  },
+
   updateProfile: async (
     { params: { userId }, body }: Request,
     res: Response,
