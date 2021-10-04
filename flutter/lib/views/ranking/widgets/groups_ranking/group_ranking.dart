@@ -15,12 +15,10 @@ class _GroupRankingState extends State<GroupRanking> {
   @override
   Widget build(BuildContext context) {
     showAddGroupModal() {
-      return showDialog(
-          barrierColor: Color.fromRGBO(0, 0, 0, .7),
-          context: context,
-          builder: (_) {
-            return AddGroupModal();
-          });
+      showDialog(
+        context: context,
+        builder: (_) => AddGroupModal()
+      );
     }
 
     final groups = Provider.of<UsersProvider>(context).connectedUser!.groups;
