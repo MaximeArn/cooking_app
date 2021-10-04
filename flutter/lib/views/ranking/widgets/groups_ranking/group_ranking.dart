@@ -14,6 +14,30 @@ class GroupRanking extends StatefulWidget {
 class _GroupRankingState extends State<GroupRanking> {
   @override
   Widget build(BuildContext context) {
+    void showCreateGroupDialog() {
+      showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: Center(
+            child: Text("Enter a name"),
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(decoration: InputDecoration(hintText: "Name"),),
+              Divider(height: 40, thickness: 0, color: Colors.transparent,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ElevatedButton(onPressed: () {}, child: Text("Cancel"),),
+                  ElevatedButton(onPressed: () {}, child: Text("Create")),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+    }
 
     final groups = Provider.of<UsersProvider>(context).connectedUser!.groups;
 
@@ -35,7 +59,7 @@ class _GroupRankingState extends State<GroupRanking> {
           padding: EdgeInsets.all(15),
           alignment: Alignment.bottomRight,
           child: FloatingActionButton(
-            onPressed: () => Navigator.pushNamed(context, CreateGroup.routeName),
+            onPressed: showCreateGroupDialog,
             backgroundColor: Theme.of(context).highlightColor,
             child: Icon(
               Icons.add_rounded,
