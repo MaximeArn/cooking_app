@@ -1,6 +1,6 @@
 import 'package:cooking/providers/users.dart';
-import 'package:cooking/views/ranking/widgets/groups_ranking/create_group.dart';
 import 'package:cooking/views/ranking/widgets/groups_ranking/groups_ranking_line.dart';
+import 'package:cooking/views/ranking/widgets/groups_ranking/name_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,39 +17,7 @@ class _GroupRankingState extends State<GroupRanking> {
     void showCreateGroupDialog() {
       showDialog(
         context: context,
-        builder: (_) => AlertDialog(
-          title: Center(
-            child: Text("Enter a name"),
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                decoration: InputDecoration(hintText: "Name"),
-              ),
-              Divider(
-                height: 40,
-                thickness: 0,
-                color: Colors.transparent,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  ElevatedButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text("Cancel"),
-                  ),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                        Navigator.pushNamed(context, CreateGroup.routeName);
-                      },
-                      child: Text("Create")),
-                ],
-              ),
-            ],
-          ),
-        ),
+        builder: (_) => NameModal(),
       );
     }
 

@@ -1,3 +1,4 @@
+import 'package:cooking/environment/env.dart';
 import 'package:cooking/providers/users.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +26,7 @@ class ResultsList extends StatelessWidget {
                       clearTextField();
                     },
                     leading: CircleAvatar(
-                      backgroundImage: NetworkImage(user["avatar"]),
+                      backgroundImage: NetworkImage(serverUrl + user["avatar"]),
                     ),
                     title: Text(user["name"]),
                   ),

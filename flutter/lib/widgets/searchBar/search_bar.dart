@@ -1,4 +1,3 @@
-import 'package:cooking/models/User.dart';
 import 'package:cooking/providers/users.dart';
 import 'package:cooking/widgets/searchBar/full_page_results.dart';
 import 'package:cooking/widgets/searchBar/results.dart';
@@ -8,8 +7,9 @@ import 'package:provider/provider.dart';
 // ignore: must_be_immutable
 class FeedSearchBar extends StatefulWidget {
   late bool isFullPage;
+  final bool addMembersPage;
 
-  FeedSearchBar({required this.isFullPage});
+  FeedSearchBar({required this.isFullPage, this.addMembersPage = false});
 
   @override
   _FeedSearchBarState createState() => _FeedSearchBarState();
@@ -60,7 +60,9 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
               Expanded(
                 child: TextField(
                   onChanged: (text) {
-                    fetchFilteredUsers(text);
+                    // widget.addMembersPage
+                        // ? print("search")
+                         fetchFilteredUsers(text);
                   },
                   autocorrect: false,
                   controller: searchBarController,
@@ -97,6 +99,7 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
         if (filteredUsers.length > 0)
           widget.isFullPage
               ? FullPageResults(
+                addMembersPage: widget.addMembersPage,
                   filteredUsers: filteredUsers, clearTextField: clearTextField)
               : ResultsList(
                   filteredUsers: filteredUsers, clearTextField: clearTextField)

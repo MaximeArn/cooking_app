@@ -6,8 +6,12 @@ import 'package:provider/provider.dart';
 class FullPageResults extends StatelessWidget {
   final List<Map<String, dynamic>> filteredUsers;
   final VoidCallback clearTextField;
+  final bool addMembersPage;
 
-  FullPageResults({required this.filteredUsers, required this.clearTextField});
+  FullPageResults(
+      {required this.filteredUsers,
+      required this.clearTextField,
+      this.addMembersPage = false});
 
   @override
   Widget build(BuildContext context) {
@@ -17,20 +21,32 @@ class FullPageResults extends StatelessWidget {
       itemCount: filteredUsers.length,
       itemBuilder: (context, index) {
         Map<String, dynamic> user = filteredUsers[index];
-        return Card(
-          child: ListTile(
-            onTap: () {
-              Navigator.pushNamed(context, "/profile", arguments: user["id"]);
-              Provider.of<UsersProvider>(context, listen: false)
-                  .getFilteredUsers("");
-              clearTextField();
-            },
-            leading: CircleAvatar(
-              backgroundImage: NetworkImage(serverUrl + user["avatar"]),
-            ),
-            title: Text(user["name"]),
-          ),
-        );
+        return addMembersPage
+            ? Card(
+                child: CheckboxListTile(
+                  value: true,
+                  onChanged: (_){},
+                  secondary: CircleAvatar(
+                    backgroundImage: NetworkImage(serverUrl + user["avatar"]),
+                  ),
+                  title: Text(user["name"]),
+                ),
+              )
+            : Card(
+                child: ListTile(
+                  onTap: () {
+                    Navigator.pushNamed(context, "/profile",
+                        arguments: user["id"]);
+                    Provider.of<UsersProvider>(context, listen: false)
+                        .getFilteredUsers("");
+                    clearTextField();
+                  },
+                  leading: CircleAvatar(
+                    backgroundImage: NetworkImage(serverUrl + user["avatar"]),
+                  ),
+                  title: Text(user["name"]),
+                ),
+              );
       },
     );
   }
