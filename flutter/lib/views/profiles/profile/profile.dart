@@ -30,8 +30,8 @@ class Profile extends StatelessWidget {
                   name: user.name,
                   avatar: user.avatar,
                   stars: user.stars,
-                  subscribers: user.subscribers,
-                  subscriptions: user.subscriptions,
+                  subscribers: user.subscribers.length,
+                  subscriptions: user.subscriptions.length,
                 ),
                 UserPosts(
                   posts: user.posts,

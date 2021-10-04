@@ -12,8 +12,8 @@ class User {
   String avatar;
   final List<Post> posts;
   final int stars;
-  final int subscribers;
-  final int subscriptions;
+  final List subscribers;
+  final List subscriptions;
   File? fileImage = null;
   String countryCode;
   List<Group> groups;

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/User.dart';
 import 'package:cooking/providers/users.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class _EditableAvatarState extends State<EditableAvatar> {
   @override
   Widget build(BuildContext context) {
     late User user = Provider.of<UsersProvider>(context).connectedUser as User;
-    String avatar = user.avatar;
+    String avatar = serverUrl + user.avatar;
 
     ImagePicker imagePicker = ImagePicker();
 
