@@ -1,5 +1,5 @@
 import 'package:cooking/providers/users.dart';
-import 'package:cooking/views/ranking/widgets/groups_ranking/add_group_modal.dart';
+import 'package:cooking/views/ranking/widgets/groups_ranking/create_group.dart';
 import 'package:cooking/views/ranking/widgets/groups_ranking/groups_ranking_line.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,12 +14,6 @@ class GroupRanking extends StatefulWidget {
 class _GroupRankingState extends State<GroupRanking> {
   @override
   Widget build(BuildContext context) {
-    showAddGroupModal() {
-      showDialog(
-        context: context,
-        builder: (_) => AddGroupModal()
-      );
-    }
 
     final groups = Provider.of<UsersProvider>(context).connectedUser!.groups;
 
@@ -41,7 +35,7 @@ class _GroupRankingState extends State<GroupRanking> {
           padding: EdgeInsets.all(15),
           alignment: Alignment.bottomRight,
           child: FloatingActionButton(
-            onPressed: showAddGroupModal,
+            onPressed: () => Navigator.pushNamed(context, CreateGroup.routeName),
             backgroundColor: Theme.of(context).highlightColor,
             child: Icon(
               Icons.add_rounded,

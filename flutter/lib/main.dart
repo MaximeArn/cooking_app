@@ -3,6 +3,7 @@ import 'package:cooking/providers/rewards.dart';
 import 'package:cooking/providers/users.dart';
 import 'package:cooking/views/edit_profile/edit_profile.dart';
 import 'package:cooking/views/profiles/profile/profile.dart';
+import 'package:cooking/views/ranking/widgets/groups_ranking/create_group.dart';
 import 'package:cooking/views/ranking/widgets/groups_ranking/group_detail.dart';
 import 'package:cooking/views/reward_detail/reward_detail.dart';
 import 'package:cooking/views/home/home_view.dart';
@@ -64,7 +65,8 @@ class _CookingState extends State<Cooking> {
           SearchPage.routeName: (_) => const SearchPage(),
           Profile.routeName: (_) => Profile(),
           EditProfile.routeName: (_) => EditProfile(),
-          GroupDetail.routeName: (_) => GroupDetail()
+          GroupDetail.routeName: (_) => GroupDetail(),
+          CreateGroup.routeName: (_) => CreateGroup(),
         },
         onUnknownRoute: (_) =>
             MaterialPageRoute(builder: (_) => const NotFound()),
