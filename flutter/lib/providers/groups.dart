@@ -8,7 +8,7 @@ class GroupsProvider with ChangeNotifier {
       id: null,
       members: [
         User(
-            id: "id",
+            id: "id1",
             age: 3,
             name: "name",
             email: "email",
@@ -21,7 +21,7 @@ class GroupsProvider with ChangeNotifier {
             countryCode: "countryCode",
             groups: []),
         User(
-            id: "id",
+            id: "id2",
             age: 3,
             name: "name",
             email: "email",
@@ -34,7 +34,7 @@ class GroupsProvider with ChangeNotifier {
             countryCode: "countryCode",
             groups: []),
         User(
-            id: "id",
+            id: "id3",
             age: 3,
             name: "name",
             email: "email",
@@ -47,7 +47,7 @@ class GroupsProvider with ChangeNotifier {
             countryCode: "countryCode",
             groups: []),
         User(
-            id: "id",
+            id: "id4",
             age: 3,
             name: "name",
             email: "email",
@@ -60,7 +60,7 @@ class GroupsProvider with ChangeNotifier {
             countryCode: "countryCode",
             groups: []),
         User(
-            id: "id",
+            id: "id5",
             age: 3,
             name: "name",
             email: "email",
@@ -73,7 +73,7 @@ class GroupsProvider with ChangeNotifier {
             countryCode: "countryCode",
             groups: []),
         User(
-            id: "id",
+            id: "id6",
             age: 3,
             name: "name",
             email: "email",
