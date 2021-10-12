@@ -6,7 +6,6 @@ class GroupsProvider with ChangeNotifier {
 
   void removeMember(memberId) {
     newGroup.members.removeWhere((member) {
-      print(member);
       return memberId == member["id"];
     });
     notifyListeners();

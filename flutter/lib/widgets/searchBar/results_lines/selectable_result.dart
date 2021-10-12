@@ -27,6 +27,7 @@ class _SelectableResultState extends State<SelectableResult> {
         value: selected,
         onChanged: (bool? value) {
           if (value != null) {
+            print(value);
             value ? addMember(widget.user) : removeMember(widget.user["id"]);
             setState(() {
               selected = value;

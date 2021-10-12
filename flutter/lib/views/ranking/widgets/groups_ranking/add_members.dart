@@ -39,8 +39,6 @@ class _AddMembersState extends State<AddMembers> {
                     children: selectedMembers
                         .map((member) => GestureDetector(
                               onTap: () {
-                                print("delete member");
-                                print(member);
                                 removeMember(member["id"]);
                               },
                               child: CircleAvatar(
