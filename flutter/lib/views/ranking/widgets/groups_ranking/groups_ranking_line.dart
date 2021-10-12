@@ -18,7 +18,7 @@ class GroupsRankingLine extends StatelessWidget {
         child: ListTile(
           onTap: () => Navigator.pushNamed(context, GroupDetail.routeName, arguments: group),
           leading: Icon(Icons.group),
-          title: Text(group.name),
+          title: Text(group.name as String),
         ),
       ),
     );

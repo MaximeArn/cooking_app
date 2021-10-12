@@ -1,3 +1,4 @@
+import 'package:cooking/providers/groups.dart';
 import 'package:cooking/providers/posts.dart';
 import 'package:cooking/providers/rewards.dart';
 import 'package:cooking/providers/users.dart';
@@ -53,7 +54,8 @@ class _CookingState extends State<Cooking> {
       providers: [
         ChangeNotifierProvider.value(value: rewardsProvider),
         ChangeNotifierProvider.value(value: postsProvider),
-        ChangeNotifierProvider.value(value: usersProvider)
+        ChangeNotifierProvider.value(value: usersProvider),
+        ChangeNotifierProvider.value(value: GroupsProvider(),)
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

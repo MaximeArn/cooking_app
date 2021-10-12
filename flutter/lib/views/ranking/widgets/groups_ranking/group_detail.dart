@@ -13,7 +13,7 @@ class GroupDetail extends StatelessWidget {
     return SecondaryScaffold(
       body: Container(
         alignment: Alignment.center,
-        child: Text(group.name),
+        child: Text(group.name as String),
       ),
     );
   }

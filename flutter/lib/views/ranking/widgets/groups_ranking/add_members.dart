@@ -1,96 +1,32 @@
 import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/User.dart';
+import 'package:cooking/providers/groups.dart';
 import 'package:flutter/material.dart';
 import 'package:cooking/widgets/scaffolds/secondary_scaffold.dart';
 import 'package:cooking/widgets/searchBar/search_bar.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 
-class AddMembers extends StatelessWidget {
-  static const routeName = "/createGroup";
+class AddMembers extends StatefulWidget {
+  static const routeName = "/addMembers";
   const AddMembers({Key? key}) : super(key: key);
 
   @override
+  _AddMembersState createState() => _AddMembersState();
+}
+
+class _AddMembersState extends State<AddMembers> {
+  @override
   Widget build(BuildContext context) {
-    final List<User> selectedMembers = [
-      User(
-          id: "id",
-          age: 3,
-          name: "name",
-          email: "email",
-          password: "password",
-          avatar: "$serverUrl/assets/images/avatars/profile_photo_1.jpg",
-          posts: [],
-          stars: 3,
-          subscribers: [],
-          subscriptions: [],
-          countryCode: "countryCode",
-          groups: []),
-      User(
-          id: "id",
-          age: 3,
-          name: "name",
-          email: "email",
-          password: "password",
-          avatar: "$serverUrl/assets/images/avatars/profile_photo_2.jpg",
-          posts: [],
-          stars: 3,
-          subscribers: [],
-          subscriptions: [],
-          countryCode: "countryCode",
-          groups: []),
-      User(
-          id: "id",
-          age: 3,
-          name: "name",
-          email: "email",
-          password: "password",
-          avatar: "$serverUrl/assets/images/avatars/profile_photo_3.jpg",
-          posts: [],
-          stars: 3,
-          subscribers: [],
-          subscriptions: [],
-          countryCode: "countryCode",
-          groups: []),
-      User(
-          id: "id",
-          age: 3,
-          name: "name",
-          email: "email",
-          password: "password",
-          avatar: "$serverUrl/assets/images/avatars/profile_photo_4.jpg",
-          posts: [],
-          stars: 3,
-          subscribers: [],
-          subscriptions: [],
-          countryCode: "countryCode",
-          groups: []),
-      User(
-          id: "id",
-          age: 3,
-          name: "name",
-          email: "email",
-          password: "password",
-          avatar: "$serverUrl/assets/images/avatars/profile_photo_5.jpg",
-          posts: [],
-          stars: 3,
-          subscribers: [],
-          subscriptions: [],
-          countryCode: "countryCode",
-          groups: []),
-      User(
-          id: "id",
-          age: 3,
-          name: "name",
-          email: "email",
-          password: "password",
-          avatar: "$serverUrl/assets/images/avatars/profile_photo_1.jpg",
-          posts: [],
-          stars: 3,
-          subscribers: [],
-          subscriptions: [],
-          countryCode: "countryCode",
-          groups: []),
-    ];
+    print("build");
+    final List selectedMembers = Provider.of<GroupsProvider>(context).newGroup.members as List;
+
+    void removeMember(String memberId) {
+      selectedMembers.removeWhere((member) => memberId == member.id);
+      setState(() {
+        
+      });
+    }
 
     return SecondaryScaffold(
       body: Container(
@@ -100,7 +36,8 @@ class AddMembers extends StatelessWidget {
               Expanded(
                 flex: 11,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: GridView.count(
                     scrollDirection: Axis.horizontal,
                     crossAxisCount: 1,
@@ -108,11 +45,14 @@ class AddMembers extends StatelessWidget {
                     crossAxisSpacing: 15,
                     children: selectedMembers
                         .map((member) => GestureDetector(
-                          onTap: (){},
-                          child: CircleAvatar(
+                              onTap: () {
+                                print("delete member");
+                                removeMember(member.id);
+                              },
+                              child: CircleAvatar(
                                 backgroundImage: NetworkImage(member.avatar),
                               ),
-                        ))
+                            ))
                         .toList(),
                   ),
                 ),

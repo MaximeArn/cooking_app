@@ -46,9 +46,9 @@ class UsersProvider with ChangeNotifier {
 
       //only for tests
       connectedUser!.groups = [
-        Group(id: "", users: [], name: "Family"),
-        Group(id: "", users: [], name: "Friends"),
-        Group(id: "", users: [], name: "Colleague"),
+        Group(id: "", members: [], name: "Family"),
+        Group(id: "", members: [], name: "Friends"),
+        Group(id: "", members: [], name: "Colleague"),
       ];
       notifyListeners();
     } catch (e) {
