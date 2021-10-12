@@ -1,5 +1,7 @@
 import 'package:cooking/environment/env.dart';
+import 'package:cooking/providers/groups.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SelectableResult extends StatefulWidget {
   final user;
@@ -15,11 +17,17 @@ class _SelectableResultState extends State<SelectableResult> {
 
   @override
   Widget build(BuildContext context) {
+    final addMember =
+        Provider.of<GroupsProvider>(context, listen: false).addMember;
+    final removeMember =
+        Provider.of<GroupsProvider>(context, listen: false).removeMember;
+
     return Card(
       child: CheckboxListTile(
         value: selected,
         onChanged: (bool? value) {
           if (value != null) {
+            value ? addMember(widget.user) : removeMember(widget.user["id"]);
             setState(() {
               selected = value;
             });

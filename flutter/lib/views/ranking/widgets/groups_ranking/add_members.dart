@@ -1,5 +1,4 @@
 import 'package:cooking/environment/env.dart';
-import 'package:cooking/models/User.dart';
 import 'package:cooking/providers/groups.dart';
 import 'package:flutter/material.dart';
 import 'package:cooking/widgets/scaffolds/secondary_scaffold.dart';
@@ -18,15 +17,9 @@ class AddMembers extends StatefulWidget {
 class _AddMembersState extends State<AddMembers> {
   @override
   Widget build(BuildContext context) {
-    print("build");
-    final List selectedMembers = Provider.of<GroupsProvider>(context).newGroup.members as List;
-
-    void removeMember(String memberId) {
-      selectedMembers.removeWhere((member) => memberId == member.id);
-      setState(() {
-        
-      });
-    }
+    final removeMember = Provider.of<GroupsProvider>(context).removeMember;
+    final List selectedMembers =
+        Provider.of<GroupsProvider>(context).newGroup.members;
 
     return SecondaryScaffold(
       body: Container(
@@ -47,10 +40,12 @@ class _AddMembersState extends State<AddMembers> {
                         .map((member) => GestureDetector(
                               onTap: () {
                                 print("delete member");
-                                removeMember(member.id);
+                                print(member);
+                                removeMember(member["id"]);
                               },
                               child: CircleAvatar(
-                                backgroundImage: NetworkImage(member.avatar),
+                                backgroundImage:
+                                    NetworkImage(serverUrl + member["avatar"]),
                               ),
                             ))
                         .toList(),
