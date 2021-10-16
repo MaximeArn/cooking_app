@@ -23,10 +23,13 @@ class _EditableAvatarState extends State<EditableAvatar> {
     ImagePicker imagePicker = ImagePicker();
 
     Future<void> pickImage() async {
+      print("pick Image");
       try {
         XFile? pickedImage =
             await imagePicker.pickImage(source: ImageSource.gallery);
+        print(pickedImage);
         if (pickedImage != null) {
+          print(" transform picked image !! ");
           File pickedFile = File(pickedImage.path);
           setState(() {
             user.fileImage = pickedFile;
@@ -53,7 +56,9 @@ class _EditableAvatarState extends State<EditableAvatar> {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: user.fileImage == null ? NetworkImage(avatar) : FileImage(user.fileImage as File) as ImageProvider,
+                    image: user.fileImage == null
+                        ? NetworkImage(avatar)
+                        : FileImage(user.fileImage as File) as ImageProvider,
                   ),
                 ),
               ),
