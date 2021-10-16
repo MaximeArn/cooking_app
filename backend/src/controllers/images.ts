@@ -19,7 +19,8 @@ module.exports = {
         "public",
         previousAvatarPath
       );
-      fs.unlinkSync(absolutePreviousAvatarPath);
+
+      fs.unlinkSync("public" + absolutePreviousAvatarPath);
 
       // compress new avatar
       const compressedFilename = `${filename.substring(
@@ -35,7 +36,7 @@ module.exports = {
       // remove full size avatar
       fs.unlinkSync(Path.resolve(path));
 
-      const newPath = `http://localhost:4545/assets/images/avatars/${compressedFilename}`;
+      const newPath = `/assets/images/avatars/${compressedFilename}`;
       res.json(newPath).status(200);
     } catch (error) {
       console.error(error);

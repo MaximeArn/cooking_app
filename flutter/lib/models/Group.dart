@@ -1,5 +1,5 @@
 class Group {
-  final String? name;
+  String? name;
   final String? id;
   final List members;
 
@@ -17,6 +17,10 @@ class Group {
     this.members.removeWhere((member) {
       return memberId == member.id;
     });
+  }
+
+  setName(newName) {
+    this.name = newName;
   }
 
   Group.fromJson(json, {bool isPopulated = true})

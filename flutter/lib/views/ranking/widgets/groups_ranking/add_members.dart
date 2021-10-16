@@ -18,6 +18,7 @@ class _AddMembersState extends State<AddMembers> {
   @override
   Widget build(BuildContext context) {
     final removeMember = Provider.of<GroupsProvider>(context).removeMember;
+    final newGroup = Provider.of<GroupsProvider>(context).newGroup;
     final List selectedMembers =
         Provider.of<GroupsProvider>(context).newGroup.members;
 
@@ -25,7 +26,7 @@ class _AddMembersState extends State<AddMembers> {
       body: Stack(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 20,vertical: 35),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 35),
             alignment: Alignment.bottomRight,
             child: FloatingActionButton(
               backgroundColor: Theme.of(context).highlightColor,
@@ -34,7 +35,8 @@ class _AddMembersState extends State<AddMembers> {
                 size: 30,
               ),
               onPressed: () {
-                
+                print(newGroup.name);
+                print(newGroup.members);
               },
             ),
           ),

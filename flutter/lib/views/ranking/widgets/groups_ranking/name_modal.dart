@@ -1,5 +1,8 @@
+import 'package:cooking/models/Group.dart';
+import 'package:cooking/providers/groups.dart';
 import 'package:cooking/views/ranking/widgets/groups_ranking/add_members.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class NameModal extends StatelessWidget {
   const NameModal({Key? key}) : super(key: key);
@@ -7,6 +10,8 @@ class NameModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
+    final Group newGroup = Provider.of<GroupsProvider>(context).newGroup;
+    final TextEditingController controller = TextEditingController();
 
     return AlertDialog(
       title: Center(
@@ -18,6 +23,7 @@ class NameModal extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextFormField(
+              controller: controller,
               maxLength: 20,
               validator: (String? value) {
                 if (value == null || value.trim().isEmpty) {
@@ -38,6 +44,7 @@ class NameModal extends StatelessWidget {
                   if (formKey.currentState!.validate()) {
                     Navigator.pop(context);
                     Navigator.pushNamed(context, AddMembers.routeName);
+                    newGroup.setName(controller.value.text);
                   }
                   ;
                 },
