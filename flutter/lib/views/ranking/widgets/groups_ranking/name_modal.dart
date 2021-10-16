@@ -20,7 +20,7 @@ class NameModal extends StatelessWidget {
             TextFormField(
               maxLength: 20,
               validator: (String? value) {
-                if (value == null || value.isEmpty) {
+                if (value == null || value.trim().isEmpty) {
                   print("test");
                   return "Please enter some text";
                 }
@@ -35,10 +35,11 @@ class NameModal extends StatelessWidget {
             ),
             ElevatedButton(
                 onPressed: () {
-                  if(formKey.currentState!.validate()){
+                  if (formKey.currentState!.validate()) {
                     Navigator.pop(context);
                     Navigator.pushNamed(context, AddMembers.routeName);
-                  };
+                  }
+                  ;
                 },
                 child: Text("Add members")),
           ],

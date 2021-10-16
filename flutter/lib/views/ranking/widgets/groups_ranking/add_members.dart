@@ -22,43 +22,63 @@ class _AddMembersState extends State<AddMembers> {
         Provider.of<GroupsProvider>(context).newGroup.members;
 
     return SecondaryScaffold(
-      body: Container(
-        child: Column(
-          children: [
-            if (selectedMembers.length > 0)
-              Expanded(
-                flex: 11,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: GridView.count(
-                    scrollDirection: Axis.horizontal,
-                    crossAxisCount: 1,
-                    mainAxisSpacing: 15,
-                    crossAxisSpacing: 15,
-                    children: selectedMembers
-                        .map((member) => GestureDetector(
-                              onTap: () {
-                                removeMember(member["id"]);
-                              },
-                              child: CircleAvatar(
-                                backgroundImage:
-                                    NetworkImage(serverUrl + member["avatar"]),
+      body: Stack(
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 20,vertical: 35),
+            alignment: Alignment.bottomRight,
+            child: FloatingActionButton(
+              backgroundColor: Theme.of(context).highlightColor,
+              child: Icon(
+                Icons.done,
+                size: 30,
+              ),
+              onPressed: () {
+                
+              },
+            ),
+          ),
+          Container(
+            child: Column(
+              children: [
+                if (selectedMembers.length > 0)
+                  Expanded(
+                    flex: 11,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
+                      child: GridView.count(
+                        scrollDirection: Axis.horizontal,
+                        crossAxisCount: 1,
+                        mainAxisSpacing: 15,
+                        crossAxisSpacing: 15,
+                        children: selectedMembers
+                            .map(
+                              (member) => GestureDetector(
+                                onTap: () {
+                                  removeMember(member["id"]);
+                                },
+                                child: CircleAvatar(
+                                  backgroundImage: NetworkImage(
+                                      serverUrl + member["avatar"]),
+                                ),
                               ),
-                            ))
-                        .toList(),
+                            )
+                            .toList(),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            Expanded(
-              flex: 89,
-              child: FeedSearchBar(
-                isFullPage: true,
-                addMembersPage: true,
-              ),
-            )
-          ],
-        ),
+                Expanded(
+                  flex: 89,
+                  child: FeedSearchBar(
+                    isFullPage: true,
+                    addMembersPage: true,
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
