@@ -13,24 +13,35 @@ class SelectableResult extends StatefulWidget {
 }
 
 class _SelectableResultState extends State<SelectableResult> {
-  bool selected = false;
-
   @override
   Widget build(BuildContext context) {
     final addMember =
         Provider.of<GroupsProvider>(context, listen: false).addMember;
+
     final removeMember =
         Provider.of<GroupsProvider>(context, listen: false).removeMember;
+
+    final selectedMembers =
+        Provider.of<GroupsProvider>(context).newGroup.members;
+
+    bool setSelected(user) {
+      for (var member in selectedMembers) {
+        if (member["id"] == widget.user["id"]) return true;
+      }
+      return false;
+    }
+
+    bool selected = setSelected(widget.user);
+    print(selected);
 
     return Card(
       child: CheckboxListTile(
         value: selected,
         onChanged: (bool? value) {
           if (value != null) {
-            print(value);
             value ? addMember(widget.user) : removeMember(widget.user["id"]);
             setState(() {
-              selected = value;
+              selected = setSelected(widget.user);
             });
           }
         },

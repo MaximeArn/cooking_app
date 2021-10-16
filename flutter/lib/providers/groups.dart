@@ -12,8 +12,11 @@ class GroupsProvider with ChangeNotifier {
   }
 
   void addMember(member) {
+    final bool alreadyAdded = newGroup.members.contains(member);
+    if(!alreadyAdded){
     newGroup.members.add(member);
     notifyListeners();
+    }
   }
 
   Future<void> createGroup() async {}
