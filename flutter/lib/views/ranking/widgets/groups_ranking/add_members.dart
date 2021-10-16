@@ -35,8 +35,7 @@ class _AddMembersState extends State<AddMembers> {
                 size: 30,
               ),
               onPressed: () {
-                print(newGroup.name);
-                print(newGroup.members);
+                GroupsProvider().createGroup();
               },
             ),
           ),

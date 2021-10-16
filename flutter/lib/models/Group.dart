@@ -19,7 +19,7 @@ class Group {
     });
   }
 
-  setName(newName) {
+  setName(String newName ) {
     this.name = newName;
   }
 
