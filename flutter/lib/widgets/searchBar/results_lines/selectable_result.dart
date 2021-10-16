@@ -17,10 +17,8 @@ class _SelectableResultState extends State<SelectableResult> {
   Widget build(BuildContext context) {
     final addMember =
         Provider.of<GroupsProvider>(context, listen: false).addMember;
-
     final removeMember =
         Provider.of<GroupsProvider>(context, listen: false).removeMember;
-
     final selectedMembers =
         Provider.of<GroupsProvider>(context).newGroup.members;
 
@@ -32,7 +30,6 @@ class _SelectableResultState extends State<SelectableResult> {
     }
 
     bool selected = setSelected(widget.user);
-    print(selected);
 
     return Card(
       child: CheckboxListTile(
