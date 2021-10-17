@@ -23,13 +23,17 @@ class GroupsProvider with ChangeNotifier {
     }
   }
 
-  Future<void> createGroup() async {
-    http.Response response = await http.post(Uri.parse("$serverUrl/groups"),
+  Future<void> createGroup(Group group) async {
+    try {
+      http.Response response = await http.post(
+        Uri.parse("$serverUrl/groups"),
         headers: {'Content-type': 'application/json'},
-        body: json.encode({
-          "members": newGroup.members,
-          "name": newGroup.name
-        }));
-    print(response);
+        body: json.encode({"members": group.members, "name": group.name}),
+      );
+      print(response);
+    } catch (err) {
+      print(err);
+      rethrow;
+    }
   }
 }
