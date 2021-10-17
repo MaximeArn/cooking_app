@@ -1,5 +1,6 @@
 import 'package:cooking/environment/env.dart';
 import 'package:cooking/providers/groups.dart';
+import 'package:cooking/providers/users.dart';
 import 'package:flutter/material.dart';
 import 'package:cooking/widgets/scaffolds/secondary_scaffold.dart';
 import 'package:cooking/widgets/searchBar/search_bar.dart';
@@ -21,6 +22,8 @@ class _AddMembersState extends State<AddMembers> {
     final newGroup = Provider.of<GroupsProvider>(context).newGroup;
     final List selectedMembers =
         Provider.of<GroupsProvider>(context).newGroup.members;
+    final connectedUserId =
+        Provider.of<UsersProvider>(context).connectedUser!.id;
 
     return SecondaryScaffold(
       body: Stack(
@@ -35,7 +38,10 @@ class _AddMembersState extends State<AddMembers> {
                 size: 30,
               ),
               onPressed: () {
-                GroupsProvider().createGroup(newGroup);
+                GroupsProvider().createGroup(
+                  group: newGroup,
+                  connectedUserId: connectedUserId,
+                );
               },
             ),
           ),

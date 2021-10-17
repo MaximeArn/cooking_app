@@ -1,12 +1,15 @@
 import { model, Model, Schema } from "mongoose";
 
 export interface GroupInterface extends Document {
-  users: String[];
+  members: String[];
   name: String;
 }
 
 export const groupSchema = new Schema({
-  users: { type: [{ type: Schema.Types.ObjectId, ref: "user" }], default: [] },
+  members: {
+    type: [{ type: Schema.Types.ObjectId, ref: "user" }],
+    default: [],
+  },
   name: { type: String, required: true },
 });
 

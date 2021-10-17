@@ -5,7 +5,13 @@ module.exports = {
   createGroup: async ({ body }: Request, res: Response, next: NextFunction) => {
     try {
       console.log(body);
-      const newGroup = await Group.create(body);
+      const group = {
+        name: body.name,
+        members: body.members.map((member) => member.id),
+      };
+      console.log(group);
+
+      const newGroup = await Group.create(group);
       console.log(newGroup);
       res.json(newGroup).status(200);
     } catch (error) {
