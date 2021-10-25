@@ -45,9 +45,13 @@ class UsersProvider with ChangeNotifier {
   Future<dynamic> getConnectedUser(String userId) async {
     try {
       connectedUser = await getUserById(userId);
+
+      // get all groups wher "memebrs" field contains the connectedUser id
       http.Response response =
           await http.get(Uri.parse("$serverUrl/groups/$userId"));
-      print(response.body);
+      final List decodedBody = json.decode(response.body);
+      connectedUser!.groups =
+          decodedBody.map((groupJson) => Group.fromJson(groupJson)).toList();
     } catch (e) {
       print(e);
       rethrow;
