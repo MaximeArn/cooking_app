@@ -22,7 +22,7 @@ class GroupsProvider with ChangeNotifier {
     }
   }
 
-  Future<void> createGroup(
+  Future<Group> createGroup(
       {required Group group, required String connectedUserId}) async {
     try {
       http.Response response = await http.post(
@@ -30,7 +30,9 @@ class GroupsProvider with ChangeNotifier {
         headers: {'Content-type': 'application/json'},
         body: json.encode({"members": group.members, "name": group.name}),
       );
-      print(response);
+      print(response.body);
+      final newGroup = Group.fromJson(json.decode(response.body));
+      return newGroup;
     } catch (err) {
       print(err);
       rethrow;

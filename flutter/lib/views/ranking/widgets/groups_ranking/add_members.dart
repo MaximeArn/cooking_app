@@ -1,6 +1,7 @@
 import 'package:cooking/environment/env.dart';
 import 'package:cooking/providers/groups.dart';
 import 'package:cooking/providers/users.dart';
+import 'package:cooking/views/ranking/widgets/groups_ranking/group_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:cooking/widgets/scaffolds/secondary_scaffold.dart';
 import 'package:cooking/widgets/searchBar/search_bar.dart';
@@ -38,10 +39,14 @@ class _AddMembersState extends State<AddMembers> {
                 size: 30,
               ),
               onPressed: () {
-                GroupsProvider().createGroup(
-                  group: newGroup,
-                  connectedUserId: connectedUserId,
-                );
+                GroupsProvider()
+                    .createGroup(
+                      group: newGroup,
+                      connectedUserId: connectedUserId,
+                    )
+                    .then((newGroup) => Navigator.pushNamed(
+                        context, GroupDetail.routeName,
+                        arguments: newGroup));
               },
             ),
           ),

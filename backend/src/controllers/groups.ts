@@ -10,7 +10,7 @@ module.exports = {
     try {
       const group = {
         name: body.name,
-        members: { ...body.members.map((member) => member.id), connectedUser },
+        members: [...body.members.map((member) => member.id), connectedUser],
       };
 
       const newGroup = await Group.create(group);
