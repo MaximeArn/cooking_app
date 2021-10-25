@@ -1,11 +1,8 @@
 import 'dart:convert';
-
 import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/Group.dart';
-import 'package:cooking/providers/users.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
 
 class GroupsProvider with ChangeNotifier {
   final Group newGroup = Group(id: null, members: [], name: null);
@@ -29,7 +26,7 @@ class GroupsProvider with ChangeNotifier {
       {required Group group, required String connectedUserId}) async {
     try {
       http.Response response = await http.post(
-        Uri.parse("$serverUrl/groups"),
+        Uri.parse("$serverUrl/groups/$connectedUserId"),
         headers: {'Content-type': 'application/json'},
         body: json.encode({"members": group.members, "name": group.name}),
       );

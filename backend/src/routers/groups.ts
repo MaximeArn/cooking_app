@@ -3,6 +3,6 @@ const { createGroup } = require("../controllers/groups");
 
 const groupsRouter = Router();
 
-groupsRouter.post("", createGroup);
+groupsRouter.post("/:connectedUser", createGroup);
 
 export default groupsRouter;
