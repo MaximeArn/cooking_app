@@ -4,10 +4,12 @@ import 'dart:io';
 import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/Group.dart';
 import 'package:cooking/models/User.dart';
+import 'package:cooking/providers/groups.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
 import 'package:http_parser/http_parser.dart';
+import 'package:provider/provider.dart';
 
 class UsersProvider with ChangeNotifier {
   bool isLoading = false;
@@ -43,14 +45,9 @@ class UsersProvider with ChangeNotifier {
   Future<dynamic> getConnectedUser(String userId) async {
     try {
       connectedUser = await getUserById(userId);
-
-      //only for tests
-      connectedUser!.groups = [
-        Group(id: "", members: [], name: "Family"),
-        Group(id: "", members: [], name: "Friends"),
-        Group(id: "", members: [], name: "Colleague"),
-      ];
-      notifyListeners();
+      http.Response response =
+          await http.get(Uri.parse("$serverUrl/groups/$userId"));
+      print(response.body);
     } catch (e) {
       print(e);
       rethrow;
