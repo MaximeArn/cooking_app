@@ -39,15 +39,19 @@ class _AddMembersState extends State<AddMembers> {
                 size: 30,
               ),
               onPressed: () {
-                Provider.of<UsersProvider>(context,listen: false).emptyArray();
+                Provider.of<UsersProvider>(context, listen: false).emptyArray();
                 GroupsProvider()
                     .createGroup(
-                      group: newGroup,
-                      connectedUserId: connectedUserId,
-                    )
-                    .then((newGroup) => Navigator.pushNamed(
-                        context, GroupDetail.routeName,
-                        arguments: newGroup));
+                  group: newGroup,
+                  connectedUserId: connectedUserId,
+                )
+                    .then((newGroup) {
+                  Navigator.popAndPushNamed(
+                    context,
+                    GroupDetail.routeName,
+                    arguments: newGroup,
+                  );
+                });
               },
             ),
           ),
