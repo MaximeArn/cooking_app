@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
 import 'package:http_parser/http_parser.dart';
-import 'package:provider/provider.dart';
 
 class UsersProvider with ChangeNotifier {
   bool isLoading = false;
@@ -45,17 +44,20 @@ class UsersProvider with ChangeNotifier {
   Future<dynamic> getConnectedUser(String userId) async {
     try {
       connectedUser = await getUserById(userId);
-
-      // get all groups wher "memebrs" field contains the connectedUser id
-      http.Response response =
-          await http.get(Uri.parse("$serverUrl/groups/$userId"));
-      final List decodedBody = json.decode(response.body);
-      connectedUser!.groups =
-          decodedBody.map((groupJson) => Group.fromJson(groupJson)).toList();
+      getConnectedUserGroups(userId);
     } catch (e) {
       print(e);
       rethrow;
     }
+  }
+
+  Future<void> getConnectedUserGroups(userId) async {
+    http.Response response =
+        await http.get(Uri.parse("$serverUrl/groups/$userId"));
+    final List decodedBody = json.decode(response.body);
+    connectedUser!.groups =
+        decodedBody.map((groupJson) => Group.fromJson(groupJson)).toList();
+    notifyListeners();
   }
 
   Future<void> getFilteredUsers(String filter,

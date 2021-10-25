@@ -23,8 +23,7 @@ class _AddMembersState extends State<AddMembers> {
     final newGroup = Provider.of<GroupsProvider>(context).newGroup;
     final List selectedMembers =
         Provider.of<GroupsProvider>(context).newGroup.members;
-    final connectedUserId =
-        Provider.of<UsersProvider>(context).connectedUser!.id;
+    final connectedUser = Provider.of<UsersProvider>(context).connectedUser;
 
     return SecondaryScaffold(
       body: Stack(
@@ -43,9 +42,11 @@ class _AddMembersState extends State<AddMembers> {
                 GroupsProvider()
                     .createGroup(
                   group: newGroup,
-                  connectedUserId: connectedUserId,
+                  connectedUserId: connectedUser!.id,
                 )
                     .then((newGroup) {
+                  Provider.of<UsersProvider>(context, listen: false)
+                      .getConnectedUserGroups(connectedUser.id);
                   Navigator.popAndPushNamed(
                     context,
                     GroupDetail.routeName,
