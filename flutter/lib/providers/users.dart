@@ -56,8 +56,16 @@ class UsersProvider with ChangeNotifier {
         await http.get(Uri.parse("$serverUrl/groups/$userId"));
     final List decodedBody = json.decode(response.body);
     connectedUser!.groups =
-        decodedBody.map((groupJson) => Group.fromJson(groupJson)).toList();
+        decodedBody.map((groupJson) => Group.fromJson(groupJson, isPopulated: false)).toList();
     notifyListeners();
+  }
+
+  Future<void> getPopulatedGroup(groupId) async {
+    try {
+      print(groupId);
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Future<void> getFilteredUsers(String filter,

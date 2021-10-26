@@ -42,7 +42,7 @@ class GroupDetail extends StatelessWidget {
                 child: TabBarView(
                   children: [
                     Challenges(),
-                    ChallengesRanking(),
+                    ChallengesRanking(group: group,),
                   ],
                 ),
               )

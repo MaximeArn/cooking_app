@@ -1,7 +1,9 @@
+import 'package:cooking/models/User.dart';
+
 class Group {
   String? name;
   final String? id;
-  final List members;
+  final List<dynamic> members;
 
   Group({
     required this.id,
@@ -19,12 +21,16 @@ class Group {
     });
   }
 
-  setName(String newName ) {
+  setName(String newName) {
     this.name = newName;
   }
 
   Group.fromJson(json, {bool isPopulated = true})
       : id = json["_id"],
         name = json["name"],
-        members = [];
+        members = isPopulated
+            ? json["members"]
+                .map((memberJson) => User.fromJson(memberJson))
+                .toList()
+            : json["members"];
 }
