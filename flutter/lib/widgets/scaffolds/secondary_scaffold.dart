@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 
 class SecondaryScaffold extends StatelessWidget {
   final Widget body;
+  dynamic action = null;
 
   SecondaryScaffold({
     required this.body,
+    this.action
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CookingAppBar(
-        isOwnProfile: false,
-      ),
+      appBar: CookingAppBar(action: action),
       body: body,
     );
   }

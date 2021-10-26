@@ -1,3 +1,4 @@
+import 'package:cooking/views/edit_profile/edit_profile.dart';
 import 'package:cooking/widgets/scaffolds/bottom_navigation.dart';
 import 'package:cooking/widgets/scaffolds/cooking_app_bar.dart';
 import 'package:cooking/widgets/scaffolds/drawer/side_panel.dart';
@@ -20,9 +21,13 @@ class MainScaffold extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: index == 4
           ? CookingAppBar(
-              isOwnProfile: true,
+              action: IconButton(
+                onPressed: () =>
+                    Navigator.pushNamed(context, EditProfile.routeName),
+                icon: Icon(Icons.edit),
+              ),
             )
-          : CookingAppBar(isOwnProfile: false),
+          : CookingAppBar(),
       drawer: const SidePanel(),
       bottomNavigationBar: BottomNavigation(index: index, setIndex: setIndex),
       body: body,

@@ -1,4 +1,6 @@
 import 'package:cooking/models/Group.dart';
+import 'package:cooking/views/groups/group_detail/challenges/challenges.dart';
+import 'package:cooking/views/groups/group_detail/challenges_ranking/challenges_ranking.dart';
 import 'package:cooking/widgets/scaffolds/secondary_scaffold.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +13,10 @@ class GroupDetail extends StatelessWidget {
     final Group group = ModalRoute.of(context)!.settings.arguments as Group;
 
     return SecondaryScaffold(
+      action: IconButton(
+        onPressed: () => Navigator.pushNamed(context, "/groupSettings"),
+        icon: Icon(Icons.settings_rounded),
+      ),
       body: DefaultTabController(
         length: 2,
         child: Container(
@@ -31,15 +37,13 @@ class GroupDetail extends StatelessWidget {
                 ],
               ),
               Expanded(
-                flex:1,
-                child: TabBarView(children: [
-                  Center(
-                    child: Text("Challenges"),
-                  ),
-                  Center(
-                    child: Text("Ranking"),
-                  ),
-                ]),
+                flex: 1,
+                child: TabBarView(
+                  children: [
+                    Challenges(),
+                    ChallengesRanking(),
+                  ],
+                ),
               )
             ],
           ),
