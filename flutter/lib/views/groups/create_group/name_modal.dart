@@ -1,6 +1,6 @@
 import 'package:cooking/models/Group.dart';
 import 'package:cooking/providers/groups.dart';
-import 'package:cooking/views/ranking/widgets/groups_ranking/add_members.dart';
+import 'package:cooking/views/groups/create_group/add_members.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

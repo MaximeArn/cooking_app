@@ -1,6 +1,6 @@
 import 'package:cooking/providers/users.dart';
+import 'package:cooking/views/groups/create_group/name_modal.dart';
 import 'package:cooking/views/ranking/widgets/groups_ranking/groups_ranking_line.dart';
-import 'package:cooking/views/ranking/widgets/groups_ranking/name_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

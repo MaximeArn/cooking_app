@@ -1,7 +1,7 @@
 import 'package:cooking/environment/env.dart';
 import 'package:cooking/providers/groups.dart';
 import 'package:cooking/providers/users.dart';
-import 'package:cooking/views/ranking/widgets/groups_ranking/group_detail.dart';
+import 'package:cooking/views/groups/group_detail/group_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:cooking/widgets/scaffolds/secondary_scaffold.dart';
 import 'package:cooking/widgets/searchBar/search_bar.dart';

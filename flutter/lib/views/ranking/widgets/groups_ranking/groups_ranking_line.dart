@@ -1,5 +1,5 @@
 import 'package:cooking/models/Group.dart';
-import 'package:cooking/views/ranking/widgets/groups_ranking/group_detail.dart';
+import 'package:cooking/views/groups/group_detail/group_detail.dart';
 import 'package:flutter/material.dart';
 
 class GroupsRankingLine extends StatelessWidget {
