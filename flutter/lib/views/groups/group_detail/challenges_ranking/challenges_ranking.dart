@@ -12,7 +12,6 @@ class ChallengesRanking extends StatelessWidget {
   Widget build(BuildContext context) {
     final getGroup =
         Provider.of<GroupsProvider>(context, listen: false).getGroupById;
-    print(group.id.runtimeType);
     return Container(
         alignment: Alignment.center,
         child: FutureBuilder(

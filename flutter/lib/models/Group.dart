@@ -1,14 +1,16 @@
-import 'package:cooking/models/User.dart';
+import 'package:cooking/models/Challenge.dart';
 
 class Group {
   String? name;
   final String? id;
   final List<dynamic> members;
+  final List challenges;
 
   Group({
     required this.id,
     required this.members,
     required this.name,
+    required this.challenges,
   });
 
   addMember(member) {
@@ -28,9 +30,11 @@ class Group {
   Group.fromJson(json, {bool isPopulated = false})
       : id = json["_id"],
         name = json["name"],
-        members = isPopulated
-            ? json["members"]
-                .map((memberJson) => User.fromJson(memberJson))
+        members = json["members"],
+        challenges = isPopulated
+            ? json["challenges"]
+                .map((challengeJson) =>
+                    Challenge.fromJson(challengeJson, isPopulated: true))
                 .toList()
-            : json["members"];
+            : json["challenges"];
 }

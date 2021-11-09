@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class GroupsProvider with ChangeNotifier {
-  final Group newGroup = Group(id: null, members: [], name: null);
+  final Group newGroup =
+      Group(id: null, members: [], name: null, challenges: []);
 
   void removeMember(memberId) {
     newGroup.members.removeWhere((member) {
@@ -47,11 +48,8 @@ class GroupsProvider with ChangeNotifier {
         ),
       );
       final decodedBody = json.decode(response.body);
-      print(decodedBody);
       final Group group = Group.fromJson(decodedBody);
-      print(group);
-      print(group.members);
-      return decodedBody;
+      return group;
     } catch (err) {
       print(err);
       rethrow;
