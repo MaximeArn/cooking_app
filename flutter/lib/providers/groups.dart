@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class GroupsProvider with ChangeNotifier {
+
   final Group newGroup =
       Group(id: null, members: [], name: null, challenges: []);
 
@@ -49,6 +50,7 @@ class GroupsProvider with ChangeNotifier {
       );
       final decodedBody = json.decode(response.body);
       final Group group = Group.fromJson(decodedBody);
+      await Future.delayed(Duration(seconds: 3));
       return group;
     } catch (err) {
       print(err);

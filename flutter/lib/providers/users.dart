@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/Group.dart';
 import 'package:cooking/models/User.dart';
-import 'package:cooking/providers/groups.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';

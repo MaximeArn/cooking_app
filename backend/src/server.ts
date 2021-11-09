@@ -6,6 +6,7 @@ import rewardsRouter from "./routers/rewards";
 import imagesRouter from "./routers/images";
 import groupsRouter from "./routers/groups";
 import { config } from "dotenv";
+import challengesRouter from "./routers/challenges";
 
 config();
 const server = express();
@@ -32,5 +33,6 @@ server.use("/posts", postsRouter);
 server.use("/rewards", rewardsRouter);
 server.use("/images", imagesRouter);
 server.use("/groups", groupsRouter);
+server.use("/challenges", challengesRouter);
 
 server.listen(PORT, () => console.log(`server is listening on ${PORT}`));
