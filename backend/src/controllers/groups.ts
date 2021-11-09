@@ -34,8 +34,6 @@ module.exports = {
     next: NextFunction
   ) => {
     try {
-      console.log("get group by id ");
-      console.log("groupID -->>>    ", groupId);
       const group = await Group.findById(groupId)
         .populate({
           path: "members",
@@ -46,7 +44,6 @@ module.exports = {
           },
         })
         .populate({ path: "challenges", model: "challenge" });
-      console.log(group);
       res.json(group).status(200);
     } catch (error) {
       console.error(error);

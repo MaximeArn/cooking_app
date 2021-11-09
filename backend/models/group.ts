@@ -1,10 +1,10 @@
 import { model, Model, Schema } from "mongoose";
-import { challengeSchema } from "./challenge";
+import { ChallengeInterface, challengeSchema } from "./challenge";
 
 export interface GroupInterface extends Document {
   members: String[];
   name: String;
-  challenges: String[];
+  challenges: ChallengeInterface[];
 }
 
 export const groupSchema = new Schema({
