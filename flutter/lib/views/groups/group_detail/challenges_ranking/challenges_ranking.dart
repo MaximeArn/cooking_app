@@ -1,5 +1,7 @@
 import 'package:cooking/models/Group.dart';
+import 'package:cooking/providers/groups.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ChallengesRanking extends StatelessWidget {
   final Group group;
@@ -8,10 +10,15 @@ class ChallengesRanking extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(group.members.length);
+    final getGroup =
+        Provider.of<GroupsProvider>(context, listen: false).getGroupById;
+    print(group.id);
     return Container(
       alignment: Alignment.center,
-      child: Text("Challenges Ranking ${group.members.length}"),
+      child: FutureBuilder(
+          future: getGroup(groupId: group.id as String),
+          builder: (context, snapshot) =>
+              Text("Challenges Ranking ${group.members.length}")),
     );
   }
 }

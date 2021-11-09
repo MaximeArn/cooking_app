@@ -27,4 +27,30 @@ module.exports = {
     console.log(groups);
     res.json(groups);
   },
+
+  getGroupById: async (
+    { params: { groupId } }: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      console.log("get group by id ");
+      console.log("groupID -->>>    ", groupId);
+      const group = await Group.findById(groupId)
+        .populate({
+          path: "members",
+          model: "user",
+          select: {
+            name: 1,
+            avatar: 1,
+          },
+        })
+        .populate({ path: "challenges", model: "challenge" });
+      console.log(group);
+      res.json(group).status(200);
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
+  },
 };

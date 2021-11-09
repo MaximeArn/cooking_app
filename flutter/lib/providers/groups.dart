@@ -38,4 +38,19 @@ class GroupsProvider with ChangeNotifier {
       rethrow;
     }
   }
+
+  Future<Group> getGroupById({required String groupId}) async {
+    try {
+      print(groupId);
+      http.Response response = await http.get(
+        Uri.parse(
+          "$serverUrl/groups/$groupId",
+        ),
+      );
+      print(response.body);
+      return groupId as Group;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

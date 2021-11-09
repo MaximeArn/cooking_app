@@ -25,7 +25,7 @@ class Group {
     this.name = newName;
   }
 
-  Group.fromJson(json, {bool isPopulated = true})
+  Group.fromJson(json, {bool isPopulated = false})
       : id = json["_id"],
         name = json["name"],
         members = isPopulated
