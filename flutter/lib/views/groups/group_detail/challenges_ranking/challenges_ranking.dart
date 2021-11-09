@@ -12,13 +12,13 @@ class ChallengesRanking extends StatelessWidget {
   Widget build(BuildContext context) {
     final getGroup =
         Provider.of<GroupsProvider>(context, listen: false).getGroupById;
-    print(group.id);
+    print(group.id.runtimeType);
     return Container(
-      alignment: Alignment.center,
-      child: FutureBuilder(
-          future: getGroup(groupId: group.id as String),
-          builder: (context, snapshot) =>
-              Text("Challenges Ranking ${group.members.length}")),
-    );
+        alignment: Alignment.center,
+        child: FutureBuilder(
+            future: getGroup(groupId: group.id as String),
+            builder: (context, snapshot) {
+              return snapshot.hasError ? Text("error : ${snapshot.error}") : Text("great !");
+            }));
   }
 }

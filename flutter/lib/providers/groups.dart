@@ -39,17 +39,21 @@ class GroupsProvider with ChangeNotifier {
     }
   }
 
-  Future<Group> getGroupById({required String groupId}) async {
+  Future<dynamic> getGroupById({required String groupId}) async {
     try {
-      print(groupId);
       http.Response response = await http.get(
         Uri.parse(
           "$serverUrl/groups/$groupId",
         ),
       );
-      print(response.body);
-      return groupId as Group;
-    } catch (e) {
+      final decodedBody = json.decode(response.body);
+      print(decodedBody);
+      final Group group = Group.fromJson(decodedBody);
+      print(group);
+      print(group.members);
+      return decodedBody;
+    } catch (err) {
+      print(err);
       rethrow;
     }
   }
