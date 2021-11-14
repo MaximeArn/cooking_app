@@ -1,7 +1,8 @@
+import 'package:cooking/views/groups/group_detail/challenges_ranking/widgets/challenge_detail.dart';
 import 'package:flutter/material.dart';
 
 class ChallengesSummary extends StatelessWidget {
-  List challenges;
+  final List challenges;
 
   ChallengesSummary({Key? key, required this.challenges}) : super(key: key);
 
@@ -11,8 +12,7 @@ class ChallengesSummary extends StatelessWidget {
     print(challenges);
     return Column(
       children: challenges.map((challenge) {
-        print(challenge);
-        return Text(challenge.theme);
+        return ChallengeDetail(challenge: challenge);
       }).toList(),
     );
   }

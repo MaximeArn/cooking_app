@@ -42,7 +42,12 @@ module.exports = {
             avatar: 1,
           },
         })
-        .populate({ path: "challenges", model: "challenge" });
+        .populate({
+          path: "challenges",
+          model: "challenge",
+        });
+      console.log(group);
+      //populate the "posts" field of each challenge in a group and then return it to the client.
       res.json(group).status(200);
     } catch (error) {
       console.error(error);

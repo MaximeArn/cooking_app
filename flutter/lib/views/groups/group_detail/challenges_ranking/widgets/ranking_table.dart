@@ -5,7 +5,8 @@ class RankingTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
+      margin: EdgeInsets.only(bottom: 35),
       padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/10),
       child: Table(
         border: TableBorder.all(width: 1, color: Colors.black),
