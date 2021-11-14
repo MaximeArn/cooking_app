@@ -1,5 +1,7 @@
 import 'package:cooking/models/Group.dart';
 import 'package:cooking/providers/groups.dart';
+import 'package:cooking/views/groups/group_detail/challenges_ranking/widgets/challenges_summary.dart';
+import 'package:cooking/views/groups/group_detail/challenges_ranking/widgets/ranking_table.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,31 +24,9 @@ class ChallengesRanking extends StatelessWidget {
               ? Text("error : ${snapshot.error}")
               : ListView(
                   children: [
-                    Table(
-                      border: TableBorder.all(width: 1, color: Colors.black),
-                      children: [
-                        TableRow(
-                          children: [
-                            TableCell(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text("Rank"),
-                              ),
-                            ),TableCell(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text("Name"),
-                              ),
-                            ),TableCell(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text("Points"),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
+                    RankingTable(),
+                    ChallengesSummary(
+                        challenges: (snapshot.data as Group).challenges)
                   ],
                 );
         },

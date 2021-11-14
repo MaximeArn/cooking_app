@@ -48,8 +48,7 @@ class GroupsProvider with ChangeNotifier {
         ),
       );
       final decodedBody = json.decode(response.body);
-      final Group group = Group.fromJson(decodedBody, isPopulated: true);
-      print("${group.challenges} ${group.challenges.length}");
+      final Group group = await Group.fromJson(decodedBody, isPopulated: true);
       return group;
     } catch (err) {
       print(err);

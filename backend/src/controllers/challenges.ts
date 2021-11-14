@@ -36,8 +36,6 @@ module.exports = {
   ) => {
     try {
       const challengePost = await Post.create(body);
-      console.log(challengePost);
-
       const updatedChallenge = await Challenge.findByIdAndUpdate(
         challengeId,
         {
