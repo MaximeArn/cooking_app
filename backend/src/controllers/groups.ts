@@ -22,7 +22,6 @@ module.exports = {
   },
 
   getGroups: async ({ params: { connectedUser } }: Request, res: Response) => {
-    console.log(connectedUser);
     const groups = await Group.find({ members: connectedUser });
     console.log(groups);
     res.json(groups);

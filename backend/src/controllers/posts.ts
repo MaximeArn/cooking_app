@@ -5,7 +5,9 @@ import User from "../../models/user";
 module.exports = {
   getPosts: async (_: Request, res: Response, next: NextFunction) => {
     try {
-      const posts: PostInterface[] = await Post.find().populate({
+      const posts: PostInterface[] = await Post.find({
+        belongsToChallenge: false,
+      }).populate({
         path: "authorId",
         model: "user",
         select: {

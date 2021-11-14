@@ -36,5 +36,5 @@ class Group {
                 .map((challengeJson) =>
                     Challenge.fromJson(challengeJson, isPopulated: true))
                 .toList()
-            : json["challenges"];
+            : [];
 }

@@ -8,10 +8,12 @@ export interface PostInterface extends Document {
   note: Number;
   description: String;
   comments: String[];
+  belongsToChallenge: Boolean;
 }
 
 export const postSchema = new Schema({
   // authorId: { type: ObjectId, required: true },
+  belongsToChallenge: { type: Boolean, default: false },
   author: {
     type: Schema.Types.ObjectId,
     default: new ObjectId(),
