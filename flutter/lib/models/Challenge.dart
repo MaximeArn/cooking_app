@@ -11,6 +11,6 @@ class Challenge {
     isActive = json["isActive"] == "true" ? true : false,
     theme = json["theme"],
     posts = isPopulated 
-      ? json["posts"].map((postJson) => Post.fromJson(postJson)).toList() 
+      ? json["posts"].map((postJson) => Post.fromJson(postJson, isPopulated: false)).toList() 
       : [];
 }
