@@ -9,6 +9,7 @@ class Challenges extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: challenges.map((challenge) {
         return ChallengeDetail(challenge: challenge);
       }).toList(),

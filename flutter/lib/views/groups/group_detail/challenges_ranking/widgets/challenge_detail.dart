@@ -8,12 +8,19 @@ class ChallengeDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String capitalized(String string) =>
+        string[0].toUpperCase() + string.substring(1);
+
     final List<Widget> posts = challenge.posts.map((post) {
       return Container(
         height: 300,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("author", textAlign: TextAlign.start,),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 15),
+              child: Text(capitalized("author")),
+            ),
             Image.network("$serverUrl/${post.images[0]}"),
           ],
         ),
@@ -22,7 +29,6 @@ class ChallengeDetail extends StatelessWidget {
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15),
-      alignment: Alignment.topLeft,
       child: Column(
         children: [
           Padding(
