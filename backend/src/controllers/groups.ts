@@ -36,7 +36,6 @@ module.exports = {
       const group = await Group.findById(groupId)
         .populate({
           path: "members",
-          model: "user",
           select: {
             name: 1,
             avatar: 1,
@@ -44,10 +43,16 @@ module.exports = {
         })
         .populate({
           path: "challenges",
-          model: "challenge",
+          populate: {
+            path: "posts.author",
+            model: "user",
+            select: {
+              name: 1,
+              avatar: 1,
+            },
+          },
         });
       console.log(group);
-      //populate the "posts" field of each challenge in a group and then return it to the client.
       res.json(group).status(200);
     } catch (error) {
       console.error(error);
