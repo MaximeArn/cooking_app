@@ -1,3 +1,4 @@
+import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/Challenge.dart';
 import 'package:flutter/material.dart';
 
@@ -8,23 +9,32 @@ class ChallengeDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Widget> posts = challenge.posts.map((post) {
-      print(post);
-      return Text("widget lol");
+      return Container(
+        height: 300,
+        child: Column(
+          children: [
+            Text("author", textAlign: TextAlign.start,),
+            Image.network("$serverUrl/${post.images[0]}"),
+          ],
+        ),
+      );
     }).toList();
-    print("originalPosts :    ${challenge.posts}");
-    print("posts :    $posts");
+
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15),
       alignment: Alignment.topLeft,
       child: Column(
         children: [
-          Text(
-            challenge.theme,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 25,
-              fontWeight: FontWeight.w500,
-              decoration: TextDecoration.underline,
+          Padding(
+            padding: const EdgeInsets.only(bottom: 25),
+            child: Text(
+              challenge.theme,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 25,
+                fontWeight: FontWeight.w500,
+                decoration: TextDecoration.underline,
+              ),
             ),
           ),
           ...posts,
