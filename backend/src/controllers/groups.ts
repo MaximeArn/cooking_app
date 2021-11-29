@@ -23,7 +23,6 @@ module.exports = {
 
   getGroups: async ({ params: { connectedUser } }: Request, res: Response) => {
     const groups = await Group.find({ members: connectedUser });
-    console.log(groups);
     res.json(groups);
   },
 
@@ -52,7 +51,6 @@ module.exports = {
             },
           },
         });
-      console.log(group);
       res.json(group).status(200);
     } catch (error) {
       console.error(error);
