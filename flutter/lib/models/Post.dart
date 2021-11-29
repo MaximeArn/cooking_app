@@ -16,13 +16,13 @@ class Post {
     required this.description,
   });
 
-  Post.fromJson(Map<String, dynamic> json, {bool isPopulated = true})
+  Post.fromJson(Map<String, dynamic> json, {bool isPopulated = false})
       : id = json["_id"],
         author = isPopulated
             ? {
-                "name": json["authorId"]["name"],
-                "avatar": json["authorId"]["avatar"],
-                "id": json["authorId"]["_id"],
+                "name": json["author"]["name"],
+                "avatar": json["author"]["avatar"],
+                "id": json["author"]["_id"],
               }
             : null,
         images = List<String>.from(json["images"]),

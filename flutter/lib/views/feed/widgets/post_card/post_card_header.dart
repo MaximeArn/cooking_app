@@ -11,6 +11,7 @@ class PostCardHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("author :  $author");
     return Flexible(
       flex: 1,
       child: Container(

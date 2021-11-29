@@ -32,7 +32,10 @@ class UsersProvider with ChangeNotifier {
       http.Response response =
           await http.get(Uri.parse("$serverUrl/users/$userId"));
       if (response.statusCode == 200) {
-        return User.fromJson(json.decode(response.body));
+        return User.fromJson(
+          json.decode(response.body),
+          isPopulated: true,
+        );
       }
     } catch (e) {
       print(e);
@@ -54,8 +57,9 @@ class UsersProvider with ChangeNotifier {
     http.Response response =
         await http.get(Uri.parse("$serverUrl/groups/getGroups/$userId"));
     final List decodedBody = json.decode(response.body);
-    connectedUser!.groups =
-        decodedBody.map((groupJson) => Group.fromJson(groupJson, isPopulated: false)).toList();
+    connectedUser!.groups = decodedBody
+        .map((groupJson) => Group.fromJson(groupJson, isPopulated: false))
+        .toList();
     notifyListeners();
   }
 

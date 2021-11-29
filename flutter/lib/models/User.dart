@@ -33,7 +33,7 @@ class User {
     required this.groups,
   });
 
-  User.fromJson(Map<String, dynamic> json, {bool isPopulated = true})
+  User.fromJson(Map<String, dynamic> json, {bool isPopulated = false})
       : id = json["_id"],
         age = json["age"],
         name = json["name"],

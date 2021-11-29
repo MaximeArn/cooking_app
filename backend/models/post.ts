@@ -3,7 +3,7 @@ import { ObjectId } from "mongodb";
 import { UserInterface } from "./user";
 
 export interface PostInterface extends Document {
-  authorId: String | UserInterface;
+  author: String | UserInterface;
   images: String[];
   note: Number;
   description: String;

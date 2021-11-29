@@ -8,7 +8,7 @@ module.exports = {
       const posts: PostInterface[] = await Post.find({
         belongsToChallenge: false,
       }).populate({
-        path: "authorId",
+        path: "author",
         model: "user",
         select: {
           name: 1,
@@ -35,7 +35,7 @@ module.exports = {
       );
       const starsToAdd: Number = newNote - previousNote;
       console.log(starsToAdd);
-      await User.findByIdAndUpdate(updatedPost.authorId, {
+      await User.findByIdAndUpdate(updatedPost.author, {
         $inc: { stars: starsToAdd },
       });
 
