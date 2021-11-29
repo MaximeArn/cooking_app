@@ -18,8 +18,6 @@ class PostsProvider with ChangeNotifier {
       http.Response response = await http.get(Uri.parse("$serverUrl/posts"));
       if (response.statusCode == 200) {
         List decodedBody = json.decode(response.body);
-        print(decodedBody);
-        print(decodedBody);
         _posts = decodedBody
             .map(
               (jsonPost) => Post.fromJson(jsonPost, isPopulated: true),

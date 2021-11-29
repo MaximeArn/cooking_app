@@ -12,8 +12,6 @@ class ChallengeDetail extends StatelessWidget {
         string[0].toUpperCase() + string.substring(1);
 
     final List<Widget> posts = challenge.posts.map((post) {
-      print(post);
-      print(post.author);
       return Container(
         height: 300,
         child: Column(
