@@ -6,21 +6,16 @@ import Post from "../../models/post";
 
 module.exports = {
   createChallenge: async (
-    { params: { groupId } }: Request,
+    { params: { groupId }, body: newChallenge }: Request,
     res: Response,
     next: NextFunction
   ) => {
     try {
-      const newChallenge = {
-        theme: "dishes",
-        active: true,
-      };
       const challenge = await Challenge.create(newChallenge);
-      console.log(challenge);
       const updatedGroup = await Group.findByIdAndUpdate(
         groupId,
-        { $push: { challenges: challenge } },
-        { useFindAndModify: false }
+        { $push: { challenges: challenge._id } },
+        { useFindAndModify: false, new: true }
       );
       res.send(updatedGroup).status(200);
     } catch (error) {
@@ -43,7 +38,7 @@ module.exports = {
         },
         { useFindAndModify: false }
       );
-      res.json(updatedChallenge).status(200);
+      return res.json(updatedChallenge).status(200);
     } catch (error) {
       console.error(error);
       next(error);

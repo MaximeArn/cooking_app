@@ -42,6 +42,9 @@ module.exports = {
         })
         .populate({
           path: "challenges",
+          match: {
+            isActive: false,
+          },
           populate: {
             path: "posts.author",
             model: "user",
