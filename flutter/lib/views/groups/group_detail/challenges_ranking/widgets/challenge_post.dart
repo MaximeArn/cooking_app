@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/Post.dart';
-import 'package:cooking/views/feed/widgets/post_card/post_card.dart';
 import 'package:cooking/views/feed/widgets/post_card/post_card_header.dart';
 import 'package:flutter/material.dart';
 
@@ -12,9 +11,6 @@ class ChallengePost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String capitalize(String string) =>
-        string[0].toUpperCase() + string.substring(1);
-
     return Container(
       margin: EdgeInsets.only(bottom: 25),
       child: Card(
@@ -28,9 +24,11 @@ class ChallengePost extends StatelessWidget {
               padding: const EdgeInsets.all(7),
               child: Row(
                 children: [
-                  PostCardHeader(author: post.author,),
+                  PostCardHeader(
+                    author: post.author,
+                  ),
                 ],
-              )
+              ),
             ),
             CarouselSlider(
               options: CarouselOptions(viewportFraction: 1),

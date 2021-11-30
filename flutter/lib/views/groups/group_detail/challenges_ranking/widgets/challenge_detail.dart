@@ -1,4 +1,3 @@
-import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/Challenge.dart';
 import 'package:cooking/views/groups/group_detail/challenges_ranking/widgets/challenge_post.dart';
 import 'package:flutter/material.dart';

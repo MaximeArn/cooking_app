@@ -25,14 +25,18 @@ class ChallengesRanking extends StatelessWidget {
               ? Text("error : ${snapshot.error}")
               : snapshot.data == null
                   ? Loader()
-                  : ListView(
-                      children: [
-                        RankingTable(),
-                        Challenges(
-                          challenges: (snapshot.data as Group).challenges,
-                        ),
-                      ],
-                    );
+                  : (snapshot.data as Group).challenges.length > 0
+                      ? ListView(
+                          children: [
+                            RankingTable(),
+                            Challenges(
+                              challenges: (snapshot.data as Group).challenges,
+                            ),
+                          ],
+                        )
+                      : Center(
+                          child: Text("No challenges yet"),
+                        );
         },
       ),
     );
