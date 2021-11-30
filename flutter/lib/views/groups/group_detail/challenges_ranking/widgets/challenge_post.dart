@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/Post.dart';
+import 'package:cooking/views/feed/widgets/post_card/post_card.dart';
+import 'package:cooking/views/feed/widgets/post_card/post_card_header.dart';
 import 'package:flutter/material.dart';
 
 class ChallengePost extends StatelessWidget {
@@ -14,30 +16,36 @@ class ChallengePost extends StatelessWidget {
         string[0].toUpperCase() + string.substring(1);
 
     return Container(
-      height: 300,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 15),
-            child: Text(
-              capitalize(post.author!["name"]),
-              style: TextStyle(fontWeight: FontWeight.w500),
+      margin: EdgeInsets.only(bottom: 25),
+      child: Card(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        elevation: 7,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(7),
+              child: Row(
+                children: [
+                  PostCardHeader(author: post.author,),
+                ],
+              )
             ),
-          ),
-          CarouselSlider(
-            options: CarouselOptions(viewportFraction: 1),
-            items: post.images
-                .map((image) => Container(
-                      child: Image.network(
-                        "$serverUrl/$image",
-                        fit: BoxFit.cover,
-                        width: MediaQuery.of(context).size.width,
-                      ),
-                    ))
-                .toList(),
-          ),
-        ],
+            CarouselSlider(
+              options: CarouselOptions(viewportFraction: 1),
+              items: post.images
+                  .map((image) => Container(
+                        child: Image.network(
+                          "$serverUrl/$image",
+                          fit: BoxFit.cover,
+                          width: MediaQuery.of(context).size.width,
+                        ),
+                      ))
+                  .toList(),
+            ),
+          ],
+        ),
       ),
     );
   }
