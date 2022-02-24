@@ -5,6 +5,7 @@ import 'package:cooking/widgets/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class Rewards extends StatelessWidget {
   static const String routeName = "/rewards";
   late List<Reward> rewards = [];

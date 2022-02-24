@@ -3,7 +3,6 @@ import 'package:cooking/providers/users.dart';
 import 'package:cooking/views/edit_profile/widgets/editable_avatar.dart';
 import 'package:cooking/widgets/scaffolds/secondary_scaffold.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'widgets/edit_profile_button.dart';
 import 'widgets/field.dart';

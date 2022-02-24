@@ -5,7 +5,6 @@ import 'package:cooking/views/groups/group_detail/group_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:cooking/widgets/scaffolds/secondary_scaffold.dart';
 import 'package:cooking/widgets/searchBar/search_bar.dart';
-import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
 class AddMembers extends StatefulWidget {

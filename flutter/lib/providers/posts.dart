@@ -66,7 +66,7 @@ class PostsProvider with ChangeNotifier {
       "images": images,
     };
 
-    http.Response reponse = await http.post(
+    await http.post(
       Uri.parse("$serverUrl/posts"),
       headers: {'Content-type': 'application/json'},
       // Pass the constructed body to the server
