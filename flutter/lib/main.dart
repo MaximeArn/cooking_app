@@ -2,6 +2,7 @@ import 'package:cooking/providers/groups.dart';
 import 'package:cooking/providers/posts.dart';
 import 'package:cooking/providers/rewards.dart';
 import 'package:cooking/providers/users.dart';
+import 'package:cooking/themes.dart';
 import 'package:cooking/views/edit_profile/edit_profile.dart';
 import 'package:cooking/views/groups/create_group/add_members.dart';
 import 'package:cooking/views/groups/group_detail/group_settings/group_settings.dart';
@@ -39,17 +40,6 @@ class _CookingState extends State<Cooking> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData cookingTheme = ThemeData(
-      primaryColor: Colors.white,
-      brightness: Brightness.light,
-      highlightColor: Color.fromRGBO(232, 196, 81, 1),
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ButtonStyle(
-          backgroundColor:
-              MaterialStateProperty.all<Color>(Color.fromRGBO(232, 196, 81, 1)),
-        ),
-      ),
-    );
 
     return MultiProvider(
       providers: [
@@ -60,6 +50,9 @@ class _CookingState extends State<Cooking> {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        theme: CookingTheme.lightTheme,
+        darkTheme: CookingTheme.darkTheme,
+        themeMode: ThemeMode.system,
         title: "homepage",
         initialRoute: "/",
         routes: {
@@ -74,7 +67,6 @@ class _CookingState extends State<Cooking> {
         },
         onUnknownRoute: (_) =>
             MaterialPageRoute(builder: (_) => const NotFound()),
-        theme: cookingTheme,
       ),
     );
   }
