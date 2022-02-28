@@ -25,7 +25,6 @@ class _NationalRankingState extends State<NationalRanking> {
         : RefreshIndicator(
           onRefresh: () => getNationalRanking(),
           child: Container(
-              color: Colors.white,
               padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
               alignment: Alignment.center,
               child: Card(
