@@ -22,7 +22,6 @@ class ChallengeDetail extends StatelessWidget {
             child: Text(
               challenge.theme.toUpperCase(),
               style: TextStyle(
-                color: Colors.black,
                 fontSize: 25,
                 fontWeight: FontWeight.w600,
                 decoration: TextDecoration.underline,

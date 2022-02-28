@@ -26,7 +26,6 @@ class _GroupRankingState extends State<GroupRanking> {
     return Stack(
       children: [
         Container(
-          color: Colors.white,
           alignment: Alignment.center,
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
