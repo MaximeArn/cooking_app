@@ -46,8 +46,8 @@ class _FeedSearchBarState extends State<FeedSearchBar> {
     return Column(
       children: [
         Container(
-          decoration: const BoxDecoration(
-            color: Color.fromRGBO(232, 196, 81, .7),
+          decoration: BoxDecoration(
+            color: Theme.of(context).primaryColor.withOpacity(0.8),
             border: Border(
               bottom: BorderSide(
                 width: 1,

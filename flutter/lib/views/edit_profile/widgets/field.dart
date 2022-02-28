@@ -75,10 +75,10 @@ class Field extends StatelessWidget {
         obscureText: isPassword ? true : false,
         decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Color.fromRGBO(232, 196, 81, 1))),
+                borderSide: BorderSide(color: Theme.of(context).primaryColor)),
             contentPadding: EdgeInsets.only(bottom: 5, left: 25),
             labelText: labelText,
-            labelStyle: TextStyle(color: Color.fromRGBO(232, 196, 81, 1)),
+            labelStyle: TextStyle(color: Theme.of(context).primaryColor),
             hintText: isPassword ? "********" : placeholder,
             hintStyle: TextStyle(fontSize: 16)),
         keyboardType: isAge ? TextInputType.number : TextInputType.text,

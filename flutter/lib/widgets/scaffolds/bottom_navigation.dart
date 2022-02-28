@@ -11,7 +11,7 @@ class BottomNavigation extends StatelessWidget {
     return BottomNavigationBar(
       currentIndex: index,
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: const Color.fromRGBO(232, 196, 81, 1),
+      selectedItemColor: Theme.of(context).primaryColor,
       items: [
         BottomNavigationBarItem(
           icon: Icon(

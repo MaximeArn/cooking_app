@@ -15,7 +15,7 @@ class SidePanel extends StatelessWidget {
               child: DrawerHeader(
                 child: Center(child: Text("Menu")),
                 decoration:
-                    BoxDecoration(color: Color.fromRGBO(232, 196, 81, 1)),
+                    BoxDecoration(color: Theme.of(context).primaryColor),
               ),
             ),
           ],

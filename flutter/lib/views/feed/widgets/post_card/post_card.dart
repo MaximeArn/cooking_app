@@ -27,7 +27,7 @@ class PostCard extends StatelessWidget {
               ),
               Divider(
                 height: 30,
-                color: const Color.fromRGBO(232, 196, 81, 1),
+                color: Theme.of(context).primaryColor,
                 thickness: .7,
               ),
               PostCardImage(images: post.images),
