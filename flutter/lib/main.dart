@@ -1,21 +1,27 @@
+import 'package:cooking/firebase_options.dart';
 import 'package:cooking/providers/groups.dart';
 import 'package:cooking/providers/posts.dart';
 import 'package:cooking/providers/rewards.dart';
 import 'package:cooking/providers/users.dart';
 import 'package:cooking/themes.dart';
+import 'package:cooking/views/auth/auth.dart';
 import 'package:cooking/views/edit_profile/edit_profile.dart';
 import 'package:cooking/views/groups/create_group/add_members.dart';
 import 'package:cooking/views/groups/group_detail/group_settings/group_settings.dart';
 import 'package:cooking/views/profiles/profile/profile.dart';
 import 'package:cooking/views/groups/group_detail/group_detail.dart';
 import 'package:cooking/views/reward_detail/reward_detail.dart';
-import 'package:cooking/views/home/home_view.dart';
 import 'package:cooking/views/not_found/not_found.dart';
 import 'package:cooking/views/search_page/search_page.dart';
+import 'package:cooking/widgets/loader.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(Cooking());
 }
 
@@ -40,30 +46,31 @@ class _CookingState extends State<Cooking> {
 
   @override
   Widget build(BuildContext context) {
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: rewardsProvider),
         ChangeNotifierProvider.value(value: postsProvider),
         ChangeNotifierProvider.value(value: usersProvider),
-        ChangeNotifierProvider.value(value: GroupsProvider(),)
+        ChangeNotifierProvider.value(
+          value: GroupsProvider(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: CookingTheme.lightTheme,
         darkTheme: CookingTheme.darkTheme,
         themeMode: ThemeMode.system,
-        title: "homepage",
+        // title: "homepage",
         initialRoute: "/",
         routes: {
-          "/": (_) => HomeView(),
+          "/": (_) => MainPage(),
           RewardDetail.routeName: (_) => RewardDetail(),
           SearchPage.routeName: (_) => const SearchPage(),
           Profile.routeName: (_) => Profile(),
           EditProfile.routeName: (_) => EditProfile(),
           GroupDetail.routeName: (_) => GroupDetail(),
           AddMembers.routeName: (_) => AddMembers(),
-          GroupSettings.routeName : (_) => GroupSettings(),
+          GroupSettings.routeName: (_) => GroupSettings(),
         },
         onUnknownRoute: (_) =>
             MaterialPageRoute(builder: (_) => const NotFound()),
@@ -73,12 +80,23 @@ class _CookingState extends State<Cooking> {
 }
 
 class MainPage extends StatelessWidget {
-  const MainPage({ Key? key }) : super(key: key);
+  const MainPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return Scaffold(
+      body: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          return snapshot.connectionState == ConnectionState.waiting
+              ? Loader()
+              : snapshot.hasError
+                  ? const Center(child: Text("Oops Something went wrong"))
+                  : snapshot.hasData
+                      ? const Center(child: Text("verify yourself"),)
+                      : const AuthPage();
+        },
+      ),
     );
   }
 }
