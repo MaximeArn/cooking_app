@@ -11,7 +11,6 @@ class CookingAppBar extends StatelessWidget with PreferredSizeWidget {
     return DefaultTabController(
       length: 3,
       child: AppBar(
-        backgroundColor: Colors.white,
         iconTheme: const IconThemeData(
           size: 20,
         ),
@@ -20,14 +19,14 @@ class CookingAppBar extends StatelessWidget with PreferredSizeWidget {
             action!
         ],
         title: RichText(
-          text: const TextSpan(
+          text: TextSpan(
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
               children: [
-                TextSpan(text: "Coo", style: TextStyle(color: Colors.black)),
+                TextSpan(text: "Coo", style: TextStyle(color: Theme.of(context).colorScheme.primary)),
                 TextSpan(
                     text: "K",
-                    style: TextStyle(color: Color.fromRGBO(232, 196, 81, 1))),
-                TextSpan(text: "ing", style: TextStyle(color: Colors.black)),
+                    style: TextStyle(color: Theme.of(context).primaryColor),),
+                TextSpan(text: "ing", style: TextStyle(color: Theme.of(context).colorScheme.primary)),
               ]),
         ),
       ),
