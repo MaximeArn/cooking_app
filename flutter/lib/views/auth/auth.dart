@@ -1,3 +1,4 @@
+import 'package:cooking/views/auth/widgets/register.dart';
 import 'package:flutter/material.dart';
 
 class AuthPage extends StatefulWidget {
@@ -8,13 +9,13 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  bool isLogin = true;
+  bool isLogin = false;
   void toggle() => setState(() => isLogin = !isLogin);
 
   @override
   Widget build(BuildContext context) {
     return isLogin
         ? Center(child: Text("Login"))
-        : Center(child: Text("Register"));
+        : RegisterWidget(onLogInClicked: toggle);
   }
 }

@@ -52,9 +52,7 @@ class _CookingState extends State<Cooking> {
         ChangeNotifierProvider.value(value: rewardsProvider),
         ChangeNotifierProvider.value(value: postsProvider),
         ChangeNotifierProvider.value(value: usersProvider),
-        ChangeNotifierProvider.value(
-          value: GroupsProvider(),
-        )
+        ChangeNotifierProvider.value(value: GroupsProvider())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -96,7 +94,9 @@ class MainPage extends StatelessWidget {
               : snapshot.hasError
                   ? const Center(child: Text("Oops Something went wrong"))
                   : snapshot.hasData
-                      ? const Center(child: Text("verify yourself"),)
+                      ? const Center(
+                          child: Text("verify yourself"),
+                        )
                       : const AuthPage();
         },
       ),
