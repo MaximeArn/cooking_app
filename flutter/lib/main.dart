@@ -4,6 +4,7 @@ import 'package:cooking/providers/posts.dart';
 import 'package:cooking/providers/rewards.dart';
 import 'package:cooking/providers/users.dart';
 import 'package:cooking/themes.dart';
+import 'package:cooking/utils.dart';
 import 'package:cooking/views/auth/auth.dart';
 import 'package:cooking/views/edit_profile/edit_profile.dart';
 import 'package:cooking/views/groups/create_group/add_members.dart';
@@ -60,7 +61,9 @@ class _CookingState extends State<Cooking> {
         theme: CookingTheme.lightTheme,
         darkTheme: CookingTheme.darkTheme,
         themeMode: ThemeMode.system,
-        // title: "homepage",
+        scaffoldMessengerKey: Utils.messengerKey,
+        navigatorKey: Utils.navigatorKey,
+        title: "Cooking",
         initialRoute: "/",
         routes: {
           "/": (_) => MainPage(),
