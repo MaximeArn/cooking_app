@@ -88,8 +88,10 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    // TODO: implement a logout button that must be in the settings section 
     // uncomment this line to log out until add the logout button 
     // FirebaseAuth.instance.signOut();
+
     return Scaffold(
       body: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
