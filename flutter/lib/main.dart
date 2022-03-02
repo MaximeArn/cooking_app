@@ -6,6 +6,7 @@ import 'package:cooking/providers/users.dart';
 import 'package:cooking/themes.dart';
 import 'package:cooking/utils.dart';
 import 'package:cooking/views/auth/auth.dart';
+import 'package:cooking/views/auth/widgets/forgot_password.dart';
 import 'package:cooking/views/auth/widgets/verify_email.dart';
 import 'package:cooking/views/edit_profile/edit_profile.dart';
 import 'package:cooking/views/groups/create_group/add_members.dart';
@@ -73,6 +74,7 @@ class _CookingState extends State<Cooking> {
           GroupDetail.routeName: (_) => GroupDetail(),
           AddMembers.routeName: (_) => AddMembers(),
           GroupSettings.routeName: (_) => GroupSettings(),
+          ForgotPassword.routeName: (_) => ForgotPassword(),
         },
         onUnknownRoute: (_) =>
             MaterialPageRoute(builder: (_) => const NotFound()),
@@ -83,9 +85,11 @@ class _CookingState extends State<Cooking> {
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+
+    // uncomment this line to log out until add the logout button 
+    // FirebaseAuth.instance.signOut();
     return Scaffold(
       body: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),

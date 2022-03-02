@@ -1,4 +1,5 @@
 import 'package:cooking/utils.dart';
+import 'package:cooking/views/auth/widgets/forgot_password.dart';
 import 'package:cooking/views/auth/widgets/password_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
@@ -108,10 +109,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   fontSize: 14,
                 ),
               ),
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const Center(child: Text("Forgot Password"),),
-              )),
-            ),
+              onTap: () => Navigator.of(context).pushNamed(ForgotPassword.routeName)),
           const SizedBox(
             height: 10,
           ),
