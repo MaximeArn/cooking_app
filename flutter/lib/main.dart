@@ -8,6 +8,7 @@ import 'package:cooking/utils.dart';
 import 'package:cooking/views/auth/auth.dart';
 import 'package:cooking/views/auth/widgets/forgot_password.dart';
 import 'package:cooking/views/auth/widgets/verify_email.dart';
+import 'package:cooking/views/drawer_pages/settings/settings.dart';
 import 'package:cooking/views/edit_profile/edit_profile.dart';
 import 'package:cooking/views/groups/create_group/add_members.dart';
 import 'package:cooking/views/groups/group_detail/group_settings/group_settings.dart';
@@ -75,6 +76,7 @@ class _CookingState extends State<Cooking> {
           AddMembers.routeName: (_) => AddMembers(),
           GroupSettings.routeName: (_) => GroupSettings(),
           ForgotPassword.routeName: (_) => ForgotPassword(),
+          Settings.routeName : (_) => Settings(),
         },
         onUnknownRoute: (_) =>
             MaterialPageRoute(builder: (_) => const NotFound()),

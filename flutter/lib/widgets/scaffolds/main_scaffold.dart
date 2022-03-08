@@ -1,7 +1,7 @@
 import 'package:cooking/views/edit_profile/edit_profile.dart';
 import 'package:cooking/widgets/scaffolds/bottom_navigation.dart';
 import 'package:cooking/widgets/scaffolds/cooking_app_bar.dart';
-import 'package:cooking/widgets/scaffolds/drawer/side_panel.dart';
+import 'package:cooking/widgets/scaffolds/drawer/cooking_drawer.dart';
 import 'package:flutter/material.dart';
 
 class MainScaffold extends StatelessWidget {
@@ -28,7 +28,7 @@ class MainScaffold extends StatelessWidget {
               ),
             )
           : CookingAppBar(),
-      drawer: const SidePanel(),
+      drawer: const CookingDrawer(),
       bottomNavigationBar: BottomNavigation(index: index, setIndex: setIndex),
       body: body,
     );

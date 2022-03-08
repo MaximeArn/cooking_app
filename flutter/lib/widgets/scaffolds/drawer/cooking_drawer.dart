@@ -1,8 +1,9 @@
+import 'package:cooking/views/drawer_pages/settings/settings.dart';
 import 'package:cooking/widgets/scaffolds/drawer/widgets/drawer_item.dart';
 import 'package:flutter/material.dart';
 
-class SidePanel extends StatelessWidget {
-  const SidePanel();
+class CookingDrawer extends StatelessWidget {
+  const CookingDrawer();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class SidePanel extends StatelessWidget {
               const DrawerItem(
                 title: "Settings",
                 icon: Icon(Icons.settings),
-                routeName: "",
+                routeName: Settings.routeName,
               ),
               const DrawerItem(
                 title: "Confidentiality",
