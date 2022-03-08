@@ -1,4 +1,5 @@
 import 'package:cooking/widgets/scaffolds/secondary_scaffold.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Settings extends StatelessWidget {
@@ -7,6 +8,16 @@ class Settings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SecondaryScaffold(body:Center(child: Text("settings"),));
+    return SecondaryScaffold(
+      body: Center(
+        child: SingleChildScrollView(
+          child: ElevatedButton.icon(
+            label: Text("Log Out !"),
+            icon: Icon(Icons.logout),
+            onPressed: FirebaseAuth.instance.signOut,
+          ),
+        ),
+      ),
+    );
   }
 }
