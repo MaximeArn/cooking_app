@@ -1,4 +1,5 @@
 import 'package:cooking/firebase_options.dart';
+import 'package:cooking/providers/auth.dart';
 import 'package:cooking/providers/groups.dart';
 import 'package:cooking/providers/posts.dart';
 import 'package:cooking/providers/rewards.dart';
@@ -55,7 +56,8 @@ class _CookingState extends State<Cooking> {
         ChangeNotifierProvider.value(value: rewardsProvider),
         ChangeNotifierProvider.value(value: postsProvider),
         ChangeNotifierProvider.value(value: usersProvider),
-        ChangeNotifierProvider.value(value: GroupsProvider())
+        ChangeNotifierProvider.value(value: GroupsProvider()),
+        ChangeNotifierProvider.value(value: AuthProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -76,7 +78,7 @@ class _CookingState extends State<Cooking> {
           AddMembers.routeName: (_) => AddMembers(),
           GroupSettings.routeName: (_) => GroupSettings(),
           ForgotPassword.routeName: (_) => ForgotPassword(),
-          Settings.routeName : (_) => Settings(),
+          Settings.routeName: (_) => Settings(),
         },
         onUnknownRoute: (_) =>
             MaterialPageRoute(builder: (_) => const NotFound()),
@@ -89,11 +91,6 @@ class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-
-    // TODO: implement a logout button that must be in the settings section 
-    // uncomment this line to log out until add the logout button 
-    // FirebaseAuth.instance.signOut();
-
     return Scaffold(
       body: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
