@@ -4,8 +4,14 @@ import 'package:cooking/providers/groups.dart';
 import 'package:cooking/providers/posts.dart';
 import 'package:cooking/providers/rewards.dart';
 import 'package:cooking/providers/users.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'package:cooking/themes.dart';
 import 'package:cooking/utils.dart';
+
 import 'package:cooking/views/auth/auth.dart';
 import 'package:cooking/views/auth/widgets/forgot_password.dart';
 import 'package:cooking/views/auth/widgets/verify_email.dart';
@@ -19,10 +25,7 @@ import 'package:cooking/views/reward_detail/reward_detail.dart';
 import 'package:cooking/views/not_found/not_found.dart';
 import 'package:cooking/views/search_page/search_page.dart';
 import 'package:cooking/widgets/loader.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
