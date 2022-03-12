@@ -1,10 +1,11 @@
+import 'package:cooking/providers/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
 import 'package:cooking/utils.dart';
 import 'package:cooking/views/auth/widgets/password_field.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:provider/provider.dart';
 
 class RegisterWidget extends StatefulWidget {
   final VoidCallback onLogInClicked;
@@ -48,14 +49,15 @@ class _RegisterWidgetState extends State<RegisterWidget> {
 
     try {
       comparePasswords();
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text.trim(),
-          password: passwordController.text.trim());
+      Provider.of<AuthProvider>(context).register(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
     } on FirebaseAuthException catch (e) {
       print(e);
       Utils.showSnackBar(text: e.message);
     }
-    
+
     Utils.navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 
@@ -79,17 +81,17 @@ class _RegisterWidgetState extends State<RegisterWidget> {
             const SizedBox(
               height: 80,
             ),
-             Image.asset(
-            "assets/cooking_logo.png",
-            height: 150,
-          ),
-          const SizedBox(height: 20,),
+            Image.asset(
+              "assets/cooking_logo.png",
+              height: 150,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
             const Text(
               'Welcome \n On Cooking !',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.w500),
+              style: TextStyle(fontSize: 26, fontWeight: FontWeight.w500),
             ),
             const SizedBox(
               height: 40,
