@@ -25,17 +25,6 @@ class _RegisterWidgetState extends State<RegisterWidget> {
   final formKey = GlobalKey<FormState>();
   bool isPasswordHidden = true;
 
-  dynamic comparePasswords() {
-    final bool isIdentical =
-        passwordController.text == confirmPasswordController.text;
-    if (!isIdentical) {
-      throw FirebaseAuthException(
-        code: "different_passwords",
-        message: "Passwords must be identical",
-      );
-    }
-  }
-
   Future<void> register() async {
     final formIsValid = formKey.currentState!.validate();
     if (!formIsValid) return;
@@ -48,16 +37,15 @@ class _RegisterWidgetState extends State<RegisterWidget> {
     );
 
     try {
-      comparePasswords();
-      Provider.of<AuthProvider>(context).register(
+      Provider.of<AuthProvider>(context, listen: false).register(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
+        confirmPassword: confirmPasswordController.text.trim(),
       );
     } on FirebaseAuthException catch (e) {
       print(e);
       Utils.showSnackBar(text: e.message);
     }
-
     Utils.navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 
