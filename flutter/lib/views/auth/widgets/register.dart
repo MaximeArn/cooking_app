@@ -28,22 +28,11 @@ class _RegisterWidgetState extends State<RegisterWidget> {
   void register() {
     final formIsValid = formKey.currentState!.validate();
     if (!formIsValid) return;
-
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (_) => const Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
-
     Provider.of<AuthProvider>(context, listen: false).register(
       email: emailController.text.trim(),
       password: passwordController.text.trim(),
       confirmPassword: confirmPasswordController.text.trim(),
     );
-
-    Utils.navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 
   @override

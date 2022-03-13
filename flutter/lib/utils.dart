@@ -21,13 +21,12 @@ class Utils {
       ..showSnackBar(snackBar);
   }
 
-  static void showLoader() async {
-     await showDialog(
+  static showLoader() =>
+     showDialog(
       context: navigatorKey.currentContext as BuildContext,
       barrierDismissible: false,
       builder: (_) => const Center(
         child: CircularProgressIndicator(),
       ),
     );
-  }
 }

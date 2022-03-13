@@ -21,12 +21,15 @@ class AuthProvider with ChangeNotifier {
     required String password,
     required String confirmPassword,
   }) async {
+    Utils.showLoader();
     try {
       comparePasswords(password: password, confirmPassword: confirmPassword);
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+      //TODO: make an http request to create a user in the DB
+      Utils.navigatorKey.currentState!.popUntil((route) => route.isFirst);
     } on FirebaseAuthException catch (e) {
       Utils.showSnackBar(text: e.message);
       rethrow;
