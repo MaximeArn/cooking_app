@@ -1,8 +1,8 @@
+import 'package:cooking/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AuthProvider with ChangeNotifier {
-
   void comparePasswords({
     required String password,
     required String confirmPassword,
@@ -27,8 +27,8 @@ class AuthProvider with ChangeNotifier {
         email: email,
         password: password,
       );
-    } catch (e) {
-      print(e);
+    } on FirebaseAuthException catch (e) {
+      Utils.showSnackBar(text: e.message);
       rethrow;
     }
   }

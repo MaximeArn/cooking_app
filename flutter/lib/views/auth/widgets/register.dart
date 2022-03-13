@@ -25,9 +25,10 @@ class _RegisterWidgetState extends State<RegisterWidget> {
   final formKey = GlobalKey<FormState>();
   bool isPasswordHidden = true;
 
-  Future<void> register() async {
+  void register() {
     final formIsValid = formKey.currentState!.validate();
     if (!formIsValid) return;
+
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -36,16 +37,12 @@ class _RegisterWidgetState extends State<RegisterWidget> {
       ),
     );
 
-    try {
-      Provider.of<AuthProvider>(context, listen: false).register(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-        confirmPassword: confirmPasswordController.text.trim(),
-      );
-    } on FirebaseAuthException catch (e) {
-      print(e);
-      Utils.showSnackBar(text: e.message);
-    }
+    Provider.of<AuthProvider>(context, listen: false).register(
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+      confirmPassword: confirmPasswordController.text.trim(),
+    );
+
     Utils.navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 

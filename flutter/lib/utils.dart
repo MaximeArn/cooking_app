@@ -20,4 +20,14 @@ class Utils {
       ..removeCurrentSnackBar()
       ..showSnackBar(snackBar);
   }
+
+  static void showLoader() async {
+     await showDialog(
+      context: navigatorKey.currentContext as BuildContext,
+      barrierDismissible: false,
+      builder: (_) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+  }
 }
