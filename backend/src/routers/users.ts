@@ -15,7 +15,8 @@ usersRouter.get(
   "/searchAmoungFriends/:filter/:connectedUserId",
   getFriendsByName
 );
-usersRouter.patch("/:userId", updateProfile);
 usersRouter.get("/ranking/national/:countryCode", getNationalRanking);
+usersRouter.post("");
+usersRouter.patch("/:userId", updateProfile);
 
 export default usersRouter;

@@ -3,6 +3,11 @@ import User, { UserInterface } from "../../models/user";
 import { hashPassword } from "../utils/passwordHash";
 
 module.exports = {
+  createUser: async ({ body }: Request, res: Response, next: NextFunction) => {
+    console.log("create user !");
+    console.log(body);
+  },
+
   getUserById: async (
     { params: { userId } }: Request,
     res: Response,
