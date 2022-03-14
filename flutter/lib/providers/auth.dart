@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cooking/environment/env.dart';
 import 'package:cooking/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -30,8 +32,14 @@ class AuthProvider with ChangeNotifier {
         email: email,
         password: password,
       );
-      //TODO: make an http request to create a user in the DB
-      http.Response res = await http.post(Uri.parse("$serverUrl/users")); 
+      http.Response res = await http.post(
+        Uri.parse(
+          "$serverUrl/users",
+        ),
+        headers: {'Content-type': 'application/json'},
+        //TODO: add a field in the form to get the name that is required to create a new user
+        body: json.encode({"email": email, "password": password, "name": "Maxime"}),
+      );
       Utils.navigatorKey.currentState!.popUntil((route) => route.isFirst);
     } on FirebaseAuthException catch (e) {
       Utils.showSnackBar(text: e.message);

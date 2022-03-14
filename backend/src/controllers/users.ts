@@ -4,8 +4,18 @@ import { hashPassword } from "../utils/passwordHash";
 
 module.exports = {
   createUser: async ({ body }: Request, res: Response, next: NextFunction) => {
-    console.log("create user !");
-    console.log(body);
+    try {
+      console.log(body);
+      const user = await User.create({
+        ...body,
+        password: await hashPassword(body.password),
+      });
+      console.log(user);
+      res.json(user).status(200);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
   },
 
   getUserById: async (

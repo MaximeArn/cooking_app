@@ -5,6 +5,7 @@ const {
   updateProfile,
   getNationalRanking,
   getFriendsByName,
+  createUser,
 } = require("../controllers/users");
 
 const usersRouter = Router();
@@ -16,7 +17,7 @@ usersRouter.get(
   getFriendsByName
 );
 usersRouter.get("/ranking/national/:countryCode", getNationalRanking);
-usersRouter.post("");
+usersRouter.post("", createUser);
 usersRouter.patch("/:userId", updateProfile);
 
 export default usersRouter;

@@ -32,7 +32,7 @@ export const userSchema = new Schema({
     default: `http://localhost:4545/assets/images/avatars/default_avatar.jpg`,
   },
   posts: { type: [{ type: Schema.Types.ObjectId, ref: "post" }], default: [] },
-  countryCode: { type: String, required: true },
+  countryCode: { type: String, default: "FR" },
   groups: {
     type: [{ type: Schema.Types.ObjectId, ref: "group" }],
     default: [],
