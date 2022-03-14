@@ -25,13 +25,14 @@ class _RegisterWidgetState extends State<RegisterWidget> {
   final formKey = GlobalKey<FormState>();
   bool isPasswordHidden = true;
 
-  void register() {
+  void register(BuildContext context) {
     final formIsValid = formKey.currentState!.validate();
     if (!formIsValid) return;
     Provider.of<AuthProvider>(context, listen: false).register(
       email: emailController.text.trim(),
       password: passwordController.text.trim(),
       confirmPassword: confirmPasswordController.text.trim(),
+      context: context
     );
   }
 
@@ -99,7 +100,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50)),
-              onPressed: register,
+              onPressed: () => register(context),
               icon: const Icon(Icons.login),
               label: const Text(
                 "Register",
