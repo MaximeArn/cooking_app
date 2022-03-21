@@ -5,7 +5,7 @@ import 'package:cooking/models/Post.dart';
 
 class User {
   final String id;
-  int age;
+  int? age;
   String name;
   String email;
   String password;

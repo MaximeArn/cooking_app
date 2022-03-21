@@ -1,8 +1,8 @@
+import 'package:cooking/models/User.dart';
 import 'package:cooking/providers/auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cooking/providers/users.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:cooking/utils.dart';
 import 'package:cooking/views/auth/widgets/password_field.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:provider/provider.dart';
@@ -25,15 +25,23 @@ class _RegisterWidgetState extends State<RegisterWidget> {
   final formKey = GlobalKey<FormState>();
   bool isPasswordHidden = true;
 
-  void register(BuildContext context) {
+  register(BuildContext context) async {
     final formIsValid = formKey.currentState!.validate();
     if (!formIsValid) return;
-    Provider.of<AuthProvider>(context, listen: false).register(
-      email: emailController.text.trim(),
-      password: passwordController.text.trim(),
-      confirmPassword: confirmPasswordController.text.trim(),
-      context: context
-    );
+    try {
+      final response =
+          await Provider.of<AuthProvider>(context, listen: false).register(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+        confirmPassword: confirmPasswordController.text.trim(),
+      );
+      final User user = await User.fromJson(response);
+      Provider.of<UsersProvider>(context, listen: false).connectedUser = user;
+      return user;
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
   }
 
   @override
@@ -100,7 +108,9 @@ class _RegisterWidgetState extends State<RegisterWidget> {
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50)),
-              onPressed: () => register(context),
+              onPressed: () {
+                register(context);
+              },
               icon: const Icon(Icons.login),
               label: const Text(
                 "Register",

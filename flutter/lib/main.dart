@@ -26,7 +26,6 @@ import 'package:cooking/views/not_found/not_found.dart';
 import 'package:cooking/views/search_page/search_page.dart';
 import 'package:cooking/widgets/loader.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -43,22 +42,22 @@ class _CookingState extends State<Cooking> {
   final PostsProvider postsProvider = PostsProvider();
   final UsersProvider usersProvider = UsersProvider();
 
-  @override
-  void initState() {
-    rewardsProvider.fetchRewards();
-    postsProvider.fetchPosts();
-    usersProvider.getNationalRanking();
-    usersProvider.getConnectedUser("60e8c2140e7c9296fa2380c3");
-    super.initState();
-  }
+  // @override
+  // void initState() {
+    // rewardsProvider.fetchRewards();
+    // postsProvider.fetchPosts();
+    // usersProvider.getNationalRanking();
+    // usersProvider.getConnectedUser("60e8c2140e7c9296fa2380c3");
+    // super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider.value(value: usersProvider),
         ChangeNotifierProvider.value(value: rewardsProvider),
         ChangeNotifierProvider.value(value: postsProvider),
-        ChangeNotifierProvider.value(value: usersProvider),
         ChangeNotifierProvider.value(value: GroupsProvider()),
         ChangeNotifierProvider.value(value: AuthProvider()),
       ],

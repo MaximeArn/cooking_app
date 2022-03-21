@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class PasswordField extends StatefulWidget {
   final TextEditingController controller;
-  String label;
+  final String label;
   
   PasswordField({Key? key, required this.controller, this.label = "Password"}) : super(key: key);
 
