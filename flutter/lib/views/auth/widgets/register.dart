@@ -25,25 +25,6 @@ class _RegisterWidgetState extends State<RegisterWidget> {
   final formKey = GlobalKey<FormState>();
   bool isPasswordHidden = true;
 
-  register(BuildContext context) async {
-    final formIsValid = formKey.currentState!.validate();
-    if (!formIsValid) return;
-    try {
-      final response =
-          await Provider.of<AuthProvider>(context, listen: false).register(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-        confirmPassword: confirmPasswordController.text.trim(),
-      );
-      final User user = await User.fromJson(response);
-      Provider.of<UsersProvider>(context, listen: false).connectedUser = user;
-      return user;
-    } catch (e) {
-      print(e);
-      rethrow;
-    }
-  }
-
   @override
   void dispose() {
     super.dispose();
@@ -54,6 +35,27 @@ class _RegisterWidgetState extends State<RegisterWidget> {
 
   @override
   Widget build(BuildContext context) {
+    register(BuildContext context) async {
+      print(Provider.of<UsersProvider>(context, listen: false)
+          .connectedUser
+          .toString());
+      final formIsValid = formKey.currentState!.validate();
+      if (!formIsValid) return null;
+      try {
+        final response =
+            await Provider.of<AuthProvider>(context, listen: false).register(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim(),
+          confirmPassword: confirmPasswordController.text.trim(),
+        );
+        final User user = await User.fromJson(response);
+        return user;
+      } catch (e) {
+        print(e);
+        rethrow;
+      }
+    }
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: Form(

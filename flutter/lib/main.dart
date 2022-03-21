@@ -42,13 +42,17 @@ class _CookingState extends State<Cooking> {
   final PostsProvider postsProvider = PostsProvider();
   final UsersProvider usersProvider = UsersProvider();
 
-  // @override
-  // void initState() {
-    // rewardsProvider.fetchRewards();
-    // postsProvider.fetchPosts();
-    // usersProvider.getNationalRanking();
-    // usersProvider.getConnectedUser("60e8c2140e7c9296fa2380c3");
-    // super.initState();
+  @override
+  void initState() {
+    // initData();
+    super.initState();
+  }
+
+  // void initData() async {
+  //   await rewardsProvider.fetchRewards();
+  //   await postsProvider.fetchPosts();
+  //   await usersProvider.getNationalRanking();
+  //   await usersProvider.getConnectedUser("60e8c2140e7c9296fa2380c3");
   // }
 
   @override
