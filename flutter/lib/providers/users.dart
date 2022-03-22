@@ -11,14 +11,19 @@ import 'package:http_parser/http_parser.dart';
 
 class UsersProvider with ChangeNotifier {
   bool isLoading = false;
-  List<Map<String, dynamic>> _filteredUsers = [];
-  List<Map<String, dynamic>> _nationalRanking = [];
   bool firstSearch = true;
-  User? connectedUser = null;
+  
+  User? _connectedUser;
+  User? get connectedUser => _connectedUser;
+  void set connectedUser(User? user) {
+    this._connectedUser = user;
+  }
 
+  List<Map<String, dynamic>> _filteredUsers = [];
   UnmodifiableListView<Map<String, dynamic>> get filteredUsers =>
       UnmodifiableListView(_filteredUsers);
 
+  List<Map<String, dynamic>> _nationalRanking = [];
   UnmodifiableListView<Map<String, dynamic>> get nationalRanking =>
       UnmodifiableListView(_nationalRanking);
 
