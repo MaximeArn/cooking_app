@@ -49,10 +49,9 @@ class _CookingState extends State<Cooking> {
   }
 
   void initData() {
-    // rewardsProvider.fetchRewards();
-    // postsProvider.fetchPosts();
-    // usersProvider.getNationalRanking();
-    // usersProvider.getConnectedUser("60e8c2140e7c9296fa2380c3");
+    rewardsProvider.fetchRewards();
+    postsProvider.fetchPosts();
+    usersProvider.getNationalRanking();
   }
 
   @override

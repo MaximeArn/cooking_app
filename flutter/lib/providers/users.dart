@@ -12,11 +12,12 @@ import 'package:http_parser/http_parser.dart';
 class UsersProvider with ChangeNotifier {
   bool isLoading = false;
   bool firstSearch = true;
-  
+
   User? _connectedUser;
   User? get connectedUser => _connectedUser;
   void set connectedUser(User? user) {
     this._connectedUser = user;
+    notifyListeners();
   }
 
   List<Map<String, dynamic>> _filteredUsers = [];
