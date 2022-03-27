@@ -20,7 +20,13 @@ module.exports = {
         previousAvatarPath
       );
 
-      fs.unlinkSync("public" + absolutePreviousAvatarPath);
+      console.log(
+        " previous image was default one ==>  ",
+        absolutePreviousAvatarPath.includes("default_avatar.jpg")
+      );
+
+      !absolutePreviousAvatarPath.includes("default_avatar.jpg") &&
+        fs.unlinkSync("public" + absolutePreviousAvatarPath);
 
       // compress new avatar
       const compressedFilename = `${filename.substring(

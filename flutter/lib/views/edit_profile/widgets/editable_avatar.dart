@@ -23,13 +23,10 @@ class _EditableAvatarState extends State<EditableAvatar> {
     ImagePicker imagePicker = ImagePicker();
 
     Future<void> pickImage() async {
-      print("pick Image");
       try {
         XFile? pickedImage =
             await imagePicker.pickImage(source: ImageSource.gallery);
-        print(pickedImage);
         if (pickedImage != null) {
-          print(" transform picked image !! ");
           File pickedFile = File(pickedImage.path);
           setState(() {
             user.fileImage = pickedFile;
