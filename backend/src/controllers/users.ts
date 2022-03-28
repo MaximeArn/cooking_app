@@ -10,7 +10,6 @@ module.exports = {
         ...body,
         password: await hashPassword(body.password),
       });
-      console.log(user);
       res.json(user).status(200);
     } catch (error) {
       console.log(error);
@@ -31,6 +30,7 @@ module.exports = {
           model: "post",
         }
       );
+      console.log(user);
       res.json(user);
     } catch (error) {
       console.error(error);

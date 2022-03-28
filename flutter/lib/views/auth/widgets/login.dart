@@ -21,24 +21,14 @@ class _LoginWidgetState extends State<LoginWidget> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+  //TODO: Add a validator to the form 
   Future logIn() async {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
-
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (_) => const Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
-
     await authProvider.logIn(
       context: context,
       email: emailController.text.trim(),
       password: passwordController.text.trim(),
     );
-
-    Utils.navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 
   @override

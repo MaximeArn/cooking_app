@@ -9,12 +9,12 @@ const {
   createUser,
 } = require("../controllers/users");
 
-const usersRouter = Router();
+const usersRouter: any = Router();
 
 usersRouter.get("/email/:email", getUserByEmail);
 usersRouter.get("/id/:id", getUserById);
 usersRouter.get("/search/:filter", getUsersByName);
-// Maybe make an easyer path
+//Maybe make an easyer path
 usersRouter.get(
   "/searchAmoungFriends/:filter/:connectedUserId",
   getFriendsByName

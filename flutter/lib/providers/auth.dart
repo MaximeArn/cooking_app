@@ -64,15 +64,22 @@ class AuthProvider with ChangeNotifier {
     required String password,
   }) async {
     try {
+      final usersProvider = Provider.of<UsersProvider>(context, listen: false);
+      Utils.showLoader();
+
       await firebase.FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
 
-      // http.get(Uri.parse(
-      //   "$serverUrl/users/$email",
-      // ));
-      
+      http.Response response = await http.get(Uri.parse(
+        "$serverUrl/users/email/$email",
+      ));
+      usersProvider.connectedUser = User.fromJson(json.decode(response.body), isPopulated: true);
+
+      Utils.navigatorKey.currentState!.popUntil((route) => route.isFirst);
+
     } on firebase.FirebaseAuthException catch (e) {
-      print(e);
+      Utils.showSnackBar(text: e.message);
+      Utils.navigatorKey.currentState!.popUntil((route) => route.isFirst);
       rethrow;
     }
   }
