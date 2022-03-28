@@ -1,6 +1,5 @@
 import 'package:cooking/models/User.dart';
 import 'package:cooking/providers/auth.dart';
-import 'package:cooking/providers/rewards.dart';
 import 'package:cooking/providers/users.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -37,21 +36,17 @@ class _RegisterWidgetState extends State<RegisterWidget> {
 
   register(BuildContext context) async {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
-    final usersProvider = Provider.of<UsersProvider>(context, listen: false);
 
     final formIsValid = formKey.currentState!.validate();
     if (!formIsValid) return;
 
     try {
-      print(usersProvider.connectedUser);
-      final response = await authProvider.register(
+      await authProvider.register(
+        context: context,
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
         confirmPassword: confirmPasswordController.text.trim(),
       );
-      final User user = await User.fromJson(response);
-
-      usersProvider.connectedUser = user;
     } catch (e) {
       print(e);
       rethrow;

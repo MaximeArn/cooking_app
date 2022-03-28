@@ -36,7 +36,7 @@ class UsersProvider with ChangeNotifier {
   Future<dynamic> getUserById(String userId) async {
     try {
       http.Response response =
-          await http.get(Uri.parse("$serverUrl/users/$userId"));
+          await http.get(Uri.parse("$serverUrl/users/id/$userId"));
       if (response.statusCode == 200) {
         return User.fromJson(
           json.decode(response.body),

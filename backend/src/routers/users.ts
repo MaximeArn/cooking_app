@@ -1,6 +1,7 @@
 import { Router } from "express";
 const {
   getUsersByName,
+  getUserByEmail,
   getUserById,
   updateProfile,
   getNationalRanking,
@@ -10,8 +11,10 @@ const {
 
 const usersRouter = Router();
 
-usersRouter.get("/:userId", getUserById);
+usersRouter.get("/email/:email", getUserByEmail);
+usersRouter.get("/id/:id", getUserById);
 usersRouter.get("/search/:filter", getUsersByName);
+// Maybe make an easyer path
 usersRouter.get(
   "/searchAmoungFriends/:filter/:connectedUserId",
   getFriendsByName

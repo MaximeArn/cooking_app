@@ -1,10 +1,13 @@
 import 'dart:convert';
 
 import 'package:cooking/environment/env.dart';
+import 'package:cooking/models/User.dart';
+import 'package:cooking/providers/users.dart';
 import 'package:cooking/utils.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 class AuthProvider with ChangeNotifier {
   void comparePasswords({
@@ -13,22 +16,26 @@ class AuthProvider with ChangeNotifier {
   }) {
     final bool isIdentical = password == confirmPassword;
     if (!isIdentical) {
-      throw FirebaseAuthException(
+      throw firebase.FirebaseAuthException(
         code: "different_passwords",
         message: "Passwords must be identical",
       );
     }
   }
 
-  Future<dynamic> register({
+  Future<void> register({
+    required BuildContext context,
     required String email,
     required String password,
     required String confirmPassword,
   }) async {
     Utils.showLoader();
     try {
+      final usersProvider = Provider.of<UsersProvider>(context, listen: false);
+
       comparePasswords(password: password, confirmPassword: confirmPassword);
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+
+      await firebase.FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -41,12 +48,31 @@ class AuthProvider with ChangeNotifier {
         body: json
             .encode({"email": email, "password": password, "name": "Maxime"}),
       );
-      final user = json.decode(res.body);
+
+      usersProvider.connectedUser = User.fromJson(json.decode(res.body));
       Utils.navigatorKey.currentState!.popUntil((route) => route.isFirst);
-      return user;
-    } on FirebaseAuthException catch (e) {
+    } on firebase.FirebaseAuthException catch (e) {
       Utils.showSnackBar(text: e.message);
       Utils.navigatorKey.currentState!.popUntil((route) => route.isFirst);
+      rethrow;
+    }
+  }
+
+  Future<void> logIn({
+    required BuildContext context,
+    required String email,
+    required String password,
+  }) async {
+    try {
+      await firebase.FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+
+      // http.get(Uri.parse(
+      //   "$serverUrl/users/$email",
+      // ));
+      
+    } on firebase.FirebaseAuthException catch (e) {
+      print(e);
       rethrow;
     }
   }

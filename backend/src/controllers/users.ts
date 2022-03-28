@@ -18,6 +18,26 @@ module.exports = {
     }
   },
 
+  getUserByEmail: async (
+    { params: { email } }: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      console.log(email);
+      const user: UserInterface = await User.findOne({ email: email }).populate(
+        {
+          path: "posts",
+          model: "post",
+        }
+      );
+      res.json(user);
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
+  },
+
   getUserById: async (
     { params: { userId } }: Request,
     res: Response,

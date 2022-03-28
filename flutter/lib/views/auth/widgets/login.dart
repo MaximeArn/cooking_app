@@ -1,9 +1,10 @@
+import 'package:cooking/providers/auth.dart';
 import 'package:cooking/utils.dart';
 import 'package:cooking/views/auth/widgets/forgot_password.dart';
 import 'package:cooking/views/auth/widgets/password_field.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginWidget extends StatefulWidget {
   final VoidCallback onRegisterClicked;
@@ -21,6 +22,8 @@ class _LoginWidgetState extends State<LoginWidget> {
   final passwordController = TextEditingController();
 
   Future logIn() async {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -29,15 +32,11 @@ class _LoginWidgetState extends State<LoginWidget> {
       ),
     );
 
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-    } on FirebaseAuthException catch (e) {
-      print(e);
-      Utils.showSnackBar(text: e.message);
-    }
+    await authProvider.logIn(
+      context: context,
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+    );
 
     Utils.navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
@@ -63,7 +62,9 @@ class _LoginWidgetState extends State<LoginWidget> {
             "assets/cooking_logo.png",
             height: 150,
           ),
-          const SizedBox(height: 20,),
+          const SizedBox(
+            height: 20,
+          ),
           const Text(
             'Hello \n Welcome back !',
             textAlign: TextAlign.center,
@@ -83,7 +84,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           const SizedBox(
             height: 20,
           ),
-          PasswordField(controller : passwordController),
+          PasswordField(controller: passwordController),
           const SizedBox(
             height: 50,
           ),
@@ -109,7 +110,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                   fontSize: 14,
                 ),
               ),
-              onTap: () => Navigator.of(context).pushNamed(ForgotPassword.routeName)),
+              onTap: () =>
+                  Navigator.of(context).pushNamed(ForgotPassword.routeName)),
           const SizedBox(
             height: 10,
           ),
