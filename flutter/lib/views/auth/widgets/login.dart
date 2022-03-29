@@ -1,5 +1,4 @@
 import 'package:cooking/providers/auth.dart';
-import 'package:cooking/utils.dart';
 import 'package:cooking/views/auth/widgets/forgot_password.dart';
 import 'package:cooking/views/auth/widgets/password_field.dart';
 import 'package:flutter/gestures.dart';
