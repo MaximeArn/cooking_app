@@ -19,6 +19,7 @@ class Profile extends StatelessWidget {
       future: usersProvider.getUserById(userId),
       builder: (builder, snapshot) {
         if (snapshot.hasError) {
+          print("Null error here !");
           return Center(child: Text(snapshot.error.toString()));
         } else if (snapshot.hasData) {
           final User user = snapshot.data as User;
