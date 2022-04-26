@@ -13,13 +13,13 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String userId = ModalRoute.of(context)!.settings.arguments as String;
+    print(userId);
     final UsersProvider usersProvider = Provider.of<UsersProvider>(context);
     return SecondaryScaffold(
         body: FutureBuilder(
       future: usersProvider.getUserById(userId),
       builder: (builder, snapshot) {
         if (snapshot.hasError) {
-          print("Null error here !");
           return Center(child: Text(snapshot.error.toString()));
         } else if (snapshot.hasData) {
           final User user = snapshot.data as User;

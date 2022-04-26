@@ -154,7 +154,8 @@ class UsersProvider with ChangeNotifier {
     required String age,
     required String pwd,
   }) async {
-    if (connectedUser!.fileImage != null) await uploadAvatar();
+    // TODO: Uncomment after fixing the error
+    // if (connectedUser!.fileImage != null) await uploadAvatar();
 
     connectedUser!.name = name;
     connectedUser!.email = email;
@@ -164,16 +165,18 @@ class UsersProvider with ChangeNotifier {
     }
 
     String jsonUser = connectedUser!.toJson();
+    print(jsonUser);
 
     try {
-      await http.patch(
+      final http.Response response = await http.patch(
         Uri.parse(
           "$serverUrl/users/${connectedUser!.id}",
         ),
         headers: {'Content-type': 'application/json'},
         body: jsonUser,
       );
-      getConnectedUserById(connectedUser!.id);
+      connectedUser = User.fromJson(json.decode(response.body));
+      // getConnectedUserById(connectedUser!.id);
     } catch (e) {
       rethrow;
     }

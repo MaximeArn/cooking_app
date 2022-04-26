@@ -1,6 +1,4 @@
-import 'package:cooking/models/User.dart';
 import 'package:cooking/providers/auth.dart';
-import 'package:cooking/providers/users.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:cooking/views/auth/widgets/password_field.dart';

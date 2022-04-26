@@ -42,10 +42,12 @@ module.exports = {
     next: NextFunction
   ) => {
     try {
+      console.log(userId);
       const user: UserInterface = await User.findById(userId).populate({
         path: "posts",
         model: "post",
       });
+      console.log(user);
       res.json(user);
     } catch (error) {
       console.error(error);
@@ -114,6 +116,7 @@ module.exports = {
 
       const newUser = await User.findByIdAndUpdate(userId, filteredBody, {
         useFindAndModify: false,
+        new: true,
       }).populate({
         path: "posts",
         model: "post",
