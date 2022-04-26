@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/User.dart';
 import 'package:cooking/providers/users.dart';
