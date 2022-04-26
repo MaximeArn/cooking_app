@@ -23,14 +23,12 @@ module.exports = {
     next: NextFunction
   ) => {
     try {
-      console.log(email);
       const user: UserInterface = await User.findOne({ email: email }).populate(
         {
           path: "posts",
           model: "post",
         }
       );
-      console.log(user);
       res.json(user);
     } catch (error) {
       console.error(error);

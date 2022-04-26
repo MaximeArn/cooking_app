@@ -49,7 +49,23 @@ class UsersProvider with ChangeNotifier {
     }
   }
 
-  Future<dynamic> getConnectedUser(String userId) async {
+  Future getUserByEmail({required String email}) async {
+    try {
+       http.Response response =
+          await http.get(Uri.parse("$serverUrl/users/email/$email"));
+       if (response.statusCode == 200) {
+        connectedUser =  User.fromJson(
+          json.decode(response.body),
+          isPopulated: true,
+        );  
+      }
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
+  }
+
+  Future<dynamic> getConnectedUserById(String userId) async {
     try {
       connectedUser = await getUserById(userId);
       getConnectedUserGroups(userId);
@@ -156,7 +172,7 @@ class UsersProvider with ChangeNotifier {
         headers: {'Content-type': 'application/json'},
         body: jsonUser,
       );
-      getConnectedUser(connectedUser!.id);
+      getConnectedUserById(connectedUser!.id);
     } catch (e) {
       rethrow;
     }
