@@ -37,6 +37,7 @@ class UsersProvider with ChangeNotifier {
     try {
       http.Response response =
           await http.get(Uri.parse("$serverUrl/users/id/$userId"));
+      print(json.decode(response.body));
       if (response.statusCode == 200) {
         return User.fromJson(
           json.decode(response.body),
@@ -164,7 +165,6 @@ class UsersProvider with ChangeNotifier {
     }
 
     String jsonUser = connectedUser!.toJson();
-    print(jsonUser);
 
     try {
       final http.Response response = await http.patch(
@@ -174,7 +174,8 @@ class UsersProvider with ChangeNotifier {
         headers: {'Content-type': 'application/json'},
         body: jsonUser,
       );
-      connectedUser = User.fromJson(json.decode(response.body), isPopulated: true);
+      connectedUser =
+          User.fromJson(json.decode(response.body), isPopulated: true);
       notifyListeners();
     } catch (e) {
       rethrow;

@@ -37,13 +37,13 @@ module.exports = {
   },
 
   getUserById: async (
-    { params: { userId } }: Request,
+    { params: { id } }: Request,
     res: Response,
     next: NextFunction
   ) => {
     try {
-      console.log(userId);
-      const user: UserInterface = await User.findById(userId).populate({
+      console.log(id);
+      const user: UserInterface = await User.findById(id).populate({
         path: "posts",
         model: "post",
       });
