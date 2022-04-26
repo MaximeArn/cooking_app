@@ -154,8 +154,7 @@ class UsersProvider with ChangeNotifier {
     required String age,
     required String pwd,
   }) async {
-    // TODO: Uncomment after fixing the error
-    // if (connectedUser!.fileImage != null) await uploadAvatar();
+    if (connectedUser!.fileImage != null) await uploadAvatar();
 
     connectedUser!.name = name;
     connectedUser!.email = email;
@@ -175,8 +174,8 @@ class UsersProvider with ChangeNotifier {
         headers: {'Content-type': 'application/json'},
         body: jsonUser,
       );
-      connectedUser = User.fromJson(json.decode(response.body));
-      // getConnectedUserById(connectedUser!.id);
+      connectedUser = User.fromJson(json.decode(response.body), isPopulated: true);
+      notifyListeners();
     } catch (e) {
       rethrow;
     }
