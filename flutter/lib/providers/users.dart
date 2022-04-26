@@ -51,13 +51,14 @@ class UsersProvider with ChangeNotifier {
 
   Future getUserByEmail({required String email}) async {
     try {
-       http.Response response =
+      http.Response response =
           await http.get(Uri.parse("$serverUrl/users/email/$email"));
-       if (response.statusCode == 200) {
-        connectedUser =  User.fromJson(
+      if (response.statusCode == 200) {
+        connectedUser = User.fromJson(
           json.decode(response.body),
           isPopulated: true,
-        );  
+        );
+        getConnectedUserGroups(connectedUser!.id);
       }
     } catch (e) {
       print(e);
