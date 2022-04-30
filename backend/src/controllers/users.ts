@@ -131,7 +131,16 @@ module.exports = {
     }
   },
 
-  deleteUser: async () => {},
+  deleteUser: async (
+    { params: { id } }: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      await User.findByIdAndDelete(id);
+      res.end();
+    } catch (error) {}
+  },
 
   getNationalRanking: async (
     { params: { countryCode } }: Request,
