@@ -33,6 +33,8 @@ class Settings extends StatelessWidget {
         Utils.navigatorKey.currentState!.maybePop();
         usersProvider.connectedUser = null;
       });
+
+      //TODO: Delete the user instance in db and the profile image linked 
       
     } on FirebaseAuthException catch (e) {
       print(e);

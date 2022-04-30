@@ -99,8 +99,8 @@ module.exports = {
     }
   },
 
-  updateProfile: async (
-    { params: { userId }, body }: Request,
+  updateUser: async (
+    { params: { id }, body }: Request,
     res: Response,
     next: NextFunction
   ) => {
@@ -114,7 +114,7 @@ module.exports = {
         }
       }
 
-      const newUser = await User.findByIdAndUpdate(userId, filteredBody, {
+      const newUser = await User.findByIdAndUpdate(id, filteredBody, {
         useFindAndModify: false,
         new: true,
       }).populate({
@@ -130,6 +130,8 @@ module.exports = {
       next(error);
     }
   },
+
+  deleteUser: async () => {},
 
   getNationalRanking: async (
     { params: { countryCode } }: Request,

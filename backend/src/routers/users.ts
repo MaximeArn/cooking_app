@@ -3,10 +3,11 @@ const {
   getUsersByName,
   getUserByEmail,
   getUserById,
-  updateProfile,
+  updateUser,
   getNationalRanking,
   getFriendsByName,
   createUser,
+  deleteUser,
 } = require("../controllers/users");
 
 const usersRouter: any = Router();
@@ -21,6 +22,7 @@ usersRouter.get(
 );
 usersRouter.get("/ranking/national/:countryCode", getNationalRanking);
 usersRouter.post("", createUser);
-usersRouter.patch("/:userId", updateProfile);
+usersRouter.patch("/:id", updateUser);
+usersRouter.delete("/:id", deleteUser);
 
 export default usersRouter;
