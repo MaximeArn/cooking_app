@@ -18,7 +18,7 @@ class RegisterWidget extends StatefulWidget {
 
 class _RegisterWidgetState extends State<RegisterWidget> {
   final emailController =
-      TextEditingController(text: "maxime-arnould@outlook.fr");
+      TextEditingController(text: "arnould.maxime1907@gmail.com");
   final passwordController = TextEditingController(text: "test123");
   final confirmPasswordController = TextEditingController(text: "test123");
   final formKey = GlobalKey<FormState>();

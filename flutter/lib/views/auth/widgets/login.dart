@@ -17,7 +17,7 @@ class LoginWidget extends StatefulWidget {
 }
 
 class _LoginWidgetState extends State<LoginWidget> {
-  final emailController = TextEditingController(text: "maxime-arnould@outlook.fr");
+  final emailController = TextEditingController(text: "arnould.maxime1907@gmail.com");
   final passwordController = TextEditingController(text: "test123");
 
   //TODO: Add a validator to the form 

@@ -3,7 +3,11 @@ import fs from "fs";
 import sharp from "sharp";
 import Path from "path";
 
-module.exports = {
+const imagesController = {
+  isDefaultAvatar: (path: string) => {
+    return path.includes("default_avatar.jpg");
+  },
+
   uploadAvatar: async (
     { file: { filename, destination, path }, body: { oldAvatar } },
     res: Response,
@@ -20,12 +24,7 @@ module.exports = {
         previousAvatarPath
       );
 
-      console.log(
-        " previous image was default one ==>  ",
-        absolutePreviousAvatarPath.includes("default_avatar.jpg")
-      );
-
-      !absolutePreviousAvatarPath.includes("default_avatar.jpg") &&
+      !imagesController.isDefaultAvatar(absolutePreviousAvatarPath) &&
         fs.unlinkSync("public" + absolutePreviousAvatarPath);
 
       // compress new avatar
@@ -49,4 +48,20 @@ module.exports = {
       next(error);
     }
   },
+
+  deleteImage: async (path: string, next: NextFunction) => {
+    try {
+      if (!imagesController.isDefaultAvatar(path)) {
+        console.log(path);
+        fs.unlink(`public/${path}`, (err) => {
+          console.log(err);
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  },
 };
+
+module.exports = imagesController;

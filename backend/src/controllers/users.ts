@@ -1,6 +1,8 @@
 import { NextFunction, Request, Response } from "express";
+import { pathToFileURL } from "url";
 import User, { UserInterface } from "../../models/user";
 import { hashPassword } from "../utils/passwordHash";
+const { deleteImage } = require("./images");
 
 module.exports = {
   createUser: async ({ body }: Request, res: Response, next: NextFunction) => {
@@ -137,9 +139,13 @@ module.exports = {
     next: NextFunction
   ) => {
     try {
-      await User.findByIdAndDelete(id);
+      const { avatar } = await User.findByIdAndDelete(id);
+      await deleteImage(avatar);
       res.end();
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
   },
 
   getNationalRanking: async (
