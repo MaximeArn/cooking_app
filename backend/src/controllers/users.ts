@@ -124,8 +124,6 @@ module.exports = {
         model: "post",
       });
 
-      console.log(newUser);
-
       res.status(200).json(newUser);
     } catch (error) {
       console.error(error);

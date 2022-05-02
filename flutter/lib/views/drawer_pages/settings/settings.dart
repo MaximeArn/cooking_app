@@ -22,20 +22,23 @@ class Settings extends StatelessWidget {
       final usersProvider = Provider.of<UsersProvider>(context, listen: false);
       final currentUser = FirebaseAuth.instance.currentUser;
 
-      if (currentUser == null){
+      if (currentUser == null) {
         throw FirebaseAuthException(
           message: "you try to delete a user that is not loged",
           code: "delete-null-user",
         );
       }
+      
+      //delete cooking's DB user instance 
+      usersProvider.deleteUser(usersProvider.connectedUser!.id);
 
+      //delete firebase user instance 
       await currentUser.delete().then((value) {
         Utils.navigatorKey.currentState!.maybePop();
         usersProvider.connectedUser = null;
       });
 
-      //TODO: Delete the user instance in db and the profile image linked 
-      
+
     } on FirebaseAuthException catch (e) {
       print(e);
       if (e.code == "requires-recent-login") {

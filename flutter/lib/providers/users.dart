@@ -206,4 +206,13 @@ class UsersProvider with ChangeNotifier {
       rethrow;
     }
   }
+
+  void deleteUser(String id) async {
+    try {
+      await http.delete(Uri.parse("$serverUrl/users/$id"));
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
+  }
 }
