@@ -139,7 +139,7 @@ module.exports = {
     try {
       const { avatar } = await User.findByIdAndDelete(id);
       await deleteImage(avatar);
-      res.end();
+      res.sendStatus(200);
     } catch (error) {
       console.error(error);
       next(error);

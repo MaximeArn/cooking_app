@@ -51,14 +51,10 @@ const imagesController = {
 
   deleteImage: async (path: string, next: NextFunction) => {
     try {
-      if (!imagesController.isDefaultAvatar(path)) {
-        console.log(path);
-        fs.unlink(`public/${path}`, (err) => {
-          console.log(err);
-        });
-      }
+      !imagesController.isDefaultAvatar(path) &&
+        fs.unlinkSync(`public/${path}`);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       next(error);
     }
   },
