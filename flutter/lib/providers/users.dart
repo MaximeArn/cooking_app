@@ -157,9 +157,14 @@ class UsersProvider with ChangeNotifier {
   }) async {
     if (connectedUser!.fileImage != null) await uploadAvatar();
 
+    if (email.isNotEmpty | pwd.isNotEmpty) {
+      print("firebase must be updated");
+    }
+
     connectedUser!.name = name;
     connectedUser!.email = email;
     connectedUser!.password = pwd;
+
     if (age.isNotEmpty) {
       connectedUser!.age = int.parse(age);
     }
@@ -167,15 +172,15 @@ class UsersProvider with ChangeNotifier {
     String jsonUser = connectedUser!.toJson();
 
     try {
-      final http.Response response = await http.patch(
-        Uri.parse(
-          "$serverUrl/users/${connectedUser!.id}",
-        ),
-        headers: {'Content-type': 'application/json'},
-        body: jsonUser,
-      );
-      connectedUser =
-          User.fromJson(json.decode(response.body), isPopulated: true);
+      // final http.Response response = await http.patch(
+      //   Uri.parse(
+      //     "$serverUrl/users/${connectedUser!.id}",
+      //   ),
+      //   headers: {'Content-type': 'application/json'},
+      //   body: jsonUser,
+      // );
+      // connectedUser =
+      //     User.fromJson(json.decode(response.body), isPopulated: true);
       notifyListeners();
     } catch (e) {
       rethrow;

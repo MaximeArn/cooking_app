@@ -1,3 +1,4 @@
+import 'package:cooking/utils.dart';
 import 'package:flutter/material.dart';
 
 enum FieldsType { Email, Age, Name, Password }
@@ -25,7 +26,7 @@ class Field extends StatelessWidget {
     final ageRegex = RegExp("^[0-9]*\$");
     final nameRegex = RegExp("^[A-Za-z,.'-]+\$");
     final passwordRegex =
-        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+        RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]');
 
     fieldValidator(value, FieldsType fieldtype) {
       value.trim();
@@ -55,7 +56,13 @@ class Field extends StatelessWidget {
         //password tests
         else if (fieldtype == FieldsType.Password &&
             !passwordRegex.hasMatch(value)) {
-          return "invalid password format";
+          print(value);
+          Utils.showSnackBar(
+            text:
+                "password must contains at least one number and both lower and uppercase letters",
+            isError: true,
+          );
+          return "invalid format";
         }
         // final validation
 
