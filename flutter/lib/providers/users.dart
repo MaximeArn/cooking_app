@@ -157,8 +157,16 @@ class UsersProvider with ChangeNotifier {
   }) async {
     if (connectedUser!.fileImage != null) await uploadAvatar();
 
-    if (email.isNotEmpty | pwd.isNotEmpty) {
-      print("firebase must be updated");
+    final bool pwdMustBeUpdated =
+        pwd.isNotEmpty && pwd != connectedUser!.password;
+    final bool emailMustBeUpdated =
+        email.isNotEmpty && email != connectedUser!.email;
+    
+    print("password must be updated : $pwdMustBeUpdated");
+    print("email must be updated : $emailMustBeUpdated");
+
+    if (pwdMustBeUpdated || emailMustBeUpdated) {
+      print("data were modified and are differents");
     }
 
     connectedUser!.name = name;
