@@ -1,5 +1,6 @@
 import 'package:cooking/models/User.dart';
 import 'package:cooking/providers/users.dart';
+import 'package:cooking/utils.dart';
 import 'package:cooking/views/edit_profile/widgets/editable_avatar.dart';
 import 'package:cooking/widgets/scaffolds/secondary_scaffold.dart';
 import 'package:flutter/material.dart';
@@ -33,14 +34,22 @@ class _EditProfileState extends State<EditProfile> {
           user.fileImage == null;
 
       if (formKey.currentState!.validate() && !allFieldsAreEmpty) {
-        Provider.of<UsersProvider>(context, listen: false).updateUser(
-          name: nameController.text,
-          email: emailController.text,
-          age: ageController.text,
-          pwd: passwordController.text,
-        );
-        Navigator.pop(context, true);
+        try {
+          Provider.of<UsersProvider>(context, listen: false).updateUser(
+            name: nameController.text,
+            email: emailController.text,
+            age: ageController.text,
+            pwd: passwordController.text,
+          );
+          Navigator.pop(context, true);
+        } catch (e) {
+          print(e);
+        }
       } else {
+        Utils.showSnackBar(
+          text: "Invalid Format",
+          isError: true,
+        );
         print("bad format !!!");
       }
     }
