@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/Group.dart';
 import 'package:cooking/models/User.dart';
+import 'package:firebase_auth/firebase_auth.dart' as Firebase; 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
@@ -161,12 +162,16 @@ class UsersProvider with ChangeNotifier {
         pwd.isNotEmpty && pwd != connectedUser!.password;
     final bool emailMustBeUpdated =
         email.isNotEmpty && email != connectedUser!.email;
-    
+
     print("password must be updated : $pwdMustBeUpdated");
     print("email must be updated : $emailMustBeUpdated");
 
     if (pwdMustBeUpdated || emailMustBeUpdated) {
       print("data were modified and are differents");
+      if (pwdMustBeUpdated)
+        Firebase.FirebaseAuth.instance.currentUser!.updatePassword(pwd);
+      if (emailMustBeUpdated)
+        Firebase.FirebaseAuth.instance.currentUser!.updateEmail(email);
     }
 
     connectedUser!.name = name;
@@ -180,15 +185,15 @@ class UsersProvider with ChangeNotifier {
     String jsonUser = connectedUser!.toJson();
 
     try {
-      // final http.Response response = await http.patch(
-      //   Uri.parse(
-      //     "$serverUrl/users/${connectedUser!.id}",
-      //   ),
-      //   headers: {'Content-type': 'application/json'},
-      //   body: jsonUser,
-      // );
-      // connectedUser =
-      //     User.fromJson(json.decode(response.body), isPopulated: true);
+      final http.Response response = await http.patch(
+        Uri.parse(
+          "$serverUrl/users/${connectedUser!.id}",
+        ),
+        headers: {'Content-type': 'application/json'},
+        body: jsonUser,
+      );
+      connectedUser =
+          User.fromJson(json.decode(response.body), isPopulated: true);
       notifyListeners();
     } catch (e) {
       rethrow;
