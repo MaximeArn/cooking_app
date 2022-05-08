@@ -15,14 +15,13 @@ class PostCardImage extends StatelessWidget {
         children: [
           Expanded(
             child: CarouselSlider(
-              options: CarouselOptions(viewportFraction: 1),
+              options: CarouselOptions(viewportFraction: 1, aspectRatio: 16/9),
               items: images
                   .map((image) => Container(
-                        color: Colors.red,
                         child: Image.network(
                           serverUrl + image,
                           fit: BoxFit.cover,
-                          width: MediaQuery.of(context).size.width,
+                          width: double.infinity,
                         ),
                       ))
                   .toList(),
