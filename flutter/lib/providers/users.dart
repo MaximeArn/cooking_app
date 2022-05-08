@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/Group.dart';
 import 'package:cooking/models/User.dart';
-import 'package:firebase_auth/firebase_auth.dart' as Firebase; 
+import 'package:firebase_auth/firebase_auth.dart' as Firebase;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
@@ -174,13 +174,13 @@ class UsersProvider with ChangeNotifier {
         Firebase.FirebaseAuth.instance.currentUser!.updateEmail(email);
     }
 
+    //TODO: OPtimize the update of the user (here we set each field of the connectedUser with input values not depending on if it was changed or not) 
+
     connectedUser!.name = name;
     connectedUser!.email = email;
     connectedUser!.password = pwd;
 
-    if (age.isNotEmpty) {
-      connectedUser!.age = int.parse(age);
-    }
+    if (age.isNotEmpty) connectedUser!.age = int.parse(age);
 
     String jsonUser = connectedUser!.toJson();
 
