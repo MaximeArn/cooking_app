@@ -16,5 +16,5 @@ export const groupSchema = new Schema({
   challenges: { type: [Schema.Types.ObjectId], ref: "challenge", default: [] },
 });
 
-const groupModel: Model<GroupInterface> = model("group", groupSchema);
+const groupModel = model("group", groupSchema);
 export default groupModel;

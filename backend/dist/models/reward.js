@@ -8,4 +8,4 @@ exports.rewardSchema = new mongoose_1.Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
 });
-exports.default = mongoose_1.model("reward", exports.rewardSchema);
+exports.default = (0, mongoose_1.model)("reward", exports.rewardSchema);

@@ -2,10 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.postSchema = void 0;
 const mongoose_1 = require("mongoose");
-const comment_1 = require("./comment");
+const mongodb_1 = require("mongodb");
 exports.postSchema = new mongoose_1.Schema({
-    image: { type: String, required: true },
+    authorId: { type: mongodb_1.ObjectId, required: true },
+    belongsToChallenge: { type: Boolean, default: false },
+    images: { type: [String], required: true },
     note: { type: Number, default: null },
-    comments: { type: [comment_1.commentSchema], default: [] },
+    description: { type: String, required: true },
+    comments: { type: [mongoose_1.Schema.Types.ObjectId], default: [] },
 });
-exports.default = mongoose_1.model("post", exports.postSchema);
+const postModel = (0, mongoose_1.model)("post", exports.postSchema);
+exports.default = postModel;

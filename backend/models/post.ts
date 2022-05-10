@@ -20,5 +20,5 @@ export const postSchema = new Schema({
   comments: { type: [Schema.Types.ObjectId], default: [] },
 });
 
-const postModel: Model<PostInterface> = model("post", postSchema);
+const postModel = model("post", postSchema);
 export default postModel;

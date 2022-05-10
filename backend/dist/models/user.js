@@ -2,12 +2,30 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userSchema = void 0;
 const mongoose_1 = require("mongoose");
-const post_1 = require("./post");
 exports.userSchema = new mongoose_1.Schema({
+    age: { type: Number, default: null },
     name: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
-    avatar: { type: String, default: "" },
-    posts: { type: [post_1.postSchema], default: [] },
+    stars: { type: Number, default: 0 },
+    subscribers: {
+        type: [{ type: mongoose_1.Schema.Types.ObjectId, ref: "user" }],
+        default: [],
+    },
+    subscriptions: {
+        type: [{ type: mongoose_1.Schema.Types.ObjectId, ref: "user" }],
+        default: [],
+    },
+    avatar: {
+        type: String,
+        default: `/assets/images/avatars/default_avatar.jpg`,
+    },
+    posts: { type: [{ type: mongoose_1.Schema.Types.ObjectId, ref: "post" }], default: [] },
+    countryCode: { type: String, default: "FR" },
+    groups: {
+        type: [{ type: mongoose_1.Schema.Types.ObjectId, ref: "group" }],
+        default: [],
+    },
 });
-exports.default = mongoose_1.model("user", exports.userSchema);
+const userModel = (0, mongoose_1.model)("user", exports.userSchema);
+exports.default = userModel;

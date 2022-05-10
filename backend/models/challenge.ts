@@ -13,8 +13,5 @@ export const challengeSchema = new Schema({
   posts: { type: [postSchema], default: [] },
 });
 
-const challengeModel: Model<ChallengeInterface> = model(
-  "challenge",
-  challengeSchema
-);
+const challengeModel = model("challenge", challengeSchema);
 export default challengeModel;
