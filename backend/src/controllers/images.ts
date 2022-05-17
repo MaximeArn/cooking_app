@@ -1,8 +1,6 @@
 import { NextFunction, Response, Request } from "express";
 import AWS from "aws-sdk";
 import fs from "fs";
-import sharp from "sharp";
-import Path from "path";
 
 const s3 = new AWS.S3();
 
@@ -13,15 +11,17 @@ const imagesController = {
 
   uploadAvatar: async ({ file }: Request, res, next) => {
     try {
+      //TODO: compress the file to reduce the buffer size
+
       const s3Params = {
         Bucket: process.env.AWS_BUCKET_NAME,
-        Key: file.originalname,
+        Key: file.originalname + "3",
         Body: file.buffer,
+        ACL: "public-read-write",
         ContentType: "image/jpeg",
       };
-
-      s3.upload(s3Params, (err, data) => {
-        console.log(err ? err : data);
+      s3.upload(s3Params, (err, { Location: path }) => {
+        console.log(err ? err : path);
       });
       res.end();
     } catch (error) {
