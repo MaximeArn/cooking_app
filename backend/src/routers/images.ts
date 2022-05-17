@@ -2,17 +2,17 @@ import { Router } from "express";
 import multer from "multer";
 const { uploadAvatar } = require("../controllers/images");
 
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "public/assets/images/avatars");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
+const fileFilter = (_, file, cb) => {
+  if (file.mimetype === "image/jpeg" || file.mimetype === "image/jpg") {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
 
-var avatarsUpload = multer({
-  storage,
+const avatarsUpload = multer({
+  storage: multer.memoryStorage(),
+  fileFilter: fileFilter,
 });
 
 const imagesRouter = Router();

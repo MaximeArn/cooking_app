@@ -8,6 +8,7 @@ import groupsRouter from "./routers/groups";
 import { config } from "dotenv";
 import challengesRouter from "./routers/challenges";
 import AWS from "aws-sdk";
+import multer from "multer";
 
 config();
 const server = express();
