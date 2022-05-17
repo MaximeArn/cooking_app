@@ -1,16 +1,33 @@
-import { NextFunction, Response } from "express";
+import { NextFunction, Response, Request } from "express";
+import AWS from "aws-sdk";
 import fs from "fs";
 import sharp from "sharp";
 import Path from "path";
+
+const s3 = new AWS.S3();
 
 const imagesController = {
   isDefaultAvatar: (path: string) => {
     return path.includes("default_avatar.jpg");
   },
 
-  uploadAvatar: async (req, res, next) => {
-    console.log(req.file);
-    res.end();
+  uploadAvatar: async ({ file }: Request, res, next) => {
+    try {
+      const s3Params = {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: file.originalname,
+        Body: file.buffer,
+        ContentType: "image/jpeg",
+      };
+
+      s3.upload(s3Params, (err, data) => {
+        console.log(err ? err : data);
+      });
+      res.end();
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
   },
 
   // uploadAvatar: async (
