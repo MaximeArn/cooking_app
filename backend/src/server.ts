@@ -7,13 +7,12 @@ import imagesRouter from "./routers/images";
 import groupsRouter from "./routers/groups";
 import { config } from "dotenv";
 import challengesRouter from "./routers/challenges";
+import AWS from "aws-sdk";
 
 config();
 const server = express();
-const PORT = process.env.PORT || 3000;
-const DB_USERNAME = process.env.DB_USERNAME;
-const DB_PWD = process.env.DB_PWD;
-const DB_NAME = process.env.DB_NAME;
+
+const { PORT, DB_USERNAME, DB_PWD, DB_NAME } = process.env;
 
 mongoose.set("debug", true);
 mongoose.connect(
@@ -23,6 +22,14 @@ mongoose.connect(
     useNewUrlParser: true,
   }
 );
+
+AWS.config.getCredentials(function (err) {
+  if (err) console.log(err.stack);
+  // credentials not loaded
+  else {
+    console.log("Access key:", AWS.config.credentials.accessKeyId);
+  }
+});
 
 server.use(urlencoded({ extended: true }));
 server.use(json());
@@ -35,4 +42,6 @@ server.use("/images", imagesRouter);
 server.use("/groups", groupsRouter);
 server.use("/challenges", challengesRouter);
 
-server.listen(PORT, () => console.log(`server is listening on ${PORT}`));
+server.listen(PORT || 3000, () =>
+  console.log(`server is listening on ${PORT}`)
+);
