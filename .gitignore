@@ -48,3 +48,4 @@ app.*.map.json
 node_modules
 backend/node_modules
 backend/public/assets/images
+./AWSCLIV2.pkg
