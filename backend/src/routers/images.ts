@@ -1,6 +1,6 @@
 import { Router } from "express";
 import multer from "multer";
-const { addImage } = require("../controllers/images");
+const { addImage, deleteImage } = require("../controllers/images");
 
 const fileFilter = (_, file, cb) => {
   if (file.mimetype === "image/jpeg" || file.mimetype === "image/jpg") {
@@ -18,5 +18,6 @@ const avatarsUpload = multer({
 const imagesRouter = Router();
 
 imagesRouter.post("/user/avatar", avatarsUpload.single("avatar"), addImage);
+imagesRouter.delete("/:key", deleteImage);
 
 export default imagesRouter;
