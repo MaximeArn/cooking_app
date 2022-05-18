@@ -9,21 +9,40 @@ const imagesController = {
     return path.includes("default_avatar.jpg");
   },
 
-  uploadAvatar: async ({ file }: Request, res, next) => {
+  addImage: async ({ file }: Request, res, next) => {
     try {
       //TODO: compress the file to reduce the buffer size
 
       const s3Params = {
         Bucket: process.env.AWS_BUCKET_NAME,
-        Key: file.originalname + "3",
+        Key: file.originalname,
         Body: file.buffer,
         ACL: "public-read-write",
         ContentType: "image/jpeg",
       };
+
       s3.upload(s3Params, (err, { Location: path }) => {
-        console.log(err ? err : path);
+        if (err) {
+          throw new Error(err);
+        } else {
+          console.log(path);
+          return res.json(path).status(200);
+        }
       });
-      res.end();
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
+  },
+
+  deleteImage: async (
+    { params }: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      console.log(params);
+      s3.deleteObject;
     } catch (error) {
       console.error(error);
       next(error);
@@ -70,16 +89,6 @@ const imagesController = {
   //     next(error);
   //   }
   // },
-
-  deleteImage: async (path: string, next: NextFunction) => {
-    try {
-      !imagesController.isDefaultAvatar(path) &&
-        fs.unlinkSync(`public/${path}`);
-    } catch (error) {
-      console.error(error);
-      next(error);
-    }
-  },
 };
 
 module.exports = imagesController;
