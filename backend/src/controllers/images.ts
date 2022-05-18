@@ -9,6 +9,12 @@ const imagesController = {
     return path.includes("default_avatar.jpg");
   },
 
+  getKeyFromPath: (path: String) => {
+    const partsOfPath = path.split("/");
+    const fileName = partsOfPath[partsOfPath.length - 1];
+    return fileName;
+  },
+
   addImage: async ({ file }: Request, res, next) => {
     try {
       //TODO: compress the file to reduce the buffer size
@@ -36,26 +42,25 @@ const imagesController = {
   },
 
   deleteImage: async (
-    { params: { key } }: Request,
+    { body: { path } }: Request,
     res: Response,
     next: NextFunction
   ) => {
     try {
-      console.log(key);
-
       const s3params = {
         Bucket: process.env.AWS_BUCKET_NAME,
-        Key: key,
+        Key: imagesController.getKeyFromPath(path),
       };
 
       s3.deleteObject(s3params, (err, data) => {
         if (err) {
           throw new Error(err.message);
         } else {
-          console.log(data);
+          console.log(`${s3params.Key} image has been deleted `);
           return res.send().status(200);
         }
       });
+
       res.end();
     } catch (error) {
       console.error(error);

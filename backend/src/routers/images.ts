@@ -18,6 +18,6 @@ const avatarsUpload = multer({
 const imagesRouter = Router();
 
 imagesRouter.post("/user/avatar", avatarsUpload.single("avatar"), addImage);
-imagesRouter.delete("/:key", deleteImage);
+imagesRouter.delete("/", deleteImage);
 
 export default imagesRouter;
