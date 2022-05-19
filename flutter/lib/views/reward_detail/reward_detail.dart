@@ -39,7 +39,7 @@ class _RewardDetailState extends State<RewardDetail> {
               child: Container(
                 width: deviceWidth,
                 child: Image.network(
-                  "$serverUrl/${reward.image}",
+                  "$assetsUrl/${reward.image}",
                   fit: BoxFit.cover,
                 ),
               ),

@@ -77,7 +77,7 @@ class _AddMembersState extends State<AddMembers> {
                                 },
                                 child: CircleAvatar(
                                   backgroundImage: NetworkImage(
-                                      serverUrl + member["avatar"]),
+                                      assetsUrl + member["avatar"]),
                                 ),
                               ),
                             )

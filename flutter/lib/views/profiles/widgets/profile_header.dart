@@ -24,7 +24,7 @@ class ProfileHeader extends StatelessWidget {
           builder: (_) => Dialog(
               backgroundColor: Colors.transparent,
               child: CircleAvatar(
-                backgroundImage: NetworkImage(serverUrl + avatar),
+                backgroundImage: NetworkImage(assetsUrl + avatar),
                 radius: MediaQuery.of(context).size.width * (1 / 3),
               )),
         );
@@ -131,7 +131,7 @@ class ProfileHeader extends StatelessWidget {
               child: GestureDetector(
                 child: CircleAvatar(
                   radius: 45,
-                  backgroundImage: NetworkImage(serverUrl + avatar),
+                  backgroundImage: NetworkImage(assetsUrl + avatar),
                 ),
                 onTap: () {
                   showImage();

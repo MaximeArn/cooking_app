@@ -19,7 +19,7 @@ class PostCardImage extends StatelessWidget {
               items: images
                   .map((image) => Container(
                         child: Image.network(
-                          serverUrl + image,
+                          assetsUrl + image,
                           fit: BoxFit.cover,
                           width: double.infinity,
                         ),

@@ -43,7 +43,7 @@ class _SelectableResultState extends State<SelectableResult> {
           }
         },
         secondary: CircleAvatar(
-          backgroundImage: NetworkImage(serverUrl + widget.user["avatar"]),
+          backgroundImage: NetworkImage(assetsUrl + widget.user["avatar"]),
         ),
         title: Text(widget.user["name"]),
       ),

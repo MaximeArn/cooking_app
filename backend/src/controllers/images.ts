@@ -15,9 +15,15 @@ const imagesController = {
     return fileName;
   },
 
-  addImage: async ({ file }: Request, res, next) => {
+  addImage: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      //TODO: compress the file to reduce the buffer size
+      const {
+        file,
+        body: { oldAvatar },
+      } = req;
+      console.log(oldAvatar);
+      //TODO: delete the previous avatar of the user
+      imagesController.deleteImage(req, res, next);
 
       const s3Params = {
         Bucket: process.env.AWS_BUCKET_NAME,

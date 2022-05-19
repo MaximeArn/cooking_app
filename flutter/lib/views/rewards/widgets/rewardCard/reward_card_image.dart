@@ -15,7 +15,7 @@ class RewardCardImage extends StatelessWidget {
         borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(15), topRight: Radius.circular(15)),
         child: Image.network(
-          '$serverUrl/$image',
+          '$assetsUrl/$image',
           fit: BoxFit.cover,
         ),
       ),

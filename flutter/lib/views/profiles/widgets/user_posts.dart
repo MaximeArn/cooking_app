@@ -33,7 +33,7 @@ class UserPosts extends StatelessWidget {
                     children: posts
                         .map(
                           (post) => Container(
-                            child: Image.network(serverUrl + post.images[0]),
+                            child: Image.network(assetsUrl + post.images[0]),
                           ),
                         )
                         .toList()),

@@ -35,7 +35,7 @@ class ChallengePost extends StatelessWidget {
               items: post.images
                   .map((image) => Container(
                         child: Image.network(
-                          "$serverUrl/$image",
+                          "$assetsUrl/$image",
                           fit: BoxFit.cover,
                           width: MediaQuery.of(context).size.width,
                         ),

@@ -26,7 +26,7 @@ class ResultsList extends StatelessWidget {
                       clearTextField();
                     },
                     leading: CircleAvatar(
-                      backgroundImage: NetworkImage(serverUrl + user["avatar"]),
+                      backgroundImage: NetworkImage(assetsUrl + user["avatar"]),
                     ),
                     title: Text(user["name"]),
                   ),

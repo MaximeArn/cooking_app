@@ -18,7 +18,7 @@ class _EditableAvatarState extends State<EditableAvatar> {
   @override
   Widget build(BuildContext context) {
     late User user = Provider.of<UsersProvider>(context).connectedUser as User;
-    String avatar = serverUrl + user.avatar;
+    String avatar = assetsUrl + user.avatar;
 
     ImagePicker imagePicker = ImagePicker();
 
