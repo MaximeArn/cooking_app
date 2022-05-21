@@ -72,10 +72,10 @@ class AuthProvider with ChangeNotifier {
       http.Response response = await http.get(Uri.parse(
         "$serverUrl/users/email/$email",
       ));
-      usersProvider.connectedUser = User.fromJson(json.decode(response.body), isPopulated: true);
+      usersProvider.connectedUser =
+          User.fromJson(json.decode(response.body), isPopulated: true);
 
       Utils.navigatorKey.currentState!.popUntil((route) => route.isFirst);
-
     } on firebase.FirebaseAuthException catch (e) {
       Utils.showSnackBar(text: e.message);
       Utils.navigatorKey.currentState!.popUntil((route) => route.isFirst);

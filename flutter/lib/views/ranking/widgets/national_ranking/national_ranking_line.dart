@@ -42,7 +42,7 @@ class NationalRankingLine extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(right: 30),
-              child: CircleAvatar(backgroundImage: NetworkImage("$serverUrl${user["avatar"]}"),),
+              child: CircleAvatar(backgroundImage: NetworkImage("$assetsUrl${user["avatar"]}"),),
             ),
             Text(user["name"],),
           ],
