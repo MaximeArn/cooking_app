@@ -21,9 +21,12 @@ const imagesController = {
         file,
         body: { oldAvatar },
       } = req;
-      console.log(oldAvatar);
-      //TODO: delete the previous avatar of the user
-      imagesController.deleteImage(req, res, next);
+
+      console.log("NEW AVATAR : " + file);
+      console.log("PREVIOUS AVATAR : " + oldAvatar);
+
+      // //TODO: delete the previous avatar of the user
+      // imagesController.deleteImage(req, res, next);
 
       const s3Params = {
         Bucket: process.env.AWS_BUCKET_NAME,
@@ -67,7 +70,7 @@ const imagesController = {
         }
       });
 
-      res.end();
+      // res.end();
     } catch (error) {
       console.error(error);
       next(error);

@@ -125,8 +125,8 @@ class UsersProvider with ChangeNotifier {
   Future<void> uploadAvatar() async {
     File avatar = connectedUser!.fileImage as File;
     try {
-      http.MultipartRequest request = http.MultipartRequest(
-          "POST", Uri.parse("$serverUrl/images/user/avatar"));
+      http.MultipartRequest request =
+          http.MultipartRequest("POST", Uri.parse("$serverUrl/images"));
       request.files.add(
         http.MultipartFile.fromBytes(
           "avatar",
@@ -138,6 +138,7 @@ class UsersProvider with ChangeNotifier {
       request.fields["oldAvatar"] = connectedUser!.avatar;
 
       final response = await request.send();
+      print(response);
       if (response.statusCode == 200) {
         final responseData = await response.stream.toBytes();
         String decodedUrl = json.decode(String.fromCharCodes(responseData));
@@ -174,7 +175,7 @@ class UsersProvider with ChangeNotifier {
         Firebase.FirebaseAuth.instance.currentUser!.updateEmail(email);
     }
 
-    //TODO: OPtimize the update of the user (here we set each field of the connectedUser with input values not depending on if it was changed or not) 
+    //TODO: OPtimize the update of the user (here we set each field of the connectedUser with input values not depending on if it was changed or not)
 
     connectedUser!.name = name;
     connectedUser!.email = email;
