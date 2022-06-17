@@ -1,6 +1,5 @@
 import { NextFunction, Response, Request } from "express";
 import AWS, { AWSError } from "aws-sdk";
-import fs from "fs";
 
 const s3 = new AWS.S3();
 
@@ -25,9 +24,12 @@ const imagesController = {
       console.log("NEW AVATAR : " + file);
       console.log("PREVIOUS AVATAR : " + oldAvatar);
 
-      // //TODO: delete the previous avatar of the user
-      // appeller la methode deleteImage et faire un res.end en fonction de si elle es utilisée dans un addImage ou non
-      // imagesController.deleteImage(req, res, next);
+      //TODO: delete the previous avatar of the user
+      // appeller la methode deleteImage et faire un res.end en fonction de si elle es utilisée dans un addImage ou non.
+      //tester a la création de compte et lors de l'update de la photo de profil.
+      // TODO : tester si l'ancien avatar et celui par default si ce n'est pas le cas on le suprime sinon on le garde.
+
+      imagesController.deleteImage(req, res, next);
 
       const s3Params = {
         Bucket: process.env.AWS_BUCKET_NAME,
@@ -62,7 +64,7 @@ const imagesController = {
         Key: imagesController.getKeyFromPath(path),
       };
 
-      s3.deleteObject(s3params, (err, data) => {
+      s3.deleteObject(s3params, (err) => {
         if (err) {
           throw new Error(err.message);
         } else {
