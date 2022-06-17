@@ -26,6 +26,7 @@ const imagesController = {
       console.log("PREVIOUS AVATAR : " + oldAvatar);
 
       // //TODO: delete the previous avatar of the user
+      // appeller la methode deleteImage et faire un res.end en fonction de si elle es utilisée dans un addImage ou non
       // imagesController.deleteImage(req, res, next);
 
       const s3Params = {
@@ -70,53 +71,12 @@ const imagesController = {
         }
       });
 
-      // res.end();
+      res.end();
     } catch (error) {
       console.error(error);
       next(error);
     }
   },
-
-  // uploadAvatar: async (
-  //   { file: { filename, destination, path }, body: { oldAvatar } },
-  //   res: Response,
-  //   next: NextFunction
-  // ) => {
-  //   try {
-  //     // remove previous avatar
-  //     const previousAvatarPath = oldAvatar.replace(
-  //       "http://localhost:4545/",
-  //       ""
-  //     );
-  //     const absolutePreviousAvatarPath = Path.resolve(
-  //       "public",
-  //       previousAvatarPath
-  //     );
-
-  //     !imagesController.isDefaultAvatar(absolutePreviousAvatarPath) &&
-  //       fs.unlinkSync("public" + absolutePreviousAvatarPath);
-
-  //     // compress new avatar
-  //     const compressedFilename = `${filename.substring(
-  //       0,
-  //       filename.length - 4
-  //     )}-compressed.jpg`;
-  //     const compressedAvatarPath = Path.resolve(
-  //       destination,
-  //       compressedFilename
-  //     );
-  //     await sharp(path).resize(180, 180).toFile(compressedAvatarPath);
-
-  //     // remove full size avatar
-  //     fs.unlinkSync(Path.resolve(path));
-
-  //     const newPath = `/assets/images/avatars/${compressedFilename}`;
-  //     res.json(newPath).status(200);
-  //   } catch (error) {
-  //     console.error(error);
-  //     next(error);
-  //   }
-  // },
 };
 
 module.exports = imagesController;

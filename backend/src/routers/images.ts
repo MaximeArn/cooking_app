@@ -4,11 +4,7 @@ const { addImage, deleteImage } = require("../controllers/images");
 
 const fileFilter = (_, file, cb) => {
   console.log(file.mimetype);
-  if (
-    file.mimetype === "image/jpeg" ||
-    file.mimetype === "image/jpg" ||
-    file.mimetype === "multipart/form-data"
-  ) {
+  if (file.mimetype === "multipart/form-data") {
     cb(null, true);
   } else {
     cb(null, false);
