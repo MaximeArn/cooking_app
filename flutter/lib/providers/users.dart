@@ -124,6 +124,7 @@ class UsersProvider with ChangeNotifier {
 
   Future<void> uploadAvatar() async {
     File avatar = connectedUser!.fileImage as File;
+    print(avatar);
     try {
       http.MultipartRequest request =
           http.MultipartRequest("POST", Uri.parse("$serverUrl/images"));

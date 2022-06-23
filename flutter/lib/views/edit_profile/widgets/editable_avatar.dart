@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/User.dart';
 import 'package:cooking/providers/users.dart';
@@ -18,7 +17,7 @@ class _EditableAvatarState extends State<EditableAvatar> {
   @override
   Widget build(BuildContext context) {
     late User user = Provider.of<UsersProvider>(context).connectedUser as User;
-    String avatar = assetsUrl + user.avatar;
+    String avatar = user.avatar;
 
     ImagePicker imagePicker = ImagePicker();
 
@@ -54,7 +53,7 @@ class _EditableAvatarState extends State<EditableAvatar> {
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: user.fileImage == null
-                        ? NetworkImage(avatar)
+                        ? NetworkImage(assetsUrl + avatar)
                         : FileImage(user.fileImage as File) as ImageProvider,
                   ),
                 ),

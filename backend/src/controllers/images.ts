@@ -29,7 +29,8 @@ const imagesController = {
       //tester a la création de compte et lors de l'update de la photo de profil.
       // TODO : tester si l'ancien avatar et celui par default si ce n'est pas le cas on le suprime sinon on le garde.
 
-      imagesController.deleteImage(req, res, next);
+      console.log(req.body);
+      // imagesController.deleteImage(req, res, next);
 
       const s3Params = {
         Bucket: process.env.AWS_BUCKET_NAME,
@@ -54,14 +55,14 @@ const imagesController = {
   },
 
   deleteImage: async (
-    { body: { path } }: Request,
+    { body: { oldAvatar } }: Request,
     res: Response,
     next: NextFunction
   ) => {
     try {
       const s3params = {
         Bucket: process.env.AWS_BUCKET_NAME,
-        Key: imagesController.getKeyFromPath(path),
+        Key: imagesController.getKeyFromPath(oldAvatar),
       };
 
       s3.deleteObject(s3params, (err) => {

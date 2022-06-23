@@ -115,16 +115,18 @@ module.exports = {
             : (filteredBody[key] = body[key]);
         }
       }
+      console.log(body.avatar);
 
-      const newUser = await User.findByIdAndUpdate(id, filteredBody, {
-        useFindAndModify: false,
-        new: true,
-      }).populate({
-        path: "posts",
-        model: "post",
-      });
+      // const newUser = await User.findByIdAndUpdate(id, filteredBody, {
+      //   useFindAndModify: false,
+      //   new: true,
+      // }).populate({
+      //   path: "posts",
+      //   model: "post",
+      // });
 
-      res.status(200).json(newUser);
+      // res.status(200).json(newUser);
+      res.end();
     } catch (error) {
       console.error(error);
       next(error);
