@@ -1,4 +1,5 @@
 import 'package:cooking/environment/env.dart';
+import 'package:cooking/themes.dart';
 import 'package:flutter/material.dart';
 
 class ProfileHeader extends StatelessWidget {
@@ -41,7 +42,7 @@ class ProfileHeader extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.topCenter,
                   decoration: const BoxDecoration(
-                      color: Color.fromRGBO(223, 102, 103, 1),
+                      color: cookingGold,
                       border: Border(bottom: BorderSide(width: 1))),
                   padding: const EdgeInsets.only(top: 35),
                   child: Text(

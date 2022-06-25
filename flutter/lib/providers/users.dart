@@ -166,11 +166,8 @@ class UsersProvider with ChangeNotifier {
     final bool emailMustBeUpdated =
         email.isNotEmpty && email != connectedUser!.email;
 
-    print("password must be updated : $pwdMustBeUpdated");
-    print("email must be updated : $emailMustBeUpdated");
 
     if (pwdMustBeUpdated || emailMustBeUpdated) {
-      print("data were modified and are differents");
       if (pwdMustBeUpdated)
         Firebase.FirebaseAuth.instance.currentUser!.updatePassword(pwd);
       if (emailMustBeUpdated)
