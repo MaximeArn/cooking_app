@@ -21,15 +21,11 @@ const imagesController = {
         body: { oldAvatar },
       } = req;
 
-      console.log("NEW AVATAR : " + file);
-      console.log("PREVIOUS AVATAR : " + oldAvatar);
-
       //TODO: delete the previous avatar of the user
       // appeller la methode deleteImage et faire un res.end en fonction de si elle es utilisée dans un addImage ou non.
       //tester a la création de compte et lors de l'update de la photo de profil.
       // TODO : tester si l'ancien avatar et celui par default si ce n'est pas le cas on le suprime sinon on le garde.
 
-      console.log(req.body);
       // imagesController.deleteImage(req, res, next);
 
       const s3Params = {
@@ -40,12 +36,12 @@ const imagesController = {
         ContentType: "image/jpeg",
       };
 
-      s3.upload(s3Params, (err: AWSError, { Location: path }) => {
+      s3.upload(s3Params, (err: AWSError, data) => {
         if (err) {
           throw new Error(err.message);
         } else {
-          console.log(path);
-          return res.json(path).status(200);
+          console.log(data.key);
+          return res.json(data.key).status(200);
         }
       });
     } catch (error) {

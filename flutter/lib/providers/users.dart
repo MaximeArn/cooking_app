@@ -124,7 +124,7 @@ class UsersProvider with ChangeNotifier {
 
   Future<void> uploadAvatar() async {
     File avatar = connectedUser!.fileImage as File;
-    print(avatar);
+
     try {
       http.MultipartRequest request =
           http.MultipartRequest("POST", Uri.parse("$serverUrl/images"));
@@ -143,6 +143,7 @@ class UsersProvider with ChangeNotifier {
       if (response.statusCode == 200) {
         final responseData = await response.stream.toBytes();
         String decodedUrl = json.decode(String.fromCharCodes(responseData));
+        //TODO: look at decoded url
         connectedUser!.avatar = decodedUrl;
       } else {
         throw Exception("server error during image upload");
@@ -194,6 +195,7 @@ class UsersProvider with ChangeNotifier {
         headers: {'Content-type': 'application/json'},
         body: jsonUser,
       );
+
       connectedUser =
           User.fromJson(json.decode(response.body), isPopulated: true);
       notifyListeners();
