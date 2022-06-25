@@ -1,4 +1,4 @@
-import { model, Model, Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 import { PostInterface, postSchema } from "./post";
 
 export interface ChallengeInterface extends Document {
