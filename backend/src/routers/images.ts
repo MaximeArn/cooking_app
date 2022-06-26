@@ -3,7 +3,6 @@ import multer from "multer";
 const { addImage, deleteImage } = require("../controllers/images");
 
 const fileFilter = (_, file, cb) => {
-  console.log(file.mimetype);
   if (file.mimetype === "multipart/form-data") {
     cb(null, true);
   } else {

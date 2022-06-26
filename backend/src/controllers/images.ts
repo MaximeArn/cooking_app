@@ -16,17 +16,14 @@ const imagesController = {
 
   addImage: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const {
-        file,
-        body: { oldAvatar },
-      } = req;
+      const { file } = req;
 
       //TODO: delete the previous avatar of the user
       // appeller la methode deleteImage et faire un res.end en fonction de si elle es utilisée dans un addImage ou non.
       //tester a la création de compte et lors de l'update de la photo de profil.
       // TODO : tester si l'ancien avatar et celui par default si ce n'est pas le cas on le suprime sinon on le garde.
 
-      // imagesController.deleteImage(req, res, next);
+      imagesController.deleteImage(req, res, next);
 
       const s3Params = {
         Bucket: process.env.AWS_BUCKET_NAME,
@@ -40,7 +37,6 @@ const imagesController = {
         if (err) {
           throw new Error(err.message);
         } else {
-          console.log(data.key);
           return res.json(data.key).status(200);
         }
       });
@@ -56,6 +52,11 @@ const imagesController = {
     next: NextFunction
   ) => {
     try {
+      const previousAvatarWasDefault =
+        imagesController.isDefaultAvatar(oldAvatar);
+
+      if (previousAvatarWasDefault) return;
+
       const s3params = {
         Bucket: process.env.AWS_BUCKET_NAME,
         Key: imagesController.getKeyFromPath(oldAvatar),
@@ -66,11 +67,11 @@ const imagesController = {
           throw new Error(err.message);
         } else {
           console.log(`${s3params.Key} image has been deleted `);
-          return res.send().status(200);
+          if (previousAvatarWasDefault) return res.send().status(200);
         }
       });
 
-      res.end();
+      if (previousAvatarWasDefault) res.end();
     } catch (error) {
       console.error(error);
       next(error);

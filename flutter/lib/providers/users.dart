@@ -143,7 +143,6 @@ class UsersProvider with ChangeNotifier {
       if (response.statusCode == 200) {
         final responseData = await response.stream.toBytes();
         String decodedUrl = json.decode(String.fromCharCodes(responseData));
-        //TODO: look at decoded url
         connectedUser!.avatar = decodedUrl;
       } else {
         throw Exception("server error during image upload");
