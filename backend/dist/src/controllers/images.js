@@ -12,38 +12,63 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const fs_1 = __importDefault(require("fs"));
-const sharp_1 = __importDefault(require("sharp"));
-const path_1 = __importDefault(require("path"));
+const aws_sdk_1 = __importDefault(require("aws-sdk"));
+const s3 = new aws_sdk_1.default.S3();
 const imagesController = {
     isDefaultAvatar: (path) => {
         return path.includes("default_avatar.jpg");
     },
-    uploadAvatar: ({ file: { filename, destination, path }, body: { oldAvatar } }, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    getKeyFromPath: (path) => {
+        const partsOfPath = path.split("/");
+        const fileName = partsOfPath[partsOfPath.length - 1];
+        return fileName;
+    },
+    addImage: (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            // remove previous avatar
-            const previousAvatarPath = oldAvatar.replace("http://localhost:4545/", "");
-            const absolutePreviousAvatarPath = path_1.default.resolve("public", previousAvatarPath);
-            !imagesController.isDefaultAvatar(absolutePreviousAvatarPath) &&
-                fs_1.default.unlinkSync("public" + absolutePreviousAvatarPath);
-            // compress new avatar
-            const compressedFilename = `${filename.substring(0, filename.length - 4)}-compressed.jpg`;
-            const compressedAvatarPath = path_1.default.resolve(destination, compressedFilename);
-            yield (0, sharp_1.default)(path).resize(180, 180).toFile(compressedAvatarPath);
-            // remove full size avatar
-            fs_1.default.unlinkSync(path_1.default.resolve(path));
-            const newPath = `/assets/images/avatars/${compressedFilename}`;
-            res.json(newPath).status(200);
+            const { file } = req;
+            yield imagesController.deleteImage(req, res, next);
+            const s3Params = {
+                Bucket: process.env.AWS_BUCKET_NAME,
+                Key: file.originalname,
+                Body: file.buffer,
+                ACL: "public-read-write",
+                ContentType: "image/jpeg",
+            };
+            s3.upload(s3Params, (err, data) => {
+                if (err) {
+                    throw new Error(err.message);
+                }
+                else {
+                    return res.json(data.key).status(200);
+                }
+            });
         }
         catch (error) {
             console.error(error);
             next(error);
         }
     }),
-    deleteImage: (path, next) => __awaiter(void 0, void 0, void 0, function* () {
+    deleteImage: ({ body: { oldAvatar } }, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            !imagesController.isDefaultAvatar(path) &&
-                fs_1.default.unlinkSync(`public/${path}`);
+            const previousAvatarWasDefault = imagesController.isDefaultAvatar(oldAvatar);
+            if (previousAvatarWasDefault)
+                return;
+            const s3params = {
+                Bucket: process.env.AWS_BUCKET_NAME,
+                Key: imagesController.getKeyFromPath(oldAvatar),
+            };
+            s3.deleteObject(s3params, (err) => {
+                if (err) {
+                    throw new Error(err.message);
+                }
+                else {
+                    console.log(`${s3params.Key} image has been deleted `);
+                    if (previousAvatarWasDefault)
+                        return res.send().status(200);
+                }
+            });
+            if (previousAvatarWasDefault)
+                res.end();
         }
         catch (error) {
             console.error(error);

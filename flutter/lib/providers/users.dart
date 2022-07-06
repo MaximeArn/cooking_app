@@ -126,6 +126,8 @@ class UsersProvider with ChangeNotifier {
     File avatar = connectedUser!.fileImage as File;
 
     try {
+      print("AVATAR !!! ");
+      print(_connectedUser!.avatar);
       http.MultipartRequest request =
           http.MultipartRequest("POST", Uri.parse("$serverUrl/images"));
       request.files.add(
@@ -164,7 +166,6 @@ class UsersProvider with ChangeNotifier {
         pwd.isNotEmpty && pwd != connectedUser!.password;
     final bool emailMustBeUpdated =
         email.isNotEmpty && email != connectedUser!.email;
-
 
     if (pwdMustBeUpdated || emailMustBeUpdated) {
       if (pwdMustBeUpdated)

@@ -96,6 +96,7 @@ module.exports = {
                         : (filteredBody[key] = body[key]);
                 }
             }
+            console.log(body.avatar);
             const newUser = yield user_1.default.findByIdAndUpdate(id, filteredBody, {
                 useFindAndModify: false,
                 new: true,
@@ -104,6 +105,7 @@ module.exports = {
                 model: "post",
             });
             res.status(200).json(newUser);
+            res.end();
         }
         catch (error) {
             console.error(error);

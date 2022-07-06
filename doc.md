@@ -1,5 +1,27 @@
 # COOKING DOCUMENTATION
 
+<blockquote>
+<h1>Scripts</h1>
+
+<blockquote>
+<h2>Build </h2>
+
+In a first time after a major change you must compile the typescript version of your code in minified javascript.
+
+`tsc` start typescript compiler and follows rules dicted in the tscConfig (that defines the outDir the version...)
+
+</blockquote>
+
+<blockquote>
+<h2>Deployment</h2>
+
+In a first time after a major change you must compile the typescript version of your code in a minified javascript version.
+
+`tsc` start typescript compiler and follows rules dicted in the tscConfig (that defines the outDir the version...)
+
+</blockquote>
+</blockquote>
+
 ## Project Architecture
 
 Two folders at the root of the project:

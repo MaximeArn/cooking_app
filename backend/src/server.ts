@@ -23,12 +23,7 @@ mongoose.connect(
   }
 );
 
-AWS.config.getCredentials((err) =>
-  console.log(
-    err ? err.stack : "Access key:",
-    AWS.config.credentials.accessKeyId
-  )
-);
+AWS.config.getCredentials((err) => err && console.log(err.stack));
 
 server.use(urlencoded({ extended: true }));
 server.use(json());

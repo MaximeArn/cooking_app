@@ -35,17 +35,16 @@ const images_1 = __importDefault(require("./routers/images"));
 const groups_1 = __importDefault(require("./routers/groups"));
 const dotenv_1 = require("dotenv");
 const challenges_1 = __importDefault(require("./routers/challenges"));
+const aws_sdk_1 = __importDefault(require("aws-sdk"));
 (0, dotenv_1.config)();
 const server = (0, express_1.default)();
-const PORT = process.env.PORT || 3000;
-const DB_USERNAME = process.env.DB_USERNAME;
-const DB_PWD = process.env.DB_PWD;
-const DB_NAME = process.env.DB_NAME;
+const { PORT, DB_USERNAME, DB_PWD, DB_NAME } = process.env;
 mongoose_1.default.set("debug", true);
 mongoose_1.default.connect(`mongodb+srv://${DB_USERNAME}:${DB_PWD}@cluster0.elh3w.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
 });
+aws_sdk_1.default.config.getCredentials((err) => err && console.log(err.stack));
 server.use((0, express_1.urlencoded)({ extended: true }));
 server.use((0, express_1.json)());
 server.use(express_1.default.static(`${__dirname}/../public`));
@@ -55,4 +54,4 @@ server.use("/rewards", rewards_1.default);
 server.use("/images", images_1.default);
 server.use("/groups", groups_1.default);
 server.use("/challenges", challenges_1.default);
-server.listen(PORT, () => console.log(`server is listening on ${PORT}`));
+server.listen(PORT || 3000, () => console.log(`server is listening on ${PORT}`));
