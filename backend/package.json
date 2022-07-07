@@ -1,10 +1,11 @@
 {
   "version": "0.0.1",
-  "name": "express-ts-example",
+  "name": "cooking-api",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev --respawn src/server.ts --transpileOnly",
+    "build": "tsc",
     "prod": "node dist/src/server.js"
   },
   "keywords": [],
