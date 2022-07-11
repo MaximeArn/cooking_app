@@ -12,6 +12,9 @@ class AddPost extends StatefulWidget {
 }
 
 class _State extends State<AddPost> with WidgetsBindingObserver {
+  CameraController? controller;
+  bool _isCameraInitialized = false;
+
   @override
   void initState() {
     super.initState();
@@ -26,10 +29,8 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    print(_isCameraInitialized);
     final CameraController? cameraController = controller;
 
-    // App state changed before we got the chance to initialize.
     if (cameraController == null || !cameraController.value.isInitialized) {
       return;
     }
@@ -40,9 +41,6 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
       onNewCameraSelected(cameraController.description);
     }
   }
-
-  CameraController? controller;
-  bool _isCameraInitialized = false;
 
   void onNewCameraSelected(CameraDescription selectedCamera) async {
     try {
@@ -62,11 +60,21 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
       }
 
       cameraController.addListener(() {
-        if (mounted) setState(() {});
+        if (mounted)
+          setState(() {
+          });
       });
+
+      try {
+        await cameraController.initialize();
+      } on CameraException catch (e) {
+        print('Error initializing camera: $e');
+      }
+
 
       if (mounted) {
         setState(() {
+          print(controller!.value.isInitialized);
           _isCameraInitialized = controller!.value.isInitialized;
         });
       }
@@ -77,7 +85,6 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    print(_isCameraInitialized);
     return Container(
       alignment: Alignment.center,
       child: _isCameraInitialized
