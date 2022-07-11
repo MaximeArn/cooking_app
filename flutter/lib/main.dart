@@ -1,6 +1,8 @@
+import 'package:camera/camera.dart';
 import 'package:cooking/firebase_options.dart';
 import 'package:cooking/providers/auth.dart';
 import 'package:cooking/providers/groups.dart';
+import 'package:cooking/providers/images.dart';
 import 'package:cooking/providers/posts.dart';
 import 'package:cooking/providers/rewards.dart';
 import 'package:cooking/providers/users.dart';
@@ -26,9 +28,16 @@ import 'package:cooking/views/not_found/not_found.dart';
 import 'package:cooking/views/search_page/search_page.dart';
 import 'package:cooking/widgets/loader.dart';
 
+List<CameraDescription> cameras = [];
+
 void main() async {
+  try {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);   
+  cameras = await availableCameras();
+    
+  } catch (e) {
+  }
   runApp(Cooking());
 }
 
@@ -38,9 +47,10 @@ class Cooking extends StatefulWidget {
 }
 
 class _CookingState extends State<Cooking> {
-  final RewardsProvider rewardsProvider = RewardsProvider();
-  final PostsProvider postsProvider = PostsProvider();
-  final UsersProvider usersProvider = UsersProvider();
+  final rewardsProvider = RewardsProvider();
+  final postsProvider = PostsProvider();
+  final usersProvider = UsersProvider();
+  final imagesProvider = ImagesProvider();
 
   @override
   void initState() {
@@ -52,6 +62,7 @@ class _CookingState extends State<Cooking> {
     rewardsProvider.fetchRewards();
     postsProvider.fetchPosts();
     usersProvider.getNationalRanking();
+    imagesProvider.initAvailableCameras();
   }
 
   @override
@@ -63,6 +74,7 @@ class _CookingState extends State<Cooking> {
         ChangeNotifierProvider.value(value: postsProvider),
         ChangeNotifierProvider.value(value: GroupsProvider()),
         ChangeNotifierProvider.value(value: AuthProvider()),
+        ChangeNotifierProvider.value(value: imagesProvider)
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

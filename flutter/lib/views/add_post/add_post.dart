@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import "../../main.dart";
 
 class AddPost extends StatefulWidget {
   const AddPost({
@@ -11,25 +12,45 @@ class AddPost extends StatefulWidget {
 }
 
 class _State extends State<AddPost> {
-  List<CameraDescription> cameras = [];
-
   @override
   void initState() {
     super.initState();
-    availableCameras().then((camerasList) {
-      cameras = camerasList;
-    });
-    print(cameras.length);
-    // getCameras();
+    onNewCameraSelected(cameras[0]);
   }
 
-  // final getCameras = () async {
-  //   try {
-  //     cameras = await availableCameras();
-  //   } on CameraException catch (e) {
-  //     print('Error in fetching the cameras: $e');
-  //   }
-  // };
+  CameraController? controller;
+  bool _isCameraInitialized = false;
+
+  void onNewCameraSelected(CameraDescription selectedCamera) async {
+    try {
+      final previousCameraController = controller;
+
+      final CameraController cameraController = CameraController(
+        selectedCamera,
+        ResolutionPreset.high,
+      );
+
+      await previousCameraController?.dispose();
+
+      if (mounted) {
+        setState(() {
+          controller = cameraController;
+        });
+      }
+
+      cameraController.addListener(() {
+        if (mounted) setState(() {});
+      });
+
+      if (mounted) {
+        setState(() {
+          _isCameraInitialized = controller!.value.isInitialized;
+        });
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
