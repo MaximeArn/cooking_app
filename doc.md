@@ -92,4 +92,8 @@ git push heroku master
 
 The Cooking Api is hosted separately from the frontend.
 
+To run the api go to the backend folder and start the dyno using the following command : `heroku ps:scale web=1 `
+
+To stop this dyno run `heroku ps:scale web=1`
+
 </blockquote>
