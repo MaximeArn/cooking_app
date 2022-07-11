@@ -11,11 +11,34 @@ class AddPost extends StatefulWidget {
   State<AddPost> createState() => _State();
 }
 
-class _State extends State<AddPost> {
+class _State extends State<AddPost> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
     onNewCameraSelected(cameras[0]);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller?.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print(_isCameraInitialized);
+    final CameraController? cameraController = controller;
+
+    // App state changed before we got the chance to initialize.
+    if (cameraController == null || !cameraController.value.isInitialized) {
+      return;
+    }
+
+    if (state == AppLifecycleState.inactive) {
+      cameraController.dispose();
+    } else if (state == AppLifecycleState.resumed) {
+      onNewCameraSelected(cameraController.description);
+    }
   }
 
   CameraController? controller;
@@ -54,17 +77,15 @@ class _State extends State<AddPost> {
 
   @override
   Widget build(BuildContext context) {
+    print(_isCameraInitialized);
     return Container(
       alignment: Alignment.center,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextButton(
-            onPressed: () {},
-            child: Text("TakePicture"),
-          ),
-        ],
-      ),
+      child: _isCameraInitialized
+          ? AspectRatio(
+              aspectRatio: 1 / controller!.value.aspectRatio,
+              child: controller!.buildPreview(),
+            )
+          : Container(),
     );
   }
 }
