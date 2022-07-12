@@ -24,7 +24,7 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    onNewCameraSelected(cameras[1]);
+    onNewCameraSelected(cameras[0]);
   }
 
   @override
@@ -130,12 +130,14 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
                 ),
               )
             : Loader(),
-        ActionsBar(
-          toggleCamera: toggleCamera,
-          isRearCameraSelected: isRearCameraSelected,
-          takePicture: takePicture,
-          lastCapturedPictures: lastCapturedPictures,
-        ),
+        _isCameraInitialized
+            ? ActionsBar(
+                toggleCamera: toggleCamera,
+                isRearCameraSelected: isRearCameraSelected,
+                takePicture: takePicture,
+                lastCapturedPictures: lastCapturedPictures,
+              )
+            : Container()
       ],
     );
   }
