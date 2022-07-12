@@ -57,19 +57,38 @@ class ActionsBar extends StatelessWidget {
               ),
               onTap: takePicture,
             ),
-            Container(
-              width: 60,
-              height: 60,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(10.0),
-                border: Border.all(color: Colors.white, width: 2),
-                image: lastCapturedPictures.isNotEmpty
-                    ? DecorationImage(
-                        image: FileImage(lastCapturedPictures.last),
-                        fit: BoxFit.cover,
-                      )
-                    : null,
+            GestureDetector(
+              onTap: (() {
+                if (lastCapturedPictures.isNotEmpty) {
+                  showDialog(
+                      context: context,
+                      barrierColor: Colors.black87,
+                      builder: (context) {
+                        return Container(
+                          height: 400,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: FileImage(lastCapturedPictures.last),
+                            ),
+                          ),
+                        );
+                      });
+                }
+              }),
+              child: Container(
+                width: 60,
+                height: 60,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(10.0),
+                  border: Border.all(color: Colors.white, width: 2),
+                  image: lastCapturedPictures.isNotEmpty
+                      ? DecorationImage(
+                          image: FileImage(lastCapturedPictures.last),
+                          fit: BoxFit.cover,
+                        )
+                      : null,
+                ),
               ),
             ),
           ],
