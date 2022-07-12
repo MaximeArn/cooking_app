@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:cooking/views/add_post/widgets/actions_bar.dart';
 import 'package:cooking/widgets/loader.dart';
@@ -17,7 +19,7 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
   CameraController? controller;
   bool _isCameraInitialized = false;
   bool isRearCameraSelected = true;
-  List<XFile> capturedPictures = [];
+  List<File> lastCapturedPictures = [];
 
   @override
   void initState() {
@@ -27,9 +29,8 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-    print("dispose");
-    print(capturedPictures.length);
-    capturedPictures = [];
+    print(lastCapturedPictures.length);
+    lastCapturedPictures = [];
     super.dispose();
     controller?.dispose();
   }
@@ -105,10 +106,11 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
       return null;
     }
     try {
-      final file = await cameraController.takePicture();
-      print("take picture");
-      capturedPictures.add(file);
-      return file;
+      final picture = await cameraController.takePicture();
+      final filePicture = File(picture.path);
+      lastCapturedPictures.add(filePicture);
+
+      return picture;
     } catch (e) {
       print('Error occured while taking picture: $e');
       rethrow;
@@ -129,9 +131,11 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
               )
             : Loader(),
         ActionsBar(
-            toggleCamera: toggleCamera,
-            isRearCameraSelected: isRearCameraSelected,
-            takePicture: takePicture)
+          toggleCamera: toggleCamera,
+          isRearCameraSelected: isRearCameraSelected,
+          takePicture: takePicture,
+          lastCapturedPictures: lastCapturedPictures,
+        ),
       ],
     );
   }
