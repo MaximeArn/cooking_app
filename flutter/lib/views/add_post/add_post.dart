@@ -17,6 +17,7 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
   CameraController? controller;
   bool _isCameraInitialized = false;
   bool isRearCameraSelected = true;
+  List<XFile> capturedPictures = [];
 
   @override
   void initState() {
@@ -26,6 +27,9 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
 
   @override
   void dispose() {
+    print("dispose");
+    print(capturedPictures.length);
+    capturedPictures = [];
     super.dispose();
     controller?.dispose();
   }
@@ -102,8 +106,8 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
     }
     try {
       final file = await cameraController.takePicture();
-      print(file.path);
-      print(file.name);
+      print("take picture");
+      capturedPictures.add(file);
       return file;
     } catch (e) {
       print('Error occured while taking picture: $e');
