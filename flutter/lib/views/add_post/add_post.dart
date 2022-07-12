@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:cooking/views/add_post/widgets/actions_bar.dart';
 import 'package:cooking/widgets/loader.dart';
 import 'package:flutter/material.dart';
 import "../../main.dart";
@@ -15,7 +16,7 @@ class AddPost extends StatefulWidget {
 class _State extends State<AddPost> with WidgetsBindingObserver {
   CameraController? controller;
   bool _isCameraInitialized = false;
-  bool _isRearCameraSelected = true;
+  bool isRearCameraSelected = true;
 
   @override
   void initState() {
@@ -82,6 +83,18 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
     }
   }
 
+  void toggleCamera() {
+    setState(() {
+      _isCameraInitialized = false;
+    });
+    onNewCameraSelected(
+      cameras[isRearCameraSelected ? 0 : 1],
+    );
+    setState(() {
+      isRearCameraSelected = !isRearCameraSelected;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -94,82 +107,10 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
                   child: controller!.buildPreview(),
                 ),
               )
-            : Container(
-                child: Loader(),
-              ),
-        Container(
-          // height: 70,
-          alignment: Alignment.bottomCenter,
-          child: Container(
-          padding: EdgeInsets.symmetric(vertical: 10),
-          color: Colors.black26,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _isCameraInitialized = false;
-                    });
-                    onNewCameraSelected(
-                      cameras[_isRearCameraSelected ? 0 : 1],
-                    );
-                    setState(() {
-                      _isRearCameraSelected = !_isRearCameraSelected;
-                    });
-                  },
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Icon(
-                        Icons.circle,
-                        color: Colors.black38,
-                        size: 60,
-                      ),
-                      Icon(
-                        _isRearCameraSelected
-                            ? Icons.camera_front
-                            : Icons.camera_rear,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                    ],
-                  ),
-                ),
-                GestureDetector(
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Icon(Icons.circle, color: Colors.black38, size: 60),
-                      Icon(
-                        Icons.camera_alt,
-                        size: 30,
-                      )
-                    ],
-                  ),
-                  onTap: () {
-                    print("take picture !");
-                  },
-                ),
-                 GestureDetector(
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Icon(Icons.circle, color: Colors.black38, size: 60),
-                      Icon(
-                        Icons.camera_alt,
-                        size: 30,
-                      )
-                    ],
-                  ),
-                  onTap: () {
-                    print("take picture !");
-                  },
-                )
-              ],
-            ),
-          ),
-        ),
+            :  Loader(),
+        ActionsBar(
+            toggleCamera: toggleCamera,
+            isRearCameraSelected: isRearCameraSelected)
       ],
     );
   }
