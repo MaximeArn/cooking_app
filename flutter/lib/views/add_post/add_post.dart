@@ -84,24 +84,27 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: Stack(
-        children: [
-          _isCameraInitialized
-              ? Center(
-                  child: AspectRatio(
-                    aspectRatio: 1 / controller!.value.aspectRatio,
-                    child: controller!.buildPreview(),
-                  ),
-                )
-              : Container(
-                  child: Loader(),
+    return Stack(
+      alignment: Alignment.bottomCenter,
+      children: [
+        _isCameraInitialized
+            ? Center(
+                child: AspectRatio(
+                  aspectRatio: 1 / controller!.value.aspectRatio,
+                  child: controller!.buildPreview(),
                 ),
-          Container(
-            padding: EdgeInsets.only(bottom: 20, left: 20),
-            alignment: Alignment.bottomLeft,
+              )
+            : Container(
+                child: Loader(),
+              ),
+        Container(
+          // height: 70,
+          alignment: Alignment.bottomCenter,
+          child: Container(
+          padding: EdgeInsets.symmetric(vertical: 10),
+          color: Colors.black26,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 GestureDetector(
                   onTap: () {
@@ -134,6 +137,31 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
                   ),
                 ),
                 GestureDetector(
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Icon(Icons.circle, color: Colors.black38, size: 60),
+                      Icon(
+                        Icons.camera_alt,
+                        size: 30,
+                      )
+                    ],
+                  ),
+                  onTap: () {
+                    print("take picture !");
+                  },
+                ),
+                 GestureDetector(
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Icon(Icons.circle, color: Colors.black38, size: 60),
+                      Icon(
+                        Icons.camera_alt,
+                        size: 30,
+                      )
+                    ],
+                  ),
                   onTap: () {
                     print("take picture !");
                   },
@@ -141,8 +169,8 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
               ],
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
