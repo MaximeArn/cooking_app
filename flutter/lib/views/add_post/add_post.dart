@@ -74,7 +74,6 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
 
       if (mounted) {
         setState(() {
-          print(controller!.value.isInitialized);
           _isCameraInitialized = controller!.value.isInitialized;
         });
       }
@@ -95,6 +94,23 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
     });
   }
 
+  Future<XFile?> takePicture() async {
+    final CameraController? cameraController = controller;
+    if (cameraController!.value.isTakingPicture) {
+      print("a image is already being captured please wait ! ");
+      return null;
+    }
+    try {
+      final file = await cameraController.takePicture();
+      print(file.path);
+      print(file.name);
+      return file;
+    } catch (e) {
+      print('Error occured while taking picture: $e');
+      rethrow;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -107,10 +123,11 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
                   child: controller!.buildPreview(),
                 ),
               )
-            :  Loader(),
+            : Loader(),
         ActionsBar(
             toggleCamera: toggleCamera,
-            isRearCameraSelected: isRearCameraSelected)
+            isRearCameraSelected: isRearCameraSelected,
+            takePicture: takePicture)
       ],
     );
   }
