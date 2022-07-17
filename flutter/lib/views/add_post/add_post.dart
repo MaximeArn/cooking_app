@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:camera/camera.dart';
+import 'package:cooking/utils.dart';
 import 'package:image/image.dart' as img;
 import 'package:cooking/views/add_post/widgets/actions_bar.dart';
 import 'package:cooking/widgets/loader.dart';
@@ -20,13 +21,13 @@ class AddPost extends StatefulWidget {
 class _State extends State<AddPost> with WidgetsBindingObserver {
   CameraController? controller;
   bool _isCameraInitialized = false;
-  bool isRearCameraSelected = true;
+  bool isRearCameraSelected = false;
   List<File> lastCapturedPictures = [];
 
   @override
   void initState() {
     super.initState();
-    onNewCameraSelected(cameras[1]);
+    onNewCameraSelected(cameras[0]);
   }
 
   @override
@@ -107,6 +108,11 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
     if (cameraController!.value.isTakingPicture) {
       print("a image is already being captured please wait ! ");
       return null;
+    }
+
+    if (lastCapturedPictures.length >= 3) {
+      print("too much pictures");
+      return Utils.showSnackBar(isError: true, text: "you cannot post more than 3 photos per post");
     }
 
     try {
