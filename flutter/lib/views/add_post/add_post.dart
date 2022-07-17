@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:camera/camera.dart';
+import 'package:image/image.dart' as img;
 import 'package:cooking/views/add_post/widgets/actions_bar.dart';
 import 'package:cooking/widgets/loader.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class AddPost extends StatefulWidget {
 class _State extends State<AddPost> with WidgetsBindingObserver {
   CameraController? controller;
   bool _isCameraInitialized = false;
-  bool isRearCameraSelected = true;
+  bool isRearCameraSelected = false;
   List<File> lastCapturedPictures = [];
 
   @override
@@ -57,6 +58,7 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
       final CameraController cameraController = CameraController(
         selectedCamera,
         ResolutionPreset.high,
+        imageFormatGroup: ImageFormatGroup.yuv420,
       );
 
       await previousCameraController?.dispose();
@@ -99,20 +101,31 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
     });
   }
 
-  Future<XFile?> takePicture() async {
+  Future<void> takePicture() async {
     final CameraController? cameraController = controller;
     if (cameraController!.value.isTakingPicture) {
       print("a image is already being captured please wait ! ");
       return null;
     }
     try {
-      final picture = await cameraController.takePicture();
-      final filePicture = File(picture.path);
+      final xFileImage = await cameraController.takePicture();
+      final filePicture = isRearCameraSelected ? await flipImage(xFileImage) : File(xFileImage.path);
       lastCapturedPictures.add(filePicture);
-
-      return picture;
     } catch (e) {
       print('Error occured while taking picture: $e');
+      rethrow;
+    }
+  }
+
+  Future<File> flipImage(XFile XfileImage) async {
+    try {
+      final imageBytes = await XfileImage.readAsBytes();
+      final originalImage = img.decodeImage(imageBytes);
+      final fixedImage = img.flipHorizontal(originalImage!);
+
+      return File(XfileImage.path).writeAsBytes(img.encodeJpg(fixedImage), flush: true);
+    } catch (e) {
+      print(e);
       rethrow;
     }
   }
