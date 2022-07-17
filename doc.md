@@ -94,6 +94,20 @@ The Cooking Api is hosted separately from the frontend.
 
 To run the api go to the backend folder and start the dyno using the following command : `heroku ps:scale web=1 `
 
-To stop this dyno run `heroku ps:scale web=1`
+To stop this dyno run `heroku ps:scale web=0`
+
+</blockquote>
+
+# Error Handling
+
+I tried to make an easy way to manage errors throught the app.
+
+<blockquote>
+
+<h2>Back</h2>
+
+In the server I use express error middleware to handle each type of error.
+
+<h2>Front</h2>
 
 </blockquote>
