@@ -51,8 +51,7 @@ class CarouselPreview extends StatelessWidget {
       child: CarouselSlider(
         items: lastCapturedPictures.map((file) => Image.file(file)).toList(),
         options: CarouselOptions(
-          viewportFraction: 1,
-          aspectRatio: 4/5,
+          aspectRatio: 4 / 5,
           enableInfiniteScroll: false,
         ),
       ),

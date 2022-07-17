@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:camera/camera.dart';
@@ -19,13 +20,13 @@ class AddPost extends StatefulWidget {
 class _State extends State<AddPost> with WidgetsBindingObserver {
   CameraController? controller;
   bool _isCameraInitialized = false;
-  bool isRearCameraSelected = false;
+  bool isRearCameraSelected = true;
   List<File> lastCapturedPictures = [];
 
   @override
   void initState() {
     super.initState();
-    onNewCameraSelected(cameras[0]);
+    onNewCameraSelected(cameras[1]);
   }
 
   @override
@@ -107,10 +108,15 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
       print("a image is already being captured please wait ! ");
       return null;
     }
+
     try {
       final xFileImage = await cameraController.takePicture();
-      final filePicture = isRearCameraSelected ? await flipImage(xFileImage) : File(xFileImage.path);
-      lastCapturedPictures.add(filePicture);
+      final filePicture = isRearCameraSelected
+          ? await flipImage(xFileImage)
+          : File(xFileImage.path);
+      setState(() {
+        lastCapturedPictures.add(filePicture);
+      });
     } catch (e) {
       print('Error occured while taking picture: $e');
       rethrow;
@@ -122,8 +128,9 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
       final imageBytes = await XfileImage.readAsBytes();
       final originalImage = img.decodeImage(imageBytes);
       final fixedImage = img.flipHorizontal(originalImage!);
-
-      return File(XfileImage.path).writeAsBytes(img.encodeJpg(fixedImage), flush: true);
+      final fixedFile =
+          File(XfileImage.path).writeAsBytes(img.encodeJpg(fixedImage));
+      return fixedFile;
     } catch (e) {
       print(e);
       rethrow;
