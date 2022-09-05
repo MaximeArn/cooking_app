@@ -11,25 +11,15 @@ class CookingAppBar extends StatelessWidget with PreferredSizeWidget {
     return DefaultTabController(
       length: 3,
       child: AppBar(
-        iconTheme: const IconThemeData(
-          size: 20,
-        ),
-        actions: [
-          if(action != null)
-            action!
-        ],
-        title: RichText(
-          text: TextSpan(
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-              children: [
-                TextSpan(text: "Coo", style: TextStyle(color: Theme.of(context).colorScheme.primary)),
-                TextSpan(
-                    text: "K",
-                    style: TextStyle(color: Theme.of(context).primaryColor),),
-                TextSpan(text: "ing", style: TextStyle(color: Theme.of(context).colorScheme.primary)),
-              ]),
-        ),
-      ),
+          iconTheme: const IconThemeData(
+            size: 20,
+          ),
+          actions: [if (action != null) action!],
+          title: Image.asset(
+            "assets/cooking_logo.png",
+            fit: BoxFit.contain,
+            height: 50,
+          )),
     );
   }
 

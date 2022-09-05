@@ -15,7 +15,7 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void initState() {
-    index = 0;
+    index = 1;
     super.initState();
   }
 
@@ -33,7 +33,7 @@ class _HomeViewState extends State<HomeView> {
       body: index == 0
           ? Feed()
           : index == 1
-              ? Ranking()
+              ? NationalRanking()
               : index == 2
                   ? Center(
                       child: Text("Add Post"),

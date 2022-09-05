@@ -15,14 +15,15 @@ class BottomNavigation extends StatelessWidget {
       items: [
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.touch_app,
+            Icons.star,
           ),
           label: "Vote",
         ),
         BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart), label: "Ranking"),
+            icon: Icon(Icons.emoji_events), label: "Ranking"),
         BottomNavigationBarItem(icon: Icon(Icons.restaurant), label: "Post"),
-        BottomNavigationBarItem(icon: Icon(Icons.star), label: "Challenge"),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.people_alt), label: "Challenge"),
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "Profile"),
       ],
       onTap: (newIndex) {
