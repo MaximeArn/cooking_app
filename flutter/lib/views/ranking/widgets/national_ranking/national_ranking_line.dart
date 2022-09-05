@@ -35,20 +35,23 @@ class NationalRankingLine extends StatelessWidget {
                       "#${(index + 1).toString()}",
                       style: TextStyle(fontSize: 18),
                     )),
-      title: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 30),
-            child: CircleAvatar(
-              radius: 28,
-              backgroundImage: NetworkImage("$assetsUrl${user["avatar"]}"),
+      title: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 30),
+              child: CircleAvatar(
+                radius: 28,
+                backgroundImage: NetworkImage("$assetsUrl${user["avatar"]}"),
+              ),
             ),
-          ),
-          Text(
-            user["name"],
-            style: TextStyle(fontWeight: FontWeight.w600),
-          ),
-        ],
+            Text(
+              user["name"],
+              style: TextStyle(fontWeight: FontWeight.w600),
+            ),
+          ],
+        ),
       ),
       trailing: Text(
         user["stars"].toString(),

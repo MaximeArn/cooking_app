@@ -10,6 +10,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase;
 
 import 'package:cooking/themes.dart';
 import 'package:cooking/utils.dart';
@@ -59,10 +60,12 @@ class _CookingState extends State<Cooking> {
     super.initState();
   }
 
-  void initData() {
+  void initData() async {
     rewardsProvider.fetchRewards();
     postsProvider.fetchPosts();
     usersProvider.getNationalRanking();
+    await usersProvider.getUserByEmail(
+        email: firebase.FirebaseAuth.instance.currentUser!.email as String);
   }
 
   @override

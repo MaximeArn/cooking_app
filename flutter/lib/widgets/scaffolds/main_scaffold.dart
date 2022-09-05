@@ -27,7 +27,11 @@ class MainScaffold extends StatelessWidget {
                 icon: Icon(Icons.edit),
               ),
             )
-          : CookingAppBar(),
+          : index == 1
+              ? CookingAppBar(
+                  hasBottomShadow: false,
+                )
+              : CookingAppBar(),
       drawer: const CookingDrawer(),
       bottomNavigationBar: BottomNavigation(index: index, setIndex: setIndex),
       body: body,
