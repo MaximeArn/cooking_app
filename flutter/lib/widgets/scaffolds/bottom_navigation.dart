@@ -17,13 +17,13 @@ class BottomNavigation extends StatelessWidget {
           icon: Icon(
             Icons.touch_app,
           ),
-          label: "vote",
+          label: "Vote",
         ),
         BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart), label: "rewards"),
-        BottomNavigationBarItem(icon: Icon(Icons.restaurant), label: "post"),
-        BottomNavigationBarItem(icon: Icon(Icons.star), label: "ranking"),
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "profile"),
+            icon: Icon(Icons.shopping_cart), label: "Ranking"),
+        BottomNavigationBarItem(icon: Icon(Icons.restaurant), label: "Post"),
+        BottomNavigationBarItem(icon: Icon(Icons.star), label: "Challenge"),
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Profile"),
       ],
       onTap: (newIndex) {
         setIndex(newIndex);

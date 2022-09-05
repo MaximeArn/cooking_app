@@ -112,7 +112,8 @@ class _State extends State<AddPost> with WidgetsBindingObserver {
 
     if (lastCapturedPictures.length >= 3) {
       print("too much pictures");
-      return Utils.showSnackBar(isError: true, text: "you cannot post more than 3 photos per post");
+      return Utils.showSnackBar(
+          isError: true, text: "you cannot post more than 3 photos per post");
     }
 
     try {
