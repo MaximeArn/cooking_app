@@ -12,6 +12,7 @@ class CookingAppBar extends StatelessWidget with PreferredSizeWidget {
     return DefaultTabController(
       length: 3,
       child: AppBar(
+          centerTitle: true,
           elevation: hasBottomShadow ? 4 : 0,
           iconTheme: const IconThemeData(
             size: 20,
