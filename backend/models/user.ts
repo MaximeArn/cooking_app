@@ -29,7 +29,7 @@ export const userSchema = new Schema({
   },
   avatar: {
     type: String,
-    default: `/assets/images/avatars/default_avatar.jpg`,
+    default: `default_avatar.jpg`,
   },
   posts: { type: [{ type: Schema.Types.ObjectId, ref: "post" }], default: [] },
   countryCode: { type: String, default: "FR" },
