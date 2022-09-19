@@ -9,54 +9,51 @@ class CookingDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-        child: Column(
-      children: [
-        CookingDrawerHeader(),
-        Expanded(
-          flex: 20,
-          child: Container(
-            padding: EdgeInsets.symmetric(vertical: 50),
-            child: Column(
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: Drawer(
+          child: Column(
+        children: [
+          CookingDrawerHeader(),
+          Expanded(
+            child: ListView(
               children: [
                 const DrawerItem(
                   title: "Settings",
-                  icon: Icon(Icons.settings),
+                  icon: Icons.settings,
                   routeName: Settings.routeName,
                 ),
                 const DrawerItem(
                   title: "Confidentiality",
-                  icon: Icon(Icons.policy),
+                  icon: Icons.policy,
                   routeName: "",
                 ),
                 const DrawerItem(
-                    title: 'Payements',
-                    icon: Icon(Icons.payments),
-                    routeName: ""),
+                    title: 'Payements', icon: Icons.payments, routeName: ""),
                 const DrawerItem(
                     title: "Frequently Asked Questions",
-                    icon: Icon(Icons.help),
+                    icon: Icons.help,
                     routeName: ""),
                 const DrawerItem(
                   title: "Legals",
-                  icon: Icon(Icons.copyright),
+                  icon: Icons.copyright,
                   routeName: "",
                 ),
                 const DrawerItem(
                   title: "Legals",
-                  icon: Icon(Icons.copyright),
+                  icon: Icons.copyright,
                   routeName: "",
                 ),
                 const DrawerItem(
-                  title: "Legals",
-                  icon: Icon(Icons.copyright),
+                  title: "ChatBox",
+                  icon: Icons.copyright,
                   routeName: "",
                 ),
               ],
             ),
           ),
-        )
-      ],
-    ));
+        ],
+      )),
+    );
   }
 }

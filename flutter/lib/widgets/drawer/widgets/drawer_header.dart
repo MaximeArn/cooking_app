@@ -10,29 +10,24 @@ class CookingDrawerHeader extends StatefulWidget {
 class _DrawerHeaderState extends State<CookingDrawerHeader> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 10,
-      child: DrawerHeader(
-        padding: EdgeInsets.symmetric(vertical: 0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(bottom: 15),
-              child: CircleAvatar(
-                radius: 80,
-                backgroundImage: NetworkImage(
-                  "https://cooking-api-assets.s3.eu-west-3.amazonaws.com/profile_photo_1.jpg",
-                ),
+    return Container(
+      padding: EdgeInsets.only(top: 70, bottom: 0),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 15.0),
+            child: CircleAvatar(
+              radius: 85,
+              backgroundImage: NetworkImage(
+                "https://cooking-api-assets.s3.eu-west-3.amazonaws.com/profile_photo_1.jpg",
               ),
             ),
-            Text(
-              "Hello Name",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
-            )
-          ],
-        ),
+          ),
+          Text(
+            "Hello Name",
+            style: TextStyle(fontSize: 26, fontWeight: FontWeight.w600),
+          )
+        ],
       ),
     );
   }

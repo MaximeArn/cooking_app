@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DrawerItem extends StatelessWidget {
   final String title;
   final String routeName;
-  final Icon icon;
+  final IconData icon;
 
   const DrawerItem({
     required this.title,
@@ -21,9 +21,18 @@ class DrawerItem extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(right: 10),
-                child: icon,
+                child: Icon(
+                  icon,
+                  size: 30,
+                ),
               ),
-              Text(title),
+              Flexible(
+                child: Text(
+                  title,
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+                  softWrap: true,
+                ),
+              ),
             ],
           ),
         ),
