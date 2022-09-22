@@ -1,9 +1,11 @@
 import 'package:cooking/providers/users.dart';
 import 'package:cooking/widgets/drawer/widgets/drawer_header.dart';
 import 'package:cooking/widgets/drawer/widgets/drawer_item.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../utils.dart';
 import '../../views/drawer_pages/settings/settings.dart';
 
 class CookingDrawer extends StatelessWidget {
@@ -11,7 +13,8 @@ class CookingDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final connectedUser = Provider.of<UsersProvider>(context).connectedUser;
+    final usersProvider = Provider.of<UsersProvider>(context, listen: false);
+    final connectedUser = usersProvider.connectedUser;
 
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -76,7 +79,12 @@ class CookingDrawer extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 25.0),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      FirebaseAuth.instance.signOut().then((_) {
+                        Utils.navigatorKey.currentState!.maybePop();
+                        usersProvider.connectedUser = null;
+                      });
+                    },
                     child: Text(
                       "Log out",
                       style: TextStyle(
