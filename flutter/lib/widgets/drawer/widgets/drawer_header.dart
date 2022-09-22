@@ -17,7 +17,7 @@ class _DrawerHeaderState extends State<CookingDrawerHeader> {
           Padding(
             padding: const EdgeInsets.only(bottom: 15.0),
             child: CircleAvatar(
-              radius: 85,
+              radius: 80,
               backgroundImage: NetworkImage(
                 "https://cooking-api-assets.s3.eu-west-3.amazonaws.com/profile_photo_1.jpg",
               ),
