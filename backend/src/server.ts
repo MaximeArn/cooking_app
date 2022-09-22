@@ -15,13 +15,17 @@ const server = express();
 const { PORT, DB_USERNAME, DB_PWD, DB_NAME } = process.env;
 
 mongoose.set("debug", true);
-mongoose.connect(
-  `mongodb+srv://${DB_USERNAME}:${DB_PWD}@cluster0.elh3w.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`,
-  {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-  }
-);
+try {
+  mongoose.connect(
+    `mongodb+srv://${DB_USERNAME}:${DB_PWD}@cooking.0otqxhb.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`,
+    {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    }
+  );
+} catch (error) {
+  console.error(error);
+}
 
 AWS.config.getCredentials((err) => err && console.log(err.stack));
 
@@ -31,7 +35,6 @@ server.use(json());
 server.use(express.static(`${__dirname}/../public`));
 server.use("/users", usersRouter);
 server.use("/posts", postsRouter);
-server.use("/rewards", rewardsRouter);
 server.use("/images", imagesRouter);
 server.use("/groups", groupsRouter);
 server.use("/challenges", challengesRouter);

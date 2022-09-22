@@ -88,13 +88,36 @@ git push heroku master
 </blockquote>
 
 <blockquote>
-<h2>Run Api </h2>
+<h2>Run API </h2>
 
 The Cooking Api is hosted separately from the frontend.
 
 To run the api go to the backend folder and start the dyno using the following command : `heroku ps:scale web=1 `
 
 To stop this dyno run `heroku ps:scale web=0`
+
+</blockquote>
+
+<blockquote>
+<h2>Config API</h2>
+
+to run well the API need some env variables that must be set directly through the heroku CLI.
+To see environment variable that are already defined type : `heroku config`.
+
+```sh
+maxime@MacBook-Maxime backend % heroku config
+
+=== backend-cooking Config Vars
+AWS_ACCESS_KEY_ID:     **********
+AWS_SECRET_ACCESS_KEY: ********************************
+DB_NAME:               ********
+DB_PWD:                ************
+DB_USERNAME:           ************
+PAPERTRAIL_API_TOKEN:  **************
+PORT:                  ******
+```
+
+If you need to pass a new value to an env variable you can use: `heroku config:set ENVVAR=value `
 
 </blockquote>
 

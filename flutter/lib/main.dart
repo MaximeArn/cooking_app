@@ -61,7 +61,7 @@ class _CookingState extends State<Cooking> {
   }
 
   void initData() async {
-    rewardsProvider.fetchRewards();
+    // rewardsProvider.fetchRewards();
     postsProvider.fetchPosts();
     usersProvider.getNationalRanking();
     await usersProvider.getUserByEmail(
