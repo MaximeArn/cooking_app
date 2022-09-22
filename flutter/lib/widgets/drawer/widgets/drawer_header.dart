@@ -1,7 +1,13 @@
+import 'package:cooking/environment/env.dart';
 import 'package:flutter/material.dart';
 
 class CookingDrawerHeader extends StatefulWidget {
-  const CookingDrawerHeader({Key? key}) : super(key: key);
+  final String avatar;
+  final String name;
+
+  const CookingDrawerHeader(
+      {Key? key, required this.avatar, required this.name})
+      : super(key: key);
 
   @override
   State<CookingDrawerHeader> createState() => _DrawerHeaderState();
@@ -17,14 +23,12 @@ class _DrawerHeaderState extends State<CookingDrawerHeader> {
           Padding(
             padding: const EdgeInsets.only(bottom: 15.0),
             child: CircleAvatar(
-              radius: 80,
-              backgroundImage: NetworkImage(
-                "https://cooking-api-assets.s3.eu-west-3.amazonaws.com/profile_photo_1.jpg",
-              ),
+              radius: 70,
+              backgroundImage: NetworkImage(assetsUrl + widget.avatar),
             ),
           ),
           Text(
-            "Hello Name",
+            "Hello ${widget.name}",
             style: TextStyle(fontSize: 26, fontWeight: FontWeight.w600),
           )
         ],
