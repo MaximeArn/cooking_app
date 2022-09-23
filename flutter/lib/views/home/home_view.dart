@@ -1,4 +1,4 @@
-import 'package:cooking/views/add_post/add_post.dart';
+import 'package:cooking/views/challenges/challenges.dart';
 import 'package:cooking/views/feed/feed.dart';
 import 'package:cooking/views/profiles/own_profile/own_profile.dart';
 import 'package:cooking/views/ranking/ranking.dart';
@@ -15,8 +15,8 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void initState() {
-    index = 0;
-    // index = 3; during dev
+    // index = 0;
+    index = 3;
     super.initState();
   }
 
@@ -41,10 +41,7 @@ class _HomeViewState extends State<HomeView> {
                     )
                   // ? AddPost()
                   : index == 3
-                      ? Center(
-                          child: Text("future challenges"),
-                        )
-                      // ? Ranking()
+                      ? Challenges()
                       : OwnProfile(),
     );
   }

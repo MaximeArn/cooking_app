@@ -20,10 +20,7 @@ import 'package:cooking/views/auth/widgets/forgot_password.dart';
 import 'package:cooking/views/auth/widgets/verify_email.dart';
 import 'package:cooking/views/drawer_pages/settings/settings.dart';
 import 'package:cooking/views/edit_profile/edit_profile.dart';
-import 'package:cooking/views/groups/create_group/add_members.dart';
-import 'package:cooking/views/groups/group_detail/group_settings/group_settings.dart';
 import 'package:cooking/views/profiles/profile/profile.dart';
-import 'package:cooking/views/groups/group_detail/group_detail.dart';
 import 'package:cooking/views/not_found/not_found.dart';
 import 'package:cooking/views/search_page/search_page.dart';
 import 'package:cooking/widgets/loader.dart';
@@ -92,9 +89,6 @@ class _CookingState extends State<Cooking> {
           SearchPage.routeName: (_) => const SearchPage(),
           Profile.routeName: (_) => Profile(),
           EditProfile.routeName: (_) => EditProfile(),
-          GroupDetail.routeName: (_) => GroupDetail(),
-          AddMembers.routeName: (_) => AddMembers(),
-          GroupSettings.routeName: (_) => GroupSettings(),
           ForgotPassword.routeName: (_) => ForgotPassword(),
           Settings.routeName: (_) => Settings(),
         },
