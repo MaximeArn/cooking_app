@@ -21,11 +21,19 @@ class Challenges extends StatelessWidget {
                 ),
                 elevation: 5,
                 child: InkWell(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(15),
+                  ),
                   onTap: () {},
-                  child: Ink.image(
-                    fit: BoxFit.cover,
-                    image: AssetImage(
-                      "assets/league_background.png",
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      image: DecorationImage(
+                        image: AssetImage(
+                          "assets/league_background.png",
+                        ),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
@@ -43,11 +51,19 @@ class Challenges extends StatelessWidget {
                 ),
                 elevation: 5,
                 child: InkWell(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(15),
+                  ),
                   onTap: () {},
-                  child: Ink.image(
-                    fit: BoxFit.cover,
-                    image: AssetImage(
-                      "assets/challenge_background.png",
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      image: DecorationImage(
+                        image: AssetImage(
+                          "assets/challenge_background.png",
+                        ),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
