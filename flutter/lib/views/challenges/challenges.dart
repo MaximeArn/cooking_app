@@ -24,7 +24,7 @@ class Challenges extends StatelessWidget {
                   borderRadius: BorderRadius.all(
                     Radius.circular(15),
                   ),
-                  onTap: () {},
+                  onTap: () => Navigator.of(context).pushNamed("/league"),
                   child: Ink(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
@@ -54,7 +54,7 @@ class Challenges extends StatelessWidget {
                   borderRadius: BorderRadius.all(
                     Radius.circular(15),
                   ),
-                  onTap: () {},
+                  onTap: () => Navigator.of(context).pushNamed("/challenges"),
                   child: Ink(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),

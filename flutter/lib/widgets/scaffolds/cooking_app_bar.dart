@@ -17,7 +17,25 @@ class CookingAppBar extends StatelessWidget with PreferredSizeWidget {
           iconTheme: const IconThemeData(
             size: 20,
           ),
-          actions: [if (action != null) action as Widget],
+          // actions: [if (action != null) action as Widget],
+          actions: [
+            IconButton(
+              padding: EdgeInsets.only(right: 15),
+              constraints: BoxConstraints(),
+              onPressed: () {},
+              icon: Icon(
+                Icons.notifications,
+                size: 30,
+              ),
+            ),
+            IconButton(
+              padding: EdgeInsets.only(right: 15),
+              constraints: BoxConstraints(),
+              onPressed: () {},
+              icon: Icon(Icons.search, size: 30),
+            ),
+            if (action != null) action as Widget,
+          ],
           title: Image.asset(
             "assets/cooking_logo.png",
             height: 0.95 * preferredSize.height,
