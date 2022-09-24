@@ -16,7 +16,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     // index = 0;
-    index = 3;
+    index = 1;
     super.initState();
   }
 
