@@ -32,6 +32,10 @@ dependencies:
   flutter_rating_bar:
   # Visibility of the widget listener
   visibility_detector:
+  # Pausable timer
+  pausable_timer:
+  # To keep screen awake
+  wakelock:
   
 
 dev_dependencies:

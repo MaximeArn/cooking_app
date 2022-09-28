@@ -1,3 +1,4 @@
+import 'package:cooking/views/add_post/add_post_page.dart';
 import 'package:cooking/views/feed/feed.dart';
 import 'package:cooking/views/profiles/own_profile/own_profile.dart';
 import 'package:cooking/views/ranking/ranking.dart';
@@ -45,9 +46,7 @@ class _HomeViewState extends State<HomeView> {
       case 1:
         return NationalRanking();
       case 2:
-        return Center(
-          child: Text("Add Post"),
-        );
+        return AddPostPage();
       case 3:
         return Center(
           child: Text("future challenges"),
