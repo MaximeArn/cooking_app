@@ -2,10 +2,10 @@ import 'package:cooking/environment/env.dart';
 import 'package:cooking/views/profiles/profile/profile.dart';
 import 'package:flutter/material.dart';
 
-class PostCardHeader extends StatelessWidget {
+class ChallengeHeader extends StatelessWidget {
   final Map<String, dynamic>? author;
 
-  PostCardHeader({
+  ChallengeHeader({
     required this.author,
   });
 

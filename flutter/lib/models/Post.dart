@@ -7,6 +7,7 @@ class Post {
   int note;
   final String description;
   List<Comment> comments = [];
+  String videoUrl;
 
   Post({
     required this.id,
@@ -14,6 +15,7 @@ class Post {
     required this.images,
     required this.note,
     required this.description,
+    required this.videoUrl,
   });
 
   Post.fromJson(Map<String, dynamic> json, {bool isPopulated = false})
@@ -30,5 +32,6 @@ class Post {
         description = json["description"],
         comments = (json["comments"] as List)
             .map((jsonComment) => Comment.fromJson(jsonComment))
-            .toList();
+            .toList(),
+        videoUrl = (json["video_url"] as String? ?? "");
 }

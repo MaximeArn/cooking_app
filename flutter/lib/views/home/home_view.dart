@@ -1,4 +1,3 @@
-import 'package:cooking/views/add_post/add_post.dart';
 import 'package:cooking/views/feed/feed.dart';
 import 'package:cooking/views/profiles/own_profile/own_profile.dart';
 import 'package:cooking/views/ranking/ranking.dart';
@@ -11,41 +10,52 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  late int index;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  late int _currentIndex;
 
   @override
   void initState() {
-    index = 0;
+    _currentIndex = 0;
     // index = 3; during dev
     super.initState();
   }
 
   void setIndex(newIndex) {
     setState(() {
-      index = newIndex;
+      _currentIndex = newIndex;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return MainScaffold(
-      index: index,
+      scaffoldKey: _scaffoldKey,
+      index: _currentIndex,
       setIndex: setIndex,
-      body: index == 0
-          ? Feed()
-          : index == 1
-              ? NationalRanking()
-              : index == 2
-                  ? Center(
-                      child: Text("Add Post"),
-                    )
-                  // ? AddPost()
-                  : index == 3
-                      ? Center(
-                          child: Text("future challenges"),
-                        )
-                      // ? Ranking()
-                      : OwnProfile(),
+      body: _currentScreen(),
     );
+  }
+
+  Widget _currentScreen() {
+    switch (_currentIndex) {
+      case 0:
+        return Feed(
+          scaffoldKey: _scaffoldKey,
+        );
+      case 1:
+        return NationalRanking();
+      case 2:
+        return Center(
+          child: Text("Add Post"),
+        );
+      case 3:
+        return Center(
+          child: Text("future challenges"),
+        );
+      case 4:
+        return OwnProfile();
+      default:
+        return Container();
+    }
   }
 }

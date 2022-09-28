@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/Post.dart';
-import 'package:cooking/views/feed/widgets/post_card/post_card_header.dart';
+import 'package:cooking/views/groups/group_detail/challenges_ranking/widgets/challenge_header.dart';
 import 'package:flutter/material.dart';
 
 class ChallengePost extends StatelessWidget {
@@ -24,7 +24,7 @@ class ChallengePost extends StatelessWidget {
               padding: const EdgeInsets.all(7),
               child: Row(
                 children: [
-                  PostCardHeader(
+                  ChallengeHeader(
                     author: post.author,
                   ),
                 ],
