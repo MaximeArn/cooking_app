@@ -64,7 +64,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
               height: 80,
             ),
             Image.asset(
-              "assets/cooking_logo.png",
+              "assets/images/cooking_logo.png",
               height: 150,
             ),
             const SizedBox(

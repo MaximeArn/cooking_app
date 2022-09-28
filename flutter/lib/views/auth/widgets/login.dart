@@ -48,7 +48,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             height: 80,
           ),
           Image.asset(
-            "assets/cooking_logo.png",
+            "assets/images/cooking_logo.png",
             height: 150,
           ),
           const SizedBox(

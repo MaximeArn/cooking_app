@@ -30,7 +30,7 @@ class AddPostPage extends StatelessWidget {
                 const Spacer(),
                 _getBtn(
                   context,
-                  "Sélectionner vidéo\ndepuis la gallerie",
+                  "Sélectionner vidéo\ndepuis la galerie",
                   1,
                   Icons.upload,
                 ),

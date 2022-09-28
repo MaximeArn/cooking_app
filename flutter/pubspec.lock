@@ -63,7 +63,7 @@ packages:
       name: camera_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "2.2.1"
   camera_web:
     dependency: transitive
     description:
@@ -281,7 +281,7 @@ packages:
       name: image_picker_for_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.8"
+    version: "2.1.9"
   image_picker_ios:
     dependency: transitive
     description:
@@ -295,7 +295,7 @@ packages:
       name: image_picker_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.6.1"
+    version: "2.6.2"
   intl:
     dependency: "direct main"
     description:
@@ -386,7 +386,7 @@ packages:
       name: path_provider_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.4"
+    version: "2.0.5"
   path_provider_windows:
     dependency: transitive
     description:

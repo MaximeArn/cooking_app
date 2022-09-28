@@ -46,7 +46,8 @@ flutter:
   uses-material-design: true
 
   assets:
-    - ./assets/cooking_logo.png
+    - assets/
+    - assets/images/
   fonts:
     - family: CustomIcons
       fonts:

@@ -19,7 +19,7 @@ class CookingAppBar extends StatelessWidget with PreferredSizeWidget {
           ),
           actions: [if (action != null) action as Widget],
           title: Image.asset(
-            "assets/cooking_logo.png",
+            "assets/images/cooking_logo.png",
             height: 0.95 * preferredSize.height,
           )),
     );
