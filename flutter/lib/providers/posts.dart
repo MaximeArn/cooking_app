@@ -59,7 +59,7 @@ class PostsProvider with ChangeNotifier {
       {required File video, required String authorId}) async {
     final newPost = {
       "author": authorId,
-      "video_url": video,
+      "images": [video],
     };
 
     return http.post(

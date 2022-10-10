@@ -5,3 +5,11 @@ extension TimerUtils on int {
     return "$minuts:$seconds";
   }
 }
+
+extension LogUtils on String {
+  String toRedLog() => "'\x1B[31m$this\x1B[0m'";
+  String toGreenLog() => "'\x1B[32m$this\x1B[0m'";
+  String toYellowLog() => "'\x1B[33m$this\x1B[0m'";
+  String toBlueLog() => "'\x1B[34m$this\x1B[0m'";
+}
+

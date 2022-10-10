@@ -1,7 +1,8 @@
 import 'dart:io';
 
-import 'package:cooking/views/add_post/edit_video_page.dart';
-import 'package:cooking/views/add_post/record_video_page.dart';
+import 'package:cooking/views/add_post/diaporama/diaporama_page.dart';
+import 'package:cooking/views/add_post/video/edit_video_page.dart';
+import 'package:cooking/views/add_post/video/record_video_page.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -22,23 +23,34 @@ class AddPostPage extends StatelessWidget {
               )),
           const Spacer(),
           Center(
-            child: Row(
+            child: Column(
               children: <Widget>[
-                const Spacer(),
+                Row(
+                  children: <Widget>[
+                    const Spacer(),
+                    _getBtn(
+                      context,
+                      "Capturer une vidéo",
+                      0,
+                      Icons.camera_alt_rounded,
+                    ),
+                    const Spacer(),
+                    _getBtn(
+                      context,
+                      "Sélectionner vidéo\ndepuis la galerie",
+                      1,
+                      Icons.upload,
+                    ),
+                    const Spacer(),
+                  ],
+                ),
+                const SizedBox(height: 42),
                 _getBtn(
                   context,
-                  "Capturer une vidéo",
-                  0,
-                  Icons.camera_alt_rounded,
+                  "Créer un diaporama",
+                  2,
+                  Icons.photo_library,
                 ),
-                const Spacer(),
-                _getBtn(
-                  context,
-                  "Sélectionner vidéo\ndepuis la galerie",
-                  1,
-                  Icons.upload,
-                ),
-                const Spacer(),
               ],
             ),
           ),
@@ -75,6 +87,9 @@ class AddPostPage extends StatelessWidget {
       case 1:
         _onFromGalleryBtnTap(context);
         break;
+      case 2:
+        _onDiaporamaBtnPressed(context);
+        break;
     }
   }
 
@@ -98,6 +113,14 @@ class AddPostPage extends StatelessWidget {
         builder: (BuildContext context) => EditVideoPage(
           videoFile: File(path),
         ),
+      ),
+    );
+  }
+
+  _onDiaporamaBtnPressed(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute<dynamic>(
+        builder: (BuildContext context) => DiaporamaPage(),
       ),
     );
   }

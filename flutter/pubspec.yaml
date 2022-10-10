@@ -36,10 +36,16 @@ dependencies:
   pausable_timer:
   # To keep screen awake
   wakelock:
-  # To trim videos
-  video_trimmer:
   # File picker
   file_picker:
+  # Multiple images picker
+  images_picker:
+  # To drag and drop widgets
+  reorderables:
+  # To edit and do video stuff
+  ffmpeg_kit_flutter_full_gpl:
+  # For video trimmer
+  video_thumbnail:
   
 
 dev_dependencies:
