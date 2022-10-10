@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:cooking/extensions.dart';
+import 'package:cooking/views/add_post/edit_video_page.dart';
+import 'package:cooking/views/add_post/widgets/app_countdown_seconds.dart';
 import 'package:cooking/widgets/back_arrow.dart';
 import 'package:flutter/material.dart';
 import 'package:pausable_timer/pausable_timer.dart';
@@ -23,6 +27,8 @@ class _RecordVideoPageState extends State<RecordVideoPage> {
   int _currentCameraIndex = 0;
   int _currentFlashIndex = 0;
   late final PausableTimer _timer;
+  bool _isCountdownEnabled = false;
+  bool _isCountdownPlaying = false;
 
   @override
   void initState() {
@@ -45,10 +51,21 @@ class _RecordVideoPageState extends State<RecordVideoPage> {
           fit: StackFit.expand,
           children: <Widget>[
             if (_ready) _cameraWidgets() else Loader(),
-            if (_ready && !_isRecording) _overlayBtns(),
-            if (_ready) _bottomBtns(),
+            if (_ready && !_isRecording && !_isCountdownPlaying) _overlayBtns(),
+            if (_ready && !_isCountdownPlaying) _bottomBtns(),
             Positioned(left: 8, child: BackArrow()),
             if (_isRecording) _timerWidget(),
+            if (_isCountdownPlaying)
+              Center(
+                child: AppCountdownSeconds(
+                    timerSeconds: 10,
+                    callback: () {
+                      setState(() {
+                        _isCountdownPlaying = false;
+                      });
+                      _startRecording();
+                    }),
+              )
           ],
         ),
       ),
@@ -74,6 +91,9 @@ class _RecordVideoPageState extends State<RecordVideoPage> {
               "flash",
               _getFlashCurrentIcon(),
             ),
+            const SizedBox(height: 8),
+            _getBtn("countdown",
+                _isCountdownEnabled ? Icons.timer_10_select : Icons.timer_off),
           ],
         ),
       );
@@ -133,32 +153,47 @@ class _RecordVideoPageState extends State<RecordVideoPage> {
       case "switch":
         _switchCamera();
         break;
+      case "countdown":
+        _onCountdownBtnPressed();
+        break;
     }
   }
 
   void _onRecordBtnPressed() {
     if (_isRecording) {
-      Wakelock.disable();
+      _timer.cancel();
+      setState(() {
+        _isRecording = false;
+      });
+      _onVideoRecorded();
     } else {
-      Wakelock.enable();
+      if (!_isCountdownEnabled) {
+        _startRecording();
+      } else {
+        setState(() {
+          _isCountdownPlaying = true;
+        });
+      }
     }
-    
-    _initTimer();
-
-    setState(() {
-      _isRecording = !_isRecording;
-    });
   }
 
   void _onPauseResumeBtnPressed() {
     if (_isOnPause) {
+      _controller.resumeVideoRecording();
       _timer.start();
     } else {
+      _controller.pauseVideoRecording();
       _timer.pause();
     }
 
     setState(() {
       _isOnPause = !_isOnPause;
+    });
+  }
+
+  void _onCountdownBtnPressed() {
+    setState(() {
+      _isCountdownEnabled = !_isCountdownEnabled;
     });
   }
 
@@ -217,5 +252,26 @@ class _RecordVideoPageState extends State<RecordVideoPage> {
         ..start();
     });
     _timer.start();
+  }
+
+  void _onVideoRecorded() async {
+    Wakelock.disable();
+    final XFile file = await _controller.stopVideoRecording();
+    Navigator.of(context).push(
+      MaterialPageRoute<dynamic>(
+        builder: (BuildContext context) =>
+            EditVideoPage(videoFile: File(file.path)),
+      ),
+    );
+  }
+
+  void _startRecording() {
+    _controller.startVideoRecording();
+    Wakelock.enable();
+    _initTimer();
+    if (mounted)
+      setState(() {
+        _isRecording = !_isRecording;
+      });
   }
 }

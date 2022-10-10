@@ -55,18 +55,14 @@ class PostsProvider with ChangeNotifier {
     }
   }
 
-  Future<void> createPost(
-      {required List<File> images, required String authorId}) async {
-    // create the body to send to the server
-    print(images);
-    print(authorId);
-
+  Future<http.Response> createPost(
+      {required File video, required String authorId}) async {
     final newPost = {
       "author": authorId,
-      "images": images,
+      "video_url": video,
     };
 
-    await http.post(
+    return http.post(
       Uri.parse("$serverUrl/posts"),
       headers: {'Content-type': 'application/json'},
       // Pass the constructed body to the server

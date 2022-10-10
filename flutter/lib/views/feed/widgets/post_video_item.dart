@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_video_player/cached_video_player.dart';
 import 'package:cooking/environment/env.dart';
+import 'package:cooking/views/feed/widgets/logo_cooking.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
@@ -107,17 +108,7 @@ class _PostVideoItemState extends State<PostVideoItem> {
         ),
       );
 
-  Widget _logo() => Positioned(
-        right: 16,
-        top: 100,
-        child: Opacity(
-          opacity: 0.8,
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width / 4,
-            child: Image.asset("assets/images/cooking_logo.png"),
-          ),
-        ),
-      );
+  Widget _logo() => LogoCooking();
 
   Widget _userPicture() => Positioned(
         left: 16,

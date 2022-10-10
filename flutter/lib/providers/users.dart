@@ -21,6 +21,8 @@ class UsersProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  static String? currentUserId;
+
   List<Map<String, dynamic>> _filteredUsers = [];
   UnmodifiableListView<Map<String, dynamic>> get filteredUsers =>
       UnmodifiableListView(_filteredUsers);
@@ -60,6 +62,7 @@ class UsersProvider with ChangeNotifier {
           json.decode(response.body),
           isPopulated: true,
         );
+        currentUserId = connectedUser?.id;
         getConnectedUserGroups(connectedUser!.id);
       }
     } catch (e) {

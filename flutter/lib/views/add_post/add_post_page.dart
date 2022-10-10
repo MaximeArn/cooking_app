@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:cooking/views/add_post/edit_video_page.dart';
 import 'package:cooking/views/add_post/record_video_page.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 class AddPostPage extends StatelessWidget {
@@ -53,7 +57,10 @@ class AddPostPage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Icon(icon, size: 42),
-            Text(tag),
+            Text(
+              tag,
+              textAlign: TextAlign.center,
+            ),
           ],
         ),
       );
@@ -79,7 +86,21 @@ class AddPostPage extends StatelessWidget {
     );
   }
 
-  void _onFromGalleryBtnTap(BuildContext context) {}
+  void _onFromGalleryBtnTap(BuildContext context) async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.video,
+    );
+    if (result == null) return;
+    String? path = result.files.single.path;
+    if (path == null) return;
+    Navigator.of(context).push(
+      MaterialPageRoute<dynamic>(
+        builder: (BuildContext context) => EditVideoPage(
+          videoFile: File(path),
+        ),
+      ),
+    );
+  }
 
 //////////////////////////////// FUNCTIONS ////////////////////////////////
 }

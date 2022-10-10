@@ -36,6 +36,10 @@ dependencies:
   pausable_timer:
   # To keep screen awake
   wakelock:
+  # To trim videos
+  video_trimmer:
+  # File picker
+  file_picker:
   
 
 dev_dependencies:
