@@ -5,6 +5,8 @@ import 'package:cooking/providers/groups.dart';
 import 'package:cooking/providers/posts.dart';
 import 'package:cooking/providers/rewards.dart';
 import 'package:cooking/providers/users.dart';
+import 'package:cooking/views/challenges/widgets/friend/friend_list.dart';
+import 'package:cooking/views/challenges/widgets/league/groups_list.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -91,6 +93,8 @@ class _CookingState extends State<Cooking> {
           EditProfile.routeName: (_) => EditProfile(),
           ForgotPassword.routeName: (_) => ForgotPassword(),
           Settings.routeName: (_) => Settings(),
+          FriendsList.routeName: (_) => FriendsList(),
+          GroupsList.routeName: (_) => GroupsList(),
         },
         onUnknownRoute: (_) =>
             MaterialPageRoute(builder: (_) => const NotFound()),

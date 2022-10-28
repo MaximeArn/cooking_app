@@ -1,3 +1,5 @@
+import 'package:cooking/views/challenges/widgets/friend/friend_list.dart';
+import 'package:cooking/views/challenges/widgets/league/groups_list.dart';
 import 'package:flutter/material.dart';
 
 class Challenges extends StatelessWidget {
@@ -24,7 +26,8 @@ class Challenges extends StatelessWidget {
                   borderRadius: BorderRadius.all(
                     Radius.circular(15),
                   ),
-                  onTap: () => Navigator.of(context).pushNamed("/league"),
+                  onTap: () =>
+                      Navigator.of(context).pushNamed(GroupsList.routeName),
                   child: Ink(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
@@ -54,7 +57,8 @@ class Challenges extends StatelessWidget {
                   borderRadius: BorderRadius.all(
                     Radius.circular(15),
                   ),
-                  onTap: () => Navigator.of(context).pushNamed("/challenges"),
+                  onTap: () =>
+                      Navigator.of(context).pushNamed(FriendsList.routeName),
                   child: Ink(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
