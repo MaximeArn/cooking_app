@@ -2,7 +2,6 @@ import express, { urlencoded, json } from "express";
 import mongoose from "mongoose";
 import usersRouter from "./routers/users";
 import postsRouter from "./routers/posts";
-import rewardsRouter from "./routers/rewards";
 import imagesRouter from "./routers/images";
 import { config } from "dotenv";
 import AWS from "aws-sdk";
