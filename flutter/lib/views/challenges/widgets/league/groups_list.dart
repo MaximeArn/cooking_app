@@ -22,11 +22,11 @@ class GroupsList extends StatelessWidget {
             children: [
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                 child: ElevatedButton.icon(
                     style: ButtonStyle(
                       padding: MaterialStateProperty.all<EdgeInsets>(
-                        EdgeInsets.all(7),
+                        EdgeInsets.symmetric(horizontal: 9, vertical: 11),
                       ),
                       backgroundColor: MaterialStateProperty.all<Color>(
                         Theme.of(context).colorScheme.primary,
@@ -47,8 +47,8 @@ class GroupsList extends StatelessWidget {
                       "New group",
                       style: TextStyle(
                           color: Theme.of(context).secondaryHeaderColor,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 13),
+                          fontWeight: FontWeight.w600,
+                          fontSize: 15),
                     )),
               )
             ],

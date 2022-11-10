@@ -10,23 +10,40 @@ class GroupListRow extends StatelessWidget {
     final String title = "Group Title";
 
     return Container(
-      margin: EdgeInsets.all(15),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: Colors.grey.shade300, width: 1.7),
+        ),
+      ),
+      margin: EdgeInsets.symmetric(horizontal: 15),
+      padding: EdgeInsets.symmetric(vertical: 12),
       child: Row(
         children: [
           Expanded(
             child: Row(
               children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage(assetsUrl + avatar),
-                  radius: 32,
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 6.0),
+                  margin: EdgeInsets.only(right: 15),
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage(assetsUrl + avatar),
+                    radius: 35,
+                  ),
                 ),
-                Text(title)
+                Text(title,
+                    style:
+                        TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
               ],
             ),
           ),
           Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text("Challenge"),
+              Text(
+                "Challenge",
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+              ),
+              Divider(),
               Text("Archive"),
             ],
           )
