@@ -10,10 +10,9 @@ class GroupsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final groups = Provider.of<UsersProvider>(context, listen: false)
-        .connectedUser
-        ?.groups;
-    print(groups?.length);
+    final connectedUser =
+        Provider.of<UsersProvider>(context, listen: false).connectedUser;
+    print(connectedUser?.id);
 
     return SecondaryScaffold(
       body: Column(

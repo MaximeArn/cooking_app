@@ -60,7 +60,7 @@ class UsersProvider with ChangeNotifier {
           json.decode(response.body),
           isPopulated: true,
         );
-        getConnectedUserGroups(connectedUser!.id);
+        // getConnectedUserGroups(connectedUser!.id);
       }
     } catch (e) {
       print(e);
@@ -71,22 +71,22 @@ class UsersProvider with ChangeNotifier {
   Future<dynamic> getConnectedUserById(String userId) async {
     try {
       connectedUser = await getUserById(userId);
-      getConnectedUserGroups(userId);
+      // getConnectedUserGroups(userId);
     } catch (e) {
       print(e);
       rethrow;
     }
   }
 
-  Future<void> getConnectedUserGroups(userId) async {
-    http.Response response =
-        await http.get(Uri.parse("$serverUrl/groups/getGroups/$userId"));
-    final List decodedBody = json.decode(response.body);
-    connectedUser!.groups = decodedBody
-        .map((groupJson) => Group.fromJson(groupJson, isPopulated: false))
-        .toList();
-    notifyListeners();
-  }
+  // Future<void> getConnectedUserGroups(userId) async {
+  //   http.Response response =
+  //       await http.get(Uri.parse("$serverUrl/groups/getGroups/$userId"));
+  //   final List decodedBody = json.decode(response.body);
+  //   connectedUser!.groups = decodedBody
+  //       .map((groupJson) => Group.fromJson(groupJson, isPopulated: false))
+  //       .toList();
+  //   notifyListeners();
+  // }
 
   Future<void> getFilteredUsers(String filter,
       {searAmoungFriends = false}) async {

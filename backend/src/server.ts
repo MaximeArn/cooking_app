@@ -4,9 +4,7 @@ import usersRouter from "./routers/users";
 import postsRouter from "./routers/posts";
 import rewardsRouter from "./routers/rewards";
 import imagesRouter from "./routers/images";
-import groupsRouter from "./routers/groups";
 import { config } from "dotenv";
-import challengesRouter from "./routers/challenges";
 import AWS from "aws-sdk";
 
 config();
@@ -36,8 +34,6 @@ server.use(express.static(`${__dirname}/../public`));
 server.use("/users", usersRouter);
 server.use("/posts", postsRouter);
 server.use("/images", imagesRouter);
-server.use("/groups", groupsRouter);
-server.use("/challenges", challengesRouter);
 
 server.listen(PORT || 3000, () =>
   console.log(`server is listening on ${PORT}`)
