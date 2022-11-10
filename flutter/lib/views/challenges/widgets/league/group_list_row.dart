@@ -18,23 +18,21 @@ class GroupListRow extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 15),
       padding: EdgeInsets.symmetric(vertical: 12),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(
-            child: Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 6.0),
-                  margin: EdgeInsets.only(right: 15),
-                  child: CircleAvatar(
-                    backgroundImage: NetworkImage(assetsUrl + avatar),
-                    radius: 35,
-                  ),
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 6.0),
+                margin: EdgeInsets.only(right: 15),
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage(assetsUrl + avatar),
+                  radius: 35,
                 ),
-                Text(title,
-                    style:
-                        TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
-              ],
-            ),
+              ),
+              Text(title,
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
+            ],
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -43,7 +41,13 @@ class GroupListRow extends StatelessWidget {
                 "Challenge",
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
               ),
-              Divider(),
+              SizedBox(
+                width: 75,
+                child: Divider(
+                  color: Colors.black,
+                  thickness: 1,
+                ),
+              ),
               Text("Archive"),
             ],
           )
