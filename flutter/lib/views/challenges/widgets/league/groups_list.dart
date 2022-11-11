@@ -6,10 +6,24 @@ import 'package:provider/provider.dart';
 
 class GroupsList extends StatelessWidget {
   static String routeName = "/groupsList";
-  const GroupsList({Key? key}) : super(key: key);
+  GroupsList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final fakeGroupLists = [
+      {
+        "title": "Les fratés",
+        "avatar": "amis.jpg",
+      },
+      {
+        "title": "famille",
+        "avatar": "famille.jpg",
+      },
+      {
+        "title": "Les vieux",
+        "avatar": "vieux.jpg",
+      },
+    ];
     final connectedUser =
         Provider.of<UsersProvider>(context, listen: false).connectedUser;
     print(connectedUser?.id);
@@ -55,9 +69,12 @@ class GroupsList extends StatelessWidget {
           Expanded(
             child: ListView(
               children: [
-                GroupListRow(),
-                GroupListRow(),
-                GroupListRow(),
+                ...fakeGroupLists
+                    .map((group) => GroupListRow(
+                          title: group["title"] as String,
+                          avatar: group["avatar"] as String,
+                        ))
+                    .toList()
               ],
             ),
           )

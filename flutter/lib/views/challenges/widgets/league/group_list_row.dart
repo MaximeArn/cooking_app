@@ -2,13 +2,17 @@ import 'package:cooking/environment/env.dart';
 import 'package:flutter/material.dart';
 
 class GroupListRow extends StatelessWidget {
-  const GroupListRow({Key? key}) : super(key: key);
+  final String title;
+  final String avatar;
+
+  const GroupListRow({
+    Key? key,
+    required this.title,
+    required this.avatar,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final String avatar = "default_avatar.jpg";
-    final String title = "Group Title";
-
     return Container(
       decoration: BoxDecoration(
         border: Border(
@@ -27,7 +31,7 @@ class GroupListRow extends StatelessWidget {
                 margin: EdgeInsets.only(right: 15),
                 child: CircleAvatar(
                   backgroundImage: NetworkImage(assetsUrl + avatar),
-                  radius: 35,
+                  radius: 30,
                 ),
               ),
               Text(title,
