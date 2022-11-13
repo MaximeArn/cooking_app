@@ -6,6 +6,7 @@ import 'package:cooking/providers/posts.dart';
 import 'package:cooking/providers/rewards.dart';
 import 'package:cooking/providers/users.dart';
 import 'package:cooking/views/challenges/widgets/friend/friend_list.dart';
+import 'package:cooking/views/challenges/widgets/league/create_challenge/create_challenge.dart';
 import 'package:cooking/views/challenges/widgets/league/groups_list.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -95,6 +96,7 @@ class _CookingState extends State<Cooking> {
           Settings.routeName: (_) => Settings(),
           FriendsList.routeName: (_) => FriendsList(),
           GroupsList.routeName: (_) => GroupsList(),
+          CreateChallenge.routeName: (_) => CreateChallenge()
         },
         onUnknownRoute: (_) =>
             MaterialPageRoute(builder: (_) => const NotFound()),

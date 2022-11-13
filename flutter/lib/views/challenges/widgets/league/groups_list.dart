@@ -10,6 +10,7 @@ class GroupsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // replace by connectedUser.groups ASAP
     final fakeGroupLists = [
       {
         "title": "Les fratés",
@@ -23,7 +24,12 @@ class GroupsList extends StatelessWidget {
         "title": "Les vieux",
         "avatar": "vieux.jpg",
       },
+      {
+        "title": "BFF",
+        "avatar": "bff.jpg",
+      },
     ];
+
     final connectedUser =
         Provider.of<UsersProvider>(context, listen: false).connectedUser;
     print(connectedUser?.id);
@@ -70,10 +76,7 @@ class GroupsList extends StatelessWidget {
             child: ListView(
               children: [
                 ...fakeGroupLists
-                    .map((group) => GroupListRow(
-                          title: group["title"] as String,
-                          avatar: group["avatar"] as String,
-                        ))
+                    .map((group) => GroupListRow(group: group))
                     .toList()
               ],
             ),
