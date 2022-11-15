@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:cached_video_player/cached_video_player.dart';
 import 'package:cooking/extensions.dart';
 import 'package:ffmpeg_kit_flutter_full_gpl/ffmpeg_kit.dart';
+import 'package:ffmpeg_kit_flutter_full_gpl/log.dart';
 import 'package:ffmpeg_kit_flutter_full_gpl/return_code.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -117,7 +118,7 @@ class _GenerateDiaporamaState extends State<GenerateDiaporama> {
     final String output = "$temp/$date.mp4";
     final String audio = await _getAudioFilePath(date: date, temp: temp);
     final String command =
-        '-f concat -safe 0 -i $input -i $audio -c:v libx264 -movflags +faststart -c:a copy -shortest "$output"';
+        '-f concat -safe 0 -i $input -i $audio -c:v libx264 -vf scale=w=1080:h=1920:force_original_aspect_ratio=decrease,pad=1080:1980:-1:-1:color=black -movflags +faststart -c:a copy -shortest "$output"';
     _generateVideo(command, output);
   }
 
@@ -157,7 +158,11 @@ class _GenerateDiaporamaState extends State<GenerateDiaporama> {
     print("Starting Ffmpeg with command '$command'".toGreenLog());
     await FFmpegKit.executeAsync(command, (session) async {
       final returnCode = await session.getReturnCode();
+      for (Log log in await session.getAllLogs()) {
+        print(log.getMessage().toRedLog());
+      }
       if (ReturnCode.isSuccess(returnCode)) {
+        print("Video created with success".toGreenLog());
         File video = File(output);
         _onVideoGenerated(video);
       } else {
