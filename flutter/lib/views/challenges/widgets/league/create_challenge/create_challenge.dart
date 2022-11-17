@@ -74,25 +74,43 @@ class _CreateChallengeState extends State<CreateChallenge> {
           SizedBox(
             width: 150,
             child: ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-              ),
+              style: isSubmitEnabled
+                  ? ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          Color.fromRGBO(29, 29, 29, 1)),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                    )
+                  : ButtonStyle(
+                      elevation: MaterialStateProperty.all<double>(1),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          Theme.of(context).scaffoldBackgroundColor),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                    ),
               onPressed: isSubmitEnabled ? () {} : null,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     "Next",
-                    style: TextStyle(color: Colors.black87),
+                    style: TextStyle(
+                      color: isSubmitEnabled
+                          ? Theme.of(context).secondaryHeaderColor
+                          : Theme.of(context).colorScheme.primary,
+                    ),
                   ),
                   Icon(
                     Icons.chevron_right,
-                    color: Colors.black87,
+                    color: isSubmitEnabled
+                        ? Theme.of(context).secondaryHeaderColor
+                        : Theme.of(context).colorScheme.primary,
                   ),
                 ],
               ),
