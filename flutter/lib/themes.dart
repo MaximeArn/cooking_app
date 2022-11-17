@@ -9,14 +9,6 @@ class CookingTheme {
     primaryColor: cookingGold,
     secondaryHeaderColor: Color(0xFFFFEDAE),
     colorScheme: const ColorScheme.dark().copyWith(primary: Colors.white),
-    inputDecorationTheme: const InputDecorationTheme(
-      focusColor: cookingGold,
-      focusedBorder: UnderlineInputBorder(
-        borderSide: BorderSide(
-          color: cookingGold,
-        ),
-      ),
-    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(
@@ -32,14 +24,6 @@ class CookingTheme {
     primaryColor: cookingGold,
     secondaryHeaderColor: Color(0xFFFFEDAE),
     colorScheme: const ColorScheme.light().copyWith(primary: Colors.black),
-    inputDecorationTheme: const InputDecorationTheme(
-      focusColor: cookingGold,
-      focusedBorder: UnderlineInputBorder(
-        borderSide: BorderSide(
-          color: cookingGold,
-        ),
-      ),
-    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all(
