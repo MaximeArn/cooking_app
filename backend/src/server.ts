@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import usersRouter from "./routers/users";
 import postsRouter from "./routers/posts";
 import imagesRouter from "./routers/images";
+import groupsRouter from "./routers/groups";
 import { config } from "dotenv";
 import AWS from "aws-sdk";
 
@@ -33,6 +34,7 @@ server.use(express.static(`${__dirname}/../public`));
 server.use("/users", usersRouter);
 server.use("/posts", postsRouter);
 server.use("/images", imagesRouter);
+server.use("/groups", groupsRouter);
 
 server.listen(PORT || 3000, () =>
   console.log(`server is listening on ${PORT}`)
