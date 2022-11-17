@@ -23,6 +23,8 @@ module.exports = {
         model: "group",
       });
 
+      console.log(updatedConnectedUser);
+
       res.json(updatedConnectedUser);
     } catch (error) {
       console.error(error);

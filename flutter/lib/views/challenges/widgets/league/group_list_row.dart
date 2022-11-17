@@ -1,9 +1,10 @@
 import 'package:cooking/environment/env.dart';
+import 'package:cooking/models/Group.dart';
 import 'package:cooking/views/challenges/widgets/league/create_challenge/create_challenge.dart';
 import 'package:flutter/material.dart';
 
 class GroupListRow extends StatelessWidget {
-  final Map<String, String> group;
+  final Group group;
 
   const GroupListRow({Key? key, required this.group}) : super(key: key);
 
@@ -26,11 +27,11 @@ class GroupListRow extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 6.0),
                 margin: EdgeInsets.only(right: 15),
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage(assetsUrl + group["avatar"]!),
+                  backgroundImage: NetworkImage(assetsUrl + group.avatar),
                   radius: 30,
                 ),
               ),
-              Text(group["title"]!,
+              Text(group.title as String,
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
             ],
           ),

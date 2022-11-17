@@ -1,5 +1,4 @@
 import 'package:cooking/widgets/searchBar/results_lines/classic_result.dart';
-import 'package:cooking/widgets/searchBar/results_lines/selectable_result.dart';
 import 'package:flutter/material.dart';
 
 class FullPageResults extends StatelessWidget {
@@ -21,11 +20,7 @@ class FullPageResults extends StatelessWidget {
       itemCount: filteredUsers.length,
       itemBuilder: (context, index) {
         Map<String, dynamic> user = filteredUsers[index];
-        return addMembersPage
-            ? SelectableResult(
-                user: user,
-              )
-            : ClassicResult(user: user, clearTextField: clearTextField);
+        return ClassicResult(user: user, clearTextField: clearTextField);
       },
     );
   }

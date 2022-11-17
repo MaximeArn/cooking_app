@@ -1,8 +1,9 @@
 import 'package:cooking/environment/env.dart';
+import 'package:cooking/models/Group.dart';
 import 'package:flutter/material.dart';
 
 class GroupHeader extends StatelessWidget {
-  final group;
+  final Group group;
 
   const GroupHeader({Key? key, required this.group}) : super(key: key);
 
@@ -15,11 +16,11 @@ class GroupHeader extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 30,
-            backgroundImage: NetworkImage(assetsUrl + group["avatar"]),
+            backgroundImage: NetworkImage(assetsUrl + group.avatar),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10),
-            child: Text(group["title"]),
+            child: Text(group.title as String),
           ),
         ],
       ),

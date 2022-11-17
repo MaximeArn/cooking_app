@@ -54,7 +54,8 @@ class User {
         countryCode = json["countryCode"],
         groups = isPopulated
             ? (json["groups"] as List)
-                .map((jsonGroup) => Group.fromJson(jsonGroup)).toList()
+                .map((jsonGroup) => Group.fromJson(jsonGroup))
+                .toList()
             : [];
 
   String toJson() {

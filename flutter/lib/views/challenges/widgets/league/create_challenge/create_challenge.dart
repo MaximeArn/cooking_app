@@ -1,3 +1,4 @@
+import 'package:cooking/models/Group.dart';
 import 'package:cooking/views/challenges/widgets/league/create_challenge/group_header.dart';
 import 'package:cooking/widgets/scaffolds/secondary_scaffold.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,6 @@ class _CreateChallengeState extends State<CreateChallenge> {
   void initState() {
     super.initState();
     controller.addListener(() {
-      print("listener executed !");
       setState(() {
         isSubmitEnabled = controller.text.isNotEmpty;
       });
@@ -33,8 +33,7 @@ class _CreateChallengeState extends State<CreateChallenge> {
 
   @override
   Widget build(BuildContext context) {
-    print("build");
-    final group = ModalRoute.of(context)!.settings.arguments;
+    final Group group = ModalRoute.of(context)!.settings.arguments as Group;
     return SecondaryScaffold(
       body: Column(
         children: [
