@@ -18,7 +18,10 @@ module.exports = {
           $push: { groups: newGroup._id },
         },
         { useFindAndModify: false, new: true }
-      );
+      ).populate({
+        path: "groups",
+        model: "group",
+      });
 
       res.json(updatedConnectedUser);
     } catch (error) {
