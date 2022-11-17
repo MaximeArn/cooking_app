@@ -2,7 +2,6 @@ import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 import 'package:cooking/environment/env.dart';
-import 'package:cooking/models/Group.dart';
 import 'package:cooking/models/User.dart';
 import 'package:firebase_auth/firebase_auth.dart' as Firebase;
 import 'package:flutter/material.dart';

@@ -8,5 +8,5 @@ export const groupSchema = new Schema({
   members: { type: [ObjectId], ref: "user", default: [] },
 });
 
-const groupModel = model("post", groupSchema);
+const groupModel = model("group", groupSchema);
 export default groupModel;

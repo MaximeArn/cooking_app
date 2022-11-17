@@ -119,6 +119,5 @@ class _CreateChallengeState extends State<CreateChallenge> {
         ],
       ),
     );
-    ;
   }
 }

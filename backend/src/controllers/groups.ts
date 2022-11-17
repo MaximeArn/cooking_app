@@ -1,4 +1,6 @@
 import { NextFunction, Request, Response } from "express";
+import Group from "../../models/group";
+import User from "../../models/user";
 
 module.exports = {
   createGroup: async (
@@ -7,10 +9,18 @@ module.exports = {
     next: NextFunction
   ) => {
     try {
-      console.log(id);
-      console.log(title);
-      console.log(file);
-      res.end();
+      const newGroup = await Group.create({ title, members: [id] });
+      console.log(newGroup._id);
+
+      const updatedConnectedUser = await User.findByIdAndUpdate(
+        id,
+        {
+          $push: { groups: newGroup._id },
+        },
+        { useFindAndModify: false, new: true }
+      );
+
+      res.json(updatedConnectedUser);
     } catch (error) {
       console.error(error);
       next(error);
