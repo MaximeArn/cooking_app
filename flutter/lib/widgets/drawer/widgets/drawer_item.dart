@@ -28,14 +28,14 @@ class DrawerItem extends StatelessWidget {
                         padding: const EdgeInsets.only(right: 25),
                         child: Icon(
                           icon,
-                          size: 38,
+                          size: 36,
                         ),
                       ),
                       Flexible(
                         child: Text(
                           title,
                           style: TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 18),
+                              fontWeight: FontWeight.w500, fontSize: 15),
                           softWrap: true,
                         ),
                       ),

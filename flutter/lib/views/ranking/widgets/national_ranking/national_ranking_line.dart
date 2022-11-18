@@ -60,7 +60,7 @@ class NationalRankingLine extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 20.0),
                     child: CircleAvatar(
-                      radius: 35,
+                      radius: 25,
                       backgroundImage:
                           NetworkImage("$assetsUrl${user["avatar"]}"),
                     ),

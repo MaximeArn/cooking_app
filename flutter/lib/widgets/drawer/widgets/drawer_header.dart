@@ -17,19 +17,19 @@ class _DrawerHeaderState extends State<CookingDrawerHeader> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 70, bottom: 0),
+      padding: EdgeInsets.only(top: 60),
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 15.0),
+            padding: const EdgeInsets.only(bottom: 15),
             child: CircleAvatar(
-              radius: 70,
+              radius: 60,
               backgroundImage: NetworkImage(assetsUrl + widget.avatar),
             ),
           ),
           Text(
             "Hello ${widget.name}",
-            style: TextStyle(fontSize: 26, fontWeight: FontWeight.w600),
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
           )
         ],
       ),
