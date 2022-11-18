@@ -1,7 +1,9 @@
 import 'package:cooking/models/Group.dart';
+import 'package:cooking/providers/groups.dart';
 import 'package:cooking/views/challenges/widgets/league/create_challenge/group_header.dart';
 import 'package:cooking/widgets/scaffolds/secondary_scaffold.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CreateChallenge extends StatefulWidget {
   static String routeName = "/createChallenge";
@@ -13,6 +15,7 @@ class CreateChallenge extends StatefulWidget {
 
 class _CreateChallengeState extends State<CreateChallenge> {
   bool isSubmitEnabled = false;
+  bool isLoading = false;
   final controller = TextEditingController();
 
   @override
@@ -20,7 +23,7 @@ class _CreateChallengeState extends State<CreateChallenge> {
     super.initState();
     controller.addListener(() {
       setState(() {
-        isSubmitEnabled = controller.text.isNotEmpty;
+        isSubmitEnabled = controller.text.trim().isNotEmpty;
       });
     });
   }
@@ -34,6 +37,9 @@ class _CreateChallengeState extends State<CreateChallenge> {
   @override
   Widget build(BuildContext context) {
     final Group group = ModalRoute.of(context)!.settings.arguments as Group;
+    final createChallenge =
+        Provider.of<GroupsProvider>(context, listen: false).createChallenge;
+
     return SecondaryScaffold(
       body: Column(
         children: [
@@ -93,7 +99,14 @@ class _CreateChallengeState extends State<CreateChallenge> {
                         ),
                       ),
                     ),
-              onPressed: isSubmitEnabled ? () {} : null,
+              onPressed: isSubmitEnabled
+                  ? () {
+                      createChallenge(
+                        groupId: group.id as String,
+                        title: controller.value.text.trim(),
+                      );
+                    }
+                  : null,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

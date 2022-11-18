@@ -31,4 +31,18 @@ module.exports = {
       next(error);
     }
   },
+
+  createChallenge: async (
+    { body: { groupId, title } }: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      console.log(groupId);
+      console.log(title);
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
+  },
 };

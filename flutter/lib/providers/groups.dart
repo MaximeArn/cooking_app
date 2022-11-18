@@ -20,4 +20,21 @@ class GroupsProvider with ChangeNotifier {
       rethrow;
     }
   }
+
+  Future<dynamic> createChallenge(
+      {required String groupId, required String title}) async {
+    try {
+      print(groupId);
+      print(title);
+      http.Response response = await http.patch(
+        Uri.parse("$serverUrl/groups/challenge"),
+        headers: {'Content-type': 'application/json'},
+        body: json.encode({"groupId": groupId, "title": title}),
+      );
+      print(response.statusCode);
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
+  }
 }

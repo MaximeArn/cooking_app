@@ -54,8 +54,8 @@ class GroupListRow extends StatelessWidget {
                 ),
               ),
               InkWell(
-                onTap: () => Navigator.of(context)
-                    .pushNamed(CreateChallenge.routeName, arguments: group),
+                onTap: () =>
+                    Navigator.of(context).pushNamed("/", arguments: group),
                 child: Text(
                   "Archives",
                   style: TextStyle(fontSize: 13),
