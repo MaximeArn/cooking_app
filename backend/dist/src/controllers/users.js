@@ -29,9 +29,14 @@ module.exports = {
     }),
     getUserByEmail: ({ params: { email } }, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const user = yield user_1.default.findOne({ email: email }).populate({
+            const user = yield user_1.default.findOne({ email: email })
+                .populate({
                 path: "posts",
                 model: "post",
+            })
+                .populate({
+                path: "groups",
+                model: "group",
             });
             res.json(user);
         }

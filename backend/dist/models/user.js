@@ -18,7 +18,7 @@ exports.userSchema = new mongoose_1.Schema({
     },
     avatar: {
         type: String,
-        default: `/assets/images/avatars/default_avatar.jpg`,
+        default: `default_avatar.jpg`,
     },
     posts: { type: [{ type: mongoose_1.Schema.Types.ObjectId, ref: "post" }], default: [] },
     countryCode: { type: String, default: "FR" },

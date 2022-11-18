@@ -13,50 +13,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const group_1 = __importDefault(require("../../models/group"));
+const user_1 = __importDefault(require("../../models/user"));
 module.exports = {
-    createGroup: ({ body, params: { connectedUser } }, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    createGroup: ({ body: { title }, file, params: { id } }, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const group = {
-                name: body.name,
-                members: [...body.members.map((member) => member.id), connectedUser],
-            };
-            const newGroup = yield group_1.default.create(group);
-            res.json(newGroup).status(200);
-        }
-        catch (error) {
-            console.error(error);
-            next(error);
-        }
-    }),
-    getGroups: ({ params: { connectedUser } }, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const groups = yield group_1.default.find({ members: connectedUser });
-        res.json(groups);
-    }),
-    getGroupById: ({ params: { groupId } }, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-        try {
-            const group = yield group_1.default.findById(groupId)
-                .populate({
-                path: "members",
-                select: {
-                    name: 1,
-                    avatar: 1,
-                },
-            })
-                .populate({
-                path: "challenges",
-                match: {
-                    isActive: false,
-                },
-                populate: {
-                    path: "posts.author",
-                    model: "user",
-                    select: {
-                        name: 1,
-                        avatar: 1,
-                    },
-                },
+            const newGroup = yield group_1.default.create({ title, members: [id] });
+            console.log(newGroup._id);
+            const updatedConnectedUser = yield user_1.default.findByIdAndUpdate(id, {
+                $push: { groups: newGroup._id },
+            }, { useFindAndModify: false, new: true }).populate({
+                path: "groups",
+                model: "group",
             });
-            res.json(group).status(200);
+            console.log(updatedConnectedUser);
+            res.json(updatedConnectedUser);
         }
         catch (error) {
             console.error(error);
