@@ -1,4 +1,4 @@
-import { Schema, model, Document } from "mongoose";
+import { Schema, model } from "mongoose";
 import { ObjectId } from "mongodb";
 
 export const groupSchema = new Schema({

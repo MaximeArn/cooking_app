@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import Challenge from "../../models/challenge";
 import Group from "../../models/group";
 import User from "../../models/user";
 
@@ -38,8 +39,11 @@ module.exports = {
     next: NextFunction
   ) => {
     try {
-      console.log(groupId);
-      console.log(title);
+      const challenge = new Challenge({
+        title: title,
+      });
+      console.log(challenge);
+      res.end();
     } catch (error) {
       console.error(error);
       next(error);
