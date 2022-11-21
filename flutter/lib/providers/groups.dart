@@ -31,7 +31,7 @@ class GroupsProvider with ChangeNotifier {
         headers: {'Content-type': 'application/json'},
         body: json.encode({"groupId": groupId, "title": title}),
       );
-      print(response.statusCode);
+      print(response.body);
     } catch (e) {
       print(e);
       rethrow;

@@ -39,11 +39,20 @@ module.exports = {
     next: NextFunction
   ) => {
     try {
-      const challenge = new Challenge({
-        title: title,
-      });
-      console.log(challenge);
-      res.end();
+      const group = await Group.findById(groupId);
+      const alreadyAChallengeOpen: boolean = group.challenges.some(
+        (chall) => chall.status === "open"
+      );
+      if (alreadyAChallengeOpen) {
+        throw new Error("There is already a challenge open in this group");
+      } else {
+        const challenge = new Challenge({
+          title: title,
+        });
+        group.challenges.push(challenge);
+        await group.save();
+      }
+      res.json(group);
     } catch (error) {
       console.error(error);
       next(error);
