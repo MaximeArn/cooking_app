@@ -28,7 +28,7 @@ module.exports = {
 
       res.json(updatedConnectedUser);
     } catch (error) {
-      console.error(error);
+      console.error(error.message);
       next(error);
     }
   },
@@ -54,8 +54,8 @@ module.exports = {
       }
       res.json(group);
     } catch (error) {
+      res.status(500).send(error.message);
       console.error(error);
-      next(error);
     }
   },
 };
