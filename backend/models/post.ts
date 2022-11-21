@@ -1,9 +1,9 @@
 import { Schema, model, Document, Model } from "mongoose";
 import { ObjectId } from "mongodb";
-import { UserInterface } from "./user";
+import { IUser } from "./user";
 
-export interface PostInterface extends Document {
-  author: String | UserInterface;
+export interface IPost extends Document {
+  author: String | IUser;
   images: String[];
   note: Number;
   description: String;
@@ -20,5 +20,5 @@ export const postSchema = new Schema({
   comments: { type: [Schema.Types.ObjectId], default: [] },
 });
 
-const postModel = model("post", postSchema);
+const postModel = model<IPost>("post", postSchema);
 export default postModel;
