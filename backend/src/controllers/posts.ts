@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from "express";
-import Post, { PostInterface } from "../../models/post";
+import Post from "../../models/post";
 import User from "../../models/user";
 
 module.exports = {
   getPosts: async (_: Request, res: Response, next: NextFunction) => {
     try {
-      const posts: PostInterface[] = await Post.find({
+      const posts = await Post.find({
         belongsToChallenge: false,
       }).populate({
         path: "author",

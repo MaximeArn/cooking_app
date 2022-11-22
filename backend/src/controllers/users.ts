@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { pathToFileURL } from "url";
-import User, { UserInterface } from "../../models/user";
+import User, { IUser } from "../../models/user";
 import { hashPassword } from "../utils/passwordHash";
 const { deleteImage } = require("./images");
 
@@ -25,7 +25,7 @@ module.exports = {
     next: NextFunction
   ) => {
     try {
-      const user: UserInterface = await User.findOne({ email: email })
+      const user: IUser = await User.findOne({ email: email })
         .populate({
           path: "posts",
           model: "post",
@@ -48,7 +48,7 @@ module.exports = {
   ) => {
     try {
       console.log(id);
-      const user: UserInterface = await User.findById(id).populate({
+      const user: IUser = await User.findById(id).populate({
         path: "posts",
         model: "post",
       });
@@ -69,7 +69,7 @@ module.exports = {
       const filterObject: any = {
         name: { $regex: `^${filter}`, $options: "i" },
       };
-      const filteredUsers: UserInterface[] = await User.find(filterObject, {
+      const filteredUsers: IUser[] = await User.find(filterObject, {
         name: 1,
         avatar: 1,
       });

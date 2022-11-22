@@ -1,6 +1,7 @@
 import 'package:cooking/models/Group.dart';
 import 'package:cooking/providers/groups.dart';
 import 'package:cooking/views/challenges/widgets/league/create_challenge/group_header.dart';
+import 'package:cooking/widgets/loader.dart';
 import 'package:cooking/widgets/scaffolds/secondary_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,6 @@ class CreateChallenge extends StatefulWidget {
 
 class _CreateChallengeState extends State<CreateChallenge> {
   bool isSubmitEnabled = false;
-  bool isLoading = false;
   final controller = TextEditingController();
 
   @override
@@ -37,8 +37,7 @@ class _CreateChallengeState extends State<CreateChallenge> {
   @override
   Widget build(BuildContext context) {
     final Group group = ModalRoute.of(context)!.settings.arguments as Group;
-    final createChallenge =
-        Provider.of<GroupsProvider>(context, listen: false).createChallenge;
+    final groupsProvider = Provider.of<GroupsProvider>(context);
 
     return SecondaryScaffold(
       body: Column(
@@ -76,58 +75,62 @@ class _CreateChallengeState extends State<CreateChallenge> {
               textAlign: TextAlign.center,
             ),
           ),
-          SizedBox(
-            width: 150,
-            child: ElevatedButton(
-              style: isSubmitEnabled
-                  ? ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          Color.fromRGBO(29, 29, 29, 1)),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+          groupsProvider.isLoading
+              ? Loader()
+              : SizedBox(
+                  width: 150,
+                  child: ElevatedButton(
+                    style: isSubmitEnabled
+                        ? ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                Color.fromRGBO(29, 29, 29, 1)),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                          )
+                        : ButtonStyle(
+                            elevation: MaterialStateProperty.all<double>(1),
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                Theme.of(context).scaffoldBackgroundColor),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                          ),
+                    onPressed: isSubmitEnabled
+                        ? () {
+                            groupsProvider.createChallenge(
+                              groupId: group.id as String,
+                              title: controller.value.text.trim(),
+                            );
+                          }
+                        : null,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Next",
+                          style: TextStyle(
+                            color: isSubmitEnabled
+                                ? Theme.of(context).secondaryHeaderColor
+                                : Theme.of(context).colorScheme.primary,
+                          ),
                         ),
-                      ),
-                    )
-                  : ButtonStyle(
-                      elevation: MaterialStateProperty.all<double>(1),
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          Theme.of(context).scaffoldBackgroundColor),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+                        Icon(
+                          Icons.chevron_right,
+                          color: isSubmitEnabled
+                              ? Theme.of(context).secondaryHeaderColor
+                              : Theme.of(context).colorScheme.primary,
                         ),
-                      ),
-                    ),
-              onPressed: isSubmitEnabled
-                  ? () {
-                      createChallenge(
-                        groupId: group.id as String,
-                        title: controller.value.text.trim(),
-                      );
-                    }
-                  : null,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Next",
-                    style: TextStyle(
-                      color: isSubmitEnabled
-                          ? Theme.of(context).secondaryHeaderColor
-                          : Theme.of(context).colorScheme.primary,
+                      ],
                     ),
                   ),
-                  Icon(
-                    Icons.chevron_right,
-                    color: isSubmitEnabled
-                        ? Theme.of(context).secondaryHeaderColor
-                        : Theme.of(context).colorScheme.primary,
-                  ),
-                ],
-              ),
-            ),
-          ),
+                ),
         ],
       ),
     );

@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class GroupsProvider with ChangeNotifier {
+  bool isLoading = false;
+
   Future<dynamic> getGroupById({required String groupId}) async {
     try {
       http.Response response = await http.get(
@@ -24,6 +26,8 @@ class GroupsProvider with ChangeNotifier {
 
   Future<dynamic> createChallenge(
       {required String groupId, required String title}) async {
+    isLoading = true;
+    notifyListeners();
     try {
       http.Response response = await http.patch(
         Uri.parse("$serverUrl/groups/challenge"),
@@ -32,12 +36,16 @@ class GroupsProvider with ChangeNotifier {
       );
       print(response.body);
       if (response.statusCode == 500) {
-        Utils.showSnackBar(isError: true, text: response.body);
+        throw Exception(response.body);
       } else {
         // TODO: suite de la methode
+        isLoading = false;
+        notifyListeners();
       }
     } catch (e) {
-      print(e);
+      Utils.showSnackBar(isError: true, text: e.toString());
+      isLoading = false;
+      notifyListeners();
       rethrow;
     }
   }
