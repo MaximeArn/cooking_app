@@ -1,5 +1,6 @@
 import 'package:cooking/models/Group.dart';
 import 'package:cooking/providers/groups.dart';
+import 'package:cooking/providers/users.dart';
 import 'package:cooking/views/challenges/widgets/league/create_challenge/group_header.dart';
 import 'package:cooking/widgets/loader.dart';
 import 'package:cooking/widgets/scaffolds/secondary_scaffold.dart';
@@ -37,6 +38,7 @@ class _CreateChallengeState extends State<CreateChallenge> {
   @override
   Widget build(BuildContext context) {
     final Group group = ModalRoute.of(context)!.settings.arguments as Group;
+    final connectedUser = Provider.of<UsersProvider>(context).connectedUser;
     final groupsProvider = Provider.of<GroupsProvider>(context);
 
     return SecondaryScaffold(
@@ -103,11 +105,18 @@ class _CreateChallengeState extends State<CreateChallenge> {
                             ),
                           ),
                     onPressed: isSubmitEnabled
-                        ? () {
-                            groupsProvider.createChallenge(
+                        ? () async {
+                            final newGroup =
+                                await groupsProvider.createChallenge(
                               groupId: group.id as String,
                               title: controller.value.text.trim(),
                             );
+                            connectedUser!.groups = [
+                              newGroup,
+                              ...connectedUser.groups
+                                  .where((g) => g.id != group.id)
+                                  .toList()
+                            ];
                           }
                         : null,
                     child: Row(

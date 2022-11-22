@@ -1,16 +1,18 @@
 import 'package:cooking/models/Post.dart';
 
 class Challenge {
-  final String theme;
-  final bool isActive;
+  final String title;
+  final String status;
   final List<dynamic> posts;
 
-  Challenge({required this.theme, required this.isActive, required this.posts});
+  Challenge({required this.title, required this.status, required this.posts});
 
-  Challenge.fromJson(json, {bool isPopulated = false}):
-    isActive = json["isActive"] == "true" ? true : false,
-    theme = json["theme"],
-    posts = isPopulated 
-      ? json["posts"].map((postJson) => Post.fromJson(postJson, isPopulated: true)).toList() 
-      : [];
+  Challenge.fromJson(json, {bool isPopulated = false})
+      : status = json["status"],
+        title = json["title"],
+        posts = isPopulated
+            ? json["posts"]
+                .map((postJson) => Post.fromJson(postJson, isPopulated: true))
+                .toList()
+            : [];
 }
