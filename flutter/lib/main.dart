@@ -3,7 +3,6 @@ import 'package:cooking/firebase_options.dart';
 import 'package:cooking/providers/auth.dart';
 import 'package:cooking/providers/groups.dart';
 import 'package:cooking/providers/posts.dart';
-import 'package:cooking/providers/rewards.dart';
 import 'package:cooking/providers/users.dart';
 import 'package:cooking/views/challenges/widgets/friend/friend_list.dart';
 import 'package:cooking/views/challenges/widgets/league/create_challenge/create_challenge.dart';
@@ -50,7 +49,6 @@ class Cooking extends StatefulWidget {
 }
 
 class _CookingState extends State<Cooking> {
-  final rewardsProvider = RewardsProvider();
   final postsProvider = PostsProvider();
   final usersProvider = UsersProvider();
 
@@ -61,11 +59,10 @@ class _CookingState extends State<Cooking> {
   }
 
   void initData() async {
-    // rewardsProvider.fetchRewards();
-    postsProvider.fetchPosts();
-    usersProvider.getNationalRanking();
     await usersProvider.getUserByEmail(
         email: firebase.FirebaseAuth.instance.currentUser!.email as String);
+    await postsProvider.fetchPosts();
+    await usersProvider.getNationalRanking(usersProvider.connectedUser!.stars);
   }
 
   @override
@@ -73,7 +70,6 @@ class _CookingState extends State<Cooking> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: usersProvider),
-        ChangeNotifierProvider.value(value: rewardsProvider),
         ChangeNotifierProvider.value(value: postsProvider),
         ChangeNotifierProvider.value(value: GroupsProvider()),
         ChangeNotifierProvider.value(value: AuthProvider()),

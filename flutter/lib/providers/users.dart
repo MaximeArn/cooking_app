@@ -12,6 +12,7 @@ import 'package:http_parser/http_parser.dart';
 class UsersProvider with ChangeNotifier {
   bool isLoading = false;
   bool firstSearch = true;
+  int connectedUserRank = 0;
 
   User? _connectedUser;
   User? get connectedUser => _connectedUser;
@@ -24,8 +25,8 @@ class UsersProvider with ChangeNotifier {
   UnmodifiableListView<Map<String, dynamic>> get filteredUsers =>
       UnmodifiableListView(_filteredUsers);
 
-  List<Map<String, dynamic>> _nationalRanking = [];
-  UnmodifiableListView<Map<String, dynamic>> get nationalRanking =>
+  List _nationalRanking = [];
+  UnmodifiableListView get nationalRanking =>
       UnmodifiableListView(_nationalRanking);
 
   void emptyArray() {
@@ -37,7 +38,6 @@ class UsersProvider with ChangeNotifier {
     try {
       http.Response response =
           await http.get(Uri.parse("$serverUrl/users/id/$userId"));
-      print(json.decode(response.body));
       if (response.statusCode == 200) {
         return User.fromJson(
           json.decode(response.body),
@@ -200,15 +200,16 @@ class UsersProvider with ChangeNotifier {
     }
   }
 
-  Future<void> getNationalRanking([countryCode = "FR"]) async {
+  Future<void> getNationalRanking(int connectedUserStars,
+      [countryCode = "FR"]) async {
     isLoading = true;
     try {
-      http.Response response = await http
-          .get(Uri.parse("$serverUrl/users/ranking/national/$countryCode"));
+      http.Response response = await http.get(Uri.parse(
+          "$serverUrl/users/ranking/national/$countryCode/$connectedUserStars"));
 
       if (response.statusCode == 200) {
-        final List decodedBody = json.decode(response.body);
-        _nationalRanking = decodedBody
+        final decodedBody = json.decode(response.body);
+        _nationalRanking = decodedBody["ranking"]
             .map((user) => {
                   "id": user["_id"],
                   "name": user["name"],
@@ -216,6 +217,7 @@ class UsersProvider with ChangeNotifier {
                   "stars": user["stars"],
                 })
             .toList();
+        connectedUserRank = decodedBody["connectedUserRank"];
         isLoading = false;
         notifyListeners();
       }

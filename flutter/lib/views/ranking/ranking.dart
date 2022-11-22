@@ -15,8 +15,7 @@ class NationalRanking extends StatefulWidget {
 class _NationalRankingState extends State<NationalRanking> {
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, dynamic>> nationalRanking =
-        Provider.of<UsersProvider>(context).nationalRanking;
+    final nationalRanking = Provider.of<UsersProvider>(context).nationalRanking;
     final bool isLoading = Provider.of<UsersProvider>(context).isLoading;
     final getNationalRanking =
         Provider.of<UsersProvider>(context, listen: false).getNationalRanking;
@@ -33,7 +32,7 @@ class _NationalRankingState extends State<NationalRanking> {
               Expanded(
                 flex: 1,
                 child: RefreshIndicator(
-                  onRefresh: () => getNationalRanking(),
+                  onRefresh: () => getNationalRanking(connectedUser!.stars),
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
                     alignment: Alignment.center,

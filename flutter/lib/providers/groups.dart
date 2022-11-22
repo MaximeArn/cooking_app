@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/Group.dart';
-import 'package:cooking/providers/users.dart';
 import 'package:cooking/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;

@@ -1,6 +1,8 @@
 import 'package:cooking/environment/env.dart';
 import 'package:cooking/models/User.dart';
+import 'package:cooking/providers/users.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ConnectedUserRank extends StatelessWidget {
   final User? connectedUser;
@@ -10,6 +12,7 @@ class ConnectedUserRank extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final rank = Provider.of<UsersProvider>(context).connectedUserRank;
     return Container(
       padding: const EdgeInsets.only(top: 8, bottom: 4),
       decoration: BoxDecoration(
@@ -26,7 +29,7 @@ class ConnectedUserRank extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "#34",
+            "#$rank",
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,

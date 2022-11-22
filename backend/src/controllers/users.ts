@@ -52,7 +52,6 @@ module.exports = {
         path: "posts",
         model: "post",
       });
-      console.log(user);
       res.json(user);
     } catch (error) {
       console.error(error);
@@ -152,18 +151,25 @@ module.exports = {
   },
 
   getNationalRanking: async (
-    { params: { countryCode } }: Request,
+    { params: { countryCode, connectedUserStars } }: Request,
     res: Response,
     next: NextFunction
   ) => {
     try {
+      console.log(connectedUserStars);
       const ranking = await User.find(
         { countryCode: countryCode },
         { name: 1, avatar: 1, stars: 1 }
       )
         .sort({ stars: "descending" })
         .limit(10);
-      res.json(ranking).status(200);
+
+      const connectedUserRank = await User.countDocuments({
+        stars: { $gte: parseInt(connectedUserStars) },
+        countryCode: countryCode,
+      });
+
+      res.json({ ranking, connectedUserRank }).status(200);
     } catch (error) {
       console.error(error);
       next(error);

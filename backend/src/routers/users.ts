@@ -20,7 +20,10 @@ usersRouter.get(
   "/searchAmoungFriends/:filter/:connectedUserId",
   getFriendsByName
 );
-usersRouter.get("/ranking/national/:countryCode", getNationalRanking);
+usersRouter.get(
+  "/ranking/national/:countryCode/:connectedUserStars",
+  getNationalRanking
+);
 usersRouter.post("", createUser);
 usersRouter.patch("/:id", updateUser);
 usersRouter.delete("/:id", deleteUser);
